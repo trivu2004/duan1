@@ -14,6 +14,8 @@ public class testSQL {
 
     public static void main(String[] args) {
         // Thông tin kết nối MySQL
+        
+        // Vào https://www.phpmyadmin.co/index.php đăng nhập để chỉnh sửa được database
         String host = "sql12.freesqldatabase.com";
         String port = "3306";
         String Database = "sql12658501";
