@@ -21,5 +21,5 @@ public class DuAn1 {
          
          System.out.println("Tri Ngu");
     }
-    
+
 }
