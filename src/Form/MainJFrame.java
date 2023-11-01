@@ -1,5 +1,6 @@
 package Form;
 
+import Components.HeaderMenu;
 import java.awt.Color;
 import javaswingdev.drawer.*;
 import javax.swing.ImageIcon;
@@ -25,7 +26,7 @@ public class MainJFrame extends javax.swing.JFrame {
 
     void setMenu() {
         drawer = Drawer.newDrawer(this)
-                .header(new JLabel("aaaa"))
+                .header(new HeaderMenu())
                 .separator(2, Color.black)
                 .enableScroll(true)
                 .duration(600)

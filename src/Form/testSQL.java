@@ -11,11 +11,16 @@ import java.sql.Statement;
  * @author Tri Dung
  */
 public class testSQL {
+
     public static void main(String[] args) {
         // Thông tin kết nối MySQL
-        String url = "jdbc:mysql://sql12.freesqldatabase.com:3306/sql12658501";
+        String host = "sql12.freesqldatabase.com";
+        String port = "3306";
+        String Database = "sql12658501";
         String username = "sql12658501";
         String password = "ap63uLZLNJ";
+
+        String url = "jdbc:mysql://" + host + ":" + port + "/" + Database;
 
         // Thử kết nối
         try {

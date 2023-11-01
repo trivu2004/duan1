@@ -67,7 +67,7 @@ public class DangNhapForm extends javax.swing.JFrame {
 
         jLabel5.setFont(new java.awt.Font("Roboto Black", 0, 24)); // NOI18N
         jLabel5.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/image/cinema.png"))); // NOI18N
+        jLabel5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/image/_2269775c-067d-426c-9afb-18b388bcdf5d (2).jpg"))); // NOI18N
         jLabel5.setText("CINEMA Quận 12");
 
         jLabel6.setFont(new java.awt.Font("Roboto Black", 0, 24)); // NOI18N
