@@ -31,6 +31,9 @@ public class testSQL {
             ResultSet rs = st.executeQuery(sql);
             while (rs.next()) {
                 System.out.println(rs.getString("MaNV"));
+                System.out.println(rs.getString("Ho"));
+                System.out.println(rs.getString("Ten"));
+                System.out.println(rs.getString("Tuoi"));
             }
             connection.close(); // Đừng quên đóng kết nối sau khi sử dụng xong
         } catch (SQLException e) {
