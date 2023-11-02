@@ -26,7 +26,7 @@ public class BCryptPasswordHashing {
 
     public static void main(String[] args) {
         while (true) {
-            hashPassword("123");
+            System.out.println(hashPassword("1234"));;
         }
     }
 }
