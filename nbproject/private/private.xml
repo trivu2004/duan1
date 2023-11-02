@@ -12,10 +12,13 @@
         </group>
         <group>
             <file>file:/E:/DuAn1/src/DAO/NewClass.java</file>
+            <file>file:/E:/DuAn1/src/util/BCryptPasswordHashing.java</file>
             <file>file:/E:/DuAn1/src/Form/MainJFrame.java</file>
             <file>file:/E:/DuAn1/src/Components/HeaderMenu.java</file>
-            <file>file:/E:/DuAn1/src/Form/testSQL.java</file>
             <file>file:/E:/DuAn1/src/Form/DangNhapForm.java</file>
+            <file>file:/E:/DuAn1/test/testDataBase.java</file>
+            <file>file:/E:/DuAn1/src/util/DataBaseConnection.java</file>
+            <file>file:/E:/DuAn1/test/TestInsterDB.java</file>
         </group>
     </open-files>
 </project-private>
