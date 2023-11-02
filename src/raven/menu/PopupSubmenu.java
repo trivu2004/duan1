@@ -1,4 +1,4 @@
-package Components.raven.menu;
+package raven.menu;
 
 import com.formdev.flatlaf.FlatClientProperties;
 import com.formdev.flatlaf.util.UIScale;

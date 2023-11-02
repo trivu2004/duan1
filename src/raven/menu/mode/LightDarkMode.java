@@ -1,4 +1,4 @@
-package Components.raven.menu.mode;
+package raven.menu.mode;
 
 import com.formdev.flatlaf.FlatClientProperties;
 import com.formdev.flatlaf.FlatLaf;

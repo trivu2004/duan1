@@ -1,4 +1,4 @@
-package Components.raven.menu;
+package raven.menu;
 
 import com.formdev.flatlaf.util.Animator;
 import java.util.HashMap;

@@ -1,6 +1,5 @@
-package Components.raven.application.form;
+package Form;
 
-import Components.raven.application.Application;
 import com.formdev.flatlaf.FlatClientProperties;
 import com.formdev.flatlaf.extras.FlatSVGIcon;
 import com.formdev.flatlaf.util.UIScale;
@@ -16,11 +15,12 @@ import javax.swing.JButton;
 import javax.swing.JLayeredPane;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
-import Components.raven.application.form.other.FormDashboard;
-import Components.raven.application.form.other.FormInbox;
-import Components.raven.application.form.other.FormRead;
-import Components.raven.menu.Menu;
-import Components.raven.menu.MenuAction;
+import Form.MainJFrame;
+import raven.application.form.other.FormDashboard;
+import raven.application.form.other.FormInbox;
+import raven.application.form.other.FormRead;
+import raven.menu.Menu;
+import raven.menu.MenuAction;
 
 /**
  *
@@ -69,19 +69,19 @@ public class MainForm extends JLayeredPane {
 
     private void initMenuEvent() {
         menu.addMenuEvent((int index, int subIndex, MenuAction action) -> {
-            // Application.mainForm.showForm(new DefaultForm("Form : " + index + " " + subIndex));
+            // MainJFrame.mainForm.showForm(new DefaultForm("Form : " + index + " " + subIndex));
             if (index == 0) {
-                Application.showForm(new FormDashboard());
+                MainJFrame.showForm(new FormDashboard());
             } else if (index == 1) {
                 if (subIndex == 1) {
-                    Application.showForm(new FormInbox());
+                    MainJFrame.showForm(new FormInbox());
                 } else if (subIndex == 2) {
-                    Application.showForm(new FormRead());
+                    MainJFrame.showForm(new FormRead());
                 } else {
                     action.cancel();
                 }
             } else if (index == 9) {
-                Application.logout();
+                MainJFrame.logout();
             } else {
                 action.cancel();
             }

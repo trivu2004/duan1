@@ -1,4 +1,4 @@
-package Components.raven.application.form.other;
+package raven.application.form.other;
 
 import com.formdev.flatlaf.FlatClientProperties;
 import raven.toast.Notifications;
