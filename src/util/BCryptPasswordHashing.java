@@ -14,7 +14,7 @@ public class BCryptPasswordHashing {
 
     public static String hashPassword(String password) {
         PropertyConfigurator.configure("src\\Log\\log4j.properties");
-        String salt = BCrypt.gensalt(12);
+        String salt = BCrypt.gensalt(14);
         String hashedPassword = BCrypt.hashpw(password, salt);
         logger.info("Đã mã hóa mật khẩu thành công");
         return hashedPassword;
