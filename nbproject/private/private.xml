@@ -3,9 +3,9 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group name="Group 20230109-03:31:29">
-            <file>file:/C:/Users/DELL/OneDrive/Documents/NetBeansProjects/duan1/src/Form/DatabaseConnection.java</file>
-            <file>file:/C:/Users/DELL/OneDrive/Documents/NetBeansProjects/duan1/src/Form/MainJFrame.java</file>
-            <file>file:/C:/Users/DELL/OneDrive/Documents/NetBeansProjects/duan1/src/Form/testDataBase.java</file>
+            <file>file:/C:/Users/DELL/OneDrive/Documents/NetBeansProjects/duan1/test/TestInsterDB.java</file>
+            <file>file:/C:/Users/DELL/OneDrive/Documents/NetBeansProjects/duan1/src/Form/DataBaseConnection.java</file>
+            <file>file:/C:/Users/DELL/OneDrive/Documents/NetBeansProjects/duan1/test/testDataBase.java</file>
         </group>
     </open-files>
 </project-private>

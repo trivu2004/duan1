@@ -4,6 +4,8 @@
  */
 package Form;
 
+import javax.swing.JOptionPane;
+
 /**
  *
  * @author USER
@@ -113,8 +115,18 @@ public class DangNhapForm extends javax.swing.JFrame {
         jLabel10.setText("Bạn đã có tài khoản chưa ?");
 
         jLabel11.setFont(new java.awt.Font("Roboto", 0, 24)); // NOI18N
-        jLabel11.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel11.setForeground(new java.awt.Color(51, 51, 255));
         jLabel11.setText("Đăng ký tại đây !");
+        jLabel11.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jLabel11MouseClicked(evt);
+            }
+        });
+        jLabel11.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                jLabel11KeyReleased(evt);
+            }
+        });
 
         jLabel13.setIcon(new javax.swing.ImageIcon(getClass().getResource("/image/c.png"))); // NOI18N
 
@@ -258,6 +270,16 @@ public class DangNhapForm extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void jLabel11KeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jLabel11KeyReleased
+        // TODO add your handling code here:
+        JOptionPane.showMessageDialog(this,"ddd");
+    }//GEN-LAST:event_jLabel11KeyReleased
+
+    private void jLabel11MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel11MouseClicked
+        // TODO add your handling code here:
+           JOptionPane.showMessageDialog(this,"ddd");
+    }//GEN-LAST:event_jLabel11MouseClicked
 
     /**
      * @param args the command line arguments
