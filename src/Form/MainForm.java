@@ -21,6 +21,7 @@ import raven.application.form.other.FormInbox;
 import raven.application.form.other.FormRead;
 import raven.menu.Menu;
 import raven.menu.MenuAction;
+import raven.toast.Notifications;
 
 /**
  *
@@ -77,6 +78,8 @@ public class MainForm extends JLayeredPane {
                     MainJFrame.showForm(new FormInbox());
                 } else if (subIndex == 2) {
                     MainJFrame.showForm(new FormRead());
+                } else if (subIndex == 3) {
+                    Notifications.getInstance().show(Notifications.Type.INFO, Notifications.Location.TOP_CENTER, "Hello sample message");
                 } else {
                     action.cancel();
                 }

@@ -33,7 +33,10 @@ public class LoginForm extends javax.swing.JPanel {
         txtPass.putClientProperty(FlatClientProperties.STYLE, ""
                 + "showRevealButton:true;"
                 + "showCapsLock:true");
-        cmdLogin.putClientProperty(FlatClientProperties.STYLE, ""
+        btnLogin.putClientProperty(FlatClientProperties.STYLE, ""
+                + "borderWidth:0;"
+                + "focusWidth:0");
+        btnExit.putClientProperty(FlatClientProperties.STYLE, ""
                 + "borderWidth:0;"
                 + "focusWidth:0");
         txtUser.putClientProperty(FlatClientProperties.PLACEHOLDER_TEXT, "User Name");
@@ -45,18 +48,18 @@ public class LoginForm extends javax.swing.JPanel {
     private void initComponents() {
 
         login = new javax.swing.JPanel();
-        cmdLogin = new javax.swing.JButton();
+        btnLogin = new javax.swing.JButton();
         lbTitle = new javax.swing.JLabel();
         lbUser = new javax.swing.JLabel();
         txtUser = new javax.swing.JTextField();
         lbPass = new javax.swing.JLabel();
         txtPass = new javax.swing.JPasswordField();
-        jButton1 = new javax.swing.JButton();
+        btnExit = new javax.swing.JButton();
 
-        cmdLogin.setText("Login");
-        cmdLogin.addActionListener(new java.awt.event.ActionListener() {
+        btnLogin.setText("Login");
+        btnLogin.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                cmdLoginActionPerformed(evt);
+                btnLoginActionPerformed(evt);
             }
         });
 
@@ -67,10 +70,10 @@ public class LoginForm extends javax.swing.JPanel {
 
         lbPass.setText("Password");
 
-        jButton1.setText("jButton1");
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
+        btnExit.setText("jButton1");
+        btnExit.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
+                btnExitActionPerformed(evt);
             }
         });
 
@@ -99,11 +102,10 @@ public class LoginForm extends javax.swing.JPanel {
                                 .addComponent(txtUser, javax.swing.GroupLayout.PREFERRED_SIZE, 151, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addGroup(loginLayout.createSequentialGroup()
                                 .addContainerGap()
-                                .addComponent(cmdLogin))
-                            .addGroup(loginLayout.createSequentialGroup()
-                                .addGap(129, 129, 129)
-                                .addComponent(jButton1)))
-                        .addGap(0, 163, Short.MAX_VALUE)))
+                                .addComponent(btnLogin)
+                                .addGap(55, 55, 55)
+                                .addComponent(btnExit)))
+                        .addGap(0, 159, Short.MAX_VALUE)))
                 .addContainerGap())
         );
         loginLayout.setVerticalGroup(
@@ -119,10 +121,10 @@ public class LoginForm extends javax.swing.JPanel {
                 .addComponent(lbPass)
                 .addGap(5, 5, 5)
                 .addComponent(txtPass, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jButton1)
-                .addGap(21, 21, 21)
-                .addComponent(cmdLogin)
+                .addGap(50, 50, 50)
+                .addGroup(loginLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(btnLogin)
+                    .addComponent(btnExit))
                 .addContainerGap(51, Short.MAX_VALUE))
         );
 
@@ -144,14 +146,14 @@ public class LoginForm extends javax.swing.JPanel {
         );
     }// </editor-fold>//GEN-END:initComponents
 
-    private void cmdLoginActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cmdLoginActionPerformed
+    private void btnLoginActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLoginActionPerformed
         MainJFrame.login();
-    }//GEN-LAST:event_cmdLoginActionPerformed
+    }//GEN-LAST:event_btnLoginActionPerformed
 
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+    private void btnExitActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnExitActionPerformed
         // TODO add your handling code here:
         System.exit(0);
-    }//GEN-LAST:event_jButton1ActionPerformed
+    }//GEN-LAST:event_btnExitActionPerformed
 
     private class LoginFormLayout implements LayoutManager {
 
@@ -223,7 +225,7 @@ public class LoginForm extends javax.swing.JPanel {
                 height += UIScale.scale(labelGap);
                 height += txtPass.getPreferredSize().height;
                 height += UIScale.scale(buttonGap);
-                height += cmdLogin.getPreferredSize().height;
+                height += btnLogin.getPreferredSize().height;
                 return new Dimension(0, height);
             }
         }
@@ -256,14 +258,15 @@ public class LoginForm extends javax.swing.JPanel {
                 txtPass.setBounds(x, y, width, txtPass.getPreferredSize().height);
                 y += txtPass.getPreferredSize().height + UIScale.scale(buttonGap);
 
-                cmdLogin.setBounds(x, y, width, cmdLogin.getPreferredSize().height);
+                btnLogin.setBounds(x, y, width-150, btnLogin.getPreferredSize().height);
+                btnExit.setBounds(x + 150, y, width-150 , btnExit.getPreferredSize().height);
             }
         }
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton cmdLogin;
-    private javax.swing.JButton jButton1;
+    private javax.swing.JButton btnExit;
+    private javax.swing.JButton btnLogin;
     private javax.swing.JLabel lbPass;
     private javax.swing.JLabel lbTitle;
     private javax.swing.JLabel lbUser;
