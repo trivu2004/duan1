@@ -273,12 +273,11 @@ public class DangNhapForm extends javax.swing.JFrame {
 
     private void jLabel11KeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jLabel11KeyReleased
         // TODO add your handling code here:
-        JOptionPane.showMessageDialog(this,"ddd");
     }//GEN-LAST:event_jLabel11KeyReleased
 
     private void jLabel11MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel11MouseClicked
         // TODO add your handling code here:
-           JOptionPane.showMessageDialog(this,"ddd");
+           JOptionPane.showMessageDialog(this,"Coming soon!");
     }//GEN-LAST:event_jLabel11MouseClicked
 
     /**
