@@ -1,10 +1,5 @@
 package Form;
 
-import Components.HeaderMenu;
-import java.awt.Color;
-import javaswingdev.drawer.*;
-import javax.swing.ImageIcon;
-import javax.swing.JLabel;
 
 /**
  *
@@ -15,37 +10,12 @@ public class MainJFrame extends javax.swing.JFrame {
     /**
      * Creates new form MainJFrame
      */
-    DrawerController drawer;
-
+    
+    
     public MainJFrame() {
         initComponents();
         setLocationRelativeTo(null);
         setDefaultCloseOperation(3);
-        setMenu();
-    }
-
-    void setMenu() {
-        drawer = Drawer.newDrawer(this)
-                .header(new HeaderMenu())
-                .separator(2, Color.black)
-                .enableScroll(true)
-                .duration(600)
-                .addChild(new DrawerItem("Item Name").icon(new ImageIcon("src\\image\\Icons8-Ios7-Food-Bread.32.png")).build())
-                .addChild(new DrawerItem("Item Name").icon(new ImageIcon("src\\image\\Icons8-Ios7-Food-Bread.32.png")).build())
-                .addChild(new DrawerItem("Item Name").icon(new ImageIcon("src\\image\\Icons8-Ios7-Food-Bread.32.png")).build())
-                .addChild(new DrawerItem("Item Name").icon(new ImageIcon("src\\image\\Icons8-Ios7-Food-Bread.32.png")).build())
-                .addChild(new DrawerItem("Item Name").icon(new ImageIcon("src\\image\\Icons8-Ios7-Food-Bread.32.png")).build())
-                .addChild(new DrawerItem("Item Name").icon(new ImageIcon("src\\image\\Icons8-Ios7-Food-Bread.32.png")).build())
-                .addFooter(new DrawerItem("Exit").icon(new ImageIcon("src\\image\\Icons8-Ios7-Food-Bread.32.png")).build())
-                .build();
-    }
-
-    void openMenu() {
-        if (drawer.isShow()) {
-            drawer.hide();
-        } else {
-            drawer.show();
-        }
     }
 
     /**
@@ -57,41 +27,21 @@ public class MainJFrame extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        OpenMenubtn = new javax.swing.JButton();
-
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-
-        OpenMenubtn.setText("|||");
-        OpenMenubtn.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                OpenMenubtnActionPerformed(evt);
-            }
-        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(OpenMenubtn, javax.swing.GroupLayout.PREFERRED_SIZE, 53, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(636, Short.MAX_VALUE))
+            .addGap(0, 695, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(OpenMenubtn, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(462, Short.MAX_VALUE))
+            .addGap(0, 501, Short.MAX_VALUE)
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
-
-    private void OpenMenubtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_OpenMenubtnActionPerformed
-        // TODO add your handling code here:
-        openMenu();
-    }//GEN-LAST:event_OpenMenubtnActionPerformed
 
     /**
      * @param args the command line arguments
@@ -129,6 +79,5 @@ public class MainJFrame extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton OpenMenubtn;
     // End of variables declaration//GEN-END:variables
 }
