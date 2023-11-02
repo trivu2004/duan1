@@ -30,13 +30,13 @@ public class MainJFrame extends javax.swing.JFrame {
                 .separator(2, Color.black)
                 .enableScroll(true)
                 .duration(600)
-                .addChild(new DrawerItem("Item Name").icon(new ImageIcon("src\\images\\Icons8-Ios7-Food-Bread.32.png")).build())
-                .addChild(new DrawerItem("Item Name").icon(new ImageIcon("src\\images\\Icons8-Ios7-Food-Bread.32.png")).build())
-                .addChild(new DrawerItem("Item Name").icon(new ImageIcon("src\\images\\Icons8-Ios7-Food-Bread.32.png")).build())
-                .addChild(new DrawerItem("Item Name").icon(new ImageIcon("src\\images\\Icons8-Ios7-Food-Bread.32.png")).build())
-                .addChild(new DrawerItem("Item Name").icon(new ImageIcon("src\\images\\Icons8-Ios7-Food-Bread.32.png")).build())
-                .addChild(new DrawerItem("Item Name").icon(new ImageIcon("src\\images\\Icons8-Ios7-Food-Bread.32.png")).build())
-                .addFooter(new DrawerItem("Exit").icon(new ImageIcon("src\\images\\Icons8-Ios7-Food-Bread.32.png")).build())
+                .addChild(new DrawerItem("Item Name").icon(new ImageIcon("src\\image\\Icons8-Ios7-Food-Bread.32.png")).build())
+                .addChild(new DrawerItem("Item Name").icon(new ImageIcon("src\\image\\Icons8-Ios7-Food-Bread.32.png")).build())
+                .addChild(new DrawerItem("Item Name").icon(new ImageIcon("src\\image\\Icons8-Ios7-Food-Bread.32.png")).build())
+                .addChild(new DrawerItem("Item Name").icon(new ImageIcon("src\\image\\Icons8-Ios7-Food-Bread.32.png")).build())
+                .addChild(new DrawerItem("Item Name").icon(new ImageIcon("src\\image\\Icons8-Ios7-Food-Bread.32.png")).build())
+                .addChild(new DrawerItem("Item Name").icon(new ImageIcon("src\\image\\Icons8-Ios7-Food-Bread.32.png")).build())
+                .addFooter(new DrawerItem("Exit").icon(new ImageIcon("src\\image\\Icons8-Ios7-Food-Bread.32.png")).build())
                 .build();
     }
 
