@@ -38,6 +38,6 @@ public class testSQL {
             connection.close(); // Đừng quên đóng kết nối sau khi sử dụng xong
         } catch (SQLException e) {
             System.err.println("Lỗi kết nối MySQL: " + e.getMessage());
-        }
+        }   
     }
 }
