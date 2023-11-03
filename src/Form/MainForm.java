@@ -84,7 +84,7 @@ public class MainForm extends JLayeredPane {
             else if (index==3) {
                 MainJFrame.showForm(new DefaultForm1());
             }
-            else if (index == 9) {
+            else if (index ==11) {
                 MainJFrame.logout();
             } else {
                 action.cancel();

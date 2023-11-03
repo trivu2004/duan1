@@ -39,8 +39,8 @@ public class LoginForm extends javax.swing.JPanel {
         btnExit.putClientProperty(FlatClientProperties.STYLE, ""
                 + "borderWidth:0;"
                 + "focusWidth:0");
-        txtUser.putClientProperty(FlatClientProperties.PLACEHOLDER_TEXT, "User Name");
-        txtPass.putClientProperty(FlatClientProperties.PLACEHOLDER_TEXT, "Password");
+        txtUser.putClientProperty(FlatClientProperties.PLACEHOLDER_TEXT, "Tài Khoản");
+        txtPass.putClientProperty(FlatClientProperties.PLACEHOLDER_TEXT, "Mật Khẩu");
     }
 
     @SuppressWarnings("unchecked")
@@ -58,7 +58,7 @@ public class LoginForm extends javax.swing.JPanel {
 
         login.setBackground(new java.awt.Color(34, 31, 31));
 
-        btnLogin.setText("Login");
+        btnLogin.setText("Đăng Nhập");
         btnLogin.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnLoginActionPerformed(evt);
@@ -66,13 +66,13 @@ public class LoginForm extends javax.swing.JPanel {
         });
 
         lbTitle.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        lbTitle.setText("Login");
+        lbTitle.setText("Đăng Nhập");
 
-        lbUser.setText("User Name");
+        lbUser.setText("Tài Khoản");
 
-        lbPass.setText("Password");
+        lbPass.setText("Mật Khẩu");
 
-        btnExit.setText("jButton1");
+        btnExit.setText("Thoát");
         btnExit.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnExitActionPerformed(evt);
@@ -137,7 +137,7 @@ public class LoginForm extends javax.swing.JPanel {
             .addGroup(layout.createSequentialGroup()
                 .addGap(204, 204, 204)
                 .addComponent(login, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(22, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
