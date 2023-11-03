@@ -18,10 +18,10 @@ import raven.toast.Notifications;
 public class MainJFrame extends javax.swing.JFrame {
 
     private static MainJFrame app;
-    private final MainForm mainForm;
+    private static MainForm mainForm;
     private static LoginForm loginForm;
 
-        public MainJFrame() {
+    public MainJFrame() {
         initComponents();
         setSize(new Dimension(1366, 768));
         setLocationRelativeTo(null);
@@ -29,6 +29,7 @@ public class MainJFrame extends javax.swing.JFrame {
         loginForm = new LoginForm();
         setContentPane(loginForm);
         Notifications.getInstance().setJFrame(this);
+        mainForm.setMenuFull(false);
     }
 
     public static void showForm(Component component) {
