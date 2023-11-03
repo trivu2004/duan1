@@ -19,7 +19,7 @@ public class MainJFrame extends javax.swing.JFrame {
 
     private static MainJFrame app;
     private final MainForm mainForm;
-    private final LoginForm loginForm;
+    private static LoginForm loginForm;
 
     public MainJFrame() {
         initComponents();
@@ -37,6 +37,7 @@ public class MainJFrame extends javax.swing.JFrame {
     }
 
     public static void login() {
+        if (loginForm.txtUser.getText().equals("a") && loginForm.txtPass.getText().equals("b")){
         FlatAnimatedLafChange.showSnapshot();
         app.setContentPane(app.mainForm);
         app.mainForm.applyComponentOrientation(app.getComponentOrientation());
@@ -44,9 +45,13 @@ public class MainJFrame extends javax.swing.JFrame {
         app.mainForm.hideMenu();
         SwingUtilities.updateComponentTreeUI(app.mainForm);
         FlatAnimatedLafChange.hideSnapshotWithAnimation();
-    }
+        }else{
+           Notifications.getInstance().show(Notifications.Type.INFO, Notifications.Location.TOP_CENTER, "Hello sample message");
+        }
+    
+}
 
-    public static void logout() {
+public static void logout() {
         FlatAnimatedLafChange.showSnapshot();
         app.setContentPane(app.loginForm);
         app.loginForm.applyComponentOrientation(app.getComponentOrientation());
