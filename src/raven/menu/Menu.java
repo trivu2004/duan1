@@ -25,10 +25,10 @@ import raven.menu.mode.ToolBarAccentColor;
 public class Menu extends JPanel {
 
     private final String menuItems[][] = {
-        {"~MAIN~"},
-        {"Dashboard"},
+        {"~Chính~"},
+        {"Trang chủ"},
         {"~WEB APP~"},
-        {"Email", "Inbox", "Read", "Compost"},
+        {"Email", "Inbox", "Read",},
         {"Chat"},
         {"Calendar"},
         {"~COMPONENT~"},

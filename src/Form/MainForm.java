@@ -16,9 +16,6 @@ import javax.swing.JLayeredPane;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 import Form.MainJFrame;
-import raven.application.form.other.FormDashboard;
-import raven.application.form.other.FormInbox;
-import raven.application.form.other.FormRead;
 import raven.menu.Menu;
 import raven.menu.MenuAction;
 import raven.toast.Notifications;
@@ -78,12 +75,13 @@ public class MainForm extends JLayeredPane {
                     MainJFrame.showForm(new FormInbox());
                 } else if (subIndex == 2) {
                     MainJFrame.showForm(new FormRead());
-                } else if (subIndex == 3) {
-                    Notifications.getInstance().show(Notifications.Type.INFO, Notifications.Location.TOP_CENTER, "Hello sample message");
                 } else {
                     action.cancel();
                 }
-            } else if (index == 9) {
+            }else if (index==2) {
+                MainJFrame.showForm(new DefaultForm());
+            }
+            else if (index == 9) {
                 MainJFrame.logout();
             } else {
                 action.cancel();
