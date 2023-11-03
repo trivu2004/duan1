@@ -21,7 +21,7 @@ public class MainJFrame extends javax.swing.JFrame {
     private final MainForm mainForm;
     private final LoginForm loginForm;
 
-    public MainJFrame() {
+        public MainJFrame() {
         initComponents();
         setSize(new Dimension(1366, 768));
         setLocationRelativeTo(null);
