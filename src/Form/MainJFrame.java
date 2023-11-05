@@ -92,7 +92,7 @@ public class MainJFrame extends javax.swing.JFrame {
         FlatMacDarkLaf.setup();
         java.awt.EventQueue.invokeLater(() -> {
             app = new MainJFrame();
-            //  app.applyComponentOrientation(ComponentOrientation.RIGHT_TO_LEFT);
+//              app.applyComponentOrientation(ComponentOrientation.RIGHT_TO_LEFT);
             app.setVisible(true);
         });
     }
