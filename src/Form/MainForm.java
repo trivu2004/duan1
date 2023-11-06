@@ -69,22 +69,14 @@ public class MainForm extends JLayeredPane {
         menu.addMenuEvent((int index, int subIndex, MenuAction action) -> {
             // MainJFrame.mainForm.showForm(new DefaultForm("Form : " + index + " " + subIndex));
             if (index == 0) {
-                MainJFrame.showForm(new FormDashboard());
+                MainJFrame.showForm(new TrangChuJPanel());
             } else if (index == 1) {
-                if (subIndex == 1) {
-                    MainJFrame.showForm(new FormInbox());
-                } else if (subIndex == 2) {
-                    MainJFrame.showForm(new FormRead());
-                } else {
-                    action.cancel();
-                }
-            }else if (index==2) {
-                MainJFrame.showForm(new DefaultForm());
-            }
-            else if (index==3) {
-                MainJFrame.showForm(new PhongChieuJFrame());
-            }
-            else if (index ==11) {
+                MainJFrame.showForm(new NhanVienJPanel());
+            } else if (index == 2) {
+                MainJFrame.showForm(new PhongChieuJPanel());
+            } else if (index == 3) {
+                MainJFrame.showForm(new PhimJPanel());
+            } else if (index == 10) {
                 MainJFrame.logout();
             } else {
                 action.cancel();

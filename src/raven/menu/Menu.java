@@ -26,21 +26,19 @@ public class Menu extends JPanel {
 
     private final String menuItems[][] = {
         {"~Chính~"},
-        {"Trang chủ"},
-        {"~WEB APP~"},
-        {"Rạp Chiếu", "Quận 12", "Quận 11", "Quận 10","Gò Vấp"},
+        {"Trang Chủ"},
+        {"~Quản Lý~"},
+        {"Nhân Viên"},
         {"Phòng Chiếu"},
-        {"Suất Chiếu"},
-        {"~COMPONENT~"},
         {"Phim"},
+        {"Suất Chiếu"},
         {"Vé"},
-        {"Hóa Đơn"},
-        {"Khách Hàng"},
-        {"~OTHER~"},
+        {"Khách hàng"},
+        {"~Khác~"},
         {"Thống Kê", "Doanh Thu", "Số Lượng Khách"},
-        {"Email", "Inbox"},
         {"Giới Thiệu"},
-        {"Logout"}
+        {"Quên Mật Khẩu"},
+        {"Đăng Xuất"}
     };
 
     public boolean isMenuFull() {
@@ -67,7 +65,7 @@ public class Menu extends JPanel {
 
     private final List<MenuEvent> events = new ArrayList<>();
     private boolean menuFull = true;
-    private final String headerName = "Cinema Quận 12";
+    private final String headerName = "CINEMAX";
 
     protected final boolean hideMenuTitleOnMinimum = true;
     protected final int menuTitleLeftInset = 5;
