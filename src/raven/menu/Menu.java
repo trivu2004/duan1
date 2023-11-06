@@ -25,34 +25,20 @@ import raven.menu.mode.ToolBarAccentColor;
 public class Menu extends JPanel {
 
     private final String menuItems[][] = {
-        {"~Chính~"},
-<<<<<<< HEAD
-        {"Trang Chủ"},
-        {"~Quản Lý~"},
-        {"Nhân Viên"},
-        {"Phòng Chiếu"},
-=======
-        {"Trang chủ"},
-        {"~Ứng Dụng Trang Web~"},
-        {"Rạp Chiếu", "Quận 12", "Quận 11", "Quận 10","Gò Vấp"},
-        {"Phòng Chiếu"},
-        {"Suất Chiếu"},
-        {"~Thành Phần~"},
->>>>>>> 9174de28efcdb190bdbcf3ff32526aec22655260
-        {"Phim"},
-        {"Suất Chiếu"},
-        {"Vé"},
-<<<<<<< HEAD
-        {"Khách hàng"},
-=======
-        {"Hóa Đơn"},
-        {"Khách Hàng"},
->>>>>>> 9174de28efcdb190bdbcf3ff32526aec22655260
-        {"~Khác~"},
-        {"Thống Kê", "Doanh Thu", "Số Lượng Khách"},
-        {"Giới Thiệu"},
-        {"Quên Mật Khẩu"},
-        {"Đăng Xuất"}
+            { "~Chính~" },
+            { "Trang Chủ" },
+            { "~Quản Lý~" },
+            { "Nhân Viên" },
+            { "Phòng Chiếu" },
+            { "Phim" },
+            { "Suất Chiếu" },
+            { "Vé" },
+            { "Khách hàng" },
+            { "~Khác~" },
+            { "Thống Kê", "Doanh Thu", "Số Lượng Khách" },
+            { "Giới Thiệu" },
+            { "Quên Mật Khẩu" },
+            { "Đăng Xuất" }
     };
 
     public boolean isMenuFull() {
@@ -104,7 +90,7 @@ public class Menu extends JPanel {
                 + "font:$Menu.header.font;"
                 + "foreground:$Menu.foreground");
 
-        //  Menu
+        // Menu
         scroll = new JScrollPane();
         panelMenu = new JPanel(new MenuItemLayout(this));
         panelMenu.putClientProperty(FlatClientProperties.STYLE, ""
@@ -261,7 +247,7 @@ public class Menu extends JPanel {
                 int hgap = menuFull ? sheaderFullHgap : 0;
                 int accentColorHeight = 0;
                 if (toolBarAccentColor.isVisible()) {
-                    accentColorHeight = toolBarAccentColor.getPreferredSize().height+gap;
+                    accentColorHeight = toolBarAccentColor.getPreferredSize().height + gap;
                 }
 
                 header.setBounds(x + hgap, y, iconWidth - (hgap * 2), iconHeight);
@@ -269,7 +255,7 @@ public class Menu extends JPanel {
                 int ldWidth = width - ldgap * 2;
                 int ldHeight = lightDarkMode.getPreferredSize().height;
                 int ldx = x + ldgap;
-                int ldy = y + height - ldHeight - ldgap  - accentColorHeight;
+                int ldy = y + height - ldHeight - ldgap - accentColorHeight;
 
                 int menux = x;
                 int menuy = y + iconHeight + gap;
