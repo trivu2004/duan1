@@ -58,6 +58,7 @@ public class LoginForm extends javax.swing.JPanel {
 
         login.setBackground(new java.awt.Color(34, 31, 31));
 
+        btnLogin.setIcon(new javax.swing.ImageIcon(getClass().getResource("/image/Key.png"))); // NOI18N
         btnLogin.setText("Đăng Nhập");
         btnLogin.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -72,6 +73,7 @@ public class LoginForm extends javax.swing.JPanel {
 
         lbPass.setText("Mật Khẩu");
 
+        btnExit.setIcon(new javax.swing.ImageIcon(getClass().getResource("/image/Exit.png"))); // NOI18N
         btnExit.setText("Thoát");
         btnExit.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -90,10 +92,11 @@ public class LoginForm extends javax.swing.JPanel {
                         .addGroup(loginLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(lbTitle, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addGroup(loginLayout.createSequentialGroup()
-                                .addGroup(loginLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(lbPass)
-                                    .addComponent(txtPass, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addGap(0, 0, Short.MAX_VALUE))))
+                                .addComponent(txtPass, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(0, 0, Short.MAX_VALUE))
+                            .addGroup(loginLayout.createSequentialGroup()
+                                .addComponent(lbPass)
+                                .addGap(58, 427, Short.MAX_VALUE))))
                     .addGroup(loginLayout.createSequentialGroup()
                         .addGroup(loginLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(loginLayout.createSequentialGroup()
@@ -101,14 +104,15 @@ public class LoginForm extends javax.swing.JPanel {
                                 .addComponent(lbUser))
                             .addGroup(loginLayout.createSequentialGroup()
                                 .addContainerGap()
-                                .addComponent(txtUser, javax.swing.GroupLayout.PREFERRED_SIZE, 151, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(loginLayout.createSequentialGroup()
-                                .addContainerGap()
-                                .addComponent(btnLogin)
-                                .addGap(55, 55, 55)
-                                .addComponent(btnExit)))
-                        .addGap(0, 159, Short.MAX_VALUE)))
+                                .addComponent(btnLogin, javax.swing.GroupLayout.PREFERRED_SIZE, 177, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(45, 45, 45)
+                                .addComponent(btnExit, javax.swing.GroupLayout.PREFERRED_SIZE, 148, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addGap(0, 0, Short.MAX_VALUE)))
                 .addContainerGap())
+            .addGroup(loginLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(txtUser, javax.swing.GroupLayout.PREFERRED_SIZE, 151, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         loginLayout.setVerticalGroup(
             loginLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -119,7 +123,7 @@ public class LoginForm extends javax.swing.JPanel {
                 .addComponent(lbUser)
                 .addGap(5, 5, 5)
                 .addComponent(txtUser, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(10, 10, 10)
+                .addGap(16, 16, 16)
                 .addComponent(lbPass)
                 .addGap(5, 5, 5)
                 .addComponent(txtPass, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -137,14 +141,22 @@ public class LoginForm extends javax.swing.JPanel {
             .addGroup(layout.createSequentialGroup()
                 .addGap(204, 204, 204)
                 .addComponent(login, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+<<<<<<< HEAD
                 .addContainerGap(209, Short.MAX_VALUE))
+=======
+                .addContainerGap(166, Short.MAX_VALUE))
+>>>>>>> 9174de28efcdb190bdbcf3ff32526aec22655260
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
+<<<<<<< HEAD
                 .addGap(68, 68, 68)
+=======
+                .addGap(80, 80, 80)
+>>>>>>> 9174de28efcdb190bdbcf3ff32526aec22655260
                 .addComponent(login, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(50, Short.MAX_VALUE))
+                .addContainerGap(44, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
 
@@ -197,10 +209,10 @@ public class LoginForm extends javax.swing.JPanel {
 
     private class LoginLayout implements LayoutManager {
 
-        private final int titleGap = 10;
-        private final int textGap = 10;
-        private final int labelGap = 5;
-        private final int buttonGap = 50;
+        private final int titleGap = 20;
+        private final int textGap = 20;
+        private final int labelGap = 10;
+        private final int buttonGap = 70;
 
         @Override
         public void addLayoutComponent(String name, Component comp) {
@@ -260,8 +272,8 @@ public class LoginForm extends javax.swing.JPanel {
                 txtPass.setBounds(x, y, width, txtPass.getPreferredSize().height);
                 y += txtPass.getPreferredSize().height + UIScale.scale(buttonGap);
 
-                btnLogin.setBounds(x, y, width-150, btnLogin.getPreferredSize().height);
-                btnExit.setBounds(x + 150, y, width-150 , btnExit.getPreferredSize().height);
+                btnLogin.setBounds(x, y, width - 140, btnLogin.getPreferredSize().height);
+                btnExit.setBounds(x + 150, y, width - 140, btnExit.getPreferredSize().height);
             }
         }
     }

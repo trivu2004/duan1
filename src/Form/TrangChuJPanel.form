@@ -32,10 +32,35 @@
               <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
           </Group>
           <Component id="jPanel2" alignment="0" max="32767" attributes="0"/>
+<<<<<<< HEAD:src/Form/TrangChuJPanel.form
           <Group type="102" alignment="1" attributes="0">
               <EmptySpace pref="354" max="32767" attributes="0"/>
               <Component id="jLabel6" min="-2" max="-2" attributes="0"/>
               <EmptySpace min="-2" pref="354" max="-2" attributes="0"/>
+=======
+          <Group type="102" alignment="0" attributes="0">
+              <Group type="103" groupAlignment="0" attributes="0">
+                  <Group type="102" alignment="0" attributes="0">
+                      <EmptySpace max="-2" attributes="0"/>
+                      <Component id="jPanel9" min="-2" max="-2" attributes="0"/>
+                      <EmptySpace max="-2" attributes="0"/>
+                      <Component id="jPanel3" min="-2" max="-2" attributes="0"/>
+                      <EmptySpace min="-2" pref="5" max="-2" attributes="0"/>
+                      <Component id="jPanel5" min="-2" max="-2" attributes="0"/>
+                      <EmptySpace max="-2" attributes="0"/>
+                      <Component id="jPanel4" min="-2" max="-2" attributes="0"/>
+                      <EmptySpace max="-2" attributes="0"/>
+                      <Component id="jPanel8" min="-2" max="-2" attributes="0"/>
+                      <EmptySpace max="-2" attributes="0"/>
+                      <Component id="jPanel10" min="-2" max="-2" attributes="0"/>
+                  </Group>
+                  <Group type="102" alignment="0" attributes="0">
+                      <EmptySpace min="-2" pref="348" max="-2" attributes="0"/>
+                      <Component id="jLabel2" min="-2" pref="525" max="-2" attributes="0"/>
+                  </Group>
+              </Group>
+              <EmptySpace pref="56" max="32767" attributes="0"/>
+>>>>>>> 9174de28efcdb190bdbcf3ff32526aec22655260:src/Form/FormDashboard.form
           </Group>
       </Group>
     </DimensionLayout>
@@ -52,9 +77,15 @@
                   <Component id="jpnNhanVien" min="-2" max="-2" attributes="0"/>
                   <Component id="jpnPhongChieu" min="-2" max="-2" attributes="0"/>
               </Group>
+<<<<<<< HEAD:src/Form/TrangChuJPanel.form
               <EmptySpace min="-2" pref="60" max="-2" attributes="0"/>
               <Component id="jLabel6" min="-2" max="-2" attributes="0"/>
               <EmptySpace pref="7" max="32767" attributes="0"/>
+=======
+              <EmptySpace pref="49" max="32767" attributes="0"/>
+              <Component id="jLabel2" min="-2" max="-2" attributes="0"/>
+              <EmptySpace max="-2" attributes="0"/>
+>>>>>>> 9174de28efcdb190bdbcf3ff32526aec22655260:src/Form/FormDashboard.form
           </Group>
       </Group>
     </DimensionLayout>

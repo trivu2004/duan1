@@ -26,14 +26,28 @@ public class Menu extends JPanel {
 
     private final String menuItems[][] = {
         {"~Chính~"},
+<<<<<<< HEAD
         {"Trang Chủ"},
         {"~Quản Lý~"},
         {"Nhân Viên"},
         {"Phòng Chiếu"},
+=======
+        {"Trang chủ"},
+        {"~Ứng Dụng Trang Web~"},
+        {"Rạp Chiếu", "Quận 12", "Quận 11", "Quận 10","Gò Vấp"},
+        {"Phòng Chiếu"},
+        {"Suất Chiếu"},
+        {"~Thành Phần~"},
+>>>>>>> 9174de28efcdb190bdbcf3ff32526aec22655260
         {"Phim"},
         {"Suất Chiếu"},
         {"Vé"},
+<<<<<<< HEAD
         {"Khách hàng"},
+=======
+        {"Hóa Đơn"},
+        {"Khách Hàng"},
+>>>>>>> 9174de28efcdb190bdbcf3ff32526aec22655260
         {"~Khác~"},
         {"Thống Kê", "Doanh Thu", "Số Lượng Khách"},
         {"Giới Thiệu"},
