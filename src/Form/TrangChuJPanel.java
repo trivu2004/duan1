@@ -1,12 +1,10 @@
 package Form;
 
-import com.formdev.flatlaf.FlatClientProperties;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import javax.swing.Timer;
-import raven.toast.Notifications;
 
 /**
  *
@@ -312,7 +310,7 @@ public class TrangChuJPanel extends javax.swing.JPanel {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jpnNhanVienMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jpnNhanVienMouseClicked
-       MainJFrame.showForm(new NhanVienJPanel());
+        MainJFrame.showForm(new NhanVienJPanel());
     }//GEN-LAST:event_jpnNhanVienMouseClicked
 
     private void lblPhongChieuMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblPhongChieuMouseClicked

@@ -12,15 +12,14 @@ public class testDataBase {
 
     public static void main(String[] args) {
         try {
-            DataBaseConnection.getInstance().connectToDatabase();
-            String sql = "select * from NhanVien";
-            PreparedStatement p = DataBaseConnection.getInstance().getConnection().prepareStatement(sql);
+            String sql = "select * from PhongChieu";
+            PreparedStatement p = DataBaseConnection.getConnection().prepareStatement(sql);
             ResultSet rs = p.executeQuery();
             while (rs.next()) {                
-                System.out.println(rs.getString("MaNV"));
-                System.out.println(rs.getString("Ho"));
-                System.out.println(rs.getString("Ten"));
-                System.out.println(rs.getString("Tuoi"));
+                System.out.println(rs.getString(1));
+                System.out.println(rs.getString(2));
+                System.out.println(rs.getString(3));
+                System.out.println(rs.getString(4));
             }
             p.close();
             rs.close();
