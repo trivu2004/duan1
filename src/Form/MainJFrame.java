@@ -76,7 +76,6 @@ public class MainJFrame extends javax.swing.JFrame {
         } else {
             Notifications.getInstance().show(Notifications.Type.INFO, Notifications.Location.TOP_CENTER, "Vui long dien day du thong tin !");
             return;
-
         }
     }
 
