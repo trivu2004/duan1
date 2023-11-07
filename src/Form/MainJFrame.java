@@ -16,7 +16,7 @@ import java.sql.ResultSet;
 
 /**
  *
- * @author Raven
+ * @author TriDung
  */
 public class MainJFrame extends javax.swing.JFrame {
 
@@ -78,7 +78,6 @@ public class MainJFrame extends javax.swing.JFrame {
             return;
 
         }
-
     }
 
     public static void logout() {
