@@ -1,6 +1,8 @@
 package util;
 
+import com.mysql.cj.jdbc.Driver;
 import java.sql.Connection;
+import java.sql.DriverManager;
 import java.sql.SQLException;
 
 /**
@@ -9,34 +11,28 @@ import java.sql.SQLException;
  */
 public class DataBaseConnection {
 
-    public static DataBaseConnection instance;
-    public Connection connection;
-
-    public static DataBaseConnection getInstance() {
-        if (instance == null) {
-            instance = new DataBaseConnection();
+    public static Connection getConnection() {
+        Connection c = null;
+        try {
+            DriverManager.registerDriver(new Driver());
+            String server = "sql12.freesqldatabase.com";
+            String port = "3306";
+            String database = "sql12658501";
+            String userName = "sql12658501";
+            String password = "ap63uLZLNJ";
+            c = DriverManager.getConnection("jdbc:mysql://" + server + ":" + port + "/" + database, userName, password);
+        } catch (SQLException e) {
         }
-        return instance;
+        return c;
     }
 
-    public DataBaseConnection() {
-
-    }
-
-    public void connectToDatabase() throws SQLException {
-        String server = "sql12.freesqldatabase.com";
-        String port = "3306";
-        String database = "sql12658501";
-        String userName = "sql12658501";
-        String password = "ap63uLZLNJ";
-        connection = java.sql.DriverManager.getConnection("jdbc:mysql://" + server + ":" + port + "/" + database, userName, password);
-    }
-
-    public Connection getConnection() {
-        return connection;
-    }
-
-    public void setConnection(Connection connection) {
-        this.connection = connection;
+    public static void closeConnection(Connection c) {
+        try {
+            if (c != null) {
+                c.close();
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
     }
 }

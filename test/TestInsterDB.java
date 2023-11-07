@@ -15,9 +15,8 @@ public class TestInsterDB {
         String Ten = "B";
         int Tuoi = 20;
         try {
-            DataBaseConnection.getInstance().connectToDatabase();
             String sql = "insert into NhanVien(MaNV,Ho,Ten,Tuoi) values (?,?,?,?)";
-            PreparedStatement ps = DataBaseConnection.getInstance().getConnection().prepareStatement(sql);
+            PreparedStatement ps = DataBaseConnection.getConnection().prepareStatement(sql);
             ps.setString(1, MaNV);
             ps.setString(2, Ho);
             ps.setString(3, Ten);
