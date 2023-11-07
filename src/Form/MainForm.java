@@ -82,9 +82,9 @@ public class MainForm extends JLayeredPane {
                 MainJFrame.showForm(new DefaultForm());
             }
             else if (index==3) {
-                MainJFrame.showForm(new DefaultForm1());
+                MainJFrame.showForm(new PhongChieuJFrame());
             }
-            else if (index == 9) {
+            else if (index ==11) {
                 MainJFrame.logout();
             } else {
                 action.cancel();
@@ -92,7 +92,7 @@ public class MainForm extends JLayeredPane {
         });
     }
 
-    private void setMenuFull(boolean full) {
+    public void setMenuFull(boolean full) {
         String icon;
         if (getComponentOrientation().isLeftToRight()) {
             icon = (full) ? "menu_left.svg" : "menu_right.svg";
