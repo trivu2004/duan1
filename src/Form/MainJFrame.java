@@ -13,7 +13,7 @@ import raven.toast.Notifications;
 
 /**
  *
- * @author Raven
+ * @author TriDung
  */
 public class MainJFrame extends javax.swing.JFrame {
 
@@ -49,7 +49,6 @@ public class MainJFrame extends javax.swing.JFrame {
         } else {
             Notifications.getInstance().show(Notifications.Type.INFO, Notifications.Location.TOP_CENTER, "Tài khoản hoặc mật khẩu không chính xác!");
         }
-
     }
 
     public static void logout() {

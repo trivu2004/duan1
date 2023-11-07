@@ -17,10 +17,7 @@ public class testDataBase {
             PreparedStatement p = DataBaseConnection.getInstance().getConnection().prepareStatement(sql);
             ResultSet rs = p.executeQuery();
             while (rs.next()) {                
-                System.out.println(rs.getString("MaNV"));
-                System.out.println(rs.getString("Ho"));
-                System.out.println(rs.getString("Ten"));
-                System.out.println(rs.getString("Tuoi"));
+                System.out.println(rs.getString("NhanVienID"));
             }
             p.close();
             rs.close();
