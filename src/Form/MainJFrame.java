@@ -18,6 +18,7 @@ import java.sql.ResultSet;
  *
  * @author TriDung
  */
+
 public class MainJFrame extends javax.swing.JFrame {
 
     private static MainJFrame app;

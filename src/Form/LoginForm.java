@@ -39,6 +39,7 @@ public class LoginForm extends javax.swing.JPanel {
         btnExit.putClientProperty(FlatClientProperties.STYLE, ""
                 + "borderWidth:0;"
                 + "focusWidth:0");
+
         txtUser.putClientProperty(FlatClientProperties.PLACEHOLDER_TEXT, "Tài Khoản");
         txtPass.putClientProperty(FlatClientProperties.PLACEHOLDER_TEXT, "Mật Khẩu");
     }
@@ -55,6 +56,7 @@ public class LoginForm extends javax.swing.JPanel {
         lbPass = new javax.swing.JLabel();
         txtPass = new javax.swing.JPasswordField();
         btnExit = new javax.swing.JButton();
+        lblQuenMatKhau = new javax.swing.JLabel();
 
         login.setBackground(new java.awt.Color(34, 31, 31));
 
@@ -78,6 +80,9 @@ public class LoginForm extends javax.swing.JPanel {
                 btnExitActionPerformed(evt);
             }
         });
+
+        lblQuenMatKhau.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        lblQuenMatKhau.setText("Quên mật khẩu?");
 
         javax.swing.GroupLayout loginLayout = new javax.swing.GroupLayout(login);
         login.setLayout(loginLayout);
@@ -106,8 +111,11 @@ public class LoginForm extends javax.swing.JPanel {
                                 .addContainerGap()
                                 .addComponent(btnLogin)
                                 .addGap(55, 55, 55)
-                                .addComponent(btnExit)))
-                        .addGap(0, 159, Short.MAX_VALUE)))
+                                .addComponent(btnExit))
+                            .addGroup(loginLayout.createSequentialGroup()
+                                .addGap(12, 12, 12)
+                                .addComponent(lblQuenMatKhau, javax.swing.GroupLayout.PREFERRED_SIZE, 359, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addGap(0, 13, Short.MAX_VALUE)))
                 .addContainerGap())
         );
         loginLayout.setVerticalGroup(
@@ -127,7 +135,9 @@ public class LoginForm extends javax.swing.JPanel {
                 .addGroup(loginLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btnLogin)
                     .addComponent(btnExit))
-                .addContainerGap(51, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(lblQuenMatKhau)
+                .addContainerGap())
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
@@ -144,7 +154,7 @@ public class LoginForm extends javax.swing.JPanel {
             .addGroup(layout.createSequentialGroup()
                 .addGap(68, 68, 68)
                 .addComponent(login, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(50, Short.MAX_VALUE))
+                .addContainerGap(98, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
 
@@ -260,8 +270,11 @@ public class LoginForm extends javax.swing.JPanel {
                 txtPass.setBounds(x, y, width, txtPass.getPreferredSize().height);
                 y += txtPass.getPreferredSize().height + UIScale.scale(buttonGap);
 
-                btnLogin.setBounds(x, y, width-150, btnLogin.getPreferredSize().height);
-                btnExit.setBounds(x + 150, y, width-150 , btnExit.getPreferredSize().height);
+                btnLogin.setBounds(x, y-25, width - 150, btnLogin.getPreferredSize().height);
+                btnExit.setBounds(x + 150, y-25, width - 150, btnExit.getPreferredSize().height);
+
+                lblQuenMatKhau.setBounds(x+75, y + 25, width, lblQuenMatKhau.getPreferredSize().height);
+//                y += lblQuenMatKhau.getPreferredSize().height + UIScale.scale(labelGap);
             }
         }
     }
@@ -272,6 +285,7 @@ public class LoginForm extends javax.swing.JPanel {
     private javax.swing.JLabel lbPass;
     private javax.swing.JLabel lbTitle;
     private javax.swing.JLabel lbUser;
+    private javax.swing.JLabel lblQuenMatKhau;
     private javax.swing.JPanel login;
     public javax.swing.JPasswordField txtPass;
     public javax.swing.JTextField txtUser;
