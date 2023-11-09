@@ -16,10 +16,11 @@ public class testDataBase {
             PreparedStatement p = DataBaseConnection.getConnection().prepareStatement(sql);
             ResultSet rs = p.executeQuery();
             while (rs.next()) {                
-                System.out.println(rs.getString(1));
-                System.out.println(rs.getString(2));
-                System.out.println(rs.getString(3));
-                System.out.println(rs.getString(4));
+                System.out.print(rs.getString(1));
+                System.out.print(rs.getString(2));
+                System.out.print(rs.getString(3));
+                System.out.print(rs.getString(4));
+                System.out.println("\n");
             }
             p.close();
             rs.close();
