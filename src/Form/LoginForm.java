@@ -8,6 +8,7 @@ import java.awt.Dimension;
 import java.awt.Insets;
 import java.awt.LayoutManager;
 import Form.MainJFrame;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -83,6 +84,11 @@ public class LoginForm extends javax.swing.JPanel {
 
         lblQuenMatKhau.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         lblQuenMatKhau.setText("Quên mật khẩu?");
+        lblQuenMatKhau.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                lblQuenMatKhauMouseClicked(evt);
+            }
+        });
 
         javax.swing.GroupLayout loginLayout = new javax.swing.GroupLayout(login);
         login.setLayout(loginLayout);
@@ -166,6 +172,11 @@ public class LoginForm extends javax.swing.JPanel {
         // TODO add your handling code here:
         System.exit(0);
     }//GEN-LAST:event_btnExitActionPerformed
+
+    private void lblQuenMatKhauMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblQuenMatKhauMouseClicked
+        // TODO add your handling code here:
+        MainJFrame.moQuenMatKhau();
+    }//GEN-LAST:event_lblQuenMatKhauMouseClicked
 
     private class LoginFormLayout implements LayoutManager {
 
@@ -270,10 +281,10 @@ public class LoginForm extends javax.swing.JPanel {
                 txtPass.setBounds(x, y, width, txtPass.getPreferredSize().height);
                 y += txtPass.getPreferredSize().height + UIScale.scale(buttonGap);
 
-                btnLogin.setBounds(x, y-25, width - 150, btnLogin.getPreferredSize().height);
-                btnExit.setBounds(x + 150, y-25, width - 150, btnExit.getPreferredSize().height);
+                btnLogin.setBounds(x, y - 25, width - 150, btnLogin.getPreferredSize().height);
+                btnExit.setBounds(x + 150, y - 25, width - 150, btnExit.getPreferredSize().height);
 
-                lblQuenMatKhau.setBounds(x+75, y + 25, width, lblQuenMatKhau.getPreferredSize().height);
+                lblQuenMatKhau.setBounds(x + 75, y + 25, width, lblQuenMatKhau.getPreferredSize().height);
 //                y += lblQuenMatKhau.getPreferredSize().height + UIScale.scale(labelGap);
             }
         }

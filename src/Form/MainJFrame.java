@@ -18,12 +18,12 @@ import java.sql.ResultSet;
  *
  * @author TriDung
  */
-
 public class MainJFrame extends javax.swing.JFrame {
 
     private static MainJFrame app;
     private static MainForm mainForm;
     private static LoginForm loginForm;
+    private static QuenMatKhauJDialog newJDialog;
 
     public MainJFrame() {
         initComponents();
@@ -31,6 +31,7 @@ public class MainJFrame extends javax.swing.JFrame {
         setLocationRelativeTo(null);
         mainForm = new MainForm();
         loginForm = new LoginForm();
+        newJDialog = new QuenMatKhauJDialog(this, true);
         setContentPane(loginForm);
         Notifications.getInstance().setJFrame(this);
         mainForm.setMenuFull(false);
@@ -90,6 +91,10 @@ public class MainJFrame extends javax.swing.JFrame {
 
     public static void setSelectedMenu(int index, int subIndex) {
         app.mainForm.setSelectedMenu(index, subIndex);
+    }
+
+    public static void moQuenMatKhau() {
+        newJDialog.setVisible(true);
     }
 
     @SuppressWarnings("unchecked")

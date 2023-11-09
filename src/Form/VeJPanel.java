@@ -1,5 +1,8 @@
 package Form;
 
+import Form.DatVeJPanel;
+import Form.MainJFrame;
+import Form.TrangChuJPanel;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.text.SimpleDateFormat;
@@ -86,7 +89,7 @@ public class VeJPanel extends javax.swing.JPanel {
             .addGroup(lblTrangChuLayout.createSequentialGroup()
                 .addGap(459, 459, 459)
                 .addComponent(jLabel9)
-                .addContainerGap(489, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         lblTrangChuLayout.setVerticalGroup(
             lblTrangChuLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
