@@ -2,40 +2,7 @@
 <project-private xmlns="http://www.netbeans.org/ns/project-private/1">
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
-<<<<<<< HEAD
-=======
         <group>
-<<<<<<< HEAD
-            <file>file:/E:/DuAn1/src/Form/MainJFrame.java</file>
-            <file>file:/E:/DuAn1/src/Form/MainForm.java</file>
-            <file>file:/E:/DuAn1/src/Form/FormDashboard.java</file>
-            <file>file:/E:/DuAn1/src/Form/PhongChieuJFrame.java</file>
-        </group>
-        <group>
-            <file>file:/E:/DuAn1/src/Form/MainJFrame.java</file>
-            <file>file:/E:/DuAn1/src/Form/LoginForm.java</file>
-            <file>file:/E:/DuAn1/src/Form/MainForm.java</file>
-            <file>file:/E:/DuAn1/src/Form/FormDashboard.java</file>
-            <file>file:/E:/DuAn1/src/Form/PhongChieuJFrame.java</file>
-        </group>
->>>>>>> 4176e805a2fb153b2dbed0bf094038efaf373bf4
-        <group name="Group 20230109-03:31:29">
-            <file>file:/C:/Users/DELL/OneDrive/Documents/NetBeansProjects/duan1/src/Form/MainJFrame.java</file>
-            <file>file:/C:/Users/DELL/OneDrive/Documents/NetBeansProjects/duan1/src/Form/TrangChuJPanel.java</file>
-=======
-            <file>file:/C:/Users/DELL/Documents/NetBeansProjects/duan1/test/testDataBase.java</file>
-            <file>file:/C:/Users/DELL/Documents/NetBeansProjects/duan1/test/TestInsterDB.java</file>
-            <file>file:/C:/Users/DELL/Documents/NetBeansProjects/duan1/src/util/DataBaseConnection.java</file>
-            <file>file:/C:/Users/DELL/Documents/NetBeansProjects/duan1/src/util/demoinsert.java</file>
->>>>>>> e4adf4e5c88081126ae1b1d917a6d6fc71aedc8c
-        </group>
-        <group>
-            <file>file:/D:/DuAn_1/duan1/src/Form/TrangChuJPanel.java</file>
-            <file>file:/D:/DuAn_1/duan1/src/Form/PhongChieuJPanel.java</file>
-            <file>file:/D:/DuAn_1/duan1/src/Form/MainJFrame.java</file>
-        </group>
-        <group>
-            <file>file:/D:/DuAn_1/duan1/src/Form/TrangChuJPanel.java</file>
             <file>file:/D:/DuAn_1/duan1/src/Form/MainJFrame.java</file>
         </group>
     </open-files>
