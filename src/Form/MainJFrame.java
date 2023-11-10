@@ -7,13 +7,16 @@ import com.formdev.flatlaf.themes.FlatMacDarkLaf;
 import java.awt.Component;
 import java.awt.Dimension;
 import java.awt.Font;
+import java.sql.PreparedStatement;
 import javax.swing.SwingUtilities;
 import javax.swing.UIManager;
 import raven.toast.Notifications;
+import util.DataBaseConnection;
+import java.sql.ResultSet;
 
 /**
  *
- * @author Raven
+ * @author TriDung
  */
 public class MainJFrame extends javax.swing.JFrame {
 
@@ -37,19 +40,44 @@ public class MainJFrame extends javax.swing.JFrame {
         app.mainForm.showForm(component);
     }
 
-    public static void login() {
-        if (loginForm.txtUser.getText().equals("a") && loginForm.txtPass.getText().equals("b")) {
-            FlatAnimatedLafChange.showSnapshot();
-            app.setContentPane(app.mainForm);
-            app.mainForm.applyComponentOrientation(app.getComponentOrientation());
-            setSelectedMenu(0, 0);
-            app.mainForm.hideMenu();
-            SwingUtilities.updateComponentTreeUI(app.mainForm);
-            FlatAnimatedLafChange.hideSnapshotWithAnimation();
-        } else {
-            Notifications.getInstance().show(Notifications.Type.INFO, Notifications.Location.TOP_CENTER, "Tài khoản hoặc mật khẩu không chính xác!");
+    public static boolean checknull() {
+        if (loginForm.txtUser.getText().trim().equals("")) {
+            return false;
         }
+        if (loginForm.txtPass.getText().trim().equals("")) {
+            return false;
+        }
+        return true;
+    }
 
+    public static void login() {
+        if (checknull()) {
+            try {
+                String sql = "select * from NhanVien where NhanVienID = ? and MatKhau = ?";
+                PreparedStatement st = DataBaseConnection.getConnection().prepareStatement(sql);
+                st.setString(1, loginForm.txtUser.getText().trim());
+                st.setString(2, loginForm.txtPass.getText().trim());
+                ResultSet kq = st.executeQuery();
+                if (!kq.next()) {
+                    Notifications.getInstance().show(Notifications.Type.INFO, Notifications.Location.TOP_CENTER, "Thong tin dang nhap khong hop le !");
+                    return;
+                } else {
+                    FlatAnimatedLafChange.showSnapshot();
+                    app.setContentPane(app.mainForm);
+                    app.mainForm.applyComponentOrientation(app.getComponentOrientation());
+                    setSelectedMenu(0, 0);
+                    app.mainForm.hideMenu();
+                    SwingUtilities.updateComponentTreeUI(app.mainForm);
+                    FlatAnimatedLafChange.hideSnapshotWithAnimation();
+                }
+
+            } catch (Exception e) {
+            }
+        } else {
+            Notifications.getInstance().show(Notifications.Type.INFO, Notifications.Location.TOP_CENTER, "Vui long dien day du thong tin !");
+            return;
+
+        }
     }
 
     public static void logout() {
