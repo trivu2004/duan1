@@ -75,7 +75,13 @@ public class MainForm extends JLayeredPane {
                 MainJFrame.showForm(new PhongChieuJPanel());
             } else if (index == 3) {
                 MainJFrame.showForm(new PhimJPanel());
-            } else if (index == 10) {
+            } else if (index == 4) {
+                MainJFrame.showForm(new SuatChieuJPanel());
+            } else if (index == 5) {
+                MainJFrame.showForm(new VeJPanel());
+            } else if (index == 6) {
+                MainJFrame.showForm(new ThongKeJPanel());
+            } else if (index == 9) {
                 MainJFrame.logout();
             } else {
                 action.cancel();
