@@ -13,6 +13,7 @@ import javax.swing.UIManager;
 import raven.toast.Notifications;
 import util.DataBaseConnection;
 import java.sql.ResultSet;
+import util.BCryptPasswordHashing;
 
 /**
  *
@@ -24,6 +25,7 @@ public class MainJFrame extends javax.swing.JFrame {
     private static MainForm mainForm;
     private static LoginForm loginForm;
     private static QuenMatKhauJDialog newJDialog;
+    public static String tenNhanVien;
 
     public MainJFrame() {
         initComponents();
@@ -55,24 +57,27 @@ public class MainJFrame extends javax.swing.JFrame {
     public static void login() {
         if (checknull()) {
             try {
-                String sql = "select * from NhanVien where NhanVienID = ? and MatKhau = ?";
+                String sql = "select * from NhanVien";
                 PreparedStatement st = DataBaseConnection.getConnection().prepareStatement(sql);
-                st.setString(1, loginForm.txtUser.getText().trim());
-                st.setString(2, loginForm.txtPass.getText().trim());
                 ResultSet kq = st.executeQuery();
-                if (!kq.next()) {
-                    Notifications.getInstance().show(Notifications.Type.INFO, Notifications.Location.TOP_CENTER, "Thong tin dang nhap khong hop le !");
-                    return;
-                } else {
-                    FlatAnimatedLafChange.showSnapshot();
-                    app.setContentPane(app.mainForm);
-                    app.mainForm.applyComponentOrientation(app.getComponentOrientation());
-                    setSelectedMenu(0, 0);
-                    app.mainForm.hideMenu();
-                    SwingUtilities.updateComponentTreeUI(app.mainForm);
-                    FlatAnimatedLafChange.hideSnapshotWithAnimation();
+                while (kq.next()) {
+                    String NhanVienID = kq.getString("NhanVienID");
+                    String MatKhau = kq.getString("MatKhau");
+                    tenNhanVien = kq.getString("TenNhanVien");
+                    // Mã hóa mật khảu
+                    if (BCryptPasswordHashing.verifyPassword(loginForm.txtPass.getText().trim(), MatKhau) & NhanVienID.equals(loginForm.txtUser.getText().trim())) {
+                        FlatAnimatedLafChange.showSnapshot();
+                        app.setContentPane(app.mainForm);
+                        app.mainForm.applyComponentOrientation(app.getComponentOrientation());
+                        setSelectedMenu(0, 0);
+                        app.mainForm.hideMenu();
+                        SwingUtilities.updateComponentTreeUI(app.mainForm);
+                        FlatAnimatedLafChange.hideSnapshotWithAnimation();
+                        Notifications.getInstance().show(Notifications.Type.INFO, Notifications.Location.TOP_CENTER, "Chào mừng! " + tenNhanVien);
+                        return;
+                    }
+                    Notifications.getInstance().show(Notifications.Type.INFO, Notifications.Location.TOP_CENTER, "Sai tài khoản hoặc mật khẩu !");
                 }
-
             } catch (Exception e) {
             }
         } else {
