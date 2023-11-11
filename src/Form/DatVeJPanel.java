@@ -53,8 +53,6 @@ public class DatVeJPanel extends javax.swing.JPanel {
         jLabel4 = new javax.swing.JLabel();
         txtMaSC = new javax.swing.JTextField();
         txtMaSC1 = new javax.swing.JTextField();
-        jLabel12 = new javax.swing.JLabel();
-        txtMaSC2 = new javax.swing.JTextField();
         txtMaSC3 = new javax.swing.JTextField();
         jLabel13 = new javax.swing.JLabel();
         txtMaSC4 = new javax.swing.JTextField();
@@ -239,11 +237,6 @@ public class DatVeJPanel extends javax.swing.JPanel {
         txtMaSC.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
 
         txtMaSC1.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
-
-        jLabel12.setFont(new java.awt.Font("Segoe UI", 0, 20)); // NOI18N
-        jLabel12.setText("Người Đặt:");
-
-        txtMaSC2.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
 
         txtMaSC3.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
 
@@ -921,14 +914,12 @@ public class DatVeJPanel extends javax.swing.JPanel {
                     .addComponent(jLabel15)
                     .addComponent(jLabel14)
                     .addComponent(jLabel13)
-                    .addComponent(jLabel12)
                     .addComponent(jLabel4)
                     .addComponent(jLabel2)
                     .addComponent(jLabel11)
                     .addComponent(cboPhim, 0, 455, Short.MAX_VALUE)
                     .addComponent(txtMaSC)
                     .addComponent(txtMaSC1)
-                    .addComponent(txtMaSC2)
                     .addComponent(txtMaSC4)
                     .addComponent(txtMaSC3)
                     .addComponent(txtMaSC5)
@@ -989,15 +980,11 @@ public class DatVeJPanel extends javax.swing.JPanel {
                         .addComponent(jLabel11)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(txtMaSC1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(jLabel12)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                .addComponent(btnSuatChieu)
-                                .addComponent(btnThem)
-                                .addComponent(btnDanhSach))
-                            .addComponent(txtMaSC2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(51, 51, 51)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(btnSuatChieu)
+                            .addComponent(btnThem)
+                            .addComponent(btnDanhSach))
                         .addGap(48, 48, 48))))
         );
 
@@ -1143,7 +1130,6 @@ public class DatVeJPanel extends javax.swing.JPanel {
     private javax.swing.JButton jButton99;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
-    private javax.swing.JLabel jLabel12;
     private javax.swing.JLabel jLabel13;
     private javax.swing.JLabel jLabel14;
     private javax.swing.JLabel jLabel15;
@@ -1165,7 +1151,6 @@ public class DatVeJPanel extends javax.swing.JPanel {
     private javax.swing.JLabel lblTrangChu;
     private javax.swing.JTextField txtMaSC;
     private javax.swing.JTextField txtMaSC1;
-    private javax.swing.JTextField txtMaSC2;
     private javax.swing.JTextField txtMaSC3;
     private javax.swing.JTextField txtMaSC4;
     private javax.swing.JTextField txtMaSC5;
