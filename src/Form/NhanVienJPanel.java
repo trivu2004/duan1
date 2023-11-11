@@ -1,5 +1,6 @@
 package Form;
 
+import static Form.MainJFrame.tenNhanVien;
 import com.formdev.flatlaf.FlatClientProperties;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -13,6 +14,8 @@ import javax.swing.Timer;
  */
 public class NhanVienJPanel extends javax.swing.JPanel {
 
+    private static MainJFrame mainJFrame;
+    
     public NhanVienJPanel() {
         initComponents();
         
@@ -25,6 +28,7 @@ public class NhanVienJPanel extends javax.swing.JPanel {
                 lblDongHo.setText(text);
             }
         }).start();
+        lblThongTinNhanVien.setText("Nhân Viên: "+mainJFrame.tenNhanVien);
     }
 
     @SuppressWarnings("unchecked")
@@ -59,7 +63,7 @@ public class NhanVienJPanel extends javax.swing.JPanel {
         jPanel2 = new javax.swing.JPanel();
         lblTrangChu = new javax.swing.JLabel();
         lblDongHo = new javax.swing.JLabel();
-        jLabel10 = new javax.swing.JLabel();
+        lblThongTinNhanVien = new javax.swing.JLabel();
 
         setPreferredSize(new java.awt.Dimension(1278, 735));
 
@@ -157,9 +161,9 @@ public class NhanVienJPanel extends javax.swing.JPanel {
         lblDongHo.setForeground(new java.awt.Color(255, 255, 255));
         lblDongHo.setText("00:00:00 AM");
 
-        jLabel10.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
-        jLabel10.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel10.setText("Thông Tin Nhân Viên:");
+        lblThongTinNhanVien.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
+        lblThongTinNhanVien.setForeground(new java.awt.Color(255, 255, 255));
+        lblThongTinNhanVien.setText("Thông Tin Nhân Viên:");
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
@@ -167,7 +171,7 @@ public class NhanVienJPanel extends javax.swing.JPanel {
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jLabel10)
+                .addComponent(lblThongTinNhanVien)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(lblDongHo)
                 .addGap(14, 14, 14))
@@ -184,7 +188,7 @@ public class NhanVienJPanel extends javax.swing.JPanel {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(lblDongHo)
-                    .addComponent(jLabel10))
+                    .addComponent(lblThongTinNhanVien))
                 .addContainerGap())
         );
 
@@ -315,7 +319,6 @@ public class NhanVienJPanel extends javax.swing.JPanel {
     private javax.swing.ButtonGroup buttonGroup1;
     private javax.swing.JComboBox<String> cboGioiTinh;
     private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
@@ -327,6 +330,7 @@ public class NhanVienJPanel extends javax.swing.JPanel {
     private javax.swing.JPanel jPanel2;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JLabel lblDongHo;
+    private javax.swing.JLabel lblThongTinNhanVien;
     private javax.swing.JLabel lblTrangChu;
     private javax.swing.JRadioButton rdoNVien;
     private javax.swing.JRadioButton rdoQLy;

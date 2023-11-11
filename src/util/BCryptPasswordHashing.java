@@ -34,9 +34,7 @@ public class BCryptPasswordHashing {
         return BCrypt.checkpw(inputPassword, hashedPassword);
     }
 
-    public static void main(String[] args) {
-        while (true) {
-            System.out.println(hashPassword("1234"));;
-        }
-    }
+//    public static void main(String[] args) {
+//            System.out.println(hashPassword("admin"));;
+//    }
 }

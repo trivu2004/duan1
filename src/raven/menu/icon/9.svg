@@ -1,1 +1,5 @@
-<svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" width="24" height="24"><g id="SVGRepo_bgCarrier" stroke-width="0"/><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"/><g id="SVGRepo_iconCarrier"><path d="m15 18 2 2 4 -4m-10 3H6.2c-1.12 0 -1.68 0 -2.108 -0.218a2 2 0 0 1 -0.874 -0.874C3 17.48 3 16.92 3 15.8V8.2c0 -1.12 0 -1.68 0.218 -2.108a2 2 0 0 1 0.874 -0.874C4.52 5 5.08 5 6.2 5h11.6c1.12 0 1.68 0 2.108 0.218a2 2 0 0 1 0.874 0.874C21 6.52 21 7.08 21 8.2V12m-0.393 -3.738 -5.057 3.371c-1.283 0.856 -1.925 1.284 -2.618 1.45a4.001 4.001 0 0 1 -1.864 0c-0.694 -0.167 -1.335 -0.594 -2.618 -1.45L3.147 8.1" stroke="#6b6b6b" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></g></svg>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+    <path d="M20,5v14c0,1.657-1.343,3-3,3H7c-1.657,0-3-1.343-3-3V5c0-1.657,1.343-3,3-3h10C18.657,2,20,3.343,20,5z" opacity=".35" fill="#969696" />
+    <path d="M18,10h-7c-1.105,0-2,0.895-2,2s0.895,2,2,2h7V10z" fill="#969696" />
+    <path d="M16.579,16.131c0,0.771,0.93,1.159,1.478,0.616l3.893-3.856c0.495-0.491,0.495-1.291,0-1.782l-3.893-3.856c-0.548-0.542-1.478-0.154-1.478,0.616V16.131z" fill="#969696" />
+</svg>
