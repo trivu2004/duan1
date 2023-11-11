@@ -33,11 +33,10 @@ public class Menu extends JPanel {
             { "Phim" },
             { "Suất Chiếu" },
             { "Vé" },
-            { "Khách hàng" },
             { "~Khác~" },
-            { "Thống Kê", "Doanh Thu", "Số Lượng Khách" },
+            { "Thống Kê"},
             { "Giới Thiệu" },
-            { "Quên Mật Khẩu" },
+            { "Đổi Mật Khẩu" },
             { "Đăng Xuất" }
     };
 
