@@ -27,7 +27,7 @@ public class SuatChieuJPanel extends javax.swing.JPanel {
     void fillTable() {
         DefaultTableModel model = (DefaultTableModel) tblSuatChieu.getModel();
         model.setRowCount(0);
-        int stt =1;
+        int stt = 1;
         try {
             String sql = "select * from SuatChieu";
             PreparedStatement st = DataBaseConnection.getConnection().prepareStatement(sql);
@@ -38,32 +38,47 @@ public class SuatChieuJPanel extends javax.swing.JPanel {
                 String phimID = kq.getString("PhimID");
                 String thoigianbatdau = kq.getString("ThoiGianBatDau");
                 String thoigianketthuc = kq.getString("ThoiGianKetThuc");
-                Object[] data = {stt++,suatchieuid, phongid, phimID, thoigianbatdau, thoigianketthuc};
+                String thoigianketthuc1 = kq.getString("ThoiGianKetThuc1");
+                Object[] data = {stt++, suatchieuid, phongid, phimID, thoigianbatdau, thoigianketthuc, thoigianketthuc1};
                 model.addRow(data);
             }
         } catch (Exception e) {
+            e.printStackTrace();
         }
     }
 
     void insert() {
         try {
-            String sql = "insert into SuatChieu values(?,?,?,?,?)";
+            String sql = "insert into SuatChieu values(?,?,?,?,?,?)";
             PreparedStatement st = DataBaseConnection.getConnection().prepareStatement(sql);
             st.setString(1, txtMaSC.getText());
             st.setString(2, (String) cboPhim.getSelectedItem());
             st.setString(3, (String) cboPhongChieu.getSelectedItem());
             st.setString(4, txtTGBatDau.getText());
             st.setString(5, txtTGKetThuc.getText());
+            st.setString(6, txtTGKetThuc1.getText());
             st.executeUpdate();
             fillTable();
             Notifications.getInstance().show(Notifications.Type.INFO, Notifications.Location.TOP_CENTER, "Thêm thành công !");
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+    void delete(){
+        try {
+            String sql = "delete * from SuatChieu where SuatChieuID = ?";
+            PreparedStatement st = DataBaseConnection.getConnection().prepareStatement(sql);
+            st.setString(1, txtMaSC.getText());
+            st.executeUpdate();
+            fillTable();
+            Notifications.getInstance().show(Notifications.Type.INFO, Notifications.Location.TOP_CENTER, "Xóa thành công !");
         } catch (Exception e) {
         }
     }
 
     public SuatChieuJPanel() {
         initComponents();
-        fillTable();
+//        fillTable();
         new Timer(1000, new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -104,6 +119,8 @@ public class SuatChieuJPanel extends javax.swing.JPanel {
         btnSua = new javax.swing.JButton();
         btnXoa = new javax.swing.JButton();
         btnMoi = new javax.swing.JButton();
+        jLabel13 = new javax.swing.JLabel();
+        txtTGKetThuc1 = new javax.swing.JTextField();
 
         jPanel2.setBackground(new java.awt.Color(0, 0, 0));
         jPanel2.setForeground(new java.awt.Color(255, 51, 51));
@@ -154,17 +171,17 @@ public class SuatChieuJPanel extends javax.swing.JPanel {
         );
 
         jLabel4.setFont(new java.awt.Font("Segoe UI", 0, 20)); // NOI18N
-        jLabel4.setText("Thời gian bắt đầu:");
+        jLabel4.setText("Thời Gian Bắt Đầu:");
 
         tblSuatChieu.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null}
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null}
             },
             new String [] {
-                "STT", "Mã Suất Chiếu", "Tên Phim", "Phòng Chiếu", "Thời Gian Bắt Đầu", "Thời Gian Kết Thúc"
+                "STT", "Mã Suất Chiếu", "Tên Phim", "Tên Phòng Chiếu", "Thời Gian Bắt Đầu", "Thời Gian Kết Thúc", "Người Quản Lý"
             }
         ));
         jScrollPane1.setViewportView(tblSuatChieu);
@@ -183,7 +200,7 @@ public class SuatChieuJPanel extends javax.swing.JPanel {
         cboPhongChieu.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "M001" }));
 
         jLabel12.setFont(new java.awt.Font("Segoe UI", 0, 20)); // NOI18N
-        jLabel12.setText("Thời gian kết thúc:");
+        jLabel12.setText("Thời Gian Kết Thúc:");
 
         btnThem.setText("Thêm");
         btnThem.addActionListener(new java.awt.event.ActionListener() {
@@ -195,8 +212,18 @@ public class SuatChieuJPanel extends javax.swing.JPanel {
         btnSua.setText("Sửa");
 
         btnXoa.setText("Xóa ");
+        btnXoa.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnXoaActionPerformed(evt);
+            }
+        });
 
         btnMoi.setText("Mới");
+
+        jLabel13.setFont(new java.awt.Font("Segoe UI", 0, 20)); // NOI18N
+        jLabel13.setText("Người Quản Lý:");
+
+        txtTGKetThuc1.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
@@ -218,18 +245,23 @@ public class SuatChieuJPanel extends javax.swing.JPanel {
                             .addComponent(cboPhongChieu, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(jLabel12)
                             .addComponent(txtTGKetThuc, javax.swing.GroupLayout.PREFERRED_SIZE, 455, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(56, 56, 56)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(btnThem, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(btnXoa, javax.swing.GroupLayout.PREFERRED_SIZE, 142, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(85, 85, 85)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(btnSua, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(btnMoi, javax.swing.GroupLayout.PREFERRED_SIZE, 149, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 18, Short.MAX_VALUE)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 778, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap())
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addContainerGap()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel13)
+                            .addComponent(txtTGKetThuc1, javax.swing.GroupLayout.PREFERRED_SIZE, 455, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGroup(layout.createSequentialGroup()
+                                .addGap(8, 8, 8)
+                                .addComponent(btnThem, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(btnXoa, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(btnSua, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(btnMoi, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)))))
+                .addGap(18, 18, Short.MAX_VALUE)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 766, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -258,12 +290,14 @@ public class SuatChieuJPanel extends javax.swing.JPanel {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(txtTGKetThuc, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
+                        .addComponent(jLabel13)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(txtTGKetThuc1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(29, 29, 29)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(btnThem)
-                            .addComponent(btnSua))
-                        .addGap(37, 37, 37)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(btnXoa)
+                            .addComponent(btnSua)
                             .addComponent(btnMoi)))
                     .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 585, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(28, Short.MAX_VALUE))
@@ -279,6 +313,11 @@ public class SuatChieuJPanel extends javax.swing.JPanel {
         MainJFrame.showForm(new TrangChuJPanel());
     }//GEN-LAST:event_lblTrangChuMouseClicked
 
+    private void btnXoaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnXoaActionPerformed
+        // TODO add your handling code here:
+        delete();
+    }//GEN-LAST:event_btnXoaActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnMoi;
@@ -290,6 +329,7 @@ public class SuatChieuJPanel extends javax.swing.JPanel {
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel11;
     private javax.swing.JLabel jLabel12;
+    private javax.swing.JLabel jLabel13;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel6;
@@ -301,5 +341,6 @@ public class SuatChieuJPanel extends javax.swing.JPanel {
     private javax.swing.JTextField txtMaSC;
     private javax.swing.JTextField txtTGBatDau;
     private javax.swing.JTextField txtTGKetThuc;
+    private javax.swing.JTextField txtTGKetThuc1;
     // End of variables declaration//GEN-END:variables
 }

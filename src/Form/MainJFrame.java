@@ -64,7 +64,7 @@ public class MainJFrame extends javax.swing.JFrame {
                     String NhanVienID = kq.getString("NhanVienID");
                     String MatKhau = kq.getString("MatKhau");
                     tenNhanVien = kq.getString("TenNhanVien");
-                    // Mã hóa mật khảu
+                    // Mã hóa mật khẩu
                     if (BCryptPasswordHashing.verifyPassword(loginForm.txtPass.getText().trim(), MatKhau) & NhanVienID.equals(loginForm.txtUser.getText().trim())) {
                         FlatAnimatedLafChange.showSnapshot();
                         app.setContentPane(app.mainForm);
