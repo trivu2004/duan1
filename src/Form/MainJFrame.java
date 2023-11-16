@@ -11,7 +11,7 @@ import java.sql.PreparedStatement;
 import javax.swing.SwingUtilities;
 import javax.swing.UIManager;
 import raven.toast.Notifications;
-import util.DataBaseConnection;
+import Helper.JDBCHelper;
 import java.sql.ResultSet;
 import util.BCryptPasswordHashing;
 
@@ -24,7 +24,7 @@ public class MainJFrame extends javax.swing.JFrame {
     private static MainJFrame app;
     private static MainForm mainForm;
     private static LoginForm loginForm;
-    private static QuenMatKhauJDialog newJDialog;
+    private static QuenMatKhauJDialog quenMatKhauJDialog;
     public static String tenNhanVien;
 
     public MainJFrame() {
@@ -33,7 +33,7 @@ public class MainJFrame extends javax.swing.JFrame {
         setLocationRelativeTo(null);
         mainForm = new MainForm();
         loginForm = new LoginForm();
-        newJDialog = new QuenMatKhauJDialog(this, true);
+        quenMatKhauJDialog = new QuenMatKhauJDialog(this, true);
         setContentPane(loginForm);
         Notifications.getInstance().setJFrame(this);
         mainForm.setMenuFull(false);
@@ -58,7 +58,7 @@ public class MainJFrame extends javax.swing.JFrame {
         if (checknull()) {
             try {
                 String sql = "select * from NhanVien";
-                PreparedStatement st = DataBaseConnection.getConnection().prepareStatement(sql);
+                PreparedStatement st = JDBCHelper.getConnection().prepareStatement(sql);
                 ResultSet kq = st.executeQuery();
                 while (kq.next()) {
                     String NhanVienID = kq.getString("NhanVienID");
@@ -99,7 +99,7 @@ public class MainJFrame extends javax.swing.JFrame {
     }
 
     public static void moQuenMatKhau() {
-        newJDialog.setVisible(true);
+        quenMatKhauJDialog.setVisible(true);
     }
 
     @SuppressWarnings("unchecked")

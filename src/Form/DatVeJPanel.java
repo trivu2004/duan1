@@ -235,8 +235,10 @@ public class DatVeJPanel extends javax.swing.JPanel {
         jLabel4.setText("Chọn Loại Vé:");
 
         txtMaSC.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+        txtMaSC.setEnabled(false);
 
         txtMaSC1.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+        txtMaSC1.setEnabled(false);
 
         txtMaSC3.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
 
@@ -279,11 +281,16 @@ public class DatVeJPanel extends javax.swing.JPanel {
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
-        jButton1.setText("A-0");
+        jButton1.setText("A-1");
 
-        jButton2.setText("A-0");
+        jButton2.setText("A-2");
+        jButton2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton2ActionPerformed(evt);
+            }
+        });
 
-        jButton3.setText("A-0");
+        jButton3.setText("A-3");
 
         jButton4.setText("A-0");
 
@@ -1021,6 +1028,10 @@ public class DatVeJPanel extends javax.swing.JPanel {
     private void btnDanhSachActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDanhSachActionPerformed
         MainJFrame.showForm(new DanhSachVeJPanel());
     }//GEN-LAST:event_btnDanhSachActionPerformed
+
+    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jButton2ActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

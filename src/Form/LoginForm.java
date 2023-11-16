@@ -8,6 +8,7 @@ import java.awt.Dimension;
 import java.awt.Insets;
 import java.awt.LayoutManager;
 import Form.MainJFrame;
+import java.awt.event.KeyEvent;
 import javax.swing.JOptionPane;
 
 /**
@@ -74,6 +75,12 @@ public class LoginForm extends javax.swing.JPanel {
         lbUser.setText("Tài Khoản");
 
         lbPass.setText("Mật Khẩu");
+
+        txtPass.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                txtPassKeyPressed(evt);
+            }
+        });
 
         btnExit.setText("Thoát");
         btnExit.addActionListener(new java.awt.event.ActionListener() {
@@ -177,6 +184,13 @@ public class LoginForm extends javax.swing.JPanel {
         // TODO add your handling code here:
         MainJFrame.moQuenMatKhau();
     }//GEN-LAST:event_lblQuenMatKhauMouseClicked
+
+    private void txtPassKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtPassKeyPressed
+        // TODO add your handling code here:
+        if (evt.getKeyChar() == KeyEvent.VK_ENTER) {
+            MainJFrame.login();
+        }
+    }//GEN-LAST:event_txtPassKeyPressed
 
     private class LoginFormLayout implements LayoutManager {
 
