@@ -1,5 +1,5 @@
 
-import util.DataBaseConnection;
+import Helper.JDBCHelper;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
 
@@ -16,7 +16,7 @@ public class TestInsterDB {
         int Tuoi = 20;
         try {
             String sql = "insert into NhanVien(MaNV,Ho,Ten,Tuoi) values (?,?,?,?)";
-            PreparedStatement ps = DataBaseConnection.getConnection().prepareStatement(sql);
+            PreparedStatement ps = JDBCHelper.getConnection().prepareStatement(sql);
             ps.setString(1, MaNV);
             ps.setString(2, Ho);
             ps.setString(3, Ten);

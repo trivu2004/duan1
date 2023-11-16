@@ -1,6 +1,6 @@
 
 
-import util.DataBaseConnection;
+import Helper.JDBCHelper;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 
@@ -13,7 +13,7 @@ public class testDataBase {
     public static void main(String[] args) {
         try {
             String sql = "select * from PhongChieu";
-            PreparedStatement p = DataBaseConnection.getConnection().prepareStatement(sql);
+            PreparedStatement p = JDBCHelper.getConnection().prepareStatement(sql);
             ResultSet rs = p.executeQuery();
             while (rs.next()) {                
                 System.out.print(rs.getString(1));

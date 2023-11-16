@@ -1,4 +1,4 @@
-package util;
+package Helper;
 
 import com.mysql.cj.jdbc.Driver;
 import java.sql.Connection;
@@ -9,7 +9,7 @@ import java.sql.SQLException;
  *
  * @author Tri Dung
  */
-public class DataBaseConnection {
+public class JDBCHelper {
 
     public static Connection getConnection() {
         Connection c = null;
