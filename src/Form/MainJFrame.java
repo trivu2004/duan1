@@ -58,7 +58,7 @@ public class MainJFrame extends javax.swing.JFrame {
         if (checknull()) {
             try {
                 String sql = "select * from NhanVien";
-                PreparedStatement st = JDBCHelper.getConnection().prepareStatement(sql);
+                PreparedStatement st = JDBCHelper.prepareStatement(sql);
                 ResultSet kq = st.executeQuery();
                 while (kq.next()) {
                     String NhanVienID = kq.getString("NhanVienID");

@@ -93,7 +93,7 @@ public class NhanVienJPanel extends javax.swing.JPanel {
                 {null, null, null, null, null, null, null, null}
             },
             new String [] {
-                "STT", "Mã Nhân Viên", "Tên Nhân Viên", "Giới Tính", "Ngày Sinh", "Điện Thoại", "Mật Khẩu", "Chức Vụ"
+                "STT", "Mã Nhân Viên", "Tên Nhân Viên", "Giới Tính", "Ngày Sinh", "Email", "Mật Khẩu", "Chức Vụ"
             }
         ));
         jScrollPane1.setViewportView(tblNhanVien);
@@ -119,7 +119,7 @@ public class NhanVienJPanel extends javax.swing.JPanel {
         btnXoa.setText("Xóa ");
 
         jLabel5.setFont(new java.awt.Font("Segoe UI", 0, 20)); // NOI18N
-        jLabel5.setText("Điện Thoại:");
+        jLabel5.setText("Email:");
 
         txtDienThoai.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
 
