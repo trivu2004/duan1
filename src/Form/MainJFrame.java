@@ -11,8 +11,11 @@ import java.sql.PreparedStatement;
 import javax.swing.SwingUtilities;
 import javax.swing.UIManager;
 import raven.toast.Notifications;
-import util.DataBaseConnection;
+import Helper.JDBCHelper;
+import java.awt.Image;
+import java.awt.event.KeyEvent;
 import java.sql.ResultSet;
+import javax.swing.ImageIcon;
 import util.BCryptPasswordHashing;
 
 /**
@@ -20,30 +23,36 @@ import util.BCryptPasswordHashing;
  * @author TriDung
  */
 public class MainJFrame extends javax.swing.JFrame {
-
+    
     private static MainJFrame app;
     private static MainForm mainForm;
     private static LoginForm loginForm;
-    private static QuenMatKhauJDialog newJDialog;
+    private static QuenMatKhauJDialog quenMatKhauJDialog;
     public static String tenNhanVien;
-
+    public static Image APP_ICON;
+    String file = "/image/Logo.png";
+    
     public MainJFrame() {
         initComponents();
         setSize(new Dimension(1366, 768));
         setLocationRelativeTo(null);
         mainForm = new MainForm();
         loginForm = new LoginForm();
-        newJDialog = new QuenMatKhauJDialog(this, true);
+        quenMatKhauJDialog = new QuenMatKhauJDialog(this, true);
         setContentPane(loginForm);
         Notifications.getInstance().setJFrame(this);
         mainForm.setMenuFull(false);
+        APP_ICON = new ImageIcon(MainJFrame.class.getResource(file)).getImage();
+        setIconImage(APP_ICON);
+        setFocusable(true);
+        requestFocus(true);
     }
-
+    
     public static void showForm(Component component) {
         component.applyComponentOrientation(app.getComponentOrientation());
         app.mainForm.showForm(component);
     }
-
+    
     public static boolean checknull() {
         if (loginForm.txtUser.getText().trim().equals("")) {
             return false;
@@ -53,19 +62,23 @@ public class MainJFrame extends javax.swing.JFrame {
         }
         return true;
     }
-
+    
     public static void login() {
         if (checknull()) {
             try {
                 String sql = "select * from NhanVien";
-                PreparedStatement st = DataBaseConnection.getConnection().prepareStatement(sql);
+                PreparedStatement st = JDBCHelper.prepareStatement(sql);
                 ResultSet kq = st.executeQuery();
                 while (kq.next()) {
                     String NhanVienID = kq.getString("NhanVienID");
                     String MatKhau = kq.getString("MatKhau");
                     tenNhanVien = kq.getString("TenNhanVien");
                     // Mã hóa mật khẩu
+//                    
                     if (BCryptPasswordHashing.verifyPassword(loginForm.txtPass.getText().trim(), MatKhau) & NhanVienID.equals(loginForm.txtUser.getText().trim())) {
+
+                    if (BCryptPasswordHashing.verifyPassword(loginForm.txtPass.getText().trim(), MatKhau) & NhanVienID.equals(loginForm.txtUser.getText())) {
+
                         FlatAnimatedLafChange.showSnapshot();
                         app.setContentPane(app.mainForm);
                         app.mainForm.applyComponentOrientation(app.getComponentOrientation());
@@ -73,10 +86,11 @@ public class MainJFrame extends javax.swing.JFrame {
                         app.mainForm.hideMenu();
                         SwingUtilities.updateComponentTreeUI(app.mainForm);
                         FlatAnimatedLafChange.hideSnapshotWithAnimation();
-                        Notifications.getInstance().show(Notifications.Type.INFO, Notifications.Location.TOP_CENTER, "Chào mừng! " + tenNhanVien);
+                        Notifications.getInstance().show(Notifications.Type.INFO, Notifications.Location.TOP_CENTER, "Chào mừng! " + NhanVienID);
                         return;
                     }
                     Notifications.getInstance().show(Notifications.Type.INFO, Notifications.Location.TOP_CENTER, "Sai tài khoản hoặc mật khẩu !");
+                }
                 }
             } catch (Exception e) {
             }
@@ -85,7 +99,8 @@ public class MainJFrame extends javax.swing.JFrame {
             return;
         }
     }
-
+    
+    
     public static void logout() {
         FlatAnimatedLafChange.showSnapshot();
         app.setContentPane(app.loginForm);
@@ -93,21 +108,31 @@ public class MainJFrame extends javax.swing.JFrame {
         SwingUtilities.updateComponentTreeUI(app.loginForm);
         FlatAnimatedLafChange.hideSnapshotWithAnimation();
     }
-
+    
     public static void setSelectedMenu(int index, int subIndex) {
         app.mainForm.setSelectedMenu(index, subIndex);
     }
-
+    
     public static void moQuenMatKhau() {
-        newJDialog.setVisible(true);
+        quenMatKhauJDialog.setVisible(true);
     }
-
+    
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setUndecorated(true);
+        addWindowListener(new java.awt.event.WindowAdapter() {
+            public void windowOpened(java.awt.event.WindowEvent evt) {
+                formWindowOpened(evt);
+            }
+        });
+        addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                formKeyPressed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -123,6 +148,17 @@ public class MainJFrame extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    private void formKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_formKeyPressed
+        // TODO add your handling code here:
+        if (evt.getKeyCode() == KeyEvent.VK_ESCAPE) {
+            logout();
+        }
+    }//GEN-LAST:event_formKeyPressed
+
+    private void formWindowOpened(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowOpened
+        // TODO add your handling code here:
+    }//GEN-LAST:event_formWindowOpened
+    
     public static void main(String args[]) {
         FlatRobotoFont.install();
         FlatLaf.registerCustomDefaultsSource("raven.theme");

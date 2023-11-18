@@ -8,61 +8,75 @@ import java.util.Date;
 
 /**
  *
- * @author USER
+ * @author 123tu
  */
 public class SuatChieu {
-    String SuatChieuID,PhongID,PhimID;
-    Date ThoiGianBatDau , ThoiGianKetThuc;
-
-    public String getSuatChieuID() {
-        return SuatChieuID;
-    }
-
-    public void setSuatChieuID(String SuatChieuID) {
-        this.SuatChieuID = SuatChieuID;
-    }
-
-    public String getPhongID() {
-        return PhongID;
-    }
+    private String maSC;
+    private String tenPhim;
+    private String tenPC;
+    private Date thoiGianBD;
+    private Date thoiGianKT;
+    private String tenNQL;
 
     public SuatChieu() {
     }
 
-    public void setPhongID(String PhongID) {
-        this.PhongID = PhongID;
+    public SuatChieu(String maSC, String tenPhim, String tenPC, Date thoiGianBD, Date thoiGianKT, String tenNQL) {
+        this.maSC = maSC;
+        this.tenPhim = tenPhim;
+        this.tenPC = tenPC;
+        this.thoiGianBD = thoiGianBD;
+        this.thoiGianKT = thoiGianKT;
+        this.tenNQL = tenNQL;
     }
 
-    public String getPhimID() {
-        return PhimID;
+    public String getMaSC() {
+        return maSC;
     }
 
-    public void setPhimID(String PhimID) {
-        this.PhimID = PhimID;
+    public void setMaSC(String maSC) {
+        this.maSC = maSC;
     }
 
-    public Date getThoiGianBatDau() {
-        return ThoiGianBatDau;
+    public String getTenPhim() {
+        return tenPhim;
     }
 
-    public void setThoiGianBatDau(Date ThoiGianBatDau) {
-        this.ThoiGianBatDau = ThoiGianBatDau;
+    public void setTenPhim(String tenPhim) {
+        this.tenPhim = tenPhim;
     }
 
-    public Date getThoiGianKetThuc() {
-        return ThoiGianKetThuc;
+    public String getTenPC() {
+        return tenPC;
     }
 
-    public void setThoiGianKetThuc(Date ThoiGianKetThuc) {
-        this.ThoiGianKetThuc = ThoiGianKetThuc;
+    public void setTenPC(String tenPC) {
+        this.tenPC = tenPC;
     }
 
-    public SuatChieu(String SuatChieuID, String PhongID, String PhimID, Date ThoiGianBatDau, Date ThoiGianKetThuc) {
-        this.SuatChieuID = SuatChieuID;
-        this.PhongID = PhongID;
-        this.PhimID = PhimID;
-        this.ThoiGianBatDau = ThoiGianBatDau;
-        this.ThoiGianKetThuc = ThoiGianKetThuc;
+    public Date getThoiGianBD() {
+        return thoiGianBD;
     }
+
+    public void setThoiGianBD(Date thoiGianBD) {
+        this.thoiGianBD = thoiGianBD;
+    }
+
+    public Date getThoiGianKT() {
+        return thoiGianKT;
+    }
+
+    public void setThoiGianKT(Date thoiGianKT) {
+        this.thoiGianKT = thoiGianKT;
+    }
+
+    public String getTenNQL() {
+        return tenNQL;
+    }
+
+    public void setTenNQL(String tenNQL) {
+        this.tenNQL = tenNQL;
+    }
+    
     
 }

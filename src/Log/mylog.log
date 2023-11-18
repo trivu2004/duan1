@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 2023-11-04 15:45:16 INFO  BCryptPasswordHashing:19 - Đã mã hóa mật khẩu thành công
 2023-11-04 15:45:17 INFO  BCryptPasswordHashing:19 - Đã mã hóa mật khẩu thành công
 2023-11-04 15:45:18 INFO  BCryptPasswordHashing:19 - Đã mã hóa mật khẩu thành công
@@ -15,3 +16,6 @@
 2023-11-10 09:38:58 INFO  BCryptPasswordHashing:26 - Đã mã hóa mật khẩu thành công
 2023-11-10 18:33:21 INFO  BCryptPasswordHashing:26 - Đã mã hóa mật khẩu thành công
 2023-11-10 18:33:37 INFO  BCryptPasswordHashing:26 - Đã mã hóa mật khẩu thành công
+=======
+2023-11-18 14:21:34 INFO  BCryptPasswordHashing:26 - Đã mã hóa mật khẩu thành công
+>>>>>>> 906466f13c31e787281cb99cafbfbdd3c0fdcc8b

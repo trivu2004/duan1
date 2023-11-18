@@ -70,11 +70,17 @@ public class NhanVienJPanel extends javax.swing.JPanel {
         jLabel1.setFont(new java.awt.Font("Segoe UI", 0, 20)); // NOI18N
         jLabel1.setText("Mã Nhân Viên:");
 
+        txtNgaySinh.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+
         jLabel2.setFont(new java.awt.Font("Segoe UI", 0, 20)); // NOI18N
         jLabel2.setText("Tên Nhân Viên:");
 
+        txtMaNV.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+
         jLabel3.setFont(new java.awt.Font("Segoe UI", 0, 20)); // NOI18N
         jLabel3.setText("Giới Tính:");
+
+        txtTenNV.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
 
         jLabel4.setFont(new java.awt.Font("Segoe UI", 0, 20)); // NOI18N
         jLabel4.setText("Ngày Sinh:");
@@ -92,8 +98,10 @@ public class NhanVienJPanel extends javax.swing.JPanel {
         ));
         jScrollPane1.setViewportView(tblNhanVien);
 
+        cboGioiTinh.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
         cboGioiTinh.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Nam", "Nữ", " " }));
 
+        btnThem.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
         btnThem.setText("Thêm");
         btnThem.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -101,28 +109,39 @@ public class NhanVienJPanel extends javax.swing.JPanel {
             }
         });
 
+        btnSua.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
         btnSua.setText("Sửa");
 
+        btnMoi.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
         btnMoi.setText("Mới");
 
+        btnXoa.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
         btnXoa.setText("Xóa ");
 
         jLabel5.setFont(new java.awt.Font("Segoe UI", 0, 20)); // NOI18N
         jLabel5.setText("Điện Thoại:");
 
+        txtDienThoai.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+
         jLabel6.setFont(new java.awt.Font("Segoe UI", 0, 20)); // NOI18N
         jLabel6.setText("Mật Khẩu:");
 
+        txtMatKhau.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+
         jLabel7.setFont(new java.awt.Font("Segoe UI", 0, 20)); // NOI18N
         jLabel7.setText("Chức Vụ:");
+
+        txtXacNhanMK.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
 
         jLabel8.setFont(new java.awt.Font("Segoe UI", 0, 20)); // NOI18N
         jLabel8.setText("Xác Nhận Mật Khẩu:");
 
         buttonGroup1.add(rdoQLy);
+        rdoQLy.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
         rdoQLy.setText("Quản Lý");
 
         buttonGroup1.add(rdoNVien);
+        rdoNVien.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
         rdoNVien.setText("Nhân Viên");
 
         jPanel2.setBackground(new java.awt.Color(0, 0, 0));
@@ -285,7 +304,7 @@ public class NhanVienJPanel extends javax.swing.JPanel {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnThemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnThemActionPerformed
-        // TODO add your handling code here:
+        // TODO add your handling code here:    
     }//GEN-LAST:event_btnThemActionPerformed
 
     private void lblTrangChuMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblTrangChuMouseClicked

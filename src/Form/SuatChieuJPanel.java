@@ -13,7 +13,6 @@ import java.util.Date;
 import javax.swing.Timer;
 import javax.swing.table.DefaultTableModel;
 import raven.toast.Notifications;
-import util.DataBaseConnection;
 
 /**
  *
@@ -25,61 +24,61 @@ public class SuatChieuJPanel extends javax.swing.JPanel {
      * Creates new form SuatChieuJPanel
      */
     
-    void fillTable() {
-        DefaultTableModel model = (DefaultTableModel) tblSuatChieu.getModel();
-        model.setRowCount(0);
-        int stt = 1;
-        try {
-            String sql = "select * from SuatChieu";
-            PreparedStatement st = DataBaseConnection.getConnection().prepareStatement(sql);
-            ResultSet kq = st.executeQuery();
-            while (kq.next()) {
-                String suatchieuid = kq.getString("SuatChieuID");
-                String phongid = kq.getString("PhongID");
-                String phimID = kq.getString("PhimID");
-                String thoigianbatdau = kq.getString("ThoiGianBatDau");
-                String thoigianketthuc = kq.getString("ThoiGianKetThuc");
-                String nhanvienid = kq.getString("NhanVienID");
-                Object[] data = {stt++, suatchieuid, phongid, phimID, thoigianbatdau, thoigianketthuc, nhanvienid};
-                model.addRow(data);
-            }
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-    }
-
-    void insert() {
-        try {
-            String sql = "insert into SuatChieu values(?,?,?,?,?,?)";
-            PreparedStatement st = DataBaseConnection.getConnection().prepareStatement(sql);
-            st.setString(1, txtMaSC.getText());
-            st.setString(2, (String) cboPhim.getSelectedItem());
-            st.setString(3, (String) cboPhongChieu.getSelectedItem());
-            st.setString(4, txtTGBatDau.getText());
-            st.setString(5, txtTGKetThuc.getText());
-            st.setString(6, txtTGKetThuc1.getText());
-            st.executeUpdate();
-            fillTable();
-            Notifications.getInstance().show(Notifications.Type.INFO, Notifications.Location.TOP_CENTER, "Thêm thành công !");
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-    }
-    void delete(){
-        try {
-            String sql = "delete * from SuatChieu where SuatChieuID = ?";
-            PreparedStatement st = DataBaseConnection.getConnection().prepareStatement(sql);
-            st.setString(1, txtMaSC.getText());
-            st.executeUpdate();
-            fillTable();
-            Notifications.getInstance().show(Notifications.Type.INFO, Notifications.Location.TOP_CENTER, "Xóa thành công !");
-        } catch (Exception e) {
-        }
-    }
+//    void fillTable() {
+//        DefaultTableModel model = (DefaultTableModel) tblSuatChieu.getModel();
+//        model.setRowCount(0);
+//        int stt = 1;
+//        try {
+//            String sql = "select * from SuatChieu";
+//            PreparedStatement st = DataBaseConnection.getConnection().prepareStatement(sql);
+//            ResultSet kq = st.executeQuery();
+//            while (kq.next()) {
+//                String suatchieuid = kq.getString("SuatChieuID");
+//                String phongid = kq.getString("PhongID");
+//                String phimID = kq.getString("PhimID");
+//                String thoigianbatdau = kq.getString("ThoiGianBatDau");
+//                String thoigianketthuc = kq.getString("ThoiGianKetThuc");
+//                String nhanvienid = kq.getString("NhanVienID");
+//                Object[] data = {stt++, suatchieuid, phongid, phimID, thoigianbatdau, thoigianketthuc, nhanvienid};
+//                model.addRow(data);
+//            }
+//        } catch (Exception e) {
+//            e.printStackTrace();
+//        }
+//    }
+//
+//    void insert() {
+//        try {
+//            String sql = "insert into SuatChieu values(?,?,?,?,?,?)";
+//            PreparedStatement st = DataBaseConnection.getConnection().prepareStatement(sql);
+//            st.setString(1, txtMaSC.getText());
+//            st.setString(2, (String) cboPhim.getSelectedItem());
+//            st.setString(3, (String) cboPhongChieu.getSelectedItem());
+//            st.setString(4, txtTGBatDau.getText());
+//            st.setString(5, txtTGKetThuc.getText());
+//            st.setString(6, txtTGKetThuc1.getText());
+//            st.executeUpdate();
+//            fillTable();
+//            Notifications.getInstance().show(Notifications.Type.INFO, Notifications.Location.TOP_CENTER, "Thêm thành công !");
+//        } catch (Exception e) {
+//            e.printStackTrace();
+//        }
+//    }
+//    void delete(){
+//        try {
+//            String sql = "delete * from SuatChieu where SuatChieuID = ?";
+//            PreparedStatement st = Helper.JDBCHelper.getConnection().prepareStatement(sql);
+//            st.setString(1, txtMaSC.getText());
+//            st.executeUpdate();
+//            fillTable();
+//            Notifications.getInstance().show(Notifications.Type.INFO, Notifications.Location.TOP_CENTER, "Xóa thành công !");
+//        } catch (Exception e) {
+//        }
+//    }
 
     public SuatChieuJPanel() {
         initComponents();
-        fillTable();
+//        fillTable();
         new Timer(1000, new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -307,7 +306,7 @@ public class SuatChieuJPanel extends javax.swing.JPanel {
 
     private void btnThemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnThemActionPerformed
         // TODO add your handling code here:
-        insert();
+//        insert();
     }//GEN-LAST:event_btnThemActionPerformed
 
     private void lblTrangChuMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblTrangChuMouseClicked
@@ -316,7 +315,7 @@ public class SuatChieuJPanel extends javax.swing.JPanel {
 
     private void btnXoaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnXoaActionPerformed
         // TODO add your handling code here:
-        delete();
+//        delete();
     }//GEN-LAST:event_btnXoaActionPerformed
 
 
