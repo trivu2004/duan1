@@ -10,16 +10,15 @@ import javax.swing.JOptionPane;
 import javax.swing.Timer;
 import javax.swing.table.DefaultTableModel;
 import model.PhongChieu;
+import raven.toast.Notifications;
 
 public class PhongChieuJPanel extends javax.swing.JPanel {
 
     DefaultTableModel model;
     PhongChieuDAO dao = new PhongChieuDAO();
     int row, index;
-<<<<<<< HEAD
-=======
 
->>>>>>> af348e5c117ad910cac8178c7a1f32b1f74cdd8b
+
     public PhongChieuJPanel() {
         initComponents();
         fillTable();
@@ -55,10 +54,6 @@ public class PhongChieuJPanel extends javax.swing.JPanel {
             e.printStackTrace();
         }
     }
-<<<<<<< HEAD
-
-=======
->>>>>>> af348e5c117ad910cac8178c7a1f32b1f74cdd8b
 
     public PhongChieu getGradeAtPosition(int pos) {
         PhongChieu pc = new PhongChieu();
@@ -68,7 +63,7 @@ public class PhongChieuJPanel extends javax.swing.JPanel {
         pc.setTinhTrang(tblPhongChieu.getValueAt(pos, 4).toString());
 
         return pc;
-<<<<<<< HEAD
+
     }
     
     void edit() {
@@ -90,8 +85,7 @@ public class PhongChieuJPanel extends javax.swing.JPanel {
         btnThem.setEnabled(!edit);
         btnSua.setEnabled(edit);
         btnXoa.setEnabled(edit);
-=======
->>>>>>> af348e5c117ad910cac8178c7a1f32b1f74cdd8b
+
     }
 
 //Vị trí lên form
