@@ -8,6 +8,7 @@ import Helper.JDBCHelper;
 import java.sql.ResultSet;
 import java.util.ArrayList;
 import java.util.List;
+import model.TimVe;
 import model.Ve;
 
 /**
@@ -21,6 +22,12 @@ public class VeDAO extends CinemaxDAO<Ve, String> {
     final String DELETE_SQL = "DELETE FROM Ve WHERE VeID=?";
     final String SELECT_ALL_SQL = "SELECT * FROM Ve";
     final String SELECT_BY_ID_SQL = "SELECT * FROM Ve WHERE VeID=?";
+    final String SELECT_TICKET = "SELECT SuatChieu.SuatChieuID, Phim.TenPhim, PhongChieu.TenPhong, ThoiGianBatDau "
+            + "FROM SuatChieu "
+            + "JOIN Ve ON SuatChieu.SuatChieuID = Ve.SuatChieuID "
+            + "JOIN Phim ON SuatChieu.PhimID = Phim.PhimID "
+            + "JOIN PhongChieu ON SuatChieu.PhongID = PhongChieu.PhongID "
+            + "WHERE Phim.TenPhim = ? AND PhongChieu.TenPhong = ? AND ThoiGianBatDau = ?";
 
     @Override
     public void insert(Ve entity) {
@@ -68,6 +75,25 @@ public class VeDAO extends CinemaxDAO<Ve, String> {
             }
         } catch (Exception e) {
             throw new RuntimeException(e);
+        }
+        return list;
+    }
+
+    @Override
+    public List<TimVe> FintTicket(String ThoiGian, String PhongChieu, String Phim) {
+        List<TimVe> list = new ArrayList<>();
+        try {
+            ResultSet rs = JDBCHelper.query(SELECT_TICKET, Phim, PhongChieu, ThoiGian);
+            while (rs.next()) {
+                TimVe entity = new TimVe();
+                entity.setMaSuatChieu(rs.getString("SuatChieuID"));
+                entity.setTenPhim(rs.getString("TenPhim"));
+                entity.setTenPhong(rs.getString("TenPhong"));
+                entity.setThoiGianChieu(rs.getString("ThoiGianBatDau"));
+                list.add(entity);
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
         }
         return list;
     }

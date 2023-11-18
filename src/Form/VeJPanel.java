@@ -1,5 +1,9 @@
 package Form;
 
+import DAO.PhimDAO;
+import DAO.PhongChieuDAO;
+import DAO.SuatChieuDAO;
+import DAO.VeDAO;
 import Form.DatVeJPanel;
 import Form.MainJFrame;
 import Form.TrangChuJPanel;
@@ -7,7 +11,14 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.List;
 import javax.swing.Timer;
+import javax.swing.table.DefaultTableModel;
+import model.Phim;
+import model.PhongChieu;
+import model.SuatChieu;
+import model.TimVe;
+import raven.toast.Notifications;
 
 /**
  *
@@ -18,6 +29,11 @@ public class VeJPanel extends javax.swing.JPanel {
     /**
      * Creates new form VẹPanel
      */
+    public VeDAO daoVe = new VeDAO();
+    public SuatChieuDAO daoSuatChieu = new SuatChieuDAO();
+    public PhimDAO daoPhim = new PhimDAO();
+    public PhongChieuDAO daoPhongChieuDAO = new PhongChieuDAO();
+
     public VeJPanel() {
         initComponents();
 
@@ -30,6 +46,64 @@ public class VeJPanel extends javax.swing.JPanel {
                 lblDongHo.setText(text);
             }
         }).start();
+        fillCboThoiGian();
+        fillCboPhim();
+        fillCboPhongChieu();
+        fillToTable();
+    }
+
+    void fillToTable() {
+        DefaultTableModel model = (DefaultTableModel) tblSuatChieu.getModel();
+        model.setRowCount(0);
+        try {
+            List<TimVe> list = daoVe.FintTicket(String.valueOf(cboThoiGian.getSelectedItem()), String.valueOf(cboPhongChieu.getSelectedItem()), String.valueOf(cboPhim.getSelectedItem()));
+            for (TimVe timVe : list) {
+                Object[] row = {
+                    tblSuatChieu.getRowCount() + 1,
+                    timVe.getMaSuatChieu(),
+                    timVe.getTenPhim(),
+                    timVe.getTenPhong(),
+                    timVe.getThoiGianChieu(),};
+                model.addRow(row);
+            }
+
+        } catch (Exception e) {
+            Notifications.getInstance().show(Notifications.Type.INFO, Notifications.Location.TOP_CENTER, "Lỗi truy vấn dữ liệu!");
+            e.printStackTrace();
+        }
+    }
+
+    void fillCboThoiGian() {
+        try {
+            List<SuatChieu> list = daoSuatChieu.selectAll();
+            for (SuatChieu suatChieu : list) {
+                cboThoiGian.addItem(suatChieu.getThoiGianBD() + "");
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+    void fillCboPhim() {
+        try {
+            List<Phim> list = daoPhim.selectAll();
+            for (Phim phim : list) {
+                cboPhim.addItem(phim.getTenPhim() + "");
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+    void fillCboPhongChieu() {
+        try {
+            List<PhongChieu> list = daoPhongChieuDAO.selectAll();
+            for (PhongChieu phongChieu : list) {
+                cboPhongChieu.addItem(phongChieu.getTenPC() + "");
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 
     /**
@@ -47,13 +121,13 @@ public class VeJPanel extends javax.swing.JPanel {
         jLabel10 = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
         tblSuatChieu = new javax.swing.JTable();
-        txtThoiGian = new javax.swing.JTextField();
         jLabel2 = new javax.swing.JLabel();
         cboPhim = new javax.swing.JComboBox<>();
         jLabel11 = new javax.swing.JLabel();
         cboPhongChieu = new javax.swing.JComboBox<>();
         jLabel4 = new javax.swing.JLabel();
         btnDatVe = new javax.swing.JButton();
+        cboThoiGian = new javax.swing.JComboBox<>();
 
         lblTrangChu.setBackground(new java.awt.Color(0, 0, 0));
         lblTrangChu.setForeground(new java.awt.Color(255, 51, 51));
@@ -117,19 +191,25 @@ public class VeJPanel extends javax.swing.JPanel {
         ));
         jScrollPane1.setViewportView(tblSuatChieu);
 
-        txtThoiGian.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
-
         jLabel2.setFont(new java.awt.Font("Segoe UI", 0, 20)); // NOI18N
         jLabel2.setText("Chọn Phim:");
 
         cboPhim.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
-        cboPhim.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        cboPhim.addItemListener(new java.awt.event.ItemListener() {
+            public void itemStateChanged(java.awt.event.ItemEvent evt) {
+                cboPhimItemStateChanged(evt);
+            }
+        });
 
         jLabel11.setFont(new java.awt.Font("Segoe UI", 0, 20)); // NOI18N
         jLabel11.setText("Chọn Phòng Chiếu:");
 
         cboPhongChieu.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
-        cboPhongChieu.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        cboPhongChieu.addItemListener(new java.awt.event.ItemListener() {
+            public void itemStateChanged(java.awt.event.ItemEvent evt) {
+                cboPhongChieuItemStateChanged(evt);
+            }
+        });
 
         jLabel4.setFont(new java.awt.Font("Segoe UI", 0, 20)); // NOI18N
         jLabel4.setText("Chọn Thời Gian:");
@@ -139,6 +219,13 @@ public class VeJPanel extends javax.swing.JPanel {
         btnDatVe.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnDatVeActionPerformed(evt);
+            }
+        });
+
+        cboThoiGian.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+        cboThoiGian.addItemListener(new java.awt.event.ItemListener() {
+            public void itemStateChanged(java.awt.event.ItemEvent evt) {
+                cboThoiGianItemStateChanged(evt);
             }
         });
 
@@ -154,11 +241,11 @@ public class VeJPanel extends javax.swing.JPanel {
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 1246, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addGroup(layout.createSequentialGroup()
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(txtThoiGian, javax.swing.GroupLayout.PREFERRED_SIZE, 455, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                                     .addComponent(jLabel4)
                                     .addComponent(jLabel11)
-                                    .addComponent(cboPhongChieu, javax.swing.GroupLayout.PREFERRED_SIZE, 455, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                    .addComponent(cboPhongChieu, 0, 455, Short.MAX_VALUE)
+                                    .addComponent(cboThoiGian, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                                 .addGap(60, 60, 60)
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addComponent(jLabel2)
@@ -174,14 +261,12 @@ public class VeJPanel extends javax.swing.JPanel {
                 .addComponent(lblTrangChu, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(jLabel4)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(txtThoiGian, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(jLabel2)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(cboPhim, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addComponent(jLabel2)
+                    .addComponent(jLabel4))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(cboPhim)
+                    .addComponent(cboThoiGian))
                 .addGap(18, 18, 18)
                 .addComponent(jLabel11)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -202,11 +287,27 @@ public class VeJPanel extends javax.swing.JPanel {
         MainJFrame.showForm(new TrangChuJPanel());
     }//GEN-LAST:event_jLabel9MouseClicked
 
+    private void cboThoiGianItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_cboThoiGianItemStateChanged
+        // TODO add your handling code here:
+        fillToTable();
+    }//GEN-LAST:event_cboThoiGianItemStateChanged
+
+    private void cboPhongChieuItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_cboPhongChieuItemStateChanged
+        // TODO add your handling code here:
+        fillToTable();
+    }//GEN-LAST:event_cboPhongChieuItemStateChanged
+
+    private void cboPhimItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_cboPhimItemStateChanged
+        // TODO add your handling code here:
+        fillToTable();
+    }//GEN-LAST:event_cboPhimItemStateChanged
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnDatVe;
     private javax.swing.JComboBox<String> cboPhim;
     private javax.swing.JComboBox<String> cboPhongChieu;
+    private javax.swing.JComboBox<String> cboThoiGian;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
     private javax.swing.JLabel jLabel2;
@@ -216,6 +317,5 @@ public class VeJPanel extends javax.swing.JPanel {
     private javax.swing.JLabel lblDongHo;
     private javax.swing.JPanel lblTrangChu;
     private javax.swing.JTable tblSuatChieu;
-    private javax.swing.JTextField txtThoiGian;
     // End of variables declaration//GEN-END:variables
 }
