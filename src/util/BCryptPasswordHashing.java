@@ -33,8 +33,10 @@ public class BCryptPasswordHashing {
         // Kiểm tra mật khẩu nhập vào có khớp với mật khẩu đã mã hóa hay không
         return BCrypt.checkpw(inputPassword, hashedPassword);
     }
-
 //    public static void main(String[] args) {
-//            System.out.println(hashPassword("admin"));;
+//        while (true) {            
+//
+//            System.out.println(hashPassword("admin"));
+//        }
 //    }
 }

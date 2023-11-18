@@ -11,6 +11,7 @@ import java.util.Date;
  * @author 123tu
  */
 public class Ve {
+
     private String maVe;
     private String loaiVe;
     private double giaVe;
@@ -77,5 +78,5 @@ public class Ve {
     public void setMaSC(String maSC) {
         this.maSC = maSC;
     }
-    
+
 }
