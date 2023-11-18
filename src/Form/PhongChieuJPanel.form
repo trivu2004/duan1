@@ -274,6 +274,7 @@
               </Properties>
               <Events>
                 <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="tblPhongChieuMouseClicked"/>
+                <EventHandler event="mousePressed" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="tblPhongChieuMousePressed"/>
               </Events>
             </Component>
           </SubComponents>

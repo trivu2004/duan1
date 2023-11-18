@@ -2,6 +2,7 @@ package Form;
 
 import DAO.NhanVienDAO;
 import static Form.MainJFrame.tenNhanVien;
+import Helper.Auth;
 import Helper.DateHelper;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -152,6 +153,18 @@ public class NhanVienJPanel extends javax.swing.JPanel {
         }
     }
 
+    void delete() {
+        String maNV = txtMaNV.getText();
+        try {
+            dao.delete(maNV);
+            this.fillTable();
+            this.clearForm();
+            Notifications.getInstance().show(Notifications.Type.INFO, Notifications.Location.TOP_CENTER, "Xóa Nhân viên thành công!");
+        } catch (Exception e) {
+            Notifications.getInstance().show(Notifications.Type.INFO, Notifications.Location.TOP_CENTER, "Xóa thất bại!");
+        }
+    }
+
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
@@ -217,6 +230,14 @@ public class NhanVienJPanel extends javax.swing.JPanel {
                 "STT", "Mã Nhân Viên", "Tên Nhân Viên", "Giới Tính", "Ngày Sinh", "Email", "Mật Khẩu", "Chức Vụ"
             }
         ));
+        tblNhanVien.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                tblNhanVienMouseClicked(evt);
+            }
+            public void mousePressed(java.awt.event.MouseEvent evt) {
+                tblNhanVienMousePressed(evt);
+            }
+        });
         jScrollPane1.setViewportView(tblNhanVien);
 
         cboGioiTinh.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
@@ -248,6 +269,11 @@ public class NhanVienJPanel extends javax.swing.JPanel {
 
         btnXoa.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
         btnXoa.setText("Xóa ");
+        btnXoa.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnXoaActionPerformed(evt);
+            }
+        });
 
         jLabel5.setFont(new java.awt.Font("Segoe UI", 0, 20)); // NOI18N
         jLabel5.setText("Email:");
@@ -448,6 +474,21 @@ public class NhanVienJPanel extends javax.swing.JPanel {
     private void btnSuaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSuaActionPerformed
         update();
     }//GEN-LAST:event_btnSuaActionPerformed
+
+    private void btnXoaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnXoaActionPerformed
+        delete();
+    }//GEN-LAST:event_btnXoaActionPerformed
+
+    private void tblNhanVienMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tblNhanVienMouseClicked
+        
+    }//GEN-LAST:event_tblNhanVienMouseClicked
+
+    private void tblNhanVienMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tblNhanVienMousePressed
+        if (evt.getClickCount() == 2) {
+            this.row = tblNhanVien.rowAtPoint(evt.getPoint());
+            edit();
+        }
+    }//GEN-LAST:event_tblNhanVienMousePressed
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnMoi;
