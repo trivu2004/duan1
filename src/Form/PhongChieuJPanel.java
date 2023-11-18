@@ -13,11 +13,10 @@ import model.PhongChieu;
 import raven.toast.Notifications;
 
 public class PhongChieuJPanel extends javax.swing.JPanel {
-    
+
     DefaultTableModel model;
     PhongChieuDAO dao = new PhongChieuDAO();
-    int row;
-    
+    int row, index;
     public PhongChieuJPanel() {
         initComponents();
         fillTable();
@@ -33,7 +32,7 @@ public class PhongChieuJPanel extends javax.swing.JPanel {
             }
         }).start();
     }
-    
+
     public void fillTable() {
         model = (DefaultTableModel) tblPhongChieu.getModel();
         model.setRowCount(0);
@@ -52,8 +51,18 @@ public class PhongChieuJPanel extends javax.swing.JPanel {
         } catch (Exception e) {
             JOptionPane.showMessageDialog(this, "Lỗi truy vấn dữ liệu");
             e.printStackTrace();
-            
         }
+    }
+
+
+    public PhongChieu getGradeAtPosition(int pos) {
+        PhongChieu pc = new PhongChieu();
+        pc.setMaPC(tblPhongChieu.getValueAt(pos, 1).toString());
+        pc.setTenPC(tblPhongChieu.getValueAt(pos, 2).toString());
+        pc.setSoLuongGhe(Integer.parseInt(tblPhongChieu.getValueAt(pos, 3).toString()));
+        pc.setTinhTrang(tblPhongChieu.getValueAt(pos, 4).toString());
+
+        return pc;
     }
     
     void edit() {
@@ -76,15 +85,17 @@ public class PhongChieuJPanel extends javax.swing.JPanel {
         btnSua.setEnabled(edit);
         btnXoa.setEnabled(edit);
     }
-    
-    public void setForm(PhongChieu pc) {//Vị trí lên form
+
+//Vị trí lên form
+    public void setForm(PhongChieu pc) {
         txtMaPhong.setText(pc.getMaPC());
         txtTenPhong.setText(pc.getTenPC());
         txtSLGhe.setText(String.valueOf(pc.getSoLuongGhe()));
         txtTinhTrang.setText(pc.getTinhTrang());
     }
-    
-    public PhongChieu getForm() {//Khi Nhập dữ liệu sẽ nhập lên bảng
+
+//Khi Nhập dữ liệu sẽ nhập lên bảng
+    public PhongChieu getForm() {
         PhongChieu pc = new PhongChieu();
         pc.setMaPC(txtMaPhong.getText());
         pc.setSoLuongGhe(Integer.parseInt(txtSLGhe.getText()));
@@ -92,7 +103,7 @@ public class PhongChieuJPanel extends javax.swing.JPanel {
         pc.setTinhTrang(txtTinhTrang.getText());
         return pc;
     }
-    
+
     public void cleanForm() {
         setForm(new PhongChieu());
         txtSLGhe.setText("");
@@ -100,7 +111,7 @@ public class PhongChieuJPanel extends javax.swing.JPanel {
         txtMaPhong.requestFocus();
         updateStatus();
     }
-    
+
     public void insert() {
         PhongChieu pc = getForm();
         try {
@@ -112,7 +123,7 @@ public class PhongChieuJPanel extends javax.swing.JPanel {
             JOptionPane.showMessageDialog(this, "Trùng phòng chiếu");
         }
     }
-    
+
     public void update() {
         PhongChieu pc = getForm();
         try {
@@ -123,7 +134,7 @@ public class PhongChieuJPanel extends javax.swing.JPanel {
         } catch (Exception e) {
         }
     }
-    
+
     public void del() {
         if (txtMaPhong.getText().equals("")) {
             JOptionPane.showMessageDialog(this, "Chưa nhập dữ liệu vào để xóa");
@@ -139,7 +150,7 @@ public class PhongChieuJPanel extends javax.swing.JPanel {
             }
         }
     }
-    
+
     public boolean CheckValidate() {
         if (txtMaPhong.getText().isEmpty()) {
             JOptionPane.showMessageDialog(this, "Không để trống mã phòng");
@@ -158,7 +169,7 @@ public class PhongChieuJPanel extends javax.swing.JPanel {
             txtTinhTrang.requestFocus();
             return false;
         }
-        
+
         try {
             int slghe = Integer.parseInt(txtSLGhe.getText());
             if (slghe < 0) {
@@ -171,10 +182,10 @@ public class PhongChieuJPanel extends javax.swing.JPanel {
             txtSLGhe.requestFocus();
             return false;
         }
-        
+
         return true;
     }
-    
+
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {

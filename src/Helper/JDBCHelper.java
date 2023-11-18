@@ -43,7 +43,7 @@ public class JDBCHelper {
             e.printStackTrace();
         }
     }
-    
+
     public static void update(String sql, Object... args) {
         try {
             PreparedStatement stmt = prepareStatement(sql, args);
@@ -60,7 +60,8 @@ public class JDBCHelper {
     public static ResultSet query(String sql, Object... args) {
         try {
             PreparedStatement stmt = prepareStatement(sql, args);
-            return stmt.executeQuery();
+            ResultSet rs = stmt.executeQuery();
+            return rs;
         } catch (SQLException e) {
             throw new RuntimeException(e);
         }
@@ -70,12 +71,13 @@ public class JDBCHelper {
         try {
             ResultSet rs = query(sql, args);
             if (rs.next()) {
-                return rs.getObject(0);
+                Object result = rs.getObject(1);
+                return result;
             }
-            rs.getStatement().getConnection().close();
         } catch (Exception e) {
             throw new RuntimeException(e);
         }
         return null;
     }
+
 }
