@@ -75,13 +75,6 @@ public class MainJFrame extends javax.swing.JFrame {
                     tenNhanVien = kq.getString("TenNhanVien");
                     // Mã hóa mật khẩu
                     if (BCryptPasswordHashing.verifyPassword(loginForm.txtPass.getText().trim(), MatKhau)&NhanVienID.equals(loginForm.txtUser.getText())) {
-<<<<<<< HEAD
-//                    
-                    if (BCryptPasswordHashing.verifyPassword(loginForm.txtPass.getText().trim(), MatKhau) & NhanVienID.equals(loginForm.txtUser.getText().trim())) {
-
-                    if (BCryptPasswordHashing.verifyPassword(loginForm.txtPass.getText().trim(), MatKhau) & NhanVienID.equals(loginForm.txtUser.getText())) {
-=======
->>>>>>> af348e5c117ad910cac8178c7a1f32b1f74cdd8b
                         FlatAnimatedLafChange.showSnapshot();
                         app.setContentPane(app.mainForm);
                         app.mainForm.applyComponentOrientation(app.getComponentOrientation());
@@ -94,18 +87,12 @@ public class MainJFrame extends javax.swing.JFrame {
                     }
                     Notifications.getInstance().show(Notifications.Type.INFO, Notifications.Location.TOP_CENTER, "Sai tài khoản hoặc mật khẩu !");
                 }
-<<<<<<< HEAD
-                }
-                }
-=======
->>>>>>> af348e5c117ad910cac8178c7a1f32b1f74cdd8b
             } catch (Exception e) {
             }
         } else {
             Notifications.getInstance().show(Notifications.Type.INFO, Notifications.Location.TOP_CENTER, "Vui long dien day du thong tin !");
             return;
         }
-   
     }
 
     public static void logout() {
