@@ -39,9 +39,17 @@ public class BCryptPasswordHashing {
 //            System.out.println(hashPassword("admin"));
 //        }
 //    }
+<<<<<<< HEAD
 
+=======
+>>>>>>> af348e5c117ad910cac8178c7a1f32b1f74cdd8b
 
     public static void main(String[] args) {
             System.out.println(hashPassword("$2a$14$AV5U7iyeHUcomICq8oOoMu3TceORD5pAGKCane0cJq7oMQdUTgNB6"));;
     }
+<<<<<<< HEAD
 }
+=======
+
+}
+>>>>>>> af348e5c117ad910cac8178c7a1f32b1f74cdd8b

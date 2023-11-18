@@ -10,18 +10,19 @@ import javax.swing.JOptionPane;
 import javax.swing.Timer;
 import javax.swing.table.DefaultTableModel;
 import model.PhongChieu;
-import raven.toast.Notifications;
 
 public class PhongChieuJPanel extends javax.swing.JPanel {
 
     DefaultTableModel model;
     PhongChieuDAO dao = new PhongChieuDAO();
     int row, index;
+<<<<<<< HEAD
+=======
+
+>>>>>>> af348e5c117ad910cac8178c7a1f32b1f74cdd8b
     public PhongChieuJPanel() {
         initComponents();
         fillTable();
-        updateStatus();
-        
         new Timer(1000, new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -41,19 +42,23 @@ public class PhongChieuJPanel extends javax.swing.JPanel {
             List<PhongChieu> list = dao.selectAll();
             for (PhongChieu pc : list) {
                 Object[] row = {
-                    tblPhongChieu.getRowCount() + 1,
+                    i,
                     pc.getMaPC(),
                     pc.getTenPC(),
                     pc.getSoLuongGhe(),
                     pc.getTinhTrang(),};
                 model.addRow(row);
+                i++;
             }
         } catch (Exception e) {
             JOptionPane.showMessageDialog(this, "Lỗi truy vấn dữ liệu");
             e.printStackTrace();
         }
     }
+<<<<<<< HEAD
 
+=======
+>>>>>>> af348e5c117ad910cac8178c7a1f32b1f74cdd8b
 
     public PhongChieu getGradeAtPosition(int pos) {
         PhongChieu pc = new PhongChieu();
@@ -63,6 +68,7 @@ public class PhongChieuJPanel extends javax.swing.JPanel {
         pc.setTinhTrang(tblPhongChieu.getValueAt(pos, 4).toString());
 
         return pc;
+<<<<<<< HEAD
     }
     
     void edit() {
@@ -84,6 +90,8 @@ public class PhongChieuJPanel extends javax.swing.JPanel {
         btnThem.setEnabled(!edit);
         btnSua.setEnabled(edit);
         btnXoa.setEnabled(edit);
+=======
+>>>>>>> af348e5c117ad910cac8178c7a1f32b1f74cdd8b
     }
 
 //Vị trí lên form
@@ -107,9 +115,6 @@ public class PhongChieuJPanel extends javax.swing.JPanel {
     public void cleanForm() {
         setForm(new PhongChieu());
         txtSLGhe.setText("");
-        row = -1;
-        txtMaPhong.requestFocus();
-        updateStatus();
     }
 
     public void insert() {
@@ -278,9 +283,6 @@ public class PhongChieuJPanel extends javax.swing.JPanel {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 tblPhongChieuMouseClicked(evt);
             }
-            public void mousePressed(java.awt.event.MouseEvent evt) {
-                tblPhongChieuMousePressed(evt);
-            }
         });
         jScrollPane1.setViewportView(tblPhongChieu);
 
@@ -438,15 +440,10 @@ public class PhongChieuJPanel extends javax.swing.JPanel {
     }//GEN-LAST:event_btnMoiActionPerformed
 
     private void tblPhongChieuMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tblPhongChieuMouseClicked
-
+        int id = tblPhongChieu.rowAtPoint(evt.getPoint());
+        PhongChieu pc = getGradeAtPosition(id);
+        setForm(pc);
     }//GEN-LAST:event_tblPhongChieuMouseClicked
-
-    private void tblPhongChieuMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tblPhongChieuMousePressed
-        if (evt.getClickCount() == 2) {
-            this.row = tblPhongChieu.rowAtPoint(evt.getPoint());
-            edit();
-        }
-    }//GEN-LAST:event_tblPhongChieuMousePressed
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnMoi;
