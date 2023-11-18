@@ -24,6 +24,7 @@ public class SuatChieuJPanel extends javax.swing.JPanel {
     /**
      * Creates new form SuatChieuJPanel
      */
+    
     void fillTable() {
         DefaultTableModel model = (DefaultTableModel) tblSuatChieu.getModel();
         model.setRowCount(0);
@@ -38,8 +39,8 @@ public class SuatChieuJPanel extends javax.swing.JPanel {
                 String phimID = kq.getString("PhimID");
                 String thoigianbatdau = kq.getString("ThoiGianBatDau");
                 String thoigianketthuc = kq.getString("ThoiGianKetThuc");
-                String thoigianketthuc1 = kq.getString("ThoiGianKetThuc1");
-                Object[] data = {stt++, suatchieuid, phongid, phimID, thoigianbatdau, thoigianketthuc, thoigianketthuc1};
+                String nhanvienid = kq.getString("NhanVienID");
+                Object[] data = {stt++, suatchieuid, phongid, phimID, thoigianbatdau, thoigianketthuc, nhanvienid};
                 model.addRow(data);
             }
         } catch (Exception e) {
@@ -78,7 +79,7 @@ public class SuatChieuJPanel extends javax.swing.JPanel {
 
     public SuatChieuJPanel() {
         initComponents();
-//        fillTable();
+        fillTable();
         new Timer(1000, new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
