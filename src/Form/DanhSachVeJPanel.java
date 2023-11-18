@@ -109,14 +109,14 @@ public class DanhSachVeJPanel extends javax.swing.JPanel {
 
         jTable1.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null, null, null, null, null, null, null, null}
+                {null, null, null, null, null, null, null, null, null, null}
             },
             new String [] {
-                "STT", "Mã Vé", "Tên Phim", "Tên Phòng", "Thời Gian Chiếu", "Ghế", "Loại Vé", "Giá Vé", "Ngày (Mua/Đặt)", "Người Đặt", "Xóa"
+                "STT", "Mã Vé", "Tên Phim", "Tên Phòng", "Thời Gian Chiếu", "Ghế", "Loại Vé", "Giá Vé", "Ngày (Mua/Đặt)", "Xóa"
             }
         ) {
             Class[] types = new Class [] {
-                java.lang.Object.class, java.lang.Object.class, java.lang.Object.class, java.lang.Object.class, java.lang.Object.class, java.lang.Object.class, java.lang.Object.class, java.lang.Object.class, java.lang.Object.class, java.lang.Object.class, java.lang.Boolean.class
+                java.lang.Object.class, java.lang.Object.class, java.lang.Object.class, java.lang.Object.class, java.lang.Object.class, java.lang.Object.class, java.lang.Object.class, java.lang.Object.class, java.lang.Object.class, java.lang.Boolean.class
             };
 
             public Class getColumnClass(int columnIndex) {

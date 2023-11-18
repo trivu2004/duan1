@@ -13,7 +13,7 @@ public class testDataBase {
     public static void main(String[] args) {
         try {
             String sql = "select * from PhongChieu";
-            PreparedStatement p = JDBCHelper.getConnection().prepareStatement(sql);
+            PreparedStatement p = JDBCHelper.prepareStatement(sql);
             ResultSet rs = p.executeQuery();
             while (rs.next()) {                
                 System.out.print(rs.getString(1));

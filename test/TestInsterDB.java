@@ -16,7 +16,7 @@ public class TestInsterDB {
         int Tuoi = 20;
         try {
             String sql = "insert into NhanVien(MaNV,Ho,Ten,Tuoi) values (?,?,?,?)";
-            PreparedStatement ps = JDBCHelper.getConnection().prepareStatement(sql);
+            PreparedStatement ps = JDBCHelper.prepareStatement(sql);
             ps.setString(1, MaNV);
             ps.setString(2, Ho);
             ps.setString(3, Ten);
