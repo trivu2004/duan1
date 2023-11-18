@@ -57,8 +57,8 @@ public class PhongChieuDAO extends CinemaxDAO<PhongChieu, String>{
             ResultSet rs = JDBCHelper.query(sql, args);
             while (rs.next()) {
                 PhongChieu entity = new PhongChieu();
-                entity.setMaPC(rs.getString("MaPC"));
-                entity.setTenPC(rs.getString("TenPC"));
+                entity.setMaPC(rs.getString("PhongID"));
+                entity.setTenPC(rs.getString("TenPhong"));
                 entity.setSoLuongGhe(rs.getInt("SoLuongGhe"));
                 entity.setTinhTrang(rs.getString("TinhTrang"));
                 list.add(entity);
