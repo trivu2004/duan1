@@ -9,11 +9,8 @@ import java.sql.ResultSet;
 import java.util.ArrayList;
 import java.util.List;
 import model.NhanVien;
-<<<<<<< HEAD
 import util.BCryptPasswordHashing;
-=======
 import model.TimVe;
->>>>>>> 7f6ebf2cd8774ae0a2dcb9773fe3c0c1a8f7b778
 
 /**
  *
@@ -78,7 +75,7 @@ public class NhanVienDAO extends CinemaxDAO<NhanVien, String>{
     }
 
     @Override
-    public List<TimVe> FintTicket(String ThoiGian, String PhongChieu, String Phim) {
+    public List<TimVe> findTicket(String ThoiGian, String PhongChieu, String Phim) {
         throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }
 }
