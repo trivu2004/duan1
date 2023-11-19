@@ -9,11 +9,8 @@ import java.sql.ResultSet;
 import java.util.ArrayList;
 import java.util.List;
 import model.NhanVien;
-<<<<<<< HEAD
 import util.BCryptPasswordHashing;
-=======
 import model.TimVe;
->>>>>>> 7f6ebf2cd8774ae0a2dcb9773fe3c0c1a8f7b778
 
 /**
  *
