@@ -56,14 +56,14 @@
                       <Component id="jLabel2" alignment="0" min="-2" max="-2" attributes="0"/>
                       <Component id="jLabel11" alignment="0" min="-2" max="-2" attributes="0"/>
                       <Component id="jLabel18" alignment="0" min="-2" max="-2" attributes="0"/>
-                      <Component id="txtMaSC5" alignment="0" max="32767" attributes="0"/>
-                      <Component id="txtMaSC3" alignment="0" max="32767" attributes="0"/>
-                      <Component id="txtMaSC4" alignment="0" max="32767" attributes="0"/>
-                      <Component id="txtMaSC" alignment="0" max="32767" attributes="0"/>
-                      <Component id="cboPhim" alignment="0" pref="220" max="32767" attributes="0"/>
-                      <Component id="txtMaSC6" alignment="0" max="32767" attributes="0"/>
-                      <Component id="txtMaSC1" alignment="0" max="32767" attributes="0"/>
+                      <Component id="txtThoiGianChieu" alignment="0" pref="220" max="32767" attributes="0"/>
+                      <Component id="txtTenPhong" alignment="0" max="32767" attributes="0"/>
+                      <Component id="txtTenPhim" alignment="0" max="32767" attributes="0"/>
+                      <Component id="txtLoaiVe" alignment="0" max="32767" attributes="0"/>
+                      <Component id="txtMaVe" alignment="0" max="32767" attributes="0"/>
+                      <Component id="txtNgayMua" alignment="0" max="32767" attributes="0"/>
                       <Component id="btnSuatChieu" alignment="0" min="-2" max="-2" attributes="0"/>
+                      <Component id="txtGiaVe1" alignment="1" max="32767" attributes="0"/>
                   </Group>
                   <EmptySpace type="separate" max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="1" attributes="0">
@@ -97,31 +97,31 @@
                               <Component id="jLabel6" alignment="3" min="-2" max="-2" attributes="0"/>
                           </Group>
                           <EmptySpace max="-2" attributes="0"/>
-                          <Component id="txtMaSC6" min="-2" max="-2" attributes="0"/>
+                          <Component id="txtMaVe" min="-2" max="-2" attributes="0"/>
                           <EmptySpace max="32767" attributes="0"/>
                           <Component id="jLabel4" min="-2" max="-2" attributes="0"/>
                           <EmptySpace max="-2" attributes="0"/>
-                          <Component id="cboPhim" min="-2" max="-2" attributes="0"/>
-                          <EmptySpace min="-2" pref="12" max="-2" attributes="0"/>
-                          <Component id="jLabel2" min="-2" max="-2" attributes="0"/>
-                          <EmptySpace max="-2" attributes="0"/>
-                          <Component id="txtMaSC" min="-2" max="-2" attributes="0"/>
+                          <Component id="txtLoaiVe" min="-2" max="-2" attributes="0"/>
                           <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                          <Component id="jLabel2" min="-2" max="-2" attributes="0"/>
+                          <EmptySpace type="separate" max="-2" attributes="0"/>
+                          <Component id="txtGiaVe1" min="-2" max="-2" attributes="0"/>
+                          <EmptySpace max="-2" attributes="0"/>
                           <Component id="jLabel13" min="-2" max="-2" attributes="0"/>
                           <EmptySpace max="-2" attributes="0"/>
-                          <Component id="txtMaSC4" min="-2" max="-2" attributes="0"/>
+                          <Component id="txtTenPhim" min="-2" max="-2" attributes="0"/>
                           <EmptySpace type="unrelated" max="-2" attributes="0"/>
                           <Component id="jLabel14" min="-2" max="-2" attributes="0"/>
                           <EmptySpace max="-2" attributes="0"/>
-                          <Component id="txtMaSC3" min="-2" max="-2" attributes="0"/>
+                          <Component id="txtTenPhong" min="-2" max="-2" attributes="0"/>
                           <EmptySpace type="unrelated" max="-2" attributes="0"/>
                           <Component id="jLabel15" min="-2" max="-2" attributes="0"/>
                           <EmptySpace max="-2" attributes="0"/>
-                          <Component id="txtMaSC5" min="-2" max="-2" attributes="0"/>
+                          <Component id="txtThoiGianChieu" min="-2" max="-2" attributes="0"/>
                           <EmptySpace type="unrelated" max="-2" attributes="0"/>
                           <Component id="jLabel11" min="-2" max="-2" attributes="0"/>
                           <EmptySpace max="-2" attributes="0"/>
-                          <Component id="txtMaSC1" min="-2" max="-2" attributes="0"/>
+                          <Component id="txtNgayMua" min="-2" max="-2" attributes="0"/>
                           <EmptySpace min="-2" pref="54" max="-2" attributes="0"/>
                       </Group>
                   </Group>
@@ -230,24 +230,6 @@
             <Property name="text" type="java.lang.String" value="Gi&#xe1; V&#xe9;:"/>
           </Properties>
         </Component>
-        <Component class="javax.swing.JComboBox" name="cboPhim">
-          <Properties>
-            <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-              <Font name="Segoe UI" size="18" style="0"/>
-            </Property>
-            <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
-              <StringArray count="4">
-                <StringItem index="0" value="Item 1"/>
-                <StringItem index="1" value="Item 2"/>
-                <StringItem index="2" value="Item 3"/>
-                <StringItem index="3" value="Item 4"/>
-              </StringArray>
-            </Property>
-          </Properties>
-          <AuxValues>
-            <AuxValue name="JavaCodeGenerator_TypeParameters" type="java.lang.String" value="&lt;String&gt;"/>
-          </AuxValues>
-        </Component>
         <Component class="javax.swing.JLabel" name="jLabel11">
           <Properties>
             <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
@@ -264,7 +246,7 @@
             <Property name="text" type="java.lang.String" value="Ch&#x1ecd;n Lo&#x1ea1;i V&#xe9;:"/>
           </Properties>
         </Component>
-        <Component class="javax.swing.JTextField" name="txtMaSC">
+        <Component class="javax.swing.JTextField" name="txtLoaiVe">
           <Properties>
             <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
               <Font name="Segoe UI" size="18" style="0"/>
@@ -272,7 +254,7 @@
             <Property name="enabled" type="boolean" value="false"/>
           </Properties>
         </Component>
-        <Component class="javax.swing.JTextField" name="txtMaSC1">
+        <Component class="javax.swing.JTextField" name="txtNgayMua">
           <Properties>
             <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
               <Font name="Segoe UI" size="18" style="0"/>
@@ -280,11 +262,12 @@
             <Property name="enabled" type="boolean" value="false"/>
           </Properties>
         </Component>
-        <Component class="javax.swing.JTextField" name="txtMaSC3">
+        <Component class="javax.swing.JTextField" name="txtTenPhong">
           <Properties>
             <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
               <Font name="Segoe UI" size="18" style="0"/>
             </Property>
+            <Property name="enabled" type="boolean" value="false"/>
           </Properties>
         </Component>
         <Component class="javax.swing.JLabel" name="jLabel13">
@@ -295,11 +278,12 @@
             <Property name="text" type="java.lang.String" value="T&#xea;n Phim:"/>
           </Properties>
         </Component>
-        <Component class="javax.swing.JTextField" name="txtMaSC4">
+        <Component class="javax.swing.JTextField" name="txtTenPhim">
           <Properties>
             <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
               <Font name="Segoe UI" size="18" style="0"/>
             </Property>
+            <Property name="enabled" type="boolean" value="false"/>
           </Properties>
         </Component>
         <Component class="javax.swing.JLabel" name="jLabel14">
@@ -318,11 +302,12 @@
             <Property name="text" type="java.lang.String" value="Th&#x1edd;i Gian Chi&#x1ebf;u:"/>
           </Properties>
         </Component>
-        <Component class="javax.swing.JTextField" name="txtMaSC5">
+        <Component class="javax.swing.JTextField" name="txtThoiGianChieu">
           <Properties>
             <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
               <Font name="Segoe UI" size="18" style="0"/>
             </Property>
+            <Property name="enabled" type="boolean" value="false"/>
           </Properties>
         </Component>
         <Container class="javax.swing.JPanel" name="jPanel14">
@@ -352,95 +337,101 @@
                               </Group>
                           </Group>
                           <Component id="jLabel5" min="-2" max="-2" attributes="0"/>
+                          <Component id="lblVeDaChon" min="-2" pref="75" max="-2" attributes="0"/>
                       </Group>
                       <EmptySpace min="-2" pref="34" max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="0" attributes="0">
                           <Group type="102" attributes="0">
                               <Group type="103" groupAlignment="0" attributes="0">
                                   <Group type="102" attributes="0">
-                                      <Component id="jButton190" min="-2" pref="90" max="-2" attributes="0"/>
+                                      <Component id="btnGheH01" min="-2" pref="90" max="-2" attributes="0"/>
                                       <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                                      <Component id="jButton233" min="-2" pref="90" max="-2" attributes="0"/>
+                                      <Component id="btnGheH02" min="-2" pref="90" max="-2" attributes="0"/>
                                       <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                                      <Component id="jButton234" min="-2" pref="90" max="-2" attributes="0"/>
+                                      <Component id="btnGheH03" min="-2" pref="90" max="-2" attributes="0"/>
                                       <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                                      <Component id="jButton228" min="-2" pref="90" max="-2" attributes="0"/>
+                                      <Component id="btnGheH04" min="-2" pref="90" max="-2" attributes="0"/>
                                       <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                                      <Component id="jButton229" min="-2" pref="90" max="-2" attributes="0"/>
+                                      <Component id="btnGheH05" min="-2" pref="90" max="-2" attributes="0"/>
                                       <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                                      <Component id="jButton230" min="-2" pref="90" max="-2" attributes="0"/>
+                                      <Component id="btnGheH06" min="-2" pref="90" max="-2" attributes="0"/>
                                       <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                                      <Component id="jButton231" min="-2" pref="90" max="-2" attributes="0"/>
+                                      <Component id="btnGheH07" min="-2" pref="90" max="-2" attributes="0"/>
                                       <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                                      <Component id="jButton232" min="-2" pref="90" max="-2" attributes="0"/>
+                                      <Component id="btnGheH08" min="-2" pref="90" max="-2" attributes="0"/>
                                   </Group>
                                   <Group type="102" attributes="0">
-                                      <Component id="jButton188" min="-2" pref="90" max="-2" attributes="0"/>
+                                      <Component id="btnGheE01" min="-2" pref="90" max="-2" attributes="0"/>
                                       <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                                      <Component id="jButton219" min="-2" pref="90" max="-2" attributes="0"/>
+                                      <Component id="btnGheE02" min="-2" pref="90" max="-2" attributes="0"/>
                                       <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                                      <Component id="jButton220" min="-2" pref="90" max="-2" attributes="0"/>
+                                      <Component id="btnGheE03" min="-2" pref="90" max="-2" attributes="0"/>
                                       <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                                      <Component id="jButton214" min="-2" pref="90" max="-2" attributes="0"/>
+                                      <Component id="btnGheE04" min="-2" pref="90" max="-2" attributes="0"/>
                                       <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                                      <Component id="jButton215" min="-2" pref="90" max="-2" attributes="0"/>
+                                      <Component id="btnGheE05" min="-2" pref="90" max="-2" attributes="0"/>
                                       <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                                      <Component id="jButton216" min="-2" pref="90" max="-2" attributes="0"/>
+                                      <Component id="btnGheE06" min="-2" pref="90" max="-2" attributes="0"/>
                                       <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                                      <Component id="jButton217" min="-2" pref="90" max="-2" attributes="0"/>
+                                      <Component id="btnGheE07" min="-2" pref="90" max="-2" attributes="0"/>
                                       <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                                      <Component id="jButton218" min="-2" pref="90" max="-2" attributes="0"/>
+                                      <Component id="btnGheE08" min="-2" pref="90" max="-2" attributes="0"/>
                                   </Group>
+<<<<<<< HEAD
                                   <Group type="102" alignment="1" attributes="0">
                                       <Component id="jButton187" min="-2" pref="90" max="-2" attributes="0"/>
+=======
+                                  <Group type="102" attributes="0">
+                                      <Component id="btnGheD01" min="-2" pref="90" max="-2" attributes="0"/>
+>>>>>>> 92bb68bcc5f5f0b1ed7f216dc1b70be171674e93
                                       <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                                      <Component id="jButton212" min="-2" pref="90" max="-2" attributes="0"/>
+                                      <Component id="btnGheD02" min="-2" pref="90" max="-2" attributes="0"/>
                                       <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                                      <Component id="jButton213" min="-2" pref="90" max="-2" attributes="0"/>
+                                      <Component id="btnGheD03" min="-2" pref="90" max="-2" attributes="0"/>
                                       <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                                      <Component id="jButton207" min="-2" pref="90" max="-2" attributes="0"/>
+                                      <Component id="btnGheD04" min="-2" pref="90" max="-2" attributes="0"/>
                                       <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                                      <Component id="jButton208" min="-2" pref="90" max="-2" attributes="0"/>
+                                      <Component id="btnGheD05" min="-2" pref="90" max="-2" attributes="0"/>
                                       <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                                      <Component id="jButton209" min="-2" pref="90" max="-2" attributes="0"/>
+                                      <Component id="btnGheD06" min="-2" pref="90" max="-2" attributes="0"/>
                                       <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                                      <Component id="jButton210" min="-2" pref="90" max="-2" attributes="0"/>
+                                      <Component id="btnGheD07" min="-2" pref="90" max="-2" attributes="0"/>
                                       <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                                      <Component id="jButton211" min="-2" pref="90" max="-2" attributes="0"/>
+                                      <Component id="btnGheD08" min="-2" pref="90" max="-2" attributes="0"/>
                                   </Group>
                                   <Group type="102" attributes="0">
-                                      <Component id="jButton186" min="-2" pref="90" max="-2" attributes="0"/>
+                                      <Component id="btnGheC01" min="-2" pref="90" max="-2" attributes="0"/>
                                       <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                                      <Component id="jButton200" min="-2" pref="90" max="-2" attributes="0"/>
+                                      <Component id="btnGheC02" min="-2" pref="90" max="-2" attributes="0"/>
                                       <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                                      <Component id="jButton201" min="-2" pref="90" max="-2" attributes="0"/>
+                                      <Component id="btnGheC03" min="-2" pref="90" max="-2" attributes="0"/>
                                       <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                                      <Component id="jButton202" min="-2" pref="90" max="-2" attributes="0"/>
+                                      <Component id="btnGheC04" min="-2" pref="90" max="-2" attributes="0"/>
                                       <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                                      <Component id="jButton203" min="-2" pref="90" max="-2" attributes="0"/>
+                                      <Component id="btnGheC05" min="-2" pref="90" max="-2" attributes="0"/>
                                       <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                                      <Component id="jButton204" min="-2" pref="90" max="-2" attributes="0"/>
+                                      <Component id="btnGheC06" min="-2" pref="90" max="-2" attributes="0"/>
                                       <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                                      <Component id="jButton205" min="-2" pref="90" max="-2" attributes="0"/>
+                                      <Component id="btnGheC07" min="-2" pref="90" max="-2" attributes="0"/>
                                       <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                                      <Component id="jButton206" min="-2" pref="90" max="-2" attributes="0"/>
+                                      <Component id="btnGheC08" min="-2" pref="90" max="-2" attributes="0"/>
                                   </Group>
                                   <Group type="102" attributes="0">
-                                      <Component id="jButton189" min="-2" pref="90" max="-2" attributes="0"/>
+                                      <Component id="btnGheF01" min="-2" pref="90" max="-2" attributes="0"/>
                                       <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                                      <Component id="jButton226" min="-2" pref="90" max="-2" attributes="0"/>
+                                      <Component id="btnGheF02" min="-2" pref="90" max="-2" attributes="0"/>
                                       <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                                      <Component id="jButton227" min="-2" pref="90" max="-2" attributes="0"/>
+                                      <Component id="btnGheF03" min="-2" pref="90" max="-2" attributes="0"/>
                                       <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                                      <Component id="jButton221" min="-2" pref="90" max="-2" attributes="0"/>
+                                      <Component id="btnGheF04" min="-2" pref="90" max="-2" attributes="0"/>
                                       <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                                      <Component id="jButton222" min="-2" pref="90" max="-2" attributes="0"/>
+                                      <Component id="btnGheF05" min="-2" pref="90" max="-2" attributes="0"/>
                                       <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                                      <Component id="jButton223" min="-2" pref="90" max="-2" attributes="0"/>
+                                      <Component id="btnGheF06" min="-2" pref="90" max="-2" attributes="0"/>
                                       <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                                      <Component id="jButton224" min="-2" pref="90" max="-2" attributes="0"/>
+                                      <Component id="btnGheF07" min="-2" pref="90" max="-2" attributes="0"/>
                                       <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                                      <Component id="jButton225" min="-2" pref="90" max="-2" attributes="0"/>
+                                      <Component id="btnGheF08" min="-2" pref="90" max="-2" attributes="0"/>
                                   </Group>
                               </Group>
                               <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
@@ -450,38 +441,38 @@
                                   <Component id="jPanel13" alignment="0" max="32767" attributes="0"/>
                                   <Group type="103" groupAlignment="0" attributes="0">
                                       <Group type="102" attributes="0">
-                                          <Component id="jButton101" min="-2" pref="90" max="-2" attributes="0"/>
+                                          <Component id="btnGheA01" min="-2" pref="90" max="-2" attributes="0"/>
                                           <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                                          <Component id="jButton180" min="-2" pref="90" max="-2" attributes="0"/>
+                                          <Component id="btnGheA02" min="-2" pref="90" max="-2" attributes="0"/>
                                           <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                                          <Component id="jButton181" min="-2" pref="90" max="-2" attributes="0"/>
+                                          <Component id="btnGheA03" min="-2" pref="90" max="-2" attributes="0"/>
                                           <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                                          <Component id="jButton182" min="-2" pref="90" max="-2" attributes="0"/>
+                                          <Component id="btnGheA04" min="-2" pref="90" max="-2" attributes="0"/>
                                           <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                                          <Component id="jButton183" min="-2" pref="90" max="-2" attributes="0"/>
+                                          <Component id="btnGheA05" min="-2" pref="90" max="-2" attributes="0"/>
                                           <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                                          <Component id="jButton184" min="-2" pref="90" max="-2" attributes="0"/>
+                                          <Component id="btnGheA06" min="-2" pref="90" max="-2" attributes="0"/>
                                           <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                                          <Component id="jButton191" min="-2" pref="90" max="-2" attributes="0"/>
+                                          <Component id="btnGheA07" min="-2" pref="90" max="-2" attributes="0"/>
                                           <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                                          <Component id="jButton192" min="-2" pref="90" max="-2" attributes="0"/>
+                                          <Component id="btnGheA08" min="-2" pref="90" max="-2" attributes="0"/>
                                       </Group>
                                       <Group type="102" attributes="0">
-                                          <Component id="jButton185" min="-2" pref="90" max="-2" attributes="0"/>
+                                          <Component id="btnGheB01" min="-2" pref="90" max="-2" attributes="0"/>
                                           <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                                          <Component id="jButton193" min="-2" pref="90" max="-2" attributes="0"/>
+                                          <Component id="btnGheB02" min="-2" pref="90" max="-2" attributes="0"/>
                                           <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                                          <Component id="jButton194" min="-2" pref="90" max="-2" attributes="0"/>
+                                          <Component id="btnGheB03" min="-2" pref="90" max="-2" attributes="0"/>
                                           <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                                          <Component id="jButton195" min="-2" pref="90" max="-2" attributes="0"/>
+                                          <Component id="btnGheB04" min="-2" pref="90" max="-2" attributes="0"/>
                                           <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                                          <Component id="jButton196" min="-2" pref="90" max="-2" attributes="0"/>
+                                          <Component id="btnGheB05" min="-2" pref="90" max="-2" attributes="0"/>
                                           <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                                          <Component id="jButton197" min="-2" pref="90" max="-2" attributes="0"/>
+                                          <Component id="btnGheB06" min="-2" pref="90" max="-2" attributes="0"/>
                                           <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                                          <Component id="jButton198" min="-2" pref="90" max="-2" attributes="0"/>
+                                          <Component id="btnGheB07" min="-2" pref="90" max="-2" attributes="0"/>
                                           <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                                          <Component id="jButton199" min="-2" pref="90" max="-2" attributes="0"/>
+                                          <Component id="btnGheB08" min="-2" pref="90" max="-2" attributes="0"/>
                                       </Group>
                                   </Group>
                               </Group>
@@ -504,64 +495,112 @@
                               <Component id="jLabel5" min="-2" max="-2" attributes="0"/>
                           </Group>
                       </Group>
-                      <Group type="103" groupAlignment="0" attributes="0">
-                          <Group type="102" attributes="0">
-                              <EmptySpace min="-2" pref="73" max="-2" attributes="0"/>
-                              <Component id="jPanel5" min="-2" max="-2" attributes="0"/>
-                          </Group>
-                          <Group type="102" alignment="0" attributes="0">
-                              <EmptySpace min="-2" pref="4" max="-2" attributes="0"/>
-                              <Group type="103" groupAlignment="1" attributes="0">
-                                  <Group type="102" alignment="1" attributes="0">
+                      <EmptySpace min="-2" pref="4" max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="1" attributes="0">
+                          <Group type="102" alignment="1" attributes="0">
+                              <Group type="103" groupAlignment="3" attributes="0">
+                                  <Component id="btnGheA01" alignment="3" min="-2" pref="50" max="-2" attributes="0"/>
+                                  <Component id="btnGheA02" alignment="3" min="-2" pref="50" max="-2" attributes="0"/>
+                                  <Component id="btnGheA03" alignment="3" min="-2" pref="50" max="-2" attributes="0"/>
+                                  <Component id="btnGheA04" alignment="3" min="-2" pref="50" max="-2" attributes="0"/>
+                                  <Component id="btnGheA05" alignment="3" min="-2" pref="50" max="-2" attributes="0"/>
+                                  <Component id="btnGheA06" alignment="3" min="-2" pref="50" max="-2" attributes="0"/>
+                                  <Component id="btnGheA07" alignment="3" min="-2" pref="50" max="-2" attributes="0"/>
+                                  <Component id="btnGheA08" alignment="3" min="-2" pref="50" max="-2" attributes="0"/>
+                              </Group>
+                              <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                              <Group type="103" groupAlignment="3" attributes="0">
+                                  <Component id="btnGheB01" alignment="3" min="-2" pref="50" max="-2" attributes="0"/>
+                                  <Component id="btnGheB02" alignment="3" min="-2" pref="50" max="-2" attributes="0"/>
+                                  <Component id="btnGheB03" alignment="3" min="-2" pref="50" max="-2" attributes="0"/>
+                                  <Component id="btnGheB04" alignment="3" min="-2" pref="50" max="-2" attributes="0"/>
+                                  <Component id="btnGheB05" alignment="3" min="-2" pref="50" max="-2" attributes="0"/>
+                                  <Component id="btnGheB06" alignment="3" min="-2" pref="50" max="-2" attributes="0"/>
+                                  <Component id="btnGheB07" alignment="3" min="-2" pref="50" max="-2" attributes="0"/>
+                                  <Component id="btnGheB08" alignment="3" min="-2" pref="50" max="-2" attributes="0"/>
+                                  <Component id="jLabel3" alignment="3" min="-2" max="-2" attributes="0"/>
+                              </Group>
+                              <Group type="103" groupAlignment="0" attributes="0">
+                                  <Group type="102" alignment="0" attributes="0">
+                                      <EmptySpace min="-2" pref="17" max="-2" attributes="0"/>
                                       <Group type="103" groupAlignment="3" attributes="0">
-                                          <Component id="jButton101" alignment="3" min="-2" pref="50" max="-2" attributes="0"/>
-                                          <Component id="jButton180" alignment="3" min="-2" pref="50" max="-2" attributes="0"/>
-                                          <Component id="jButton181" alignment="3" min="-2" pref="50" max="-2" attributes="0"/>
-                                          <Component id="jButton182" alignment="3" min="-2" pref="50" max="-2" attributes="0"/>
-                                          <Component id="jButton183" alignment="3" min="-2" pref="50" max="-2" attributes="0"/>
-                                          <Component id="jButton184" alignment="3" min="-2" pref="50" max="-2" attributes="0"/>
-                                          <Component id="jButton191" alignment="3" min="-2" pref="50" max="-2" attributes="0"/>
-                                          <Component id="jButton192" alignment="3" min="-2" pref="50" max="-2" attributes="0"/>
+                                          <Component id="btnGheC01" alignment="3" min="-2" pref="50" max="-2" attributes="0"/>
+                                          <Component id="btnGheC02" alignment="3" min="-2" pref="50" max="-2" attributes="0"/>
+                                          <Component id="btnGheC03" alignment="3" min="-2" pref="50" max="-2" attributes="0"/>
+                                          <Component id="btnGheC04" alignment="3" min="-2" pref="50" max="-2" attributes="0"/>
+                                          <Component id="btnGheC05" alignment="3" min="-2" pref="50" max="-2" attributes="0"/>
+                                          <Component id="btnGheC06" alignment="3" min="-2" pref="50" max="-2" attributes="0"/>
+                                          <Component id="btnGheC07" alignment="3" min="-2" pref="50" max="-2" attributes="0"/>
+                                          <Component id="btnGheC08" alignment="3" min="-2" pref="50" max="-2" attributes="0"/>
+                                      </Group>
+                                      <Group type="103" groupAlignment="3" attributes="0">
+                                          <Component id="btnGheD01" alignment="3" min="-2" pref="50" max="-2" attributes="0"/>
+                                          <Component id="btnGheD02" alignment="3" min="-2" pref="50" max="-2" attributes="0"/>
+                                          <Component id="btnGheD03" alignment="3" min="-2" pref="50" max="-2" attributes="0"/>
+                                          <Component id="btnGheD04" alignment="3" min="-2" pref="50" max="-2" attributes="0"/>
+                                          <Component id="btnGheD05" alignment="3" min="-2" pref="50" max="-2" attributes="0"/>
+                                          <Component id="btnGheD06" alignment="3" min="-2" pref="50" max="-2" attributes="0"/>
+                                          <Component id="btnGheD07" alignment="3" min="-2" pref="50" max="-2" attributes="0"/>
+                                          <Component id="btnGheD08" alignment="3" min="-2" pref="50" max="-2" attributes="0"/>
                                       </Group>
                                       <EmptySpace type="unrelated" max="-2" attributes="0"/>
                                       <Group type="103" groupAlignment="3" attributes="0">
-                                          <Component id="jButton185" alignment="3" min="-2" pref="50" max="-2" attributes="0"/>
-                                          <Component id="jButton193" alignment="3" min="-2" pref="50" max="-2" attributes="0"/>
-                                          <Component id="jButton194" alignment="3" min="-2" pref="50" max="-2" attributes="0"/>
-                                          <Component id="jButton195" alignment="3" min="-2" pref="50" max="-2" attributes="0"/>
-                                          <Component id="jButton196" alignment="3" min="-2" pref="50" max="-2" attributes="0"/>
-                                          <Component id="jButton197" alignment="3" min="-2" pref="50" max="-2" attributes="0"/>
-                                          <Component id="jButton198" alignment="3" min="-2" pref="50" max="-2" attributes="0"/>
-                                          <Component id="jButton199" alignment="3" min="-2" pref="50" max="-2" attributes="0"/>
-                                          <Component id="jLabel3" alignment="3" min="-2" max="-2" attributes="0"/>
+                                          <Component id="btnGheE01" alignment="3" min="-2" pref="50" max="-2" attributes="0"/>
+                                          <Component id="btnGheE02" alignment="3" min="-2" pref="50" max="-2" attributes="0"/>
+                                          <Component id="btnGheE03" alignment="3" min="-2" pref="50" max="-2" attributes="0"/>
+                                          <Component id="btnGheE04" alignment="3" min="-2" pref="50" max="-2" attributes="0"/>
+                                          <Component id="btnGheE05" alignment="3" min="-2" pref="50" max="-2" attributes="0"/>
+                                          <Component id="btnGheE06" alignment="3" min="-2" pref="50" max="-2" attributes="0"/>
+                                          <Component id="btnGheE07" alignment="3" min="-2" pref="50" max="-2" attributes="0"/>
+                                          <Component id="btnGheE08" alignment="3" min="-2" pref="50" max="-2" attributes="0"/>
                                       </Group>
-                                      <Group type="103" groupAlignment="0" attributes="0">
-                                          <Group type="102" attributes="0">
-                                              <EmptySpace min="-2" pref="17" max="-2" attributes="0"/>
-                                              <Group type="103" groupAlignment="3" attributes="0">
-                                                  <Component id="jButton186" alignment="3" min="-2" pref="50" max="-2" attributes="0"/>
-                                                  <Component id="jButton200" alignment="3" min="-2" pref="50" max="-2" attributes="0"/>
-                                                  <Component id="jButton201" alignment="3" min="-2" pref="50" max="-2" attributes="0"/>
-                                                  <Component id="jButton202" alignment="3" min="-2" pref="50" max="-2" attributes="0"/>
-                                                  <Component id="jButton203" alignment="3" min="-2" pref="50" max="-2" attributes="0"/>
-                                                  <Component id="jButton204" alignment="3" min="-2" pref="50" max="-2" attributes="0"/>
-                                                  <Component id="jButton205" alignment="3" min="-2" pref="50" max="-2" attributes="0"/>
-                                                  <Component id="jButton206" alignment="3" min="-2" pref="50" max="-2" attributes="0"/>
-                                              </Group>
-                                          </Group>
-                                          <Group type="102" alignment="0" attributes="0">
-                                              <EmptySpace min="-2" pref="6" max="-2" attributes="0"/>
-                                              <Component id="jLabel7" min="-2" max="-2" attributes="0"/>
-                                          </Group>
+                                      <EmptySpace min="-2" pref="12" max="-2" attributes="0"/>
+                                      <Group type="103" groupAlignment="3" attributes="0">
+                                          <Component id="btnGheF01" alignment="3" min="-2" pref="50" max="-2" attributes="0"/>
+                                          <Component id="btnGheF02" alignment="3" min="-2" pref="50" max="-2" attributes="0"/>
+                                          <Component id="btnGheF03" alignment="3" min="-2" pref="50" max="-2" attributes="0"/>
+                                          <Component id="btnGheF04" alignment="3" min="-2" pref="50" max="-2" attributes="0"/>
+                                          <Component id="btnGheF05" alignment="3" min="-2" pref="50" max="-2" attributes="0"/>
+                                          <Component id="btnGheF06" alignment="3" min="-2" pref="50" max="-2" attributes="0"/>
+                                          <Component id="btnGheF07" alignment="3" min="-2" pref="50" max="-2" attributes="0"/>
+                                          <Component id="btnGheF08" alignment="3" min="-2" pref="50" max="-2" attributes="0"/>
                                       </Group>
+                                      <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                                      <Group type="103" groupAlignment="3" attributes="0">
+                                          <Component id="btnGheH01" alignment="3" min="-2" pref="50" max="-2" attributes="0"/>
+                                          <Component id="btnGheH02" alignment="3" min="-2" pref="50" max="-2" attributes="0"/>
+                                          <Component id="btnGheH03" alignment="3" min="-2" pref="50" max="-2" attributes="0"/>
+                                          <Component id="btnGheH04" alignment="3" min="-2" pref="50" max="-2" attributes="0"/>
+                                          <Component id="btnGheH05" alignment="3" min="-2" pref="50" max="-2" attributes="0"/>
+                                          <Component id="btnGheH06" alignment="3" min="-2" pref="50" max="-2" attributes="0"/>
+                                          <Component id="btnGheH07" alignment="3" min="-2" pref="50" max="-2" attributes="0"/>
+                                          <Component id="btnGheH08" alignment="3" min="-2" pref="50" max="-2" attributes="0"/>
+                                      </Group>
+                                  </Group>
+                                  <Group type="102" alignment="0" attributes="0">
+                                      <EmptySpace min="-2" pref="6" max="-2" attributes="0"/>
+                                      <Component id="jLabel7" min="-2" max="-2" attributes="0"/>
+                                      <EmptySpace min="-2" pref="37" max="-2" attributes="0"/>
+                                      <Component id="lblVeDaChon" min="-2" pref="26" max="-2" attributes="0"/>
+                                  </Group>
+                              </Group>
+                              <EmptySpace max="32767" attributes="0"/>
+                          </Group>
+                          <Group type="102" alignment="1" attributes="0">
+                              <EmptySpace min="-2" pref="69" max="-2" attributes="0"/>
+                              <Group type="103" groupAlignment="0" attributes="0">
+                                  <Group type="102" alignment="1" attributes="0">
+                                      <Component id="jPanel5" min="-2" max="-2" attributes="0"/>
+                                      <EmptySpace min="-2" pref="342" max="-2" attributes="0"/>
                                   </Group>
                                   <Group type="102" alignment="1" attributes="0">
                                       <Component id="jPanel6" min="-2" max="-2" attributes="0"/>
-                                      <EmptySpace min="-2" pref="41" max="-2" attributes="0"/>
+                                      <EmptySpace min="-2" pref="304" max="-2" attributes="0"/>
                                   </Group>
                               </Group>
                           </Group>
                       </Group>
+<<<<<<< HEAD
                       <EmptySpace type="unrelated" max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="3" attributes="0">
                           <Component id="jButton187" alignment="3" min="-2" pref="50" max="-2" attributes="0"/>
@@ -607,6 +646,8 @@
                           <Component id="jButton232" alignment="3" min="-2" pref="50" max="-2" attributes="0"/>
                       </Group>
                       <EmptySpace pref="15" max="32767" attributes="0"/>
+=======
+>>>>>>> 92bb68bcc5f5f0b1ed7f216dc1b70be171674e93
                   </Group>
               </Group>
             </DimensionLayout>
@@ -722,284 +763,295 @@
                 </DimensionLayout>
               </Layout>
             </Container>
-            <Component class="javax.swing.JButton" name="jButton101">
+            <Component class="javax.swing.JButton" name="btnGheA01">
+              <Properties>
+                <Property name="text" type="java.lang.String" value="A-0"/>
+              </Properties>
+              <Events>
+                <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="btnGheA01MouseClicked"/>
+              </Events>
+            </Component>
+            <Component class="javax.swing.JButton" name="btnGheA02">
               <Properties>
                 <Property name="text" type="java.lang.String" value="A-0"/>
               </Properties>
             </Component>
-            <Component class="javax.swing.JButton" name="jButton180">
+            <Component class="javax.swing.JButton" name="btnGheA03">
               <Properties>
                 <Property name="text" type="java.lang.String" value="A-0"/>
               </Properties>
             </Component>
-            <Component class="javax.swing.JButton" name="jButton181">
+            <Component class="javax.swing.JButton" name="btnGheA04">
               <Properties>
                 <Property name="text" type="java.lang.String" value="A-0"/>
               </Properties>
             </Component>
-            <Component class="javax.swing.JButton" name="jButton182">
+            <Component class="javax.swing.JButton" name="btnGheA05">
               <Properties>
                 <Property name="text" type="java.lang.String" value="A-0"/>
               </Properties>
             </Component>
-            <Component class="javax.swing.JButton" name="jButton183">
+            <Component class="javax.swing.JButton" name="btnGheA06">
               <Properties>
                 <Property name="text" type="java.lang.String" value="A-0"/>
               </Properties>
             </Component>
-            <Component class="javax.swing.JButton" name="jButton184">
+            <Component class="javax.swing.JButton" name="btnGheB01">
               <Properties>
                 <Property name="text" type="java.lang.String" value="A-0"/>
               </Properties>
             </Component>
-            <Component class="javax.swing.JButton" name="jButton185">
+            <Component class="javax.swing.JButton" name="btnGheC01">
               <Properties>
                 <Property name="text" type="java.lang.String" value="A-0"/>
               </Properties>
             </Component>
-            <Component class="javax.swing.JButton" name="jButton186">
+            <Component class="javax.swing.JButton" name="btnGheD01">
               <Properties>
                 <Property name="text" type="java.lang.String" value="A-0"/>
               </Properties>
             </Component>
-            <Component class="javax.swing.JButton" name="jButton187">
+            <Component class="javax.swing.JButton" name="btnGheE01">
               <Properties>
                 <Property name="text" type="java.lang.String" value="A-0"/>
               </Properties>
             </Component>
-            <Component class="javax.swing.JButton" name="jButton188">
+            <Component class="javax.swing.JButton" name="btnGheF01">
               <Properties>
                 <Property name="text" type="java.lang.String" value="A-0"/>
               </Properties>
             </Component>
-            <Component class="javax.swing.JButton" name="jButton189">
+            <Component class="javax.swing.JButton" name="btnGheH01">
               <Properties>
                 <Property name="text" type="java.lang.String" value="A-0"/>
               </Properties>
             </Component>
-            <Component class="javax.swing.JButton" name="jButton190">
+            <Component class="javax.swing.JButton" name="btnGheA07">
               <Properties>
                 <Property name="text" type="java.lang.String" value="A-0"/>
               </Properties>
             </Component>
-            <Component class="javax.swing.JButton" name="jButton191">
+            <Component class="javax.swing.JButton" name="btnGheA08">
               <Properties>
                 <Property name="text" type="java.lang.String" value="A-0"/>
               </Properties>
             </Component>
-            <Component class="javax.swing.JButton" name="jButton192">
+            <Component class="javax.swing.JButton" name="btnGheB02">
               <Properties>
                 <Property name="text" type="java.lang.String" value="A-0"/>
               </Properties>
             </Component>
-            <Component class="javax.swing.JButton" name="jButton193">
+            <Component class="javax.swing.JButton" name="btnGheB03">
               <Properties>
                 <Property name="text" type="java.lang.String" value="A-0"/>
               </Properties>
             </Component>
-            <Component class="javax.swing.JButton" name="jButton194">
+            <Component class="javax.swing.JButton" name="btnGheB04">
               <Properties>
                 <Property name="text" type="java.lang.String" value="A-0"/>
               </Properties>
             </Component>
-            <Component class="javax.swing.JButton" name="jButton195">
+            <Component class="javax.swing.JButton" name="btnGheB05">
               <Properties>
                 <Property name="text" type="java.lang.String" value="A-0"/>
               </Properties>
             </Component>
-            <Component class="javax.swing.JButton" name="jButton196">
+            <Component class="javax.swing.JButton" name="btnGheB06">
               <Properties>
                 <Property name="text" type="java.lang.String" value="A-0"/>
               </Properties>
             </Component>
-            <Component class="javax.swing.JButton" name="jButton197">
+            <Component class="javax.swing.JButton" name="btnGheB07">
               <Properties>
                 <Property name="text" type="java.lang.String" value="A-0"/>
               </Properties>
             </Component>
-            <Component class="javax.swing.JButton" name="jButton198">
+            <Component class="javax.swing.JButton" name="btnGheB08">
               <Properties>
                 <Property name="text" type="java.lang.String" value="A-0"/>
               </Properties>
             </Component>
-            <Component class="javax.swing.JButton" name="jButton199">
+            <Component class="javax.swing.JButton" name="btnGheC02">
               <Properties>
                 <Property name="text" type="java.lang.String" value="A-0"/>
               </Properties>
             </Component>
-            <Component class="javax.swing.JButton" name="jButton200">
+            <Component class="javax.swing.JButton" name="btnGheC03">
               <Properties>
                 <Property name="text" type="java.lang.String" value="A-0"/>
               </Properties>
             </Component>
-            <Component class="javax.swing.JButton" name="jButton201">
+            <Component class="javax.swing.JButton" name="btnGheC04">
               <Properties>
                 <Property name="text" type="java.lang.String" value="A-0"/>
               </Properties>
             </Component>
-            <Component class="javax.swing.JButton" name="jButton202">
+            <Component class="javax.swing.JButton" name="btnGheC05">
               <Properties>
                 <Property name="text" type="java.lang.String" value="A-0"/>
               </Properties>
             </Component>
-            <Component class="javax.swing.JButton" name="jButton203">
+            <Component class="javax.swing.JButton" name="btnGheC06">
               <Properties>
                 <Property name="text" type="java.lang.String" value="A-0"/>
               </Properties>
             </Component>
-            <Component class="javax.swing.JButton" name="jButton204">
+            <Component class="javax.swing.JButton" name="btnGheC07">
               <Properties>
                 <Property name="text" type="java.lang.String" value="A-0"/>
               </Properties>
             </Component>
-            <Component class="javax.swing.JButton" name="jButton205">
+            <Component class="javax.swing.JButton" name="btnGheC08">
               <Properties>
                 <Property name="text" type="java.lang.String" value="A-0"/>
               </Properties>
             </Component>
-            <Component class="javax.swing.JButton" name="jButton206">
+            <Component class="javax.swing.JButton" name="btnGheD04">
               <Properties>
                 <Property name="text" type="java.lang.String" value="A-0"/>
               </Properties>
             </Component>
-            <Component class="javax.swing.JButton" name="jButton207">
+            <Component class="javax.swing.JButton" name="btnGheD05">
               <Properties>
                 <Property name="text" type="java.lang.String" value="A-0"/>
               </Properties>
             </Component>
-            <Component class="javax.swing.JButton" name="jButton208">
+            <Component class="javax.swing.JButton" name="btnGheD06">
               <Properties>
                 <Property name="text" type="java.lang.String" value="A-0"/>
               </Properties>
             </Component>
-            <Component class="javax.swing.JButton" name="jButton209">
+            <Component class="javax.swing.JButton" name="btnGheD07">
               <Properties>
                 <Property name="text" type="java.lang.String" value="A-0"/>
               </Properties>
             </Component>
-            <Component class="javax.swing.JButton" name="jButton210">
+            <Component class="javax.swing.JButton" name="btnGheD08">
               <Properties>
                 <Property name="text" type="java.lang.String" value="A-0"/>
               </Properties>
             </Component>
-            <Component class="javax.swing.JButton" name="jButton211">
+            <Component class="javax.swing.JButton" name="btnGheD02">
               <Properties>
                 <Property name="text" type="java.lang.String" value="A-0"/>
               </Properties>
             </Component>
-            <Component class="javax.swing.JButton" name="jButton212">
+            <Component class="javax.swing.JButton" name="btnGheD03">
               <Properties>
                 <Property name="text" type="java.lang.String" value="A-0"/>
               </Properties>
             </Component>
-            <Component class="javax.swing.JButton" name="jButton213">
+            <Component class="javax.swing.JButton" name="btnGheE04">
               <Properties>
                 <Property name="text" type="java.lang.String" value="A-0"/>
               </Properties>
             </Component>
-            <Component class="javax.swing.JButton" name="jButton214">
+            <Component class="javax.swing.JButton" name="btnGheE05">
               <Properties>
                 <Property name="text" type="java.lang.String" value="A-0"/>
               </Properties>
             </Component>
-            <Component class="javax.swing.JButton" name="jButton215">
+            <Component class="javax.swing.JButton" name="btnGheE06">
               <Properties>
                 <Property name="text" type="java.lang.String" value="A-0"/>
               </Properties>
             </Component>
-            <Component class="javax.swing.JButton" name="jButton216">
+            <Component class="javax.swing.JButton" name="btnGheE07">
               <Properties>
                 <Property name="text" type="java.lang.String" value="A-0"/>
               </Properties>
             </Component>
-            <Component class="javax.swing.JButton" name="jButton217">
+            <Component class="javax.swing.JButton" name="btnGheE08">
               <Properties>
                 <Property name="text" type="java.lang.String" value="A-0"/>
               </Properties>
             </Component>
-            <Component class="javax.swing.JButton" name="jButton218">
+            <Component class="javax.swing.JButton" name="btnGheE02">
               <Properties>
                 <Property name="text" type="java.lang.String" value="A-0"/>
               </Properties>
             </Component>
-            <Component class="javax.swing.JButton" name="jButton219">
+            <Component class="javax.swing.JButton" name="btnGheE03">
               <Properties>
                 <Property name="text" type="java.lang.String" value="A-0"/>
               </Properties>
             </Component>
-            <Component class="javax.swing.JButton" name="jButton220">
+            <Component class="javax.swing.JButton" name="btnGheF04">
               <Properties>
                 <Property name="text" type="java.lang.String" value="A-0"/>
               </Properties>
             </Component>
-            <Component class="javax.swing.JButton" name="jButton221">
+            <Component class="javax.swing.JButton" name="btnGheF05">
               <Properties>
                 <Property name="text" type="java.lang.String" value="A-0"/>
               </Properties>
             </Component>
-            <Component class="javax.swing.JButton" name="jButton222">
+            <Component class="javax.swing.JButton" name="btnGheF06">
               <Properties>
                 <Property name="text" type="java.lang.String" value="A-0"/>
               </Properties>
             </Component>
-            <Component class="javax.swing.JButton" name="jButton223">
+            <Component class="javax.swing.JButton" name="btnGheF07">
               <Properties>
                 <Property name="text" type="java.lang.String" value="A-0"/>
               </Properties>
             </Component>
-            <Component class="javax.swing.JButton" name="jButton224">
+            <Component class="javax.swing.JButton" name="btnGheF08">
               <Properties>
                 <Property name="text" type="java.lang.String" value="A-0"/>
               </Properties>
             </Component>
-            <Component class="javax.swing.JButton" name="jButton225">
+            <Component class="javax.swing.JButton" name="btnGheF02">
               <Properties>
                 <Property name="text" type="java.lang.String" value="A-0"/>
               </Properties>
             </Component>
-            <Component class="javax.swing.JButton" name="jButton226">
+            <Component class="javax.swing.JButton" name="btnGheF03">
               <Properties>
                 <Property name="text" type="java.lang.String" value="A-0"/>
               </Properties>
             </Component>
-            <Component class="javax.swing.JButton" name="jButton227">
+            <Component class="javax.swing.JButton" name="btnGheH04">
               <Properties>
                 <Property name="text" type="java.lang.String" value="A-0"/>
               </Properties>
             </Component>
-            <Component class="javax.swing.JButton" name="jButton228">
+            <Component class="javax.swing.JButton" name="btnGheH05">
               <Properties>
                 <Property name="text" type="java.lang.String" value="A-0"/>
               </Properties>
             </Component>
-            <Component class="javax.swing.JButton" name="jButton229">
+            <Component class="javax.swing.JButton" name="btnGheH06">
               <Properties>
                 <Property name="text" type="java.lang.String" value="A-0"/>
               </Properties>
             </Component>
-            <Component class="javax.swing.JButton" name="jButton230">
+            <Component class="javax.swing.JButton" name="btnGheH07">
               <Properties>
                 <Property name="text" type="java.lang.String" value="A-0"/>
               </Properties>
             </Component>
-            <Component class="javax.swing.JButton" name="jButton231">
+            <Component class="javax.swing.JButton" name="btnGheH08">
               <Properties>
                 <Property name="text" type="java.lang.String" value="A-0"/>
               </Properties>
             </Component>
-            <Component class="javax.swing.JButton" name="jButton232">
+            <Component class="javax.swing.JButton" name="btnGheH02">
               <Properties>
                 <Property name="text" type="java.lang.String" value="A-0"/>
               </Properties>
             </Component>
-            <Component class="javax.swing.JButton" name="jButton233">
+            <Component class="javax.swing.JButton" name="btnGheH03">
               <Properties>
                 <Property name="text" type="java.lang.String" value="A-0"/>
               </Properties>
             </Component>
-            <Component class="javax.swing.JButton" name="jButton234">
+            <Component class="javax.swing.JLabel" name="lblVeDaChon">
               <Properties>
-                <Property name="text" type="java.lang.String" value="A-0"/>
+                <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+                  <Font name="Segoe UI" size="18" style="0"/>
+                </Property>
+                <Property name="text" type="java.lang.String" value="jLabel1"/>
               </Properties>
             </Component>
           </SubComponents>
@@ -1042,11 +1094,12 @@
             <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnDanhSachActionPerformed"/>
           </Events>
         </Component>
-        <Component class="javax.swing.JTextField" name="txtMaSC6">
+        <Component class="javax.swing.JTextField" name="txtMaVe">
           <Properties>
             <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
               <Font name="Segoe UI" size="18" style="0"/>
             </Property>
+            <Property name="enabled" type="boolean" value="false"/>
           </Properties>
         </Component>
         <Component class="javax.swing.JLabel" name="jLabel18">
@@ -1055,6 +1108,14 @@
               <Font name="Segoe UI" size="20" style="0"/>
             </Property>
             <Property name="text" type="java.lang.String" value="M&#xe3; V&#xe9;:"/>
+          </Properties>
+        </Component>
+        <Component class="javax.swing.JTextField" name="txtGiaVe1">
+          <Properties>
+            <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+              <Font name="Segoe UI" size="18" style="0"/>
+            </Property>
+            <Property name="enabled" type="boolean" value="false"/>
           </Properties>
         </Component>
       </SubComponents>

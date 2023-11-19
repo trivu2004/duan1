@@ -14,7 +14,7 @@ import java.util.Date;
  */
 public class DateHelper {
 
-    static final SimpleDateFormat DATE_FORMATER = new SimpleDateFormat("dd/MM/yyyy");
+    static final SimpleDateFormat DATE_FORMATER = new SimpleDateFormat("hh:mm:ss a");
 
     public static Date toDate(String date, String... pattern) {
         try {

@@ -27,7 +27,12 @@ public class VeDAO extends CinemaxDAO<Ve, String> {
             + "JOIN Ve ON SuatChieu.SuatChieuID = Ve.SuatChieuID "
             + "JOIN Phim ON SuatChieu.PhimID = Phim.PhimID "
             + "JOIN PhongChieu ON SuatChieu.PhongID = PhongChieu.PhongID "
-            + "WHERE Phim.TenPhim = ? AND PhongChieu.TenPhong = ? AND ThoiGianBatDau = ?";
+            + "WHERE Phim.TenPhim = ? AND PhongChieu.TenPhong = ? AND ThoiGianBatDau like ?";
+
+    final String SELECT_VEID = "select VeID from Ve\n"
+            + "ORDER BY VeID\n"
+            + "DESC\n"
+            + "LIMIT ?";
 
     @Override
     public void insert(Ve entity) {
@@ -65,8 +70,8 @@ public class VeDAO extends CinemaxDAO<Ve, String> {
             ResultSet rs = JDBCHelper.query(sql, args);
             while (rs.next()) {
                 Ve entity = new Ve();
-                entity.setMaVe(rs.getString("MaVe"));
-                entity.setMaSC(rs.getString("MaSC"));
+                entity.setMaVe(rs.getString("VeID"));
+                entity.setMaSC(rs.getString("SuatChieuID"));
                 entity.setGhe(rs.getString("Ghe"));
                 entity.setGiaVe(rs.getDouble("GiaVe"));
                 entity.setNgayMua(rs.getDate("NgayMua"));
@@ -80,10 +85,10 @@ public class VeDAO extends CinemaxDAO<Ve, String> {
     }
 
     @Override
-    public List<TimVe> FintTicket(String ThoiGian, String PhongChieu, String Phim) {
+    public List<TimVe> findTicket(String ThoiGian, String PhongChieu, String Phim) {
         List<TimVe> list = new ArrayList<>();
         try {
-            ResultSet rs = JDBCHelper.query(SELECT_TICKET, Phim, PhongChieu, ThoiGian);
+            ResultSet rs = JDBCHelper.query(SELECT_TICKET, Phim, PhongChieu, ThoiGian + "%");
             while (rs.next()) {
                 TimVe entity = new TimVe();
                 entity.setMaSuatChieu(rs.getString("SuatChieuID"));
@@ -96,5 +101,15 @@ public class VeDAO extends CinemaxDAO<Ve, String> {
             e.printStackTrace();
         }
         return list;
+    }
+
+    public String findVeID() {
+        Object veID = "";
+        try {
+            veID = JDBCHelper.value(SELECT_VEID, 1);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return veID + "";
     }
 }

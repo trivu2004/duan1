@@ -74,7 +74,7 @@ public class SuatChieuDAO extends CinemaxDAO<SuatChieu, String>{
     }
 
     @Override
-    public List<TimVe> FintTicket(String ThoiGian, String PhongChieu, String Phim) {
+    public List<TimVe> findTicket(String ThoiGian, String PhongChieu, String Phim) {
         throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }
 }

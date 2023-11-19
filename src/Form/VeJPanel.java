@@ -7,6 +7,7 @@ import DAO.VeDAO;
 import Form.DatVeJPanel;
 import Form.MainJFrame;
 import Form.TrangChuJPanel;
+import Helper.JDBCHelper;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.text.SimpleDateFormat;
@@ -33,6 +34,21 @@ public class VeJPanel extends javax.swing.JPanel {
     public SuatChieuDAO daoSuatChieu = new SuatChieuDAO();
     public PhimDAO daoPhim = new PhimDAO();
     public PhongChieuDAO daoPhongChieuDAO = new PhongChieuDAO();
+    public String TenPhim = "";
+    public String TenPhong = "";
+    public String ThoiGianChieu = "";
+    
+        public String getTenPhim() {
+        return TenPhim;
+    }
+
+    public String getTenPhong() {
+        return TenPhong;
+    }
+
+    public String getThoiGianChieu() {
+        return ThoiGianChieu;
+    }
 
     public VeJPanel() {
         initComponents();
@@ -46,6 +62,7 @@ public class VeJPanel extends javax.swing.JPanel {
                 lblDongHo.setText(text);
             }
         }).start();
+        btnDatVe.setEnabled(false);
         fillCboThoiGian();
         fillCboPhim();
         fillCboPhongChieu();
@@ -56,7 +73,7 @@ public class VeJPanel extends javax.swing.JPanel {
         DefaultTableModel model = (DefaultTableModel) tblSuatChieu.getModel();
         model.setRowCount(0);
         try {
-            List<TimVe> list = daoVe.FintTicket(String.valueOf(cboThoiGian.getSelectedItem()), String.valueOf(cboPhongChieu.getSelectedItem()), String.valueOf(cboPhim.getSelectedItem()));
+            List<TimVe> list = daoVe.findTicket(String.valueOf(cboThoiGian.getSelectedItem()), String.valueOf(cboPhongChieu.getSelectedItem()), String.valueOf(cboPhim.getSelectedItem()));
             for (TimVe timVe : list) {
                 Object[] row = {
                     tblSuatChieu.getRowCount() + 1,
@@ -70,6 +87,8 @@ public class VeJPanel extends javax.swing.JPanel {
         } catch (Exception e) {
             Notifications.getInstance().show(Notifications.Type.INFO, Notifications.Location.TOP_CENTER, "Lỗi truy vấn dữ liệu!");
             e.printStackTrace();
+        } finally {
+            JDBCHelper.closeConnection();
         }
     }
 
@@ -105,6 +124,7 @@ public class VeJPanel extends javax.swing.JPanel {
             e.printStackTrace();
         }
     }
+    
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -188,99 +208,115 @@ public class VeJPanel extends javax.swing.JPanel {
             new String [] {
                 "STT", "Mã Suất Chiếu", "Tên Phim", "Tên Phòng", "Thời Gian Chiếu"
             }
-        ));
-        jScrollPane1.setViewportView(tblSuatChieu);
-
-        jLabel2.setFont(new java.awt.Font("Segoe UI", 0, 20)); // NOI18N
-        jLabel2.setText("Chọn Phim:");
-
-        cboPhim.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
-        cboPhim.addItemListener(new java.awt.event.ItemListener() {
-            public void itemStateChanged(java.awt.event.ItemEvent evt) {
-                cboPhimItemStateChanged(evt);
+        )
+        {
+            public boolean isCellEditable(int row, int column) {
+                // Không cho phép chỉnh sửa bất kỳ ô nào
+                return false;
             }
-        });
+        }
+    );
+    tblSuatChieu.addMouseListener(new java.awt.event.MouseAdapter() {
+        public void mouseClicked(java.awt.event.MouseEvent evt) {
+            tblSuatChieuMouseClicked(evt);
+        }
+    });
+    jScrollPane1.setViewportView(tblSuatChieu);
 
-        jLabel11.setFont(new java.awt.Font("Segoe UI", 0, 20)); // NOI18N
-        jLabel11.setText("Chọn Phòng Chiếu:");
+    jLabel2.setFont(new java.awt.Font("Segoe UI", 0, 20)); // NOI18N
+    jLabel2.setText("Chọn Phim:");
 
-        cboPhongChieu.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
-        cboPhongChieu.addItemListener(new java.awt.event.ItemListener() {
-            public void itemStateChanged(java.awt.event.ItemEvent evt) {
-                cboPhongChieuItemStateChanged(evt);
-            }
-        });
+    cboPhim.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+    cboPhim.addItemListener(new java.awt.event.ItemListener() {
+        public void itemStateChanged(java.awt.event.ItemEvent evt) {
+            cboPhimItemStateChanged(evt);
+        }
+    });
 
-        jLabel4.setFont(new java.awt.Font("Segoe UI", 0, 20)); // NOI18N
-        jLabel4.setText("Chọn Thời Gian:");
+    jLabel11.setFont(new java.awt.Font("Segoe UI", 0, 20)); // NOI18N
+    jLabel11.setText("Chọn Phòng Chiếu:");
 
-        btnDatVe.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
-        btnDatVe.setText("Đặt Vé");
-        btnDatVe.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnDatVeActionPerformed(evt);
-            }
-        });
+    cboPhongChieu.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+    cboPhongChieu.addItemListener(new java.awt.event.ItemListener() {
+        public void itemStateChanged(java.awt.event.ItemEvent evt) {
+            cboPhongChieuItemStateChanged(evt);
+        }
+    });
 
-        cboThoiGian.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
-        cboThoiGian.addItemListener(new java.awt.event.ItemListener() {
-            public void itemStateChanged(java.awt.event.ItemEvent evt) {
-                cboThoiGianItemStateChanged(evt);
-            }
-        });
+    jLabel4.setFont(new java.awt.Font("Segoe UI", 0, 20)); // NOI18N
+    jLabel4.setText("Chọn Thời Gian:");
 
-        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
-        this.setLayout(layout);
-        layout.setHorizontalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(lblTrangChu, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-            .addGroup(layout.createSequentialGroup()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(25, 25, 25)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 1246, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addGroup(layout.createSequentialGroup()
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                    .addComponent(jLabel4)
-                                    .addComponent(jLabel11)
-                                    .addComponent(cboPhongChieu, 0, 455, Short.MAX_VALUE)
-                                    .addComponent(cboThoiGian, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                                .addGap(60, 60, 60)
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jLabel2)
-                                    .addComponent(cboPhim, javax.swing.GroupLayout.PREFERRED_SIZE, 455, javax.swing.GroupLayout.PREFERRED_SIZE)))))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(555, 555, 555)
-                        .addComponent(btnDatVe, javax.swing.GroupLayout.PREFERRED_SIZE, 174, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-        );
-        layout.setVerticalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addComponent(lblTrangChu, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel2)
-                    .addComponent(jLabel4))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(cboPhim)
-                    .addComponent(cboThoiGian))
-                .addGap(18, 18, 18)
-                .addComponent(jLabel11)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(cboPhongChieu, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 362, Short.MAX_VALUE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(btnDatVe)
-                .addGap(51, 51, 51))
-        );
+    btnDatVe.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+    btnDatVe.setText("Đặt Vé");
+    btnDatVe.addActionListener(new java.awt.event.ActionListener() {
+        public void actionPerformed(java.awt.event.ActionEvent evt) {
+            btnDatVeActionPerformed(evt);
+        }
+    });
+
+    cboThoiGian.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+    cboThoiGian.addItemListener(new java.awt.event.ItemListener() {
+        public void itemStateChanged(java.awt.event.ItemEvent evt) {
+            cboThoiGianItemStateChanged(evt);
+        }
+    });
+
+    javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
+    this.setLayout(layout);
+    layout.setHorizontalGroup(
+        layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+        .addComponent(lblTrangChu, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+        .addGroup(layout.createSequentialGroup()
+            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(layout.createSequentialGroup()
+                    .addGap(25, 25, 25)
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 1246, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGroup(layout.createSequentialGroup()
+                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                .addComponent(jLabel4)
+                                .addComponent(jLabel11)
+                                .addComponent(cboPhongChieu, 0, 455, Short.MAX_VALUE)
+                                .addComponent(cboThoiGian, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                            .addGap(60, 60, 60)
+                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                .addComponent(jLabel2)
+                                .addComponent(cboPhim, javax.swing.GroupLayout.PREFERRED_SIZE, 455, javax.swing.GroupLayout.PREFERRED_SIZE)))))
+                .addGroup(layout.createSequentialGroup()
+                    .addGap(555, 555, 555)
+                    .addComponent(btnDatVe, javax.swing.GroupLayout.PREFERRED_SIZE, 174, javax.swing.GroupLayout.PREFERRED_SIZE)))
+            .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+    );
+    layout.setVerticalGroup(
+        layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+        .addGroup(layout.createSequentialGroup()
+            .addComponent(lblTrangChu, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+            .addGap(18, 18, 18)
+            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addComponent(jLabel2)
+                .addComponent(jLabel4))
+            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                .addComponent(cboPhim)
+                .addComponent(cboThoiGian))
+            .addGap(18, 18, 18)
+            .addComponent(jLabel11)
+            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+            .addComponent(cboPhongChieu, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+            .addGap(18, 18, 18)
+            .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 362, Short.MAX_VALUE)
+            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+            .addComponent(btnDatVe)
+            .addGap(51, 51, 51))
+    );
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnDatVeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDatVeActionPerformed
-        MainJFrame.showForm(new DatVeJPanel());
+        int selcetedRow = tblSuatChieu.getSelectedRow();
+        if (selcetedRow != -1) {
+
+        }
+        MainJFrame.showForm(new DatVeJPanel(this));
     }//GEN-LAST:event_btnDatVeActionPerformed
 
     private void jLabel9MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel9MouseClicked
@@ -301,6 +337,22 @@ public class VeJPanel extends javax.swing.JPanel {
         // TODO add your handling code here:
         fillToTable();
     }//GEN-LAST:event_cboPhimItemStateChanged
+
+    private void tblSuatChieuMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tblSuatChieuMouseClicked
+        // TODO add your handling code here:
+        int index = tblSuatChieu.rowAtPoint(evt.getPoint());
+        if (evt.getClickCount() == 1) {
+            btnDatVe.setEnabled(true);
+            TenPhim = (String) tblSuatChieu.getValueAt(index, 2);
+            TenPhong = (String) tblSuatChieu.getValueAt(index, 3);
+            ThoiGianChieu = (String) tblSuatChieu.getValueAt(index, 4);
+        }
+        if (evt.getClickCount() == 2) {
+            if (index >= 0) {
+                MainJFrame.showForm(new DatVeJPanel(this));
+            }
+        }
+    }//GEN-LAST:event_tblSuatChieuMouseClicked
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
