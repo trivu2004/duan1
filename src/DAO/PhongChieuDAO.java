@@ -9,6 +9,7 @@ import java.sql.ResultSet;
 import java.util.ArrayList;
 import java.util.List;
 import model.PhongChieu;
+import model.TimVe;
 
 /**
  *
@@ -67,5 +68,10 @@ public class PhongChieuDAO extends CinemaxDAO<PhongChieu, String>{
             throw new RuntimeException(e);
         }
         return list;
+    }
+
+    @Override
+    public List<TimVe> findTicket(String ThoiGian, String PhongChieu, String Phim) {
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }
 }

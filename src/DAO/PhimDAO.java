@@ -9,18 +9,20 @@ import java.sql.ResultSet;
 import java.util.ArrayList;
 import java.util.List;
 import model.Phim;
+import model.TimVe;
 
 /**
  *
  * @author 123tu
  */
-public class PhimDAO extends CinemaxDAO<Phim, String>{
+public class PhimDAO extends CinemaxDAO<Phim, String> {
+
     final String INSERT_SQL = "INSERT INTO Phim (PhimID, TenPhim, DaoDien, DienVienChinh, ThoiLuong, TheLoai, NgayCongChieu, NgayKetThuc, Hinh, MoTa, QuocGia, NamSanXuat) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
     final String UPDATE_SQL = "UPDATE Phim SET TenPhim=?, DaoDien=?, DienVienChinh=?, ThoiLuong=?, TheLoai=?, NgayCongChieu=?, NgayKetThuc=?, Hinh=?, MoTa=?, QuocGia=?, NamSanXuat=? WHERE PhimID=?";
     final String DELETE_SQL = "DELETE FROM Phim WHERE PhimID=?";
     final String SELECT_ALL_SQL = "SELECT * FROM Phim";
-    final String SELECT_BY_ID_SQL = "SELECT * FROM Phim WHERE PhimID=?";        
-   
+    final String SELECT_BY_ID_SQL = "SELECT * FROM Phim WHERE PhimID=?";
+
     @Override
     public void insert(Phim entity) {
         JDBCHelper.update(INSERT_SQL, entity.getMaPhim(), entity.getTenPhim(), entity.getDaoDien(), entity.getDienVien(), entity.getThoiLuong(), entity.getTheLoai(), entity.getNgayCongChieu(), entity.getNgayKetThuc(), entity.getHinh(), entity.getMoTa(), entity.getNuocSX(), entity.getNamSX());
@@ -75,5 +77,10 @@ public class PhimDAO extends CinemaxDAO<Phim, String>{
             throw new RuntimeException(e);
         }
         return list;
+    }
+
+    @Override
+    public List<TimVe> findTicket(String ThoiGian, String PhongChieu, String Phim) {
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }
 }

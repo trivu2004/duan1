@@ -6,9 +6,13 @@ package Form;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import javax.swing.Timer;
+import javax.swing.table.DefaultTableModel;
+import raven.toast.Notifications;
 
 /**
  *
@@ -19,9 +23,62 @@ public class SuatChieuJPanel extends javax.swing.JPanel {
     /**
      * Creates new form SuatChieuJPanel
      */
+    
+//    void fillTable() {
+//        DefaultTableModel model = (DefaultTableModel) tblSuatChieu.getModel();
+//        model.setRowCount(0);
+//        int stt = 1;
+//        try {
+//            String sql = "select * from SuatChieu";
+//            PreparedStatement st = DataBaseConnection.getConnection().prepareStatement(sql);
+//            ResultSet kq = st.executeQuery();
+//            while (kq.next()) {
+//                String suatchieuid = kq.getString("SuatChieuID");
+//                String phongid = kq.getString("PhongID");
+//                String phimID = kq.getString("PhimID");
+//                String thoigianbatdau = kq.getString("ThoiGianBatDau");
+//                String thoigianketthuc = kq.getString("ThoiGianKetThuc");
+//                String nhanvienid = kq.getString("NhanVienID");
+//                Object[] data = {stt++, suatchieuid, phongid, phimID, thoigianbatdau, thoigianketthuc, nhanvienid};
+//                model.addRow(data);
+//            }
+//        } catch (Exception e) {
+//            e.printStackTrace();
+//        }
+//    }
+//
+//    void insert() {
+//        try {
+//            String sql = "insert into SuatChieu values(?,?,?,?,?,?)";
+//            PreparedStatement st = DataBaseConnection.getConnection().prepareStatement(sql);
+//            st.setString(1, txtMaSC.getText());
+//            st.setString(2, (String) cboPhim.getSelectedItem());
+//            st.setString(3, (String) cboPhongChieu.getSelectedItem());
+//            st.setString(4, txtTGBatDau.getText());
+//            st.setString(5, txtTGKetThuc.getText());
+//            st.setString(6, txtTGKetThuc1.getText());
+//            st.executeUpdate();
+//            fillTable();
+//            Notifications.getInstance().show(Notifications.Type.INFO, Notifications.Location.TOP_CENTER, "Thêm thành công !");
+//        } catch (Exception e) {
+//            e.printStackTrace();
+//        }
+//    }
+//    void delete(){
+//        try {
+//            String sql = "delete * from SuatChieu where SuatChieuID = ?";
+//            PreparedStatement st = Helper.JDBCHelper.getConnection().prepareStatement(sql);
+//            st.setString(1, txtMaSC.getText());
+//            st.executeUpdate();
+//            fillTable();
+//            Notifications.getInstance().show(Notifications.Type.INFO, Notifications.Location.TOP_CENTER, "Xóa thành công !");
+//        } catch (Exception e) {
+//        }
+//    }
+
     public SuatChieuJPanel() {
         initComponents();
-        
+//        fillTable();
         new Timer(1000, new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -132,28 +189,19 @@ public class SuatChieuJPanel extends javax.swing.JPanel {
         jLabel1.setFont(new java.awt.Font("Segoe UI", 0, 20)); // NOI18N
         jLabel1.setText("Mã Suất Chiếu:");
 
-        txtTGBatDau.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
-
         jLabel2.setFont(new java.awt.Font("Segoe UI", 0, 20)); // NOI18N
         jLabel2.setText("Chọn Phim:");
 
-        txtMaSC.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
-
-        cboPhim.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
-        cboPhim.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        cboPhim.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "P001" }));
 
         jLabel11.setFont(new java.awt.Font("Segoe UI", 0, 20)); // NOI18N
         jLabel11.setText("Chọn Phòng Chiếu:");
 
-        cboPhongChieu.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
-        cboPhongChieu.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        cboPhongChieu.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "M001" }));
 
         jLabel12.setFont(new java.awt.Font("Segoe UI", 0, 20)); // NOI18N
         jLabel12.setText("Thời Gian Kết Thúc:");
 
-        txtTGKetThuc.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
-
-        btnThem.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
         btnThem.setText("Thêm");
         btnThem.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -161,10 +209,8 @@ public class SuatChieuJPanel extends javax.swing.JPanel {
             }
         });
 
-        btnSua.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
         btnSua.setText("Sửa");
 
-        btnXoa.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
         btnXoa.setText("Xóa ");
         btnXoa.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -172,7 +218,6 @@ public class SuatChieuJPanel extends javax.swing.JPanel {
             }
         });
 
-        btnMoi.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
         btnMoi.setText("Mới");
 
         jLabel13.setFont(new java.awt.Font("Segoe UI", 0, 20)); // NOI18N
@@ -261,6 +306,7 @@ public class SuatChieuJPanel extends javax.swing.JPanel {
 
     private void btnThemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnThemActionPerformed
         // TODO add your handling code here:
+//        insert();
     }//GEN-LAST:event_btnThemActionPerformed
 
     private void lblTrangChuMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblTrangChuMouseClicked
@@ -269,6 +315,7 @@ public class SuatChieuJPanel extends javax.swing.JPanel {
 
     private void btnXoaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnXoaActionPerformed
         // TODO add your handling code here:
+//        delete();
     }//GEN-LAST:event_btnXoaActionPerformed
 
 

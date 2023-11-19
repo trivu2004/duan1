@@ -8,6 +8,7 @@ import Helper.JDBCHelper;
 import java.sql.ResultSet;
 import java.util.ArrayList;
 import java.util.List;
+import model.TimVe;
 import model.Ve;
 
 /**
@@ -21,6 +22,17 @@ public class VeDAO extends CinemaxDAO<Ve, String> {
     final String DELETE_SQL = "DELETE FROM Ve WHERE VeID=?";
     final String SELECT_ALL_SQL = "SELECT * FROM Ve";
     final String SELECT_BY_ID_SQL = "SELECT * FROM Ve WHERE VeID=?";
+    final String SELECT_TICKET = "SELECT SuatChieu.SuatChieuID, Phim.TenPhim, PhongChieu.TenPhong, ThoiGianBatDau "
+            + "FROM SuatChieu "
+            + "JOIN Ve ON SuatChieu.SuatChieuID = Ve.SuatChieuID "
+            + "JOIN Phim ON SuatChieu.PhimID = Phim.PhimID "
+            + "JOIN PhongChieu ON SuatChieu.PhongID = PhongChieu.PhongID "
+            + "WHERE Phim.TenPhim = ? AND PhongChieu.TenPhong = ? AND ThoiGianBatDau like ?";
+
+    final String SELECT_VEID = "select VeID from Ve\n"
+            + "ORDER BY VeID\n"
+            + "DESC\n"
+            + "LIMIT ?";
 
     @Override
     public void insert(Ve entity) {
@@ -58,8 +70,8 @@ public class VeDAO extends CinemaxDAO<Ve, String> {
             ResultSet rs = JDBCHelper.query(sql, args);
             while (rs.next()) {
                 Ve entity = new Ve();
-                entity.setMaVe(rs.getString("MaVe"));
-                entity.setMaSC(rs.getString("MaSC"));
+                entity.setMaVe(rs.getString("VeID"));
+                entity.setMaSC(rs.getString("SuatChieuID"));
                 entity.setGhe(rs.getString("Ghe"));
                 entity.setGiaVe(rs.getDouble("GiaVe"));
                 entity.setNgayMua(rs.getDate("NgayMua"));
@@ -70,5 +82,34 @@ public class VeDAO extends CinemaxDAO<Ve, String> {
             throw new RuntimeException(e);
         }
         return list;
+    }
+
+    @Override
+    public List<TimVe> findTicket(String ThoiGian, String PhongChieu, String Phim) {
+        List<TimVe> list = new ArrayList<>();
+        try {
+            ResultSet rs = JDBCHelper.query(SELECT_TICKET, Phim, PhongChieu, ThoiGian + "%");
+            while (rs.next()) {
+                TimVe entity = new TimVe();
+                entity.setMaSuatChieu(rs.getString("SuatChieuID"));
+                entity.setTenPhim(rs.getString("TenPhim"));
+                entity.setTenPhong(rs.getString("TenPhong"));
+                entity.setThoiGianChieu(rs.getString("ThoiGianBatDau"));
+                list.add(entity);
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return list;
+    }
+
+    public String findVeID() {
+        Object veID = "";
+        try {
+            veID = JDBCHelper.value(SELECT_VEID, 1);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return veID + "";
     }
 }

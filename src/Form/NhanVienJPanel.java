@@ -1,18 +1,10 @@
 package Form;
 
-import DAO.NhanVienDAO;
-import static Form.MainJFrame.tenNhanVien;
-import Helper.Auth;
-import Helper.DateHelper;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.text.SimpleDateFormat;
 import java.util.Date;
-import java.util.List;
 import javax.swing.Timer;
-import javax.swing.table.DefaultTableModel;
-import model.NhanVien;
-import raven.toast.Notifications;
 
 /**
  *
@@ -21,14 +13,10 @@ import raven.toast.Notifications;
 public class NhanVienJPanel extends javax.swing.JPanel {
 
     private static MainJFrame mainJFrame;
-    NhanVienDAO dao = new NhanVienDAO();
-    int row = 0;
-
+    
     public NhanVienJPanel() {
         initComponents();
-        fillTable();
-        updateStatus();
-
+        
         new Timer(1000, new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -38,131 +26,7 @@ public class NhanVienJPanel extends javax.swing.JPanel {
                 lblDongHo.setText(text);
             }
         }).start();
-        lblThongTinNhanVien.setText("Nhân Viên: " + mainJFrame.tenNhanVien);
-    }
-
-    void fillTable() {
-        DefaultTableModel model = (DefaultTableModel) tblNhanVien.getModel();
-        model.setRowCount(0);
-        try {
-            List<NhanVien> list = dao.selectAll();
-            for (NhanVien nv : list) {
-                Object[] row = {
-                    tblNhanVien.getRowCount() + 1,
-                    nv.getMaNV(),
-                    nv.getTenNV(),
-                    nv.isGioiTinh() ? "Nam" : "Nữ",
-                    nv.getNgaySinh(),
-                    nv.getEmail(),
-                    nv.getMatKhau(),
-                    nv.isChucVu() ? "Quản lý" : "Nhân viên"
-                };
-                model.addRow(row);
-            }
-        } catch (Exception e) {
-            Notifications.getInstance().show(Notifications.Type.INFO, Notifications.Location.TOP_CENTER, "Lỗi truy vấn dữ liệu!");
-            e.printStackTrace();
-        }
-    }
-
-    void edit() {
-        try {
-            String maNV = (String) tblNhanVien.getValueAt(this.row, 1);
-            NhanVien model = dao.selectById(maNV);
-            if (model != null) {
-                setForm(model);
-                updateStatus();
-            }
-        } catch (Exception e) {
-            Notifications.getInstance().show(Notifications.Type.INFO, Notifications.Location.TOP_CENTER, "Lỗi truy vấn dữ liệu!");
-        }
-    }
-
-    void setForm(NhanVien model) {
-        txtMaNV.setText(model.getMaNV());
-        txtTenNV.setText(model.getTenNV());
-        cboGioiTinh.setSelectedIndex(model.isGioiTinh() ? 0 : 1);
-        txtNgaySinh.setText(DateHelper.toString(model.getNgaySinh()));
-        txtEmail.setText(model.getEmail());
-        txtMatKhau.setText(model.getMatKhau());
-        txtXacNhanMK.setText(model.getMatKhau());
-        rdoQLy.setSelected(model.isChucVu());
-        rdoNVien.setSelected(!model.isChucVu());
-    }
-
-    NhanVien getForm() {
-        NhanVien model = new NhanVien();
-        model.setMaNV(txtMaNV.getText());
-        model.setTenNV(txtTenNV.getText());
-        model.setGioiTinh(cboGioiTinh.getSelectedIndex() == 0);
-        model.setNgaySinh(DateHelper.toDate(txtNgaySinh.getText()));
-        model.setEmail(txtEmail.getText());
-        model.setMatKhau(new String(txtMatKhau.getPassword()));
-        model.setChucVu(rdoQLy.isSelected());
-        return model;
-    }
-
-    void updateStatus() {
-        boolean edit = this.row >= 0;
-        txtMaNV.setEnabled(!edit);
-        btnThem.setEnabled(!edit);
-        btnSua.setEnabled(edit);
-        btnXoa.setEnabled(edit);
-    }
-
-    void clearForm() {
-        this.setForm(new NhanVien());
-        row = -1;
-        txtMaNV.requestFocus();
-        updateStatus();
-    }
-
-    void insert() {
-        NhanVien model = getForm();
-        String confirm = new String(txtXacNhanMK.getPassword());
-        if (confirm.equals(model.getMatKhau())) {
-            try {
-                dao.insert(model);
-                fillTable();
-                clearForm();
-                Notifications.getInstance().show(Notifications.Type.INFO, Notifications.Location.TOP_CENTER, "Thêm mới Nhân viên thành công!");
-            } catch (Exception e) {
-                Notifications.getInstance().show(Notifications.Type.INFO, Notifications.Location.TOP_CENTER, "Thêm mới thất bại!\n Mã Nhân viên đã tồn tại!");
-            }
-        } else {
-            Notifications.getInstance().show(Notifications.Type.INFO, Notifications.Location.TOP_CENTER, "Xác nhận mật khẩu không đúng!");
-            txtXacNhanMK.requestFocus();
-        }
-    }
-
-    void update() {
-        NhanVien model = getForm();
-        String confirm = new String(txtXacNhanMK.getPassword());
-        if (confirm.equals(model.getMatKhau())) {
-            try {
-                dao.update(model);
-                this.fillTable();
-                this.clearForm();
-                Notifications.getInstance().show(Notifications.Type.INFO, Notifications.Location.TOP_CENTER, "Cập nhật Nhân viên thành công!");
-            } catch (Exception e) {
-                Notifications.getInstance().show(Notifications.Type.INFO, Notifications.Location.TOP_CENTER, "Cập nhật thất bại!");
-            }
-        } else {
-            Notifications.getInstance().show(Notifications.Type.INFO, Notifications.Location.TOP_CENTER, "Cập nhật thất bại!");
-            txtXacNhanMK.requestFocus();
-        }
-    }
-
-    void delete() {
-        String maNV = txtMaNV.getText();
-        try {
-            dao.delete(maNV);
-            this.fillTable();
-            this.clearForm();
-            Notifications.getInstance().show(Notifications.Type.INFO, Notifications.Location.TOP_CENTER, "Xóa Nhân viên thành công!");
-        } catch (Exception e) {
-            Notifications.getInstance().show(Notifications.Type.INFO, Notifications.Location.TOP_CENTER, "Xóa thất bại!");
-        }
+        lblThongTinNhanVien.setText("Nhân Viên: "+mainJFrame.tenNhanVien);
     }
 
     @SuppressWarnings("unchecked")
@@ -186,9 +50,11 @@ public class NhanVienJPanel extends javax.swing.JPanel {
         btnMoi = new javax.swing.JButton();
         btnXoa = new javax.swing.JButton();
         jLabel5 = new javax.swing.JLabel();
-        txtEmail = new javax.swing.JTextField();
+        txtDienThoai = new javax.swing.JTextField();
         jLabel6 = new javax.swing.JLabel();
+        txtMatKhau = new javax.swing.JTextField();
         jLabel7 = new javax.swing.JLabel();
+        txtXacNhanMK = new javax.swing.JTextField();
         jLabel8 = new javax.swing.JLabel();
         rdoQLy = new javax.swing.JRadioButton();
         rdoNVien = new javax.swing.JRadioButton();
@@ -196,8 +62,6 @@ public class NhanVienJPanel extends javax.swing.JPanel {
         lblTrangChu = new javax.swing.JLabel();
         lblDongHo = new javax.swing.JLabel();
         lblThongTinNhanVien = new javax.swing.JLabel();
-        txtMatKhau = new javax.swing.JPasswordField();
-        txtXacNhanMK = new javax.swing.JPasswordField();
 
         setPreferredSize(new java.awt.Dimension(1278, 735));
 
@@ -227,17 +91,9 @@ public class NhanVienJPanel extends javax.swing.JPanel {
                 {null, null, null, null, null, null, null, null}
             },
             new String [] {
-                "STT", "Mã Nhân Viên", "Tên Nhân Viên", "Giới Tính", "Ngày Sinh", "Email", "Mật Khẩu", "Chức Vụ"
+                "STT", "Mã Nhân Viên", "Tên Nhân Viên", "Giới Tính", "Ngày Sinh", "Điện Thoại", "Mật Khẩu", "Chức Vụ"
             }
         ));
-        tblNhanVien.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                tblNhanVienMouseClicked(evt);
-            }
-            public void mousePressed(java.awt.event.MouseEvent evt) {
-                tblNhanVienMousePressed(evt);
-            }
-        });
         jScrollPane1.setViewportView(tblNhanVien);
 
         cboGioiTinh.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
@@ -253,38 +109,27 @@ public class NhanVienJPanel extends javax.swing.JPanel {
 
         btnSua.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
         btnSua.setText("Sửa");
-        btnSua.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnSuaActionPerformed(evt);
-            }
-        });
 
         btnMoi.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
         btnMoi.setText("Mới");
-        btnMoi.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnMoiActionPerformed(evt);
-            }
-        });
 
         btnXoa.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
         btnXoa.setText("Xóa ");
-        btnXoa.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnXoaActionPerformed(evt);
-            }
-        });
 
         jLabel5.setFont(new java.awt.Font("Segoe UI", 0, 20)); // NOI18N
-        jLabel5.setText("Email:");
+        jLabel5.setText("Điện Thoại:");
 
-        txtEmail.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+        txtDienThoai.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
 
         jLabel6.setFont(new java.awt.Font("Segoe UI", 0, 20)); // NOI18N
         jLabel6.setText("Mật Khẩu:");
 
+        txtMatKhau.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+
         jLabel7.setFont(new java.awt.Font("Segoe UI", 0, 20)); // NOI18N
         jLabel7.setText("Chức Vụ:");
+
+        txtXacNhanMK.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
 
         jLabel8.setFont(new java.awt.Font("Segoe UI", 0, 20)); // NOI18N
         jLabel8.setText("Xác Nhận Mật Khẩu:");
@@ -345,10 +190,6 @@ public class NhanVienJPanel extends javax.swing.JPanel {
                 .addContainerGap())
         );
 
-        txtMatKhau.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
-
-        txtXacNhanMK.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
-
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
@@ -367,18 +208,19 @@ public class NhanVienJPanel extends javax.swing.JPanel {
                             .addComponent(cboGioiTinh, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(txtMaNV, javax.swing.GroupLayout.PREFERRED_SIZE, 455, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(50, 50, 50)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(jPanel1Layout.createSequentialGroup()
                                 .addComponent(rdoQLy)
                                 .addGap(18, 18, 18)
                                 .addComponent(rdoNVien))
-                            .addComponent(jLabel6)
-                            .addComponent(jLabel5)
-                            .addComponent(jLabel7)
-                            .addComponent(txtEmail, javax.swing.GroupLayout.DEFAULT_SIZE, 455, Short.MAX_VALUE)
-                            .addComponent(jLabel8)
-                            .addComponent(txtMatKhau)
-                            .addComponent(txtXacNhanMK))
+                            .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                .addComponent(jLabel6)
+                                .addComponent(jLabel5)
+                                .addComponent(jLabel7)
+                                .addComponent(txtDienThoai)
+                                .addComponent(txtMatKhau)
+                                .addComponent(txtXacNhanMK, javax.swing.GroupLayout.PREFERRED_SIZE, 455, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(jLabel8))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addComponent(btnThem, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -425,15 +267,15 @@ public class NhanVienJPanel extends javax.swing.JPanel {
                             .addGroup(jPanel1Layout.createSequentialGroup()
                                 .addComponent(jLabel5)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(txtEmail, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(txtDienThoai, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGap(18, 18, 18)
                                 .addComponent(jLabel6)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(txtMatKhau, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(txtMatKhau, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGap(18, 18, 18)
                                 .addComponent(jLabel8)
                                 .addGap(12, 12, 12)
-                                .addComponent(txtXacNhanMK, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                .addComponent(txtXacNhanMK, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                         .addGap(18, 18, 18)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jLabel4)
@@ -460,35 +302,12 @@ public class NhanVienJPanel extends javax.swing.JPanel {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnThemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnThemActionPerformed
-        insert();
+        // TODO add your handling code here:    
     }//GEN-LAST:event_btnThemActionPerformed
 
     private void lblTrangChuMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblTrangChuMouseClicked
         MainJFrame.showForm(new TrangChuJPanel());
     }//GEN-LAST:event_lblTrangChuMouseClicked
-
-    private void btnMoiActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnMoiActionPerformed
-        clearForm();
-    }//GEN-LAST:event_btnMoiActionPerformed
-
-    private void btnSuaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSuaActionPerformed
-        update();
-    }//GEN-LAST:event_btnSuaActionPerformed
-
-    private void btnXoaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnXoaActionPerformed
-        delete();
-    }//GEN-LAST:event_btnXoaActionPerformed
-
-    private void tblNhanVienMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tblNhanVienMouseClicked
-        
-    }//GEN-LAST:event_tblNhanVienMouseClicked
-
-    private void tblNhanVienMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tblNhanVienMousePressed
-        if (evt.getClickCount() == 2) {
-            this.row = tblNhanVien.rowAtPoint(evt.getPoint());
-            edit();
-        }
-    }//GEN-LAST:event_tblNhanVienMousePressed
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnMoi;
@@ -514,11 +333,11 @@ public class NhanVienJPanel extends javax.swing.JPanel {
     private javax.swing.JRadioButton rdoNVien;
     private javax.swing.JRadioButton rdoQLy;
     private javax.swing.JTable tblNhanVien;
-    private javax.swing.JTextField txtEmail;
+    private javax.swing.JTextField txtDienThoai;
     private javax.swing.JTextField txtMaNV;
-    private javax.swing.JPasswordField txtMatKhau;
+    private javax.swing.JTextField txtMatKhau;
     private javax.swing.JTextField txtNgaySinh;
     private javax.swing.JTextField txtTenNV;
-    private javax.swing.JPasswordField txtXacNhanMK;
+    private javax.swing.JTextField txtXacNhanMK;
     // End of variables declaration//GEN-END:variables
 }

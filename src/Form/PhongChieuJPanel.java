@@ -10,19 +10,25 @@ import javax.swing.JOptionPane;
 import javax.swing.Timer;
 import javax.swing.table.DefaultTableModel;
 import model.PhongChieu;
-import raven.toast.Notifications;
 
 public class PhongChieuJPanel extends javax.swing.JPanel {
 
     DefaultTableModel model;
     PhongChieuDAO dao = new PhongChieuDAO();
+<<<<<<< HEAD
     int row;
+=======
+    int row, index;
+>>>>>>> 14ef87a548744778a29645fa0d70043bab87d640
 
     public PhongChieuJPanel() {
         initComponents();
         fillTable();
+<<<<<<< HEAD
         updateStatus();
 
+=======
+>>>>>>> 14ef87a548744778a29645fa0d70043bab87d640
         new Timer(1000, new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -41,12 +47,13 @@ public class PhongChieuJPanel extends javax.swing.JPanel {
             List<PhongChieu> list = dao.selectAll();
             for (PhongChieu pc : list) {
                 Object[] row = {
-                    tblPhongChieu.getRowCount() + 1,
+                    i,
                     pc.getMaPC(),
                     pc.getTenPC(),
                     pc.getSoLuongGhe(),
                     pc.getTinhTrang(),};
                 model.addRow(row);
+                i++;
             }
         } catch (Exception e) {
             Notifications.getInstance().show(Notifications.Type.INFO, Notifications.Location.TOP_CENTER, "Lỗi truy vấn dữ liệu!");
@@ -54,6 +61,7 @@ public class PhongChieuJPanel extends javax.swing.JPanel {
         }
     }
 
+<<<<<<< HEAD
     void edit() {
         try {
             String maPC = (String) tblPhongChieu.getValueAt(this.row, 1);
@@ -76,13 +84,32 @@ public class PhongChieuJPanel extends javax.swing.JPanel {
     }
 
     public void setForm(PhongChieu pc) {//Vị trí lên form
+=======
+    public PhongChieu getGradeAtPosition(int pos) {
+        PhongChieu pc = new PhongChieu();
+        pc.setMaPC(tblPhongChieu.getValueAt(pos, 1).toString());
+        pc.setTenPC(tblPhongChieu.getValueAt(pos, 2).toString());
+        pc.setSoLuongGhe(Integer.parseInt(tblPhongChieu.getValueAt(pos, 3).toString()));
+        pc.setTinhTrang(tblPhongChieu.getValueAt(pos, 4).toString());
+
+        return pc;
+    }
+
+//Vị trí lên form
+    public void setForm(PhongChieu pc) {
+>>>>>>> 14ef87a548744778a29645fa0d70043bab87d640
         txtMaPhong.setText(pc.getMaPC());
         txtTenPhong.setText(pc.getTenPC());
         txtSLGhe.setText(String.valueOf(pc.getSoLuongGhe()));
         txtTinhTrang.setText(pc.getTinhTrang());
     }
 
+<<<<<<< HEAD
     public PhongChieu getForm() {//Khi Nhập dữ liệu sẽ nhập lên bảng
+=======
+//Khi Nhập dữ liệu sẽ nhập lên bảng
+    public PhongChieu getForm() {
+>>>>>>> 14ef87a548744778a29645fa0d70043bab87d640
         PhongChieu pc = new PhongChieu();
         pc.setMaPC(txtMaPhong.getText());
         pc.setSoLuongGhe(Integer.parseInt(txtSLGhe.getText()));
@@ -94,9 +121,6 @@ public class PhongChieuJPanel extends javax.swing.JPanel {
     public void cleanForm() {
         setForm(new PhongChieu());
         txtSLGhe.setText("");
-        row = -1;
-        txtMaPhong.requestFocus();
-        updateStatus();
     }
 
     public void insert() {
@@ -265,9 +289,6 @@ public class PhongChieuJPanel extends javax.swing.JPanel {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 tblPhongChieuMouseClicked(evt);
             }
-            public void mousePressed(java.awt.event.MouseEvent evt) {
-                tblPhongChieuMousePressed(evt);
-            }
         });
         jScrollPane1.setViewportView(tblPhongChieu);
 
@@ -425,15 +446,10 @@ public class PhongChieuJPanel extends javax.swing.JPanel {
     }//GEN-LAST:event_btnMoiActionPerformed
 
     private void tblPhongChieuMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tblPhongChieuMouseClicked
-
+        int id = tblPhongChieu.rowAtPoint(evt.getPoint());
+        PhongChieu pc = getGradeAtPosition(id);
+        setForm(pc);
     }//GEN-LAST:event_tblPhongChieuMouseClicked
-
-    private void tblPhongChieuMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tblPhongChieuMousePressed
-        if (evt.getClickCount() == 2) {
-            this.row = tblPhongChieu.rowAtPoint(evt.getPoint());
-            edit();
-        }
-    }//GEN-LAST:event_tblPhongChieuMousePressed
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnMoi;

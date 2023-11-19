@@ -56,6 +56,6 @@ public class VeXemPhim {
 
 //    public static void main(String[] args) {
 //        VeXemPhim veXemPhim = new VeXemPhim();
-//        veXemPhim.inVeXemPhimPDF("Ve_ID", "nv001", "sex  gay", "10am - 11am", "603", "f1", 10000);
+//        veXemPhim.inVeXemPhimPDF("Ve_ID", "nv001", "phim1", "10am - 11am", "603", "f1", 10000);
 //    }
 }
