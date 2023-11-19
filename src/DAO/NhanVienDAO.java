@@ -10,6 +10,7 @@ import java.util.ArrayList;
 import java.util.List;
 import model.NhanVien;
 import model.TimVe;
+import util.BCryptPasswordHashing;
 
 /**
  *
@@ -24,12 +25,12 @@ public class NhanVienDAO extends CinemaxDAO<NhanVien, String>{
    
     @Override
     public void insert(NhanVien entity) {
-        JDBCHelper.update(INSERT_SQL, entity.getMaNV(), entity.getTenNV(), entity.isGioiTinh(), entity.getNgaySinh(), entity.getEmail(), entity.isChucVu(), entity.getMatKhau());
+        JDBCHelper.update(INSERT_SQL, entity.getMaNV(), entity.getTenNV(), entity.isGioiTinh(), entity.getNgaySinh(), entity.getEmail(), entity.isChucVu(), BCryptPasswordHashing.hashPassword(entity.getMatKhau()));
     }
 
     @Override
     public void update(NhanVien entity) {
-        JDBCHelper.update(UPDATE_SQL, entity.getTenNV(), entity.isGioiTinh(), entity.getNgaySinh(), entity.getEmail(), entity.isChucVu(), entity.getMatKhau(), entity.getMaNV());
+        JDBCHelper.update(UPDATE_SQL, entity.getTenNV(), entity.isGioiTinh(), entity.getNgaySinh(), entity.getEmail(), entity.isChucVu(), BCryptPasswordHashing.hashPassword(entity.getMatKhau()), entity.getMaNV());
     }
 
     @Override

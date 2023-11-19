@@ -18,7 +18,6 @@ public class PhongChieuJPanel extends javax.swing.JPanel {
     PhongChieuDAO dao = new PhongChieuDAO();
     int row, index;
 
-
     public PhongChieuJPanel() {
         initComponents();
         fillTable();

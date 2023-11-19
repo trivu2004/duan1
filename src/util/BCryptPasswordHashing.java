@@ -45,8 +45,6 @@ public class BCryptPasswordHashing {
             System.out.println(hashPassword("$2a$14$AV5U7iyeHUcomICq8oOoMu3TceORD5pAGKCane0cJq7oMQdUTgNB6"));;
     }
 
+
 }
-
-
-
 
