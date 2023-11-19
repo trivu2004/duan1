@@ -23,7 +23,7 @@ import util.BCryptPasswordHashing;
  * @author TriDung
  */
 public class MainJFrame extends javax.swing.JFrame {
-    
+
     private static MainJFrame app;
     private static MainForm mainForm;
     private static LoginForm loginForm;
@@ -31,7 +31,7 @@ public class MainJFrame extends javax.swing.JFrame {
     public static String tenNhanVien;
     public static Image APP_ICON;
     String file = "/image/Logo.png";
-    
+
     public MainJFrame() {
         initComponents();
         setSize(new Dimension(1366, 768));
@@ -47,12 +47,12 @@ public class MainJFrame extends javax.swing.JFrame {
         setFocusable(true);
         requestFocus(true);
     }
-    
+
     public static void showForm(Component component) {
         component.applyComponentOrientation(app.getComponentOrientation());
         app.mainForm.showForm(component);
     }
-    
+
     public static boolean checknull() {
         if (loginForm.txtUser.getText().trim().equals("")) {
             return false;
@@ -62,7 +62,7 @@ public class MainJFrame extends javax.swing.JFrame {
         }
         return true;
     }
-    
+
     public static void login() {
         if (checknull()) {
             try {
@@ -74,12 +74,7 @@ public class MainJFrame extends javax.swing.JFrame {
                     String MatKhau = kq.getString("MatKhau");
                     tenNhanVien = kq.getString("TenNhanVien");
                     // Mã hóa mật khẩu
-<<<<<<< HEAD
-//                    
-                    if (BCryptPasswordHashing.verifyPassword(loginForm.txtPass.getText().trim(), MatKhau) & NhanVienID.equals(loginForm.txtUser.getText().trim())) {
-=======
                     if (BCryptPasswordHashing.verifyPassword(loginForm.txtPass.getText().trim(), MatKhau) & NhanVienID.equals(loginForm.txtUser.getText())) {
->>>>>>> 1058162c8076b74fd91b10168e8c415575b5f5ec
                         FlatAnimatedLafChange.showSnapshot();
                         app.setContentPane(app.mainForm);
                         app.mainForm.applyComponentOrientation(app.getComponentOrientation());
@@ -99,7 +94,7 @@ public class MainJFrame extends javax.swing.JFrame {
             return;
         }
     }
-    
+
     public static void logout() {
         FlatAnimatedLafChange.showSnapshot();
         app.setContentPane(app.loginForm);
@@ -107,15 +102,15 @@ public class MainJFrame extends javax.swing.JFrame {
         SwingUtilities.updateComponentTreeUI(app.loginForm);
         FlatAnimatedLafChange.hideSnapshotWithAnimation();
     }
-    
+
     public static void setSelectedMenu(int index, int subIndex) {
         app.mainForm.setSelectedMenu(index, subIndex);
     }
-    
+
     public static void moQuenMatKhau() {
         quenMatKhauJDialog.setVisible(true);
     }
-    
+
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
@@ -157,7 +152,7 @@ public class MainJFrame extends javax.swing.JFrame {
     private void formWindowOpened(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowOpened
         // TODO add your handling code here:
     }//GEN-LAST:event_formWindowOpened
-    
+
     public static void main(String args[]) {
         FlatRobotoFont.install();
         FlatLaf.registerCustomDefaultsSource("raven.theme");

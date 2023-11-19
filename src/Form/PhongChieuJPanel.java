@@ -13,16 +13,16 @@ import model.PhongChieu;
 import raven.toast.Notifications;
 
 public class PhongChieuJPanel extends javax.swing.JPanel {
-    
+
     DefaultTableModel model;
     PhongChieuDAO dao = new PhongChieuDAO();
     int row;
-    
+
     public PhongChieuJPanel() {
         initComponents();
         fillTable();
         updateStatus();
-        
+
         new Timer(1000, new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -33,11 +33,10 @@ public class PhongChieuJPanel extends javax.swing.JPanel {
             }
         }).start();
     }
-    
+
     public void fillTable() {
         model = (DefaultTableModel) tblPhongChieu.getModel();
         model.setRowCount(0);
-        int i = 1;
         try {
             List<PhongChieu> list = dao.selectAll();
             for (PhongChieu pc : list) {
@@ -50,12 +49,11 @@ public class PhongChieuJPanel extends javax.swing.JPanel {
                 model.addRow(row);
             }
         } catch (Exception e) {
-            JOptionPane.showMessageDialog(this, "Lỗi truy vấn dữ liệu");
+            Notifications.getInstance().show(Notifications.Type.INFO, Notifications.Location.TOP_CENTER, "Lỗi truy vấn dữ liệu!");
             e.printStackTrace();
-            
         }
     }
-    
+
     void edit() {
         try {
             String maPC = (String) tblPhongChieu.getValueAt(this.row, 1);
@@ -68,7 +66,7 @@ public class PhongChieuJPanel extends javax.swing.JPanel {
             Notifications.getInstance().show(Notifications.Type.INFO, Notifications.Location.TOP_CENTER, "Lỗi truy vấn dữ liệu!");
         }
     }
-    
+
     void updateStatus() {
         boolean edit = this.row >= 0;
         txtMaPhong.setEnabled(!edit);
@@ -76,14 +74,14 @@ public class PhongChieuJPanel extends javax.swing.JPanel {
         btnSua.setEnabled(edit);
         btnXoa.setEnabled(edit);
     }
-    
+
     public void setForm(PhongChieu pc) {//Vị trí lên form
         txtMaPhong.setText(pc.getMaPC());
         txtTenPhong.setText(pc.getTenPC());
         txtSLGhe.setText(String.valueOf(pc.getSoLuongGhe()));
         txtTinhTrang.setText(pc.getTinhTrang());
     }
-    
+
     public PhongChieu getForm() {//Khi Nhập dữ liệu sẽ nhập lên bảng
         PhongChieu pc = new PhongChieu();
         pc.setMaPC(txtMaPhong.getText());
@@ -92,7 +90,7 @@ public class PhongChieuJPanel extends javax.swing.JPanel {
         pc.setTinhTrang(txtTinhTrang.getText());
         return pc;
     }
-    
+
     public void cleanForm() {
         setForm(new PhongChieu());
         txtSLGhe.setText("");
@@ -100,81 +98,81 @@ public class PhongChieuJPanel extends javax.swing.JPanel {
         txtMaPhong.requestFocus();
         updateStatus();
     }
-    
+
     public void insert() {
         PhongChieu pc = getForm();
         try {
             dao.insert(pc);
             fillTable();
             cleanForm();
-            JOptionPane.showMessageDialog(this, "Thêm Thành Công");
+            Notifications.getInstance().show(Notifications.Type.INFO, Notifications.Location.TOP_CENTER, "Thêm Thành Công");
         } catch (Exception e) {
-            JOptionPane.showMessageDialog(this, "Trùng phòng chiếu");
+            Notifications.getInstance().show(Notifications.Type.INFO, Notifications.Location.TOP_CENTER, "Trùng phòng chiếu");
         }
     }
-    
+
     public void update() {
         PhongChieu pc = getForm();
         try {
             dao.update(pc);
             fillTable();
             cleanForm();
-            JOptionPane.showMessageDialog(this, "Cập nhập thành Công");
+            Notifications.getInstance().show(Notifications.Type.INFO, Notifications.Location.TOP_CENTER, "Cập nhập thành Công");
         } catch (Exception e) {
         }
     }
-    
+
     public void del() {
         if (txtMaPhong.getText().equals("")) {
-            JOptionPane.showMessageDialog(this, "Chưa nhập dữ liệu vào để xóa");
+            Notifications.getInstance().show(Notifications.Type.INFO, Notifications.Location.TOP_CENTER, "Chưa nhập dữ liệu vào để xóa");
         } else {
-            String macd = txtMaPhong.getText();
+            String maPC = txtMaPhong.getText();
             try {
-                dao.delete(macd);
+                dao.delete(maPC);
                 fillTable();
                 cleanForm();
-                JOptionPane.showMessageDialog(this, "Xóa thành Công");
+                Notifications.getInstance().show(Notifications.Type.INFO, Notifications.Location.TOP_CENTER, "Xóa thành Công");
             } catch (Exception e) {
                 e.printStackTrace();
             }
         }
     }
-    
+
     public boolean CheckValidate() {
         if (txtMaPhong.getText().isEmpty()) {
-            JOptionPane.showMessageDialog(this, "Không để trống mã phòng");
+            Notifications.getInstance().show(Notifications.Type.INFO, Notifications.Location.TOP_CENTER, "Không để trống mã phòng!");
             txtMaPhong.requestFocus();
             return false;
         } else if (txtTenPhong.getText().isEmpty()) {
-            JOptionPane.showMessageDialog(this, "Không để trống số lượng ghế");
+            Notifications.getInstance().show(Notifications.Type.INFO, Notifications.Location.TOP_CENTER, "Không để trống số lượng ghế!");
             txtTenPhong.requestFocus();
             return false;
         } else if (txtSLGhe.getText().isEmpty()) {
-            JOptionPane.showMessageDialog(this, "Không để trống tên phòng");
+            Notifications.getInstance().show(Notifications.Type.INFO, Notifications.Location.TOP_CENTER, "Không để trống tên phòng!");
             txtSLGhe.requestFocus();
             return false;
         } else if (txtTinhTrang.getText().isEmpty()) {
-            JOptionPane.showMessageDialog(this, "Không để trống tình trạng phòng");
+            Notifications.getInstance().show(Notifications.Type.INFO, Notifications.Location.TOP_CENTER, "Không để trống tình trạng phòng!");
             txtTinhTrang.requestFocus();
             return false;
         }
-        
+
         try {
             int slghe = Integer.parseInt(txtSLGhe.getText());
             if (slghe < 0) {
-                JOptionPane.showMessageDialog(this, "Không được nhập số âm");
+                Notifications.getInstance().show(Notifications.Type.INFO, Notifications.Location.TOP_CENTER, "Không được nhập số âm!");
                 txtSLGhe.requestFocus();
                 return false;
             }
         } catch (NumberFormatException e) {
-            JOptionPane.showMessageDialog(this, "Không ghi chữ vào số lượng ghế chỉ nhập số");
+            Notifications.getInstance().show(Notifications.Type.INFO, Notifications.Location.TOP_CENTER, "Không ghi chữ vào số lượng ghế chỉ nhập số!");
             txtSLGhe.requestFocus();
             return false;
         }
-        
+
         return true;
     }
-    
+
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {

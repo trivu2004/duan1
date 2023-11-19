@@ -57,18 +57,18 @@ public class PhimDAO extends CinemaxDAO<Phim, String>{
             ResultSet rs = JDBCHelper.query(sql, args);
             while (rs.next()) {
                 Phim entity = new Phim();
-                entity.setMaPhim(rs.getString("MaPhim"));
+                entity.setMaPhim(rs.getString("PhimID"));
                 entity.setTenPhim(rs.getString("TenPhim"));
                 entity.setDaoDien(rs.getString("DaoDien"));
-                entity.setDienVien(rs.getString("DienVien"));
+                entity.setDienVien(rs.getString("DienVienChinh"));
                 entity.setThoiLuong(rs.getInt("ThoiLuong"));
                 entity.setTheLoai(rs.getString("TheLoai"));
                 entity.setNgayCongChieu(rs.getDate("NgayCongChieu"));
                 entity.setNgayKetThuc(rs.getDate("NgayKetThuc"));
                 entity.setHinh(rs.getString("Hinh"));
                 entity.setMoTa(rs.getString("MoTa"));
-                entity.setNuocSX(rs.getString("NuocSX"));
-                entity.setNamSX(rs.getInt("NamSX"));
+                entity.setNuocSX(rs.getString("QuocGia"));
+                entity.setNamSX(rs.getInt("NamSanXuat"));
                 list.add(entity);
             }
         } catch (Exception e) {
