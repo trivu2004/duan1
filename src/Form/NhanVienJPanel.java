@@ -1,7 +1,5 @@
 package Form;
 
-import static Form.MainJFrame.tenNhanVien;
-import com.formdev.flatlaf.FlatClientProperties;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.text.SimpleDateFormat;
