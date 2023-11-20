@@ -1,8 +1,7 @@
-Background color [34,31,31]
-Text color [245, 245, 241]
-Red color [229, 9, 20]  ,  [184, 29, 36]
+<h3 align="center">Thế Giới Điện Ảnh: Hành Trình Nghệ Thuật Đỉnh Cao Tại Rạp Chiếu Phim Phim</h3>
 
-Mật khẩu mặc định đăng nhâp tài khoản quản lý(admin,admin)
+<p align="left">
+</p>
 
-
-Thuận - đăng nhập, Lương - nhân viên, An - phòng chiếu, Phát - phim, Trí - suất chiếu, Dũng - vé
+<h3 align="left">Languages and Tools:</h3>
+<p align="left"> <a href="https://git-scm.com/" target="_blank" rel="noreferrer"> <img src="https://www.vectorlogo.zone/logos/git-scm/git-scm-icon.svg" alt="git" width="40" height="40"/> </a> <a href="https://www.java.com" target="_blank" rel="noreferrer"> <img src="https://raw.githubusercontent.com/devicons/devicon/master/icons/java/java-original.svg" alt="java" width="40" height="40"/> </a> <a href="https://www.mysql.com/" target="_blank" rel="noreferrer"> <img src="https://raw.githubusercontent.com/devicons/devicon/master/icons/mysql/mysql-original-wordmark.svg" alt="mysql" width="40" height="40"/> </a> </p>
