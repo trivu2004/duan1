@@ -33,12 +33,13 @@ public class VeJPanel extends javax.swing.JPanel {
     public VeDAO daoVe = new VeDAO();
     public SuatChieuDAO daoSuatChieu = new SuatChieuDAO();
     public PhimDAO daoPhim = new PhimDAO();
-    public PhongChieuDAO daoPhongChieuDAO = new PhongChieuDAO();
+    public PhongChieuDAO daoPhongChieu= new PhongChieuDAO();
     public String TenPhim = "";
     public String TenPhong = "";
     public String ThoiGianChieu = "";
-    
-        public String getTenPhim() {
+    public String MaSuatChieu = "";
+
+    public String getTenPhim() {
         return TenPhim;
     }
 
@@ -48,6 +49,10 @@ public class VeJPanel extends javax.swing.JPanel {
 
     public String getThoiGianChieu() {
         return ThoiGianChieu;
+    }
+
+    public String getMaSuatChieu() {
+        return MaSuatChieu;
     }
 
     public VeJPanel() {
@@ -116,7 +121,7 @@ public class VeJPanel extends javax.swing.JPanel {
 
     void fillCboPhongChieu() {
         try {
-            List<PhongChieu> list = daoPhongChieuDAO.selectAll();
+            List<PhongChieu> list = daoPhongChieu.selectAll();
             for (PhongChieu phongChieu : list) {
                 cboPhongChieu.addItem(phongChieu.getTenPC() + "");
             }
@@ -124,7 +129,6 @@ public class VeJPanel extends javax.swing.JPanel {
             e.printStackTrace();
         }
     }
-    
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -343,6 +347,7 @@ public class VeJPanel extends javax.swing.JPanel {
         int index = tblSuatChieu.rowAtPoint(evt.getPoint());
         if (evt.getClickCount() == 1) {
             btnDatVe.setEnabled(true);
+            MaSuatChieu = (String) tblSuatChieu.getValueAt(index, 1);
             TenPhim = (String) tblSuatChieu.getValueAt(index, 2);
             TenPhong = (String) tblSuatChieu.getValueAt(index, 3);
             ThoiGianChieu = (String) tblSuatChieu.getValueAt(index, 4);

@@ -16,6 +16,7 @@ import java.util.Set;
 import javax.swing.JButton;
 import javax.swing.Timer;
 import model.Ve;
+import raven.toast.Notifications;
 
 /**
  *
@@ -31,17 +32,28 @@ public class DatVeJPanel extends javax.swing.JPanel implements ActionListener {
     String thoiGianChieu;
     String tenPhong;
     String tenPhim;
+    static String maSuatChieu;
     Color mauMacDinh = new Color(89, 86, 86);
     Color mauDangChon = new Color(255, 255, 0);
     Color mauDaChon = new Color(255, 51, 51);
     Color mauChuMacDinh = new Color(187, 187, 187);
     Color mauChuDangChon = new Color(0, 0, 0);
     String LoaiVe;
+    String ngayMua;
     int VeCount = 0;
+    int VeThuongCount = 0;
+    int VeVipCount = 0;
+    int VeCoupleCount = 0;
+    int GiaVeThuong = 0;
+    int GiaVeVIP = 0;
+    int GiaVeCouple = 0;
     int GheThuongCount = 24;
     int GheVipCount = 24;
     int GheCoupleCount = 8;
+    int GiaVeMacDinh = 50000;
+    int GiaVe = 0;
     private Set<String> uniqueSeatTypes = new HashSet<>();
+    HashSet<String> ArrayGhe = new HashSet<>();
 
     public DatVeJPanel(VeJPanel veJPanel) {
         initComponents();
@@ -54,7 +66,7 @@ public class DatVeJPanel extends javax.swing.JPanel implements ActionListener {
                 SimpleDateFormat sdf = new SimpleDateFormat("hh:mm:ss a");
                 String text = sdf.format(now);
                 SimpleDateFormat NgayMuaFormat = new SimpleDateFormat("YYYY-MM-dd");
-                String ngayMua = NgayMuaFormat.format(now);
+                ngayMua = NgayMuaFormat.format(now);
                 lblDongHo.setText(text);
                 txtNgayMua.setText(ngayMua);
             }
@@ -63,6 +75,8 @@ public class DatVeJPanel extends javax.swing.JPanel implements ActionListener {
         tenPhim = veJPanel.getTenPhim();
         tenPhong = veJPanel.getTenPhong();
         thoiGianChieu = veJPanel.getThoiGianChieu();
+        maSuatChieu = veJPanel.getMaSuatChieu();
+        lblVeDaChon.setText("");
         fillData();
         setGheDaChon();
         addActionListener();
@@ -131,24 +145,30 @@ public class DatVeJPanel extends javax.swing.JPanel implements ActionListener {
 
     void setVeCouple() {
         int i = 0;
+        VeCoupleCount = 0;
         String[] buttonNames = {"GheH01", "GheH02", "GheH03", "GheH04", "GheH05", "GheH06", "GheH07", "GheH08"};
-
         for (String buttonName : buttonNames) {
             JButton button = getButtonByName(buttonName);
             if (button != null && button.getBackground().equals(mauDangChon)) {
                 uniqueSeatTypes.add("Couple");
+                VeCoupleCount++;
+                ArrayGhe.add(buttonName.substring(3));
             } else if (button.getBackground().equals(mauMacDinh)) {
                 i++;
-                if (i == GheVipCount) {
+                ArrayGhe.remove(buttonName.substring(3));
+                if (i == GheCoupleCount) {
                     uniqueSeatTypes.remove("Couple");
                 }
             }
         }
+        GiaVeCouple = 0;
+        GiaVeCouple += VeCoupleCount * GiaVeMacDinh * 2;
         updateTxtLoaiVe();
     }
 
     void setVeVIP() {
         int i = 0;
+        VeVipCount = 0;
         String[] buttonNames = {
             "GheD01", "GheD02", "GheD03", "GheD04", "GheD05", "GheD06", "GheD07", "GheD08",
             "GheE01", "GheE02", "GheE03", "GheE04", "GheE05", "GheE06", "GheE07", "GheE08",
@@ -158,18 +178,24 @@ public class DatVeJPanel extends javax.swing.JPanel implements ActionListener {
             JButton button = getButtonByName(buttonName);
             if (button != null && button.getBackground().equals(mauDangChon)) {
                 uniqueSeatTypes.add("VIP");
+                VeVipCount++;
+                ArrayGhe.add(buttonName.substring(3));
             } else if (button.getBackground().equals(mauMacDinh)) {
                 i++;
+                ArrayGhe.remove(buttonName.substring(3));
                 if (i == GheVipCount) {
                     uniqueSeatTypes.remove("VIP");
                 }
             }
         }
+        GiaVeVIP = 0;
+        GiaVeVIP += VeVipCount * GiaVeMacDinh * 2;
         updateTxtLoaiVe();
     }
 
     void setVeThuong() {
         int i = 0;
+        VeThuongCount = 0;
         String[] buttonNames = {
             "GheA01", "GheA02", "GheA03", "GheA04", "GheA05", "GheA06", "GheA07", "GheA08",
             "GheB01", "GheB02", "GheB03", "GheB04", "GheB05", "GheB06", "GheB07", "GheB08",
@@ -179,31 +205,30 @@ public class DatVeJPanel extends javax.swing.JPanel implements ActionListener {
             JButton button = getButtonByName(buttonName);
             if (button != null && button.getBackground().equals(mauDangChon)) {
                 uniqueSeatTypes.add("Thường");
+                VeThuongCount++;
+                ArrayGhe.add(buttonName.substring(3));
             } else if (button.getBackground().equals(mauMacDinh)) {
                 i++;
+                ArrayGhe.remove(buttonName.substring(3));
                 if (i == GheThuongCount) {
                     uniqueSeatTypes.remove("Thường");
                 }
             }
+            GiaVeThuong = 0;
+            GiaVeThuong += VeThuongCount * GiaVeMacDinh;
+            updateTxtLoaiVe();
         }
-        updateTxtLoaiVe();
     }
 
     void updateTxtLoaiVe() {
+        GiaVe = GiaVeThuong + GiaVeVIP + GiaVeCouple;
+        txtGiaVe1.setText(GiaVe + "");
         LoaiVe = String.join(", ", uniqueSeatTypes);
         txtLoaiVe.setText(LoaiVe);
     }
 
     void setGheDaChon() {
-        String[] TongGhe = {
-            "A01", "A02", "A03", "A04", "A05", "A06", "A07", "A08",
-            "B01", "B02", "B03", "B04", "B05", "B06", "B07", "B08",
-            "C01", "C02", "C03", "C04", "C05", "C06", "C07", "C08",
-            "D01", "D02", "D03", "D04", "D05", "D06", "D07", "D08",
-            "E01", "E02", "E03", "E04", "E05", "E06", "E07", "E08",
-            "F01", "F02", "F03", "F04", "F05", "F06", "F07", "F08",
-            "H01", "H02", "H03", "H04", "H05", "H06", "H07", "H08",};
-
+        String gheDaChon = null;
         String[] GheThuong = {
             "A01", "A02", "A03", "A04", "A05", "A06", "A07", "A08",
             "B01", "B02", "B03", "B04", "B05", "B06", "B07", "B08",
@@ -217,25 +242,33 @@ public class DatVeJPanel extends javax.swing.JPanel implements ActionListener {
         String[] GheCouple = {
             "H01", "H02", "H03", "H04", "H05", "H06", "H07", "H08",};
         try {
-            List<Ve> list = daoVE.selectAll();
-            for (Ve ve : list) {
-                for (String gheDaChon : TongGhe) {
-                    if (ve.getGhe().equals(gheDaChon)) {
-                        doiMauGheDaChon(getButtonByName2(gheDaChon));
-                        for (String gheThuong : GheThuong) {
-                            if (gheDaChon.equals(gheThuong)) {
-                                GheThuongCount--;
-                            }
+            List<String> list = daoVE.timGhe(maSuatChieu);
+            StringBuilder danhSachGheDaChon = new StringBuilder();
+
+            for (String ve : list) {
+                gheDaChon = ve.toString();
+                String OutString = gheDaChon.replace("[", "").replace("]", "");
+                String[] arr = OutString.split(",");
+                for (String string : arr) {
+                    string = string.trim();
+                    doiMauGheDaChon(getButtonByName2(string));
+                    danhSachGheDaChon.append(string).append(", ");
+
+                    for (String gheThuong : GheThuong) {
+                        if (string.equals(gheThuong)) {
+                            GheThuongCount--;
                         }
-                        for (String gheVIP : GheVIP) {
-                            if (gheDaChon.equals(gheVIP)) {
-                                GheVipCount--;
-                            }
+                    }
+
+                    for (String gheVIP : GheVIP) {
+                        if (string.equals(gheVIP)) {
+                            GheVipCount--;
                         }
-                        for (String gheCouple : GheCouple) {
-                            if (gheDaChon.equals(gheCouple)) {
-                                GheCoupleCount--;
-                            }
+                    }
+
+                    for (String gheCouple : GheCouple) {
+                        if (string.equals(gheCouple)) {
+                            GheCoupleCount--;
                         }
                     }
                 }
@@ -245,10 +278,33 @@ public class DatVeJPanel extends javax.swing.JPanel implements ActionListener {
         }
     }
 
+    void DatVe() {
+        Ve entity = new Ve();
+        entity.setMaSC(maSuatChieu);
+        entity.setGhe(ArrayGhe + "");
+        entity.setGiaVe(GiaVe);
+        entity.setNgayMua(ngayMua);
+        entity.setLoaiVe(txtLoaiVe.getText());
+        try {
+            daoVE.insert(entity);
+            Notifications.getInstance().show(Notifications.Type.INFO, Notifications.Location.TOP_CENTER, "Đặt vé thành công!");
+            fillForm();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+    void fillForm() {
+        fillData();
+        txtLoaiVe.setText("");
+        txtGiaVe1.setText("0");
+        lblVeDaChon.setText("");
+        setGheDaChon();
+    }
+
     void doiMauGheDaChon(JButton button) {
         button.setBackground(mauDaChon);
         button.setEnabled(false);
-
     }
 
     @Override
@@ -256,8 +312,8 @@ public class DatVeJPanel extends javax.swing.JPanel implements ActionListener {
         String command = e.getActionCommand();
         switch (command) {
             case "A01":
-                setVeThuong();
                 doiMauGhe(btnGheA01);
+                setVeThuong();
                 break;
             case "A02":
                 doiMauGhe(btnGheA02);
@@ -1098,6 +1154,11 @@ public class DatVeJPanel extends javax.swing.JPanel implements ActionListener {
 
         btnThem.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
         btnThem.setText("Đặt Vé");
+        btnThem.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnThemActionPerformed(evt);
+            }
+        });
 
         btnSuatChieu.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
         btnSuatChieu.setText("Trở Lại");
@@ -1122,6 +1183,7 @@ public class DatVeJPanel extends javax.swing.JPanel implements ActionListener {
         jLabel18.setText("Mã Vé:");
 
         txtGiaVe1.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+        txtGiaVe1.setText("0");
         txtGiaVe1.setEnabled(false);
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
@@ -1243,6 +1305,11 @@ public class DatVeJPanel extends javax.swing.JPanel implements ActionListener {
     private void btnGheA01MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnGheA01MouseClicked
         // TODO add your handling code here:
     }//GEN-LAST:event_btnGheA01MouseClicked
+
+    private void btnThemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnThemActionPerformed
+        // TODO add your handling code here:
+        DatVe();
+    }//GEN-LAST:event_btnThemActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

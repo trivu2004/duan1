@@ -73,9 +73,4 @@ public class NhanVienDAO extends CinemaxDAO<NhanVien, String>{
         }
         return list;
     }
-
-    @Override
-    public List<TimVe> findTicket(String ThoiGian, String PhongChieu, String Phim) {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
-    }
 }
