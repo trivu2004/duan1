@@ -1,4 +1,4 @@
-<h3 align="center">Thế Giới Điện Ảnh: Hành Trình Nghệ Thuật Đỉnh Cao Tại Rạp Chiếu Phim Phim</h3>
+<h3 align="center">Thế Giới Điện Ảnh: Hành Trình Nghệ Thuật Đỉnh Cao Tại Rạp Chiếu Phim</h3>
 
 <p align="left">
 </p>
