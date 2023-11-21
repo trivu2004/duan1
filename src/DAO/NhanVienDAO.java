@@ -9,6 +9,8 @@ import java.sql.ResultSet;
 import java.util.ArrayList;
 import java.util.List;
 import model.NhanVien;
+import util.BCryptPasswordHashing;
+import model.TimVe;
 
 /**
  *
@@ -23,12 +25,12 @@ public class NhanVienDAO extends CinemaxDAO<NhanVien, String>{
    
     @Override
     public void insert(NhanVien entity) {
-        JDBCHelper.update(INSERT_SQL, entity.getMaNV(), entity.getTenNV(), entity.isGioiTinh(), entity.getNgaySinh(), entity.getEmail(), entity.isChucVu(), entity.getMatKhau());
+        JDBCHelper.update(INSERT_SQL, entity.getMaNV(), entity.getTenNV(), entity.isGioiTinh(), entity.getNgaySinh(), entity.getEmail(), entity.isChucVu(), BCryptPasswordHashing.hashPassword(entity.getMatKhau()));
     }
 
     @Override
     public void update(NhanVien entity) {
-        JDBCHelper.update(UPDATE_SQL, entity.getTenNV(), entity.isGioiTinh(), entity.getNgaySinh(), entity.getEmail(), entity.isChucVu(), entity.getMatKhau(), entity.getMaNV());
+        JDBCHelper.update(UPDATE_SQL, entity.getTenNV(), entity.isGioiTinh(), entity.getNgaySinh(), entity.getEmail(), entity.isChucVu(), BCryptPasswordHashing.hashPassword(entity.getMatKhau()), entity.getMaNV());
     }
 
     @Override
@@ -56,18 +58,18 @@ public class NhanVienDAO extends CinemaxDAO<NhanVien, String>{
         try {
             ResultSet rs = JDBCHelper.query(sql, args);
             while (rs.next()) {
-                NhanVien entity = new NhanVien();
-                entity.setMaNV(rs.getString("MaNV"));
-                entity.setTenNV(rs.getString("TenNV"));
-                entity.setGioiTinh(rs.getBoolean("GioiTinh"));
-                entity.setNgaySinh(rs.getDate("NgaySinh"));
-                entity.setEmail(rs.getString("Email"));
-                entity.setChucVu(rs.getBoolean("ChucVu"));
-                entity.setMatKhau(rs.getString("MatKhau"));
-                list.add(entity);
+                NhanVien nv = new NhanVien();
+                nv.setMaNV(rs.getString("NhanVienID"));
+                nv.setTenNV(rs.getString("TenNhanVien"));
+                nv.setGioiTinh(rs.getBoolean("GioiTinh"));
+                nv.setNgaySinh(rs.getDate("NgaySinh"));
+                nv.setEmail(rs.getString("Email"));
+                nv.setChucVu(rs.getBoolean("ChucVu"));
+                nv.setMatKhau(rs.getString("MatKhau"));
+                list.add(nv);
             }
         } catch (Exception e) {
-            throw new RuntimeException(e);
+            e.printStackTrace();
         }
         return list;
     }

@@ -12,6 +12,7 @@ import java.sql.SQLException;
  * @author Tri Dung
  */
 public class JDBCHelper {
+    private static Connection connection;
 
     public static PreparedStatement prepareStatement(String sql, Object... args) throws SQLException {
         DriverManager.registerDriver(new Driver());
@@ -21,7 +22,7 @@ public class JDBCHelper {
         String userName = "sql12658501";
         String password = "ap63uLZLNJ";
 
-        Connection connection = DriverManager.getConnection("jdbc:mysql://" + server + ":" + port + "/" + database, userName, password);
+        connection = DriverManager.getConnection("jdbc:mysql://" + server + ":" + port + "/" + database, userName, password);
         PreparedStatement pstmt = null;
         if (sql.trim().startsWith("{")) {
             pstmt = connection.prepareCall(sql);
@@ -34,16 +35,16 @@ public class JDBCHelper {
         return pstmt;
     }
 
-    public static void closeConnection(Connection c) {
+    public static void closeConnection() {
         try {
-            if (c != null) {
-                c.close();
+            if (connection != null && !connection.isClosed()) {
+                connection.close();
             }
         } catch (SQLException e) {
             e.printStackTrace();
         }
     }
-    
+
     public static void update(String sql, Object... args) {
         try {
             PreparedStatement stmt = prepareStatement(sql, args);
@@ -60,7 +61,8 @@ public class JDBCHelper {
     public static ResultSet query(String sql, Object... args) {
         try {
             PreparedStatement stmt = prepareStatement(sql, args);
-            return stmt.executeQuery();
+            ResultSet rs = stmt.executeQuery();
+            return rs;
         } catch (SQLException e) {
             throw new RuntimeException(e);
         }
@@ -70,12 +72,13 @@ public class JDBCHelper {
         try {
             ResultSet rs = query(sql, args);
             if (rs.next()) {
-                return rs.getObject(0);
+                Object result = rs.getObject(1);
+                return result;
             }
-            rs.getStatement().getConnection().close();
         } catch (Exception e) {
             throw new RuntimeException(e);
         }
         return null;
     }
+
 }

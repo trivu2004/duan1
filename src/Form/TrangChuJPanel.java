@@ -6,6 +6,7 @@ package Form;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.KeyEvent;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import javax.swing.Timer;
@@ -59,6 +60,12 @@ public class TrangChuJPanel extends javax.swing.JPanel {
         jpnThongKe = new javax.swing.JPanel();
         lblThongKe = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
+
+        addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                formKeyPressed(evt);
+            }
+        });
 
         jPanel2.setBackground(new java.awt.Color(0, 0, 0));
         jPanel2.setForeground(new java.awt.Color(255, 51, 51));
@@ -399,6 +406,10 @@ public class TrangChuJPanel extends javax.swing.JPanel {
     private void jpnThongKeMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jpnThongKeMouseClicked
         MainJFrame.showForm(new ThongKeJPanel());
     }//GEN-LAST:event_jpnThongKeMouseClicked
+
+    private void formKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_formKeyPressed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_formKeyPressed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

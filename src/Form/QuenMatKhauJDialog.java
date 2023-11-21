@@ -1,5 +1,21 @@
 package Form;
 
+import Helper.JDBCHelper;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.util.Date;
+import java.util.Properties;
+import java.util.Random;
+import javax.swing.JOptionPane;
+import javax.mail.Authenticator;
+import javax.mail.Message;
+import javax.mail.PasswordAuthentication;
+import javax.mail.Session;
+import javax.mail.Transport;
+import javax.mail.internet.InternetAddress;
+import javax.mail.internet.MimeBodyPart;
+import javax.mail.internet.MimeMessage;
+import javax.mail.internet.MimeMultipart;
 import javax.swing.JOptionPane;
 
 /**
@@ -7,6 +23,8 @@ import javax.swing.JOptionPane;
  * @author Tri Dung
  */
 public class QuenMatKhauJDialog extends javax.swing.JDialog {
+
+    private String sendotp = "";
 
     /**
      * Creates new form NewJDialog
@@ -19,25 +37,190 @@ public class QuenMatKhauJDialog extends javax.swing.JDialog {
     }
 
     boolean checkMail() {
+        if (txtQuenMatKhau.getText().trim().equals("")) {
+            return false;
+        }
         return true;
     }
 
     boolean checkOTP() {
+        if (txtQuenMatKhau.getText().trim().equals("")) {
+            return false;
+        }
         return true;
     }
 
+    boolean checktontai() {
+        try {
+            String sql = "select * from NhanVien where Email = ?";
+            PreparedStatement st = JDBCHelper.prepareStatement(sql);
+            st.setString(1, txtQuenMatKhau.getText().trim());
+            ResultSet kqcheckmail = st.executeQuery();
+            if (kqcheckmail.next()) {
+                return true;
+            }
+        } catch (Exception e) {
+        }
+        return false;
+    }
+
+    public String randomotp() {
+        Random random = new Random();
+        // Tạo số ngẫu nhiên trong khoảng từ 10000 đến 99999
+        int soNgauNhien = random.nextInt(90000) + 10000;
+        sendotp = soNgauNhien + "";
+        return sendotp;
+    }
+
+    public String randommk() {
+        Random random = new Random();
+
+        // Ký tự bắt đầu và kết thúc trong bảng chữ cái
+        char batDau = 'a';
+        char ketThuc = 'z';
+
+        // Tạo chuỗi ngẫu nhiên
+        StringBuilder chuoiNgauNhien = new StringBuilder();
+        for (int i = 0; i < 5; i++) {
+            char kyTuNgauNhien = (char) (random.nextInt(ketThuc - batDau + 1) + batDau);
+            chuoiNgauNhien.append(kyTuNgauNhien);
+        }
+        // In chuỗi ngẫu nhiên
+        return chuoiNgauNhien.toString();
+    }
+
     void quenMatKhau() {
-        if (btnQuenMatKhau.getText().equals("Gửi OTP") & checkMail()) {
-            btnQuenMatKhau.setText("Gửi mật khẩu");
-            lblQuenMatKhau.setText("Mã OTP");
-            txtQuenMatKhau.setText("");
-            return;
-        } else {
-            JOptionPane.showMessageDialog(this, "Co email cl");
+        if (btnQuenMatKhau.getText().equals("Gửi OTP")) {
+            if (checkMail()) {
+                if (checktontai()) {
+                    JOptionPane.showMessageDialog(this, "Vui lòng chúng tôi giây lát ");
+                    final String from = "thuantqps31471@fpt.edu.vn";
+                    final String pass = "yipcomzrudwbstkj";
+
+                    Properties pr = new Properties();
+                    pr.put("mail.smtp.host", "smtp.gmail.com");
+                    pr.put("mail.smtp.post", "587");
+                    pr.put("mail.smtp.auth", "true");
+                    pr.put("mail.smtp.starttls.enable", "true");
+
+                    // create authenticator : dang nhap gmail;
+                    Authenticator auth = new Authenticator() {
+                        @Override
+                        protected PasswordAuthentication getPasswordAuthentication() {
+                            // TODO Auto-generated method stub
+                            return new PasswordAuthentication(from, pass);
+                        }
+                    };
+                    // phien lam viec;
+                    Session s = Session.getInstance(pr, auth);
+                    // nguoi nhan : to;
+                    final String to = txtQuenMatKhau.getText().trim();
+                    // tao 1 tin nhan;
+                    MimeMessage msg = new MimeMessage(s);
+                    try {
+                        // content: noi dung , texthtml : duoc gui code html va test , utf8;
+                        msg.addHeader("Content-type", "text/HTML; charset=UTF-8");
+                        // nguoi gui;
+                        msg.setFrom(from);
+                        // nguoi nhan;
+                        msg.setRecipients(Message.RecipientType.TO, InternetAddress.parse(to, false));
+                        msg.setSentDate(new Date());
+
+                        MimeMultipart mimeMultipart = new MimeMultipart();
+
+//                    MimeBodyPart bodyPart = new MimeBodyPart();
+//                    bodyPart.attachFile(new File(viewsend.txtfile.getText()));
+                        MimeBodyPart bodyPart1 = new MimeBodyPart();
+                        bodyPart1.setContent(randomotp(), "text/HTML; charset=UTF-8");
+
+//                    mimeMultipart.addBodyPart(bodyPart);
+                        mimeMultipart.addBodyPart(bodyPart1);
+
+                        msg.setContent(mimeMultipart);
+
+                        Transport.send(msg);
+
+                        btnQuenMatKhau.setText("Gửi lại mật khẩu");
+                        lblQuenMatKhau.setText("Mã OTP");
+                        txtQuenMatKhau.setText("");
+                        return;
+                    } catch (Exception eee) {
+                        eee.printStackTrace();
+                    }
+                } else {
+                    JOptionPane.showMessageDialog(this, "Vui lòng nhập đúng email");
+                    return;
+                }
+            } else {
+                JOptionPane.showMessageDialog(this, "Vui lòng nhập email");
+                return;
+            }
         }
-        if (btnQuenMatKhau.getText().equals("Gửi mật khẩu") & checkOTP()) {
-            JOptionPane.showMessageDialog(this, "Con mẹ mày Thuận");
+
+        if (btnQuenMatKhau.getText().equals("Gửi lại mật khẩu")) {
+            System.out.println("Form.QuenMatKhauJDialog.quenMatKhau()");
+//            if (checkOTP()) {
+//                if (txtQuenMatKhau.getText().trim().equals(sendotp)) {
+//                    final String from = "thuantqps31471@fpt.edu.vn";
+//                    final String pass = "yipcomzrudwbstkj";
+//
+//                    Properties pr = new Properties();
+//                    pr.put("mail.smtp.host", "smtp.gmail.com");
+//                    pr.put("mail.smtp.post", "587");
+//                    pr.put("mail.smtp.auth", "true");
+//                    pr.put("mail.smtp.starttls.enable", "true");
+//
+//                    // create authenticator : dang nhap gmail;
+//                    Authenticator auth = new Authenticator() {
+//                        @Override
+//                        protected PasswordAuthentication getPasswordAuthentication() {
+//                            // TODO Auto-generated method stub
+//                            return new PasswordAuthentication(from, pass);
+//                        }
+//                    };
+//                    // phien lam viec;
+//                    Session s = Session.getInstance(pr, auth);
+//                    // nguoi nhan : to;
+//                    final String to = txtQuenMatKhau.getText().trim();
+//                    // tao 1 tin nhan;
+//                    MimeMessage msg = new MimeMessage(s);
+//                    try {
+//                        // content: noi dung , texthtml : duoc gui code html va test , utf8;
+//                        msg.addHeader("Content-type", "text/HTML; charset=UTF-8");
+//                        // nguoi gui;
+//                        msg.setFrom(from);
+//                        // nguoi nhan;
+//                        msg.setRecipients(Message.RecipientType.TO, InternetAddress.parse(to, false));
+//                        msg.setSentDate(new Date());
+//
+//                        MimeMultipart mimeMultipart = new MimeMultipart();
+//
+////                    MimeBodyPart bodyPart = new MimeBodyPart();
+////                    bodyPart.attachFile(new File(viewsend.txtfile.getText()));
+//                        MimeBodyPart bodyPart1 = new MimeBodyPart();
+//                        bodyPart1.setContent(randommk(), "text/HTML; charset=UTF-8");
+//
+////                    mimeMultipart.addBodyPart(bodyPart);
+//                        mimeMultipart.addBodyPart(bodyPart1);
+//
+//                        msg.setContent(mimeMultipart);
+//
+//                        Transport.send(msg);
+//                        JOptionPane.showMessageDialog(this, "Chúng tôi đã cấp lại mk mới vui lòng đăng nhập mà đổi mật khẩu theo ý bạn !");
+//                        dispose();
+//                    } catch (Exception eee) {
+//                        eee.printStackTrace();
+//                    }
+//                } else {
+//                    JOptionPane.showMessageDialog(this, "OTP không hợp lệ !");
+//                    return;
+//                }
+//            } else {
+//                JOptionPane.showMessageDialog(this, "Vui lòng nhập mã OTP");
+//                return;
+//            }
         }
+
     }
 
     /**

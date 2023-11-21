@@ -9,18 +9,20 @@ import java.sql.ResultSet;
 import java.util.ArrayList;
 import java.util.List;
 import model.Phim;
+import model.TimVe;
 
 /**
  *
  * @author 123tu
  */
-public class PhimDAO extends CinemaxDAO<Phim, String>{
+public class PhimDAO extends CinemaxDAO<Phim, String> {
+
     final String INSERT_SQL = "INSERT INTO Phim (PhimID, TenPhim, DaoDien, DienVienChinh, ThoiLuong, TheLoai, NgayCongChieu, NgayKetThuc, Hinh, MoTa, QuocGia, NamSanXuat) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
     final String UPDATE_SQL = "UPDATE Phim SET TenPhim=?, DaoDien=?, DienVienChinh=?, ThoiLuong=?, TheLoai=?, NgayCongChieu=?, NgayKetThuc=?, Hinh=?, MoTa=?, QuocGia=?, NamSanXuat=? WHERE PhimID=?";
     final String DELETE_SQL = "DELETE FROM Phim WHERE PhimID=?";
     final String SELECT_ALL_SQL = "SELECT * FROM Phim";
-    final String SELECT_BY_ID_SQL = "SELECT * FROM Phim WHERE PhimID=?";        
-   
+    final String SELECT_BY_ID_SQL = "SELECT * FROM Phim WHERE PhimID=?";
+
     @Override
     public void insert(Phim entity) {
         JDBCHelper.update(INSERT_SQL, entity.getMaPhim(), entity.getTenPhim(), entity.getDaoDien(), entity.getDienVien(), entity.getThoiLuong(), entity.getTheLoai(), entity.getNgayCongChieu(), entity.getNgayKetThuc(), entity.getHinh(), entity.getMoTa(), entity.getNuocSX(), entity.getNamSX());
@@ -57,18 +59,18 @@ public class PhimDAO extends CinemaxDAO<Phim, String>{
             ResultSet rs = JDBCHelper.query(sql, args);
             while (rs.next()) {
                 Phim entity = new Phim();
-                entity.setMaPhim(rs.getString("MaPhim"));
+                entity.setMaPhim(rs.getString("PhimID"));
                 entity.setTenPhim(rs.getString("TenPhim"));
                 entity.setDaoDien(rs.getString("DaoDien"));
-                entity.setDienVien(rs.getString("DienVien"));
+                entity.setDienVien(rs.getString("DienVienChinh"));
                 entity.setThoiLuong(rs.getInt("ThoiLuong"));
                 entity.setTheLoai(rs.getString("TheLoai"));
                 entity.setNgayCongChieu(rs.getDate("NgayCongChieu"));
                 entity.setNgayKetThuc(rs.getDate("NgayKetThuc"));
                 entity.setHinh(rs.getString("Hinh"));
                 entity.setMoTa(rs.getString("MoTa"));
-                entity.setNuocSX(rs.getString("NuocSX"));
-                entity.setNamSX(rs.getInt("NamSX"));
+                entity.setNuocSX(rs.getString("QuocGia"));
+                entity.setNamSX(rs.getInt("NamSanXuat"));
                 list.add(entity);
             }
         } catch (Exception e) {
@@ -76,4 +78,5 @@ public class PhimDAO extends CinemaxDAO<Phim, String>{
         }
         return list;
     }
+
 }

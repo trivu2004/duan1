@@ -10,6 +10,7 @@ import java.sql.ResultSet;
 import java.util.ArrayList;
 import java.util.List;
 import model.SuatChieu;
+import model.TimVe;
 
 /**
  *
@@ -58,12 +59,12 @@ public class SuatChieuDAO extends CinemaxDAO<SuatChieu, String>{
             ResultSet rs = JDBCHelper.query(sql, args);
             while (rs.next()) {
                 SuatChieu entity = new SuatChieu();
-                entity.setMaSC(rs.getString("MaSC"));
-                entity.setTenPC(rs.getString("TenPC"));
-                entity.setTenPhim(rs.getString("Phim"));
-                entity.setThoiGianBD(rs.getDate("ThoiGianBD"));
-                entity.setThoiGianKT(rs.getDate("ThoiGianKT"));
-                entity.setTenNQL(rs.getString("TenNQL"));
+                entity.setMaSC(rs.getString("SuatChieuID"));
+                entity.setTenPC(rs.getString("PhongID"));
+                entity.setTenPhim(rs.getString("PhimID"));
+                entity.setThoiGianBD(rs.getDate("ThoiGianBatDau"));
+                entity.setThoiGianKT(rs.getDate("ThoiGianKetThuc"));
+                entity.setTenNQL(rs.getString("NhanVienID"));
                 list.add(entity);
             }
         } catch (Exception e) {
