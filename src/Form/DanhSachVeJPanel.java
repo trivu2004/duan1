@@ -12,6 +12,7 @@ import Helper.JDBCHelper;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 import javax.swing.Timer;
@@ -20,6 +21,7 @@ import model.DanhSachVe;
 import model.Phim;
 import model.PhongChieu;
 import model.SuatChieu;
+import model.TimVe;
 import raven.toast.Notifications;
 
 /**
@@ -51,14 +53,23 @@ public class DanhSachVeJPanel extends javax.swing.JPanel {
         fillCboPhim();
         fillCboPhongChieu();
         fillCboThoiGianChieu();
+        cboLoaiVe.setSelectedIndex(-1);
+        cboPhim.setSelectedIndex(-1);
+        cboPhongChieu.setSelectedIndex(-1);
+        cboThoiGianChieu.setSelectedIndex(-1);
         fillToTable();
     }
 
     void fillToTable() {
         DefaultTableModel model = (DefaultTableModel) jTable1.getModel();
         model.setRowCount(0);
+        List<DanhSachVe> list = new ArrayList<>();
         try {
-            List<DanhSachVe> list = dao.inDanhSachVe(String.valueOf(cboLoaiVe.getSelectedItem()), String.valueOf(cboPhim.getSelectedItem()), String.valueOf(cboPhongChieu.getSelectedItem()), String.valueOf(cboThoiGianChieu.getSelectedItem()));
+            if (cboLoaiVe.getSelectedIndex() == -1) {
+                list = dao.inTatCaDanhSachVe();
+            } else {
+                list = dao.inDanhSachVe(String.valueOf(cboLoaiVe.getSelectedItem()), String.valueOf(cboPhim.getSelectedItem()), String.valueOf(cboPhongChieu.getSelectedItem()), String.valueOf(cboThoiGianChieu.getSelectedItem()));
+            }
             for (DanhSachVe danhSach : list) {
                 Object[] row = {
                     jTable1.getRowCount() + 1,

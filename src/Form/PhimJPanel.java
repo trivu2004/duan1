@@ -5,6 +5,7 @@
 package Form;
 
 import DAO.PhimDAO;
+import java.awt.Checkbox;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.File;
@@ -18,6 +19,8 @@ import java.util.logging.Logger;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 import javax.swing.ImageIcon;
+import javax.swing.JButton;
+import javax.swing.JCheckBox;
 import javax.swing.JFileChooser;
 import javax.swing.JOptionPane;
 import javax.swing.Timer;
@@ -26,25 +29,27 @@ import model.Phim;
 import model.PhongChieu;
 import raven.toast.Notifications;
 import util.XImange;
+import java.text.Normalizer;
+import java.util.regex.Pattern;
 
 /**
  *
  * @author 123tu
  */
 public class PhimJPanel extends javax.swing.JPanel {
-    
+
     DefaultTableModel model;
     PhimDAO dao = new PhimDAO();
     int row;
     SimpleDateFormat date = new SimpleDateFormat("yyyy-MM-dd");
     JFileChooser fileChooser = new JFileChooser("src\\image");
     String ngay = "^(19|20)\\d\\d-(0[1-9]|1[0-2])-(0[1-9]|[12]\\d|3[01])$";
-    
+
     public PhimJPanel() {
         initComponents();
         fillTable();
         updateStatus();
-        
+
         new Timer(1000, new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -55,7 +60,7 @@ public class PhimJPanel extends javax.swing.JPanel {
             }
         }).start();
     }
-    
+
     public void chonAnh() {
         if (fileChooser.showOpenDialog(this) == JFileChooser.APPROVE_OPTION) {
             File file = fileChooser.getSelectedFile();
@@ -65,7 +70,7 @@ public class PhimJPanel extends javax.swing.JPanel {
             lblHinh.setToolTipText(file.getName());
         }
     }
-    
+
     public void fillTable() {
         model = (DefaultTableModel) tblPhim.getModel();
         model.setRowCount(0);
@@ -95,7 +100,7 @@ public class PhimJPanel extends javax.swing.JPanel {
             e.printStackTrace();
         }
     }
-    
+
     void edit() {
         try {
             String MaPhim = (String) tblPhim.getValueAt(this.row, 1);
@@ -108,7 +113,7 @@ public class PhimJPanel extends javax.swing.JPanel {
             Notifications.getInstance().show(Notifications.Type.INFO, Notifications.Location.TOP_CENTER, "Lỗi truy vấn dữ liệu!");
         }
     }
-    
+
     void updateStatus() {
         boolean edit = this.row >= 0;
         txtMaPhim.setEnabled(!edit);
@@ -116,7 +121,7 @@ public class PhimJPanel extends javax.swing.JPanel {
         btnSua.setEnabled(edit);
         btnXoa.setEnabled(edit);
     }
-    
+
     public void setForm(Phim p) {//Vị trí lên form
         txtDaoDien.setText(p.getDaoDien());
         txtDienVien.setText(p.getDienVien());
@@ -128,7 +133,7 @@ public class PhimJPanel extends javax.swing.JPanel {
         txtNuocSX.setText(p.getNuocSX());
         txtTenPhim.setText(p.getTenPhim());
         txtThoiLuong.setText(String.valueOf(p.getThoiLuong()));
-        
+
         String hinh = p.getHinh();
         if (hinh != null && !hinh.equals("")) {
             lblHinh.setIcon(null);
@@ -137,7 +142,7 @@ public class PhimJPanel extends javax.swing.JPanel {
         }
         chkCaNhac.setSelected(Boolean.parseBoolean(p.getTheLoai()));
     }
-    
+
     public Phim getForm() throws ParseException {//Khi Nhập dữ liệu sẽ nhập lên bảng
         Phim p = new Phim();
         p.setDaoDien(txtDaoDien.getText());
@@ -150,10 +155,10 @@ public class PhimJPanel extends javax.swing.JPanel {
         p.setNuocSX(txtNuocSX.getText());
         p.setTenPhim(txtTenPhim.getText());
         p.setThoiLuong(Integer.parseInt(txtThoiLuong.getText()));
-        if (jpnAnh == null || jpnAnh.getToolTipText() == null || jpnAnh.getToolTipText().isEmpty()) {
+        if (lblHinh == null || lblHinh.getToolTipText() == null || lblHinh.getToolTipText().isEmpty()) {
             p.setHinh("No Avatar");
         } else {
-            p.setHinh(jpnAnh.getToolTipText());
+            p.setHinh(lblHinh.getToolTipText());
         }
         String s = "";
         if (chkCaNhac.isSelected()) {
@@ -174,7 +179,7 @@ public class PhimJPanel extends javax.swing.JPanel {
         if (chkHoatHinh.isSelected()) {
             s = "Hoạt Hình, " + s;
         }
-        if (chkKHVT.isSelected()) {
+        if (chkKhoaHocVienTuong.isSelected()) {
             s = "Khoa Học Viễn Tưởng, " + s;
         }
         if (chkKinhDi.isSelected()) {
@@ -198,14 +203,14 @@ public class PhimJPanel extends javax.swing.JPanel {
         if (chkTrinhTham.isSelected()) {
             s = "Trinh Thám, " + s;
         }
-        
+        s = s.trim();
         if (s.endsWith(",")) {
             s = s.substring(0, s.length() - 1);
         }
         p.setTheLoai(s);
         return p;
     }
-    
+
     public void cleanForm() {
         setForm(new Phim());
         txtNgayCC.setText("");
@@ -215,7 +220,7 @@ public class PhimJPanel extends javax.swing.JPanel {
         row = -1;
         updateStatus();
     }
-    
+
     public void insert() throws ParseException {
         Phim p = getForm();
         try {
@@ -228,7 +233,7 @@ public class PhimJPanel extends javax.swing.JPanel {
             e.printStackTrace();
         }
     }
-    
+
     public void update() throws ParseException {
         Phim pc = getForm();
         try {
@@ -239,7 +244,7 @@ public class PhimJPanel extends javax.swing.JPanel {
         } catch (Exception e) {
         }
     }
-    
+
     public void del() {
         if (txtMaPhim.getText().equals("")) {
             Notifications.getInstance().show(Notifications.Type.INFO, Notifications.Location.TOP_CENTER, "Chưa nhập dữ liệu vào để xóa");
@@ -255,7 +260,7 @@ public class PhimJPanel extends javax.swing.JPanel {
             }
         }
     }
-    
+
     public boolean checkValidate() {
         if (txtMaPhim.getText().isEmpty()) {
             Notifications.getInstance().show(Notifications.Type.INFO, Notifications.Location.TOP_CENTER, "Không để trống mã phim");
@@ -318,7 +323,7 @@ public class PhimJPanel extends javax.swing.JPanel {
             Notifications.getInstance().show(Notifications.Type.INFO, Notifications.Location.TOP_CENTER, "Thời lượng nhập số");
             return false;
         }
-        
+
         Matcher ncc = Pattern.compile(ngay).matcher(txtNgayCC.getText());//Kiểm tra điều kiện định dạng EMail
         if (!ncc.matches()) {//Đảo ngược điều kiện đúng thành sai
             String s = "";
@@ -327,7 +332,7 @@ public class PhimJPanel extends javax.swing.JPanel {
             Notifications.getInstance().show(Notifications.Type.INFO, Notifications.Location.TOP_CENTER, s);
             return false;
         }
-        
+
         Matcher nkt = Pattern.compile(ngay).matcher(txtNgayKT.getText());//Kiểm tra điều kiện định dạng EMail
         if (!nkt.matches()) {//Đảo ngược điều kiện đúng thành sai
             String s = "";
@@ -336,7 +341,7 @@ public class PhimJPanel extends javax.swing.JPanel {
             Notifications.getInstance().show(Notifications.Type.INFO, Notifications.Location.TOP_CENTER, s);
             return false;
         }
-        
+
         try {
             int namsx = Integer.parseInt(txtNamSX.getText());
             if (namsx < 0) {
@@ -348,10 +353,41 @@ public class PhimJPanel extends javax.swing.JPanel {
             Notifications.getInstance().show(Notifications.Type.INFO, Notifications.Location.TOP_CENTER, "Năm sản xuất nhập số");
             return false;
         }
-        
+
         return true;
     }
-    
+
+    void setLoaiPhim() {
+        int rowSelected = tblPhim.getSelectedRow();
+        String loaiPhim = (String) tblPhim.getValueAt(rowSelected, 3);
+        String[] arr = loaiPhim.split(",");
+        for (String string : arr) {
+            setVarible(string).setSelected(true);
+        }
+    }
+
+    JCheckBox setVarible(String string) {
+        try {
+            string = removeDiacritics(string);
+            string = string.replaceAll("\\s+", "");
+            return (JCheckBox) getClass().getDeclaredField("chk" + string.trim()).get(this);
+        } catch (Exception ex) {
+            ex.printStackTrace();
+        }
+        return null;
+    }
+
+    public static String removeDiacritics(String input) {
+        // Sử dụng Normalizer.normalize để chuẩn hóa chuỗi về Unicode
+        String normalized = Normalizer.normalize(input, Normalizer.Form.NFD);
+
+        // Sử dụng biểu thức chính quy để loại bỏ các ký tự không mong muốn (không phải chữ cái)
+        Pattern pattern = Pattern.compile("\\p{InCombiningDiacriticalMarks}+");
+        String result = pattern.matcher(normalized).replaceAll("");
+
+        return result;
+    }
+
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
@@ -390,7 +426,7 @@ public class PhimJPanel extends javax.swing.JPanel {
         chkPhieuLuu = new javax.swing.JCheckBox();
         chkSuThi = new javax.swing.JCheckBox();
         chkTrinhTham = new javax.swing.JCheckBox();
-        chkKHVT = new javax.swing.JCheckBox();
+        chkKhoaHocVienTuong = new javax.swing.JCheckBox();
         chkCaNhac = new javax.swing.JCheckBox();
         chkGiaDinh = new javax.swing.JCheckBox();
         txtDaoDien = new javax.swing.JTextField();
@@ -559,7 +595,7 @@ public class PhimJPanel extends javax.swing.JPanel {
 
         chkTrinhTham.setText("Trinh Thám");
 
-        chkKHVT.setText("Khoa Học Viễn Tưởng");
+        chkKhoaHocVienTuong.setText("Khoa Học Viễn Tưởng");
 
         chkCaNhac.setText("Ca Nhạc");
 
@@ -652,7 +688,7 @@ public class PhimJPanel extends javax.swing.JPanel {
                                         .addComponent(chkChinhKich, javax.swing.GroupLayout.PREFERRED_SIZE, 93, javax.swing.GroupLayout.PREFERRED_SIZE)))
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(chkKHVT)
+                                    .addComponent(chkKhoaHocVienTuong)
                                     .addGroup(jPanel1Layout.createSequentialGroup()
                                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                                             .addComponent(chkTaiLieu, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -739,7 +775,7 @@ public class PhimJPanel extends javax.swing.JPanel {
                                     .addComponent(chkHoatHinh)
                                     .addComponent(chkPhieuLuu)
                                     .addComponent(chkTrinhTham)
-                                    .addComponent(chkKHVT)))
+                                    .addComponent(chkKhoaHocVienTuong)))
                             .addGroup(jPanel1Layout.createSequentialGroup()
                                 .addComponent(jLabel8)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -809,12 +845,13 @@ public class PhimJPanel extends javax.swing.JPanel {
     private void tblPhimMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tblPhimMousePressed
         if (evt.getClickCount() == 2) {
             this.row = tblPhim.rowAtPoint(evt.getPoint());
+            setLoaiPhim();
             edit();
         }
     }//GEN-LAST:event_tblPhimMousePressed
 
     private void lblAnhMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblAnhMousePressed
-        
+
     }//GEN-LAST:event_lblAnhMousePressed
 
     private void btnSuaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSuaActionPerformed
@@ -852,7 +889,6 @@ public class PhimJPanel extends javax.swing.JPanel {
     }//GEN-LAST:event_lblHinhMousePressed
 
 
-
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnMoi;
     private javax.swing.JButton btnSua;
@@ -864,7 +900,7 @@ public class PhimJPanel extends javax.swing.JPanel {
     private javax.swing.JCheckBox chkHaiHuoc;
     private javax.swing.JCheckBox chkHanhDong;
     private javax.swing.JCheckBox chkHoatHinh;
-    private javax.swing.JCheckBox chkKHVT;
+    private javax.swing.JCheckBox chkKhoaHocVienTuong;
     private javax.swing.JCheckBox chkKinhDi;
     private javax.swing.JCheckBox chkLichSu;
     private javax.swing.JCheckBox chkPhieuLuu;
