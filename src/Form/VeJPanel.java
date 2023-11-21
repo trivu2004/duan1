@@ -11,6 +11,7 @@ import Helper.JDBCHelper;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 import javax.swing.Timer;
@@ -71,14 +72,22 @@ public class VeJPanel extends javax.swing.JPanel {
         fillCboThoiGian();
         fillCboPhim();
         fillCboPhongChieu();
+        cboPhim.setSelectedIndex(-1);
+        cboPhongChieu.setSelectedIndex(-1);
+        cboThoiGian.setSelectedIndex(-1);
         fillToTable();
     }
 
     void fillToTable() {
         DefaultTableModel model = (DefaultTableModel) tblSuatChieu.getModel();
         model.setRowCount(0);
+        List<TimVe> list = new ArrayList<>();
         try {
-            List<TimVe> list = daoVe.findTicket(String.valueOf(cboThoiGian.getSelectedItem()), String.valueOf(cboPhongChieu.getSelectedItem()), String.valueOf(cboPhim.getSelectedItem()));
+            if (cboPhim.getSelectedIndex() == -1) {
+                list = daoVe.inTatCaVe();
+            } else {
+                list = daoVe.findTicket(String.valueOf(cboThoiGian.getSelectedItem()), String.valueOf(cboPhongChieu.getSelectedItem()), String.valueOf(cboPhim.getSelectedItem()));
+            }
             for (TimVe timVe : list) {
                 Object[] row = {
                     tblSuatChieu.getRowCount() + 1,
