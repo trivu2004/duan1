@@ -182,7 +182,7 @@ public class LoginForm extends javax.swing.JPanel {
 
     private void lblQuenMatKhauMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblQuenMatKhauMouseClicked
         // TODO add your handling code here:
-//        MainJFrame.quenMatKhauJDialog();
+        MainJFrame.moQuenMatKhau();
     }//GEN-LAST:event_lblQuenMatKhauMouseClicked
 
     private void txtPassKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtPassKeyPressed

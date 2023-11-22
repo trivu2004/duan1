@@ -16,20 +16,7 @@ public class Ve {
     private String loaiVe;
     private double giaVe;
     private String ghe;
-    private Date ngayMua;
-    private String maSC;
-
-    public Ve() {
-    }
-
-    public Ve(String maVe, String loaiVe, double giaVe, String ghe, Date ngayMua, String maSC) {
-        this.maVe = maVe;
-        this.loaiVe = loaiVe;
-        this.giaVe = giaVe;
-        this.ghe = ghe;
-        this.ngayMua = ngayMua;
-        this.maSC = maSC;
-    }
+    private String ngayMua;
 
     public String getMaVe() {
         return maVe;
@@ -63,11 +50,11 @@ public class Ve {
         this.ghe = ghe;
     }
 
-    public Date getNgayMua() {
+    public String getNgayMua() {
         return ngayMua;
     }
 
-    public void setNgayMua(Date ngayMua) {
+    public void setNgayMua(String ngayMua) {
         this.ngayMua = ngayMua;
     }
 
@@ -78,5 +65,19 @@ public class Ve {
     public void setMaSC(String maSC) {
         this.maSC = maSC;
     }
+    private String maSC;
+
+    public Ve(String maVe, String loaiVe, double giaVe, String ghe, String ngayMua, String maSC) {
+        this.maVe = maVe;
+        this.loaiVe = loaiVe;
+        this.giaVe = giaVe;
+        this.ghe = ghe;
+        this.ngayMua = ngayMua;
+        this.maSC = maSC;
+    }
+
+    public Ve() {
+    }
+
 
 }

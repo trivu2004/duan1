@@ -384,11 +384,11 @@ public class TrangChuJPanel extends javax.swing.JPanel {
     }//GEN-LAST:event_lblPhimMouseClicked
 
     private void jpnSuatChieuMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jpnSuatChieuMouseClicked
-        MainJFrame.showForm(new SuatChieuJPanel());
+        MainJFrame.showForm(new SuatChieuJPanel(null));
     }//GEN-LAST:event_jpnSuatChieuMouseClicked
 
     private void lblSuatChieuMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblSuatChieuMouseClicked
-        MainJFrame.showForm(new SuatChieuJPanel());
+        MainJFrame.showForm(new SuatChieuJPanel(null));
     }//GEN-LAST:event_lblSuatChieuMouseClicked
 
     private void jpnVeMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jpnVeMouseClicked

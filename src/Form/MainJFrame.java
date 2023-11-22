@@ -74,15 +74,7 @@ public class MainJFrame extends javax.swing.JFrame {
                     String MatKhau = kq.getString("MatKhau");
                     tenNhanVien = kq.getString("TenNhanVien");
                     // Mã hóa mật khẩu
-                    if (BCryptPasswordHashing.verifyPassword(loginForm.txtPass.getText().trim(), MatKhau)&NhanVienID.equals(loginForm.txtUser.getText())) {      
-                    if (BCryptPasswordHashing.verifyPassword(loginForm.txtPass.getText().trim(), MatKhau) & NhanVienID.equals(loginForm.txtUser.getText().trim())) {
-
                     if (BCryptPasswordHashing.verifyPassword(loginForm.txtPass.getText().trim(), MatKhau) & NhanVienID.equals(loginForm.txtUser.getText())) {
-
-                    if (BCryptPasswordHashing.verifyPassword(loginForm.txtPass.getText().trim(), MatKhau) && NhanVienID.equals(loginForm.txtUser.getText())) {
-
-                    if (BCryptPasswordHashing.verifyPassword(loginForm.txtPass.getText().trim(), MatKhau)&NhanVienID.equals(loginForm.txtUser.getText())) {
-
                         FlatAnimatedLafChange.showSnapshot();
                         app.setContentPane(app.mainForm);
                         app.mainForm.applyComponentOrientation(app.getComponentOrientation());
@@ -97,11 +89,7 @@ public class MainJFrame extends javax.swing.JFrame {
                     }
                 }
 
-                }
-                }
-            }
-                }
-            }catch (Exception e) {
+            } catch (Exception e) {
             }
         } else {
             Notifications.getInstance().show(Notifications.Type.INFO, Notifications.Location.TOP_CENTER, "Vui lòng điền đầy đủ thông tin!");
