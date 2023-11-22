@@ -11,6 +11,7 @@ import Helper.JDBCHelper;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 import javax.swing.Timer;
@@ -33,7 +34,7 @@ public class VeJPanel extends javax.swing.JPanel {
     public VeDAO daoVe = new VeDAO();
     public SuatChieuDAO daoSuatChieu = new SuatChieuDAO();
     public PhimDAO daoPhim = new PhimDAO();
-    public PhongChieuDAO daoPhongChieu= new PhongChieuDAO();
+    public PhongChieuDAO daoPhongChieu = new PhongChieuDAO();
     public String TenPhim = "";
     public String TenPhong = "";
     public String ThoiGianChieu = "";
@@ -71,14 +72,22 @@ public class VeJPanel extends javax.swing.JPanel {
         fillCboThoiGian();
         fillCboPhim();
         fillCboPhongChieu();
+        cboPhim.setSelectedIndex(-1);
+        cboPhongChieu.setSelectedIndex(-1);
+        cboThoiGian.setSelectedIndex(-1);
         fillToTable();
     }
 
     void fillToTable() {
         DefaultTableModel model = (DefaultTableModel) tblSuatChieu.getModel();
         model.setRowCount(0);
+        List<TimVe> list = new ArrayList<>();
         try {
-            List<TimVe> list = daoVe.findTicket(String.valueOf(cboThoiGian.getSelectedItem()), String.valueOf(cboPhongChieu.getSelectedItem()), String.valueOf(cboPhim.getSelectedItem()));
+            if (cboPhim.getSelectedIndex() == -1) {
+                list = daoVe.inTatCaVe();
+            } else {
+                list = daoVe.findTicket(String.valueOf(cboThoiGian.getSelectedItem()), String.valueOf(cboPhongChieu.getSelectedItem()), String.valueOf(cboPhim.getSelectedItem()));
+            }
             for (TimVe timVe : list) {
                 Object[] row = {
                     tblSuatChieu.getRowCount() + 1,
@@ -152,6 +161,7 @@ public class VeJPanel extends javax.swing.JPanel {
         jLabel4 = new javax.swing.JLabel();
         btnDatVe = new javax.swing.JButton();
         cboThoiGian = new javax.swing.JComboBox<>();
+        jButton1 = new javax.swing.JButton();
 
         lblTrangChu.setBackground(new java.awt.Color(0, 0, 0));
         lblTrangChu.setForeground(new java.awt.Color(255, 51, 51));
@@ -265,31 +275,40 @@ public class VeJPanel extends javax.swing.JPanel {
         }
     });
 
+    jButton1.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+    jButton1.setText("Danh Sách Vé");
+    jButton1.addActionListener(new java.awt.event.ActionListener() {
+        public void actionPerformed(java.awt.event.ActionEvent evt) {
+            jButton1ActionPerformed(evt);
+        }
+    });
+
     javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
     this.setLayout(layout);
     layout.setHorizontalGroup(
         layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
         .addComponent(lblTrangChu, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         .addGroup(layout.createSequentialGroup()
+            .addGap(25, 25, 25)
             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 1246, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGroup(layout.createSequentialGroup()
-                    .addGap(25, 25, 25)
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                        .addComponent(jLabel4)
+                        .addComponent(jLabel11)
+                        .addComponent(cboPhongChieu, 0, 455, Short.MAX_VALUE)
+                        .addComponent(cboThoiGian, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addGap(60, 60, 60)
                     .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 1246, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGroup(layout.createSequentialGroup()
-                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                .addComponent(jLabel4)
-                                .addComponent(jLabel11)
-                                .addComponent(cboPhongChieu, 0, 455, Short.MAX_VALUE)
-                                .addComponent(cboThoiGian, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                            .addGap(60, 60, 60)
-                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                .addComponent(jLabel2)
-                                .addComponent(cboPhim, javax.swing.GroupLayout.PREFERRED_SIZE, 455, javax.swing.GroupLayout.PREFERRED_SIZE)))))
-                .addGroup(layout.createSequentialGroup()
-                    .addGap(555, 555, 555)
-                    .addComponent(btnDatVe, javax.swing.GroupLayout.PREFERRED_SIZE, 174, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addComponent(jLabel2)
+                        .addComponent(cboPhim, javax.swing.GroupLayout.PREFERRED_SIZE, 455, javax.swing.GroupLayout.PREFERRED_SIZE))))
             .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+        .addGroup(layout.createSequentialGroup()
+            .addGap(555, 555, 555)
+            .addComponent(btnDatVe, javax.swing.GroupLayout.PREFERRED_SIZE, 174, javax.swing.GroupLayout.PREFERRED_SIZE)
+            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 163, javax.swing.GroupLayout.PREFERRED_SIZE)
+            .addGap(16, 16, 16))
     );
     layout.setVerticalGroup(
         layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -310,7 +329,9 @@ public class VeJPanel extends javax.swing.JPanel {
             .addGap(18, 18, 18)
             .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 362, Short.MAX_VALUE)
             .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-            .addComponent(btnDatVe)
+            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                .addComponent(btnDatVe)
+                .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE))
             .addGap(51, 51, 51))
     );
     }// </editor-fold>//GEN-END:initComponents
@@ -359,12 +380,18 @@ public class VeJPanel extends javax.swing.JPanel {
         }
     }//GEN-LAST:event_tblSuatChieuMouseClicked
 
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        // TODO add your handling code here:
+        MainJFrame.showForm(new DanhSachVeJPanel());
+    }//GEN-LAST:event_jButton1ActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnDatVe;
     private javax.swing.JComboBox<String> cboPhim;
     private javax.swing.JComboBox<String> cboPhongChieu;
     private javax.swing.JComboBox<String> cboThoiGian;
+    private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
     private javax.swing.JLabel jLabel2;

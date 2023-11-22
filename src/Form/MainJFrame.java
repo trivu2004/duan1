@@ -84,11 +84,13 @@ public class MainJFrame extends javax.swing.JFrame {
                         FlatAnimatedLafChange.hideSnapshotWithAnimation();
                         Notifications.getInstance().show(Notifications.Type.INFO, Notifications.Location.TOP_CENTER, "Chào mừng! " + NhanVienID);
                         return;
-                    } else {
-                        Notifications.getInstance().show(Notifications.Type.INFO, Notifications.Location.TOP_CENTER, "Sai tài khoản hoặc mật khẩu !");
                     }
                 }
+<<<<<<< HEAD
 
+=======
+                Notifications.getInstance().show(Notifications.Type.INFO, Notifications.Location.TOP_CENTER, "Sai tài khoản hoặc mật khẩu !");
+>>>>>>> a878d5e220498b2e21e08d60e7b2777379e86d84
             } catch (Exception e) {
             }
         } else {

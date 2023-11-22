@@ -79,7 +79,7 @@
                                   </Group>
                                   <EmptySpace max="-2" attributes="0"/>
                                   <Group type="103" groupAlignment="0" attributes="0">
-                                      <Component id="chkKHVT" alignment="0" min="-2" max="-2" attributes="0"/>
+                                      <Component id="chkKhoaHocVienTuong" alignment="0" min="-2" max="-2" attributes="0"/>
                                       <Group type="102" alignment="0" attributes="0">
                                           <Group type="103" groupAlignment="0" max="-2" attributes="0">
                                               <Component id="chkTaiLieu" max="32767" attributes="0"/>
@@ -189,7 +189,7 @@
                                       <Component id="chkHoatHinh" alignment="3" min="-2" max="-2" attributes="0"/>
                                       <Component id="chkPhieuLuu" alignment="3" min="-2" max="-2" attributes="0"/>
                                       <Component id="chkTrinhTham" alignment="3" min="-2" max="-2" attributes="0"/>
-                                      <Component id="chkKHVT" alignment="3" min="-2" max="-2" attributes="0"/>
+                                      <Component id="chkKhoaHocVienTuong" alignment="3" min="-2" max="-2" attributes="0"/>
                                   </Group>
                               </Group>
                               <Group type="102" attributes="0">
@@ -565,7 +565,7 @@
             <Property name="text" type="java.lang.String" value="Trinh Th&#xe1;m"/>
           </Properties>
         </Component>
-        <Component class="javax.swing.JCheckBox" name="chkKHVT">
+        <Component class="javax.swing.JCheckBox" name="chkKhoaHocVienTuong">
           <Properties>
             <Property name="text" type="java.lang.String" value="Khoa H&#x1ecd;c Vi&#x1ec5;n T&#x1b0;&#x1edf;ng"/>
           </Properties>

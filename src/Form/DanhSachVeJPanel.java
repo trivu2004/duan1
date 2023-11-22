@@ -8,11 +8,11 @@ import DAO.PhimDAO;
 import DAO.PhongChieuDAO;
 import DAO.SuatChieuDAO;
 import DAO.VeDAO;
-import static Form.MainJFrame.tenNhanVien;
 import Helper.JDBCHelper;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 import javax.swing.Timer;
@@ -21,6 +21,7 @@ import model.DanhSachVe;
 import model.Phim;
 import model.PhongChieu;
 import model.SuatChieu;
+import model.TimVe;
 import raven.toast.Notifications;
 
 /**
@@ -49,17 +50,26 @@ public class DanhSachVeJPanel extends javax.swing.JPanel {
                 lblDongHo.setText(text);
             }
         }).start();
-        fillToTable();
         fillCboPhim();
         fillCboPhongChieu();
         fillCboThoiGianChieu();
+        cboLoaiVe.setSelectedIndex(-1);
+        cboPhim.setSelectedIndex(-1);
+        cboPhongChieu.setSelectedIndex(-1);
+        cboThoiGianChieu.setSelectedIndex(-1);
+        fillToTable();
     }
 
     void fillToTable() {
         DefaultTableModel model = (DefaultTableModel) jTable1.getModel();
         model.setRowCount(0);
+        List<DanhSachVe> list = new ArrayList<>();
         try {
-            List<DanhSachVe> list = dao.inDanhSachVe(String.valueOf(cboLoaiVe.getSelectedItem()), String.valueOf(cboPhim.getSelectedItem()), String.valueOf(cboPhongChieu.getSelectedItem()), String.valueOf(cboThoiGianChieu.getSelectedItem()));
+            if (cboLoaiVe.getSelectedIndex() == -1) {
+                list = dao.inTatCaDanhSachVe();
+            } else {
+                list = dao.inDanhSachVe(String.valueOf(cboLoaiVe.getSelectedItem()), String.valueOf(cboPhim.getSelectedItem()), String.valueOf(cboPhongChieu.getSelectedItem()), String.valueOf(cboThoiGianChieu.getSelectedItem()));
+            }
             for (DanhSachVe danhSach : list) {
                 Object[] row = {
                     jTable1.getRowCount() + 1,
@@ -89,6 +99,8 @@ public class DanhSachVeJPanel extends javax.swing.JPanel {
             }
         } catch (Exception e) {
             e.printStackTrace();
+        } finally {
+            JDBCHelper.closeConnection();
         }
     }
 
@@ -100,6 +112,8 @@ public class DanhSachVeJPanel extends javax.swing.JPanel {
             }
         } catch (Exception e) {
             e.printStackTrace();
+        } finally {
+            JDBCHelper.closeConnection();
         }
     }
 
@@ -111,6 +125,8 @@ public class DanhSachVeJPanel extends javax.swing.JPanel {
             }
         } catch (Exception e) {
             e.printStackTrace();
+        } finally {
+            JDBCHelper.closeConnection();
         }
     }
 
@@ -125,7 +141,21 @@ public class DanhSachVeJPanel extends javax.swing.JPanel {
         String viTriGhe = (String) jTable1.getValueAt(selcetedRow, 5);
         double tongTien = Double.valueOf(String.valueOf(jTable1.getValueAt(selcetedRow, 7)));
         veXemPhim.inVeXemPhimPDF(tenFile, tenNhanVien, tenPhim, suatChieu, phongChieu, viTriGhe, tongTien);
-        System.out.println("d");
+        Notifications.getInstance().show(Notifications.Type.INFO, Notifications.Location.TOP_CENTER, "In Vé Thành Công!");
+    }
+
+    void xoaVe() {
+        int selcetedRow = jTable1.getSelectedRow();
+        try {
+            if (selcetedRow != -1) {
+                dao.delete((String) jTable1.getValueAt(selcetedRow, 1));
+                fillToTable();
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally {
+            JDBCHelper.closeConnection();
+        }
     }
 
     /**
@@ -259,6 +289,11 @@ public class DanhSachVeJPanel extends javax.swing.JPanel {
 
         btnSuatChieu.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
         btnSuatChieu.setText("Cập Nhật");
+        btnSuatChieu.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnSuatChieuActionPerformed(evt);
+            }
+        });
 
         btnThemVe.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
         btnThemVe.setText("Thêm Vé");
@@ -377,6 +412,11 @@ public class DanhSachVeJPanel extends javax.swing.JPanel {
         // TODO add your handling code here:
         inVe();
     }//GEN-LAST:event_jButton1ActionPerformed
+
+    private void btnSuatChieuActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSuatChieuActionPerformed
+        // TODO add your handling code here:
+        xoaVe();
+    }//GEN-LAST:event_btnSuatChieuActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
