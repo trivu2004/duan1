@@ -179,11 +179,8 @@ public class PhimJPanel extends javax.swing.JPanel {
         if (chkHoatHinh.isSelected()) {
             s = "Hoạt Hình," + s;
         }
-<<<<<<< HEAD
         if (chkKhoaHocVienTuong.isSelected()) {
             s = "Khoa Học Viễn Tưởng," + s;
-=======
->>>>>>> e96c9265ab41b3113d3152fedc53005d1c75eca0
         if (chkKhoaHocVienTuong.isSelected()) {
             s = "Khoa Học Viễn Tưởng, " + s;
         }
