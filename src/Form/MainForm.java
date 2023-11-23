@@ -76,7 +76,7 @@ public class MainForm extends JLayeredPane {
             } else if (index == 3) {
                 MainJFrame.showForm(new PhimJPanel());
             } else if (index == 4) {
-                MainJFrame.showForm(new SuatChieuJPanel());
+                MainJFrame.showForm(new SuatChieuJPanel(null));
             } else if (index == 5) {
                 MainJFrame.showForm(new VeJPanel());
             } else if (index == 6) {

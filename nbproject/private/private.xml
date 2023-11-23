@@ -1,9 +1,28 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project-private xmlns="http://www.netbeans.org/ns/project-private/1">
-    <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
+    <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="1">
+        <file>
+            <url>src/DAO/SuatChieuDAO.java</url>
+            <bookmark id="1">
+                <name/>
+                <line>155</line>
+                <key/>
+            </bookmark>
+        </file>
+    </editor-bookmarks>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/D:/DuAn_1/duan1/src/Form/MainJFrame.java</file>
+<<<<<<< HEAD
+            <file>file:/E:/DuAn1/src/Form/SuatChieuJPanel.java</file>
+            <file>file:/E:/DuAn1/src/Form/TrangChuJPanel.java</file>
+            <file>file:/E:/DuAn1/src/Form/MainJFrame.java</file>
+            <file>file:/E:/DuAn1/src/DAO/SuatChieuDAO.java</file>
+=======
+            <file>file:/C:/Users/DELL/Documents/NetBeansProjects/duan1/src/Form/LoginForm.java</file>
+            <file>file:/C:/Users/DELL/Documents/NetBeansProjects/duan1/src/Form/QuenMatKhauJDialog.java</file>
+            <file>file:/C:/Users/DELL/Documents/NetBeansProjects/duan1/src/Form/MainJFrame.java</file>
+            <file>file:/C:/Users/DELL/Documents/NetBeansProjects/duan1/src/Form/MainForm.java</file>
+>>>>>>> a878d5e220498b2e21e08d60e7b2777379e86d84
         </group>
     </open-files>
 </project-private>

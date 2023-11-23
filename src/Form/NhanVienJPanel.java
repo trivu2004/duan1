@@ -1,6 +1,5 @@
 package Form;
 
-
 import DAO.NhanVienDAO;
 import static Form.MainJFrame.tenNhanVien;
 import Helper.Auth;
@@ -142,8 +141,13 @@ public class NhanVienJPanel extends javax.swing.JPanel {
         if (confirm.equals(model.getMatKhau())) {
             try {
                 dao.update(model);
+<<<<<<< HEAD
                 fillTable();
                 clearForm();
+=======
+                this.clearForm();
+                this.fillTable();
+>>>>>>> f8e51966d0eb9d9c369bbb629880f3f931daaf98
                 Notifications.getInstance().show(Notifications.Type.INFO, Notifications.Location.TOP_CENTER, "Cập nhật Nhân viên thành công!");
             } catch (Exception e) {
                 Notifications.getInstance().show(Notifications.Type.INFO, Notifications.Location.TOP_CENTER, "Cập nhật thất bại!");
@@ -242,7 +246,7 @@ public class NhanVienJPanel extends javax.swing.JPanel {
         jScrollPane1.setViewportView(tblNhanVien);
 
         cboGioiTinh.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
-        cboGioiTinh.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Nam", "Nữ", " " }));
+        cboGioiTinh.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Nam", "Nữ" }));
 
         btnThem.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
         btnThem.setText("Thêm");
@@ -481,7 +485,7 @@ public class NhanVienJPanel extends javax.swing.JPanel {
     }//GEN-LAST:event_btnXoaActionPerformed
 
     private void tblNhanVienMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tblNhanVienMouseClicked
-        
+
     }//GEN-LAST:event_tblNhanVienMouseClicked
 
     private void tblNhanVienMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tblNhanVienMousePressed

@@ -91,6 +91,15 @@ public class LoginForm extends javax.swing.JPanel {
 
         lblQuenMatKhau.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         lblQuenMatKhau.setText("Quên mật khẩu?");
+        lblQuenMatKhau.addAncestorListener(new javax.swing.event.AncestorListener() {
+            public void ancestorAdded(javax.swing.event.AncestorEvent evt) {
+                lblQuenMatKhauAncestorAdded(evt);
+            }
+            public void ancestorMoved(javax.swing.event.AncestorEvent evt) {
+            }
+            public void ancestorRemoved(javax.swing.event.AncestorEvent evt) {
+            }
+        });
         lblQuenMatKhau.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 lblQuenMatKhauMouseClicked(evt);
@@ -191,6 +200,10 @@ public class LoginForm extends javax.swing.JPanel {
             MainJFrame.login();
         }
     }//GEN-LAST:event_txtPassKeyPressed
+
+    private void lblQuenMatKhauAncestorAdded(javax.swing.event.AncestorEvent evt) {//GEN-FIRST:event_lblQuenMatKhauAncestorAdded
+        // TODO add your handling code here:
+    }//GEN-LAST:event_lblQuenMatKhauAncestorAdded
 
     private class LoginFormLayout implements LayoutManager {
 

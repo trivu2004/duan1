@@ -4,6 +4,12 @@
  */
 package Form;
 
+import DAO.SuatChieuDAO;
+import static DAO.SuatChieuDAO.fillPhim;
+import static DAO.SuatChieuDAO.fillPhong;
+import static DAO.SuatChieuDAO.fillQuanLy;
+import static DAO.SuatChieuDAO.fillTable1;
+import Helper.JDBCHelper;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.sql.PreparedStatement;
@@ -14,71 +20,16 @@ import javax.swing.Timer;
 import javax.swing.table.DefaultTableModel;
 import raven.toast.Notifications;
 
-/**
- *
- * @author 123tu
- */
 public class SuatChieuJPanel extends javax.swing.JPanel {
 
-    /**
-     * Creates new form SuatChieuJPanel
-     */
-    
-//    void fillTable() {
-//        DefaultTableModel model = (DefaultTableModel) tblSuatChieu.getModel();
-//        model.setRowCount(0);
-//        int stt = 1;
-//        try {
-//            String sql = "select * from SuatChieu";
-//            PreparedStatement st = DataBaseConnection.getConnection().prepareStatement(sql);
-//            ResultSet kq = st.executeQuery();
-//            while (kq.next()) {
-//                String suatchieuid = kq.getString("SuatChieuID");
-//                String phongid = kq.getString("PhongID");
-//                String phimID = kq.getString("PhimID");
-//                String thoigianbatdau = kq.getString("ThoiGianBatDau");
-//                String thoigianketthuc = kq.getString("ThoiGianKetThuc");
-//                String nhanvienid = kq.getString("NhanVienID");
-//                Object[] data = {stt++, suatchieuid, phongid, phimID, thoigianbatdau, thoigianketthuc, nhanvienid};
-//                model.addRow(data);
-//            }
-//        } catch (Exception e) {
-//            e.printStackTrace();
-//        }
-//    }
-//
-//    void insert() {
-//        try {
-//            String sql = "insert into SuatChieu values(?,?,?,?,?,?)";
-//            PreparedStatement st = DataBaseConnection.getConnection().prepareStatement(sql);
-//            st.setString(1, txtMaSC.getText());
-//            st.setString(2, (String) cboPhim.getSelectedItem());
-//            st.setString(3, (String) cboPhongChieu.getSelectedItem());
-//            st.setString(4, txtTGBatDau.getText());
-//            st.setString(5, txtTGKetThuc.getText());
-//            st.setString(6, txtTGKetThuc1.getText());
-//            st.executeUpdate();
-//            fillTable();
-//            Notifications.getInstance().show(Notifications.Type.INFO, Notifications.Location.TOP_CENTER, "Thêm thành công !");
-//        } catch (Exception e) {
-//            e.printStackTrace();
-//        }
-//    }
-//    void delete(){
-//        try {
-//            String sql = "delete * from SuatChieu where SuatChieuID = ?";
-//            PreparedStatement st = Helper.JDBCHelper.getConnection().prepareStatement(sql);
-//            st.setString(1, txtMaSC.getText());
-//            st.executeUpdate();
-//            fillTable();
-//            Notifications.getInstance().show(Notifications.Type.INFO, Notifications.Location.TOP_CENTER, "Xóa thành công !");
-//        } catch (Exception e) {
-//        }
-//    }
+    SuatChieuDAO sc;
 
-    public SuatChieuJPanel() {
+    public SuatChieuJPanel(SuatChieuDAO dao) {
         initComponents();
-//        fillTable();
+        fillTable1(tblSuatChieu);
+        fillPhim(cboPhim);
+        fillPhong(cboPhongChieu);
+        fillQuanLy(cboQuanLy);
         new Timer(1000, new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -88,6 +39,71 @@ public class SuatChieuJPanel extends javax.swing.JPanel {
                 lblDongHo.setText(text);
             }
         }).start();
+    }
+
+    public void insert1() {
+        try {
+            String sql = "insert into SuatChieu values(?,?,?,?,?,?)";
+            PreparedStatement st = JDBCHelper.prepareStatement(sql);
+            st.setString(1, txtMaSC.getText());
+            st.setString(2, (String) cboPhongChieu.getSelectedItem());
+            st.setString(3, (String) cboPhim.getSelectedItem());
+            st.setString(4, txtTGBatDau.getText());
+            st.setString(5, txtTGKetThuc.getText());
+            st.setString(6, (String) cboQuanLy.getSelectedItem());
+            st.executeUpdate();
+            fillTable1(tblSuatChieu);
+            Notifications.getInstance().show(Notifications.Type.INFO, Notifications.Location.TOP_CENTER, "Thêm thành công !");
+            clear();
+            st.close();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+    public void delete1() {
+        try {
+            String sql = "delete from SuatChieu where SuatChieuID = ?";
+            PreparedStatement st = JDBCHelper.prepareStatement(sql);
+            st.setString(1, txtMaSC.getText());
+            st.executeUpdate();
+            fillTable1(tblSuatChieu);
+            Notifications.getInstance().show(Notifications.Type.INFO, Notifications.Location.TOP_CENTER, "Xóa thành công !");
+            clear();
+            st.close();
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+    public void clear() {
+        txtMaSC.setText("");
+        cboPhim.setSelectedItem("");
+        cboPhongChieu.setSelectedItem("");
+        cboQuanLy.setSelectedItem("");
+        txtTGBatDau.setText("");
+        txtTGKetThuc.setText("");
+    }
+
+    public void update() {
+        try {
+            String sql = "UPDATE SuatChieu SET PhongID=?, PhimID=?, ThoiGianBatDau=?, ThoiGianKetThuc=?, NhanVienID=? WHERE SuatChieuID=?";
+            PreparedStatement st = JDBCHelper.prepareStatement(sql);
+            st.setString(1, (String) cboPhongChieu.getSelectedItem());
+            st.setString(2, (String) cboPhim.getSelectedItem());
+            st.setString(3, txtTGBatDau.getText());
+            st.setString(4, txtTGKetThuc.getText());
+            st.setString(5, (String) cboQuanLy.getSelectedItem());
+            st.setString(6, txtMaSC.getText());
+            st.executeUpdate();
+            fillTable1(tblSuatChieu);
+            Notifications.getInstance().show(Notifications.Type.INFO, Notifications.Location.TOP_CENTER, "Sửa thành công !");
+            clear();
+            st.close();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 
     /**
@@ -112,7 +128,7 @@ public class SuatChieuJPanel extends javax.swing.JPanel {
         txtMaSC = new javax.swing.JTextField();
         cboPhim = new javax.swing.JComboBox<>();
         jLabel11 = new javax.swing.JLabel();
-        cboPhongChieu = new javax.swing.JComboBox<>();
+        cboQuanLy = new javax.swing.JComboBox<>();
         jLabel12 = new javax.swing.JLabel();
         txtTGKetThuc = new javax.swing.JTextField();
         btnThem = new javax.swing.JButton();
@@ -120,7 +136,9 @@ public class SuatChieuJPanel extends javax.swing.JPanel {
         btnXoa = new javax.swing.JButton();
         btnMoi = new javax.swing.JButton();
         jLabel13 = new javax.swing.JLabel();
-        txtTGKetThuc1 = new javax.swing.JTextField();
+        cboPhongChieu = new javax.swing.JComboBox<>();
+        lblPhim = new javax.swing.JLabel();
+        lblPhongChieu = new javax.swing.JLabel();
 
         jPanel2.setBackground(new java.awt.Color(0, 0, 0));
         jPanel2.setForeground(new java.awt.Color(255, 51, 51));
@@ -181,9 +199,18 @@ public class SuatChieuJPanel extends javax.swing.JPanel {
                 {null, null, null, null, null, null, null}
             },
             new String [] {
+<<<<<<< HEAD
                 "STT", "Mã Suất Chiếu", "Tên Phim", "Phòng Chiếu", "Thời Gian Bắt Đầu", "Thời Gian Kết Thúc", "Người Quản Lý"
+=======
+                "STT", "Mã Suất Chiếu", "Phòng Chiếu", "Tên Phim", "Thời Gian Bắt Đầu", "Thời Gian Kết Thúc", "Người Quản Lý"
+>>>>>>> f8e51966d0eb9d9c369bbb629880f3f931daaf98
             }
         ));
+        tblSuatChieu.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                tblSuatChieuMouseClicked(evt);
+            }
+        });
         jScrollPane1.setViewportView(tblSuatChieu);
 
         jLabel1.setFont(new java.awt.Font("Segoe UI", 0, 20)); // NOI18N
@@ -194,17 +221,33 @@ public class SuatChieuJPanel extends javax.swing.JPanel {
         jLabel2.setFont(new java.awt.Font("Segoe UI", 0, 20)); // NOI18N
         jLabel2.setText("Chọn Phim:");
 
+<<<<<<< HEAD
         txtMaSC.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
 
         cboPhim.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
         cboPhim.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "P001" }));
+=======
+        cboPhim.addItemListener(new java.awt.event.ItemListener() {
+            public void itemStateChanged(java.awt.event.ItemEvent evt) {
+                cboPhimItemStateChanged(evt);
+            }
+        });
+        cboPhim.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                cboPhimMouseClicked(evt);
+            }
+        });
+>>>>>>> f8e51966d0eb9d9c369bbb629880f3f931daaf98
 
         jLabel11.setFont(new java.awt.Font("Segoe UI", 0, 20)); // NOI18N
         jLabel11.setText("Chọn Phòng Chiếu:");
 
+<<<<<<< HEAD
         cboPhongChieu.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
         cboPhongChieu.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "M001" }));
 
+=======
+>>>>>>> f8e51966d0eb9d9c369bbb629880f3f931daaf98
         jLabel12.setFont(new java.awt.Font("Segoe UI", 0, 20)); // NOI18N
         jLabel12.setText("Thời Gian Kết Thúc:");
 
@@ -220,6 +263,11 @@ public class SuatChieuJPanel extends javax.swing.JPanel {
 
         btnSua.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
         btnSua.setText("Sửa");
+        btnSua.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnSuaActionPerformed(evt);
+            }
+        });
 
         btnXoa.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
         btnXoa.setText("Xóa ");
@@ -235,7 +283,11 @@ public class SuatChieuJPanel extends javax.swing.JPanel {
         jLabel13.setFont(new java.awt.Font("Segoe UI", 0, 20)); // NOI18N
         jLabel13.setText("Người Quản Lý:");
 
-        txtTGKetThuc1.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+        cboPhongChieu.addItemListener(new java.awt.event.ItemListener() {
+            public void itemStateChanged(java.awt.event.ItemEvent evt) {
+                cboPhongChieuItemStateChanged(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
@@ -245,16 +297,41 @@ public class SuatChieuJPanel extends javax.swing.JPanel {
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addGap(20, 20, 20)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+<<<<<<< HEAD
                     .addComponent(jLabel13)
                     .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                         .addComponent(txtTGKetThuc1, javax.swing.GroupLayout.PREFERRED_SIZE, 455, javax.swing.GroupLayout.PREFERRED_SIZE)
+=======
+                    .addGroup(layout.createSequentialGroup()
+                        .addContainerGap()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel13)
+                            .addGroup(layout.createSequentialGroup()
+                                .addGap(8, 8, 8)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(cboQuanLy, javax.swing.GroupLayout.PREFERRED_SIZE, 455, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addGroup(layout.createSequentialGroup()
+                                        .addComponent(btnThem, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                        .addComponent(btnXoa, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                        .addComponent(btnSua, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                        .addComponent(btnMoi, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE))))))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(20, 20, 20)
+>>>>>>> f8e51966d0eb9d9c369bbb629880f3f931daaf98
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addComponent(jLabel4)
                             .addComponent(jLabel1)
-                            .addComponent(jLabel2)
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(jLabel2)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(lblPhim))
                             .addComponent(txtTGBatDau)
                             .addComponent(txtMaSC)
                             .addComponent(cboPhim, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+<<<<<<< HEAD
                             .addComponent(jLabel11)
                             .addComponent(cboPhongChieu, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(jLabel12)
@@ -267,6 +344,15 @@ public class SuatChieuJPanel extends javax.swing.JPanel {
                         .addComponent(btnSua, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(btnMoi, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)))
+=======
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(jLabel11)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(lblPhongChieu))
+                            .addComponent(jLabel12)
+                            .addComponent(txtTGKetThuc, javax.swing.GroupLayout.PREFERRED_SIZE, 455, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(cboPhongChieu, javax.swing.GroupLayout.Alignment.TRAILING, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
+>>>>>>> f8e51966d0eb9d9c369bbb629880f3f931daaf98
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 18, Short.MAX_VALUE)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 778, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
@@ -282,14 +368,18 @@ public class SuatChieuJPanel extends javax.swing.JPanel {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(txtMaSC, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
-                        .addComponent(jLabel2)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jLabel2)
+                            .addComponent(lblPhim))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(cboPhim, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
-                        .addComponent(jLabel11)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jLabel11)
+                            .addComponent(lblPhongChieu))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(cboPhongChieu, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(18, 18, 18)
+                        .addGap(12, 12, 12)
                         .addComponent(jLabel4)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(txtTGBatDau, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -299,9 +389,15 @@ public class SuatChieuJPanel extends javax.swing.JPanel {
                         .addComponent(txtTGKetThuc, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
                         .addComponent(jLabel13)
+<<<<<<< HEAD
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(txtTGKetThuc1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(42, 42, 42)
+=======
+                        .addGap(18, 18, 18)
+                        .addComponent(cboQuanLy, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(23, 23, 23)
+>>>>>>> f8e51966d0eb9d9c369bbb629880f3f931daaf98
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(btnThem)
                             .addComponent(btnXoa)
@@ -314,7 +410,7 @@ public class SuatChieuJPanel extends javax.swing.JPanel {
 
     private void btnThemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnThemActionPerformed
         // TODO add your handling code here:
-//        insert();
+        insert1();
     }//GEN-LAST:event_btnThemActionPerformed
 
     private void lblTrangChuMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblTrangChuMouseClicked
@@ -323,8 +419,72 @@ public class SuatChieuJPanel extends javax.swing.JPanel {
 
     private void btnXoaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnXoaActionPerformed
         // TODO add your handling code here:
-//        delete();
+        delete1();
     }//GEN-LAST:event_btnXoaActionPerformed
+
+    private void cboPhimMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_cboPhimMouseClicked
+        // TODO add your handling code here:
+
+    }//GEN-LAST:event_cboPhimMouseClicked
+
+    private void tblSuatChieuMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tblSuatChieuMouseClicked
+        // TODO add your handling code here:
+        if (evt.getClickCount() == 1) {
+            int selectedRow = tblSuatChieu.getSelectedRow();
+            if (selectedRow != -1) {
+
+                String data1 = tblSuatChieu.getValueAt(selectedRow, 1).toString();
+                String data2 = (String) tblSuatChieu.getValueAt(selectedRow, 3);
+                String data3 = (String) tblSuatChieu.getValueAt(selectedRow, 2);
+                String data4 = (String) tblSuatChieu.getValueAt(selectedRow, 4);
+                String data5 = (String) tblSuatChieu.getValueAt(selectedRow, 5);
+                String data6 = (String) tblSuatChieu.getValueAt(selectedRow, 6);
+
+                txtMaSC.setText(data1);
+                cboPhim.setSelectedItem(data2);
+                cboPhongChieu.setSelectedItem(data3);
+                txtTGBatDau.setText(data4);
+                txtTGKetThuc.setText(data5);
+                cboQuanLy.setSelectedItem(data6);
+
+            }
+        }
+    }//GEN-LAST:event_tblSuatChieuMouseClicked
+
+    private void btnSuaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSuaActionPerformed
+        // TODO add your handling code here:
+        update();
+    }//GEN-LAST:event_btnSuaActionPerformed
+
+    private void cboPhimItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_cboPhimItemStateChanged
+        // TODO add your handling code here:
+        try {
+            String sql = "select TenPhim from Phim\n"
+                    + "where PhimID = ? ";
+            PreparedStatement st = JDBCHelper.prepareStatement(sql);
+            st.setString(1, (String) cboPhim.getSelectedItem());
+            ResultSet rs = st.executeQuery();
+            while (rs.next()) {
+                lblPhim.setText(rs.getString("TenPhim"));
+            }
+        } catch (Exception e) {
+        }
+    }//GEN-LAST:event_cboPhimItemStateChanged
+
+    private void cboPhongChieuItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_cboPhongChieuItemStateChanged
+        // TODO add your handling code here:
+        try {
+            String sql = "select TenPhong from PhongChieu\n"
+                    + "where PhongID = ? ";
+            PreparedStatement st = JDBCHelper.prepareStatement(sql);
+            st.setString(1, (String) cboPhongChieu.getSelectedItem());
+            ResultSet rs = st.executeQuery();
+            while (rs.next()) {
+                lblPhongChieu.setText(rs.getString("TenPhong"));
+            }
+        } catch (Exception e) {
+        }
+    }//GEN-LAST:event_cboPhongChieuItemStateChanged
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -332,8 +492,9 @@ public class SuatChieuJPanel extends javax.swing.JPanel {
     private javax.swing.JButton btnSua;
     private javax.swing.JButton btnThem;
     private javax.swing.JButton btnXoa;
-    private javax.swing.JComboBox<String> cboPhim;
-    private javax.swing.JComboBox<String> cboPhongChieu;
+    public javax.swing.JComboBox<String> cboPhim;
+    public javax.swing.JComboBox<String> cboPhongChieu;
+    public javax.swing.JComboBox<String> cboQuanLy;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel11;
     private javax.swing.JLabel jLabel12;
@@ -344,11 +505,12 @@ public class SuatChieuJPanel extends javax.swing.JPanel {
     private javax.swing.JPanel jPanel2;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JLabel lblDongHo;
+    private javax.swing.JLabel lblPhim;
+    private javax.swing.JLabel lblPhongChieu;
     private javax.swing.JLabel lblTrangChu;
-    private javax.swing.JTable tblSuatChieu;
-    private javax.swing.JTextField txtMaSC;
-    private javax.swing.JTextField txtTGBatDau;
-    private javax.swing.JTextField txtTGKetThuc;
-    private javax.swing.JTextField txtTGKetThuc1;
+    public javax.swing.JTable tblSuatChieu;
+    public javax.swing.JTextField txtMaSC;
+    public javax.swing.JTextField txtTGBatDau;
+    public javax.swing.JTextField txtTGKetThuc;
     // End of variables declaration//GEN-END:variables
 }

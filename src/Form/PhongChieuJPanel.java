@@ -10,6 +10,7 @@ import javax.swing.JOptionPane;
 import javax.swing.Timer;
 import javax.swing.table.DefaultTableModel;
 import model.PhongChieu;
+import raven.toast.Notifications;
 
 public class PhongChieuJPanel extends javax.swing.JPanel {
 
@@ -61,6 +62,29 @@ public class PhongChieuJPanel extends javax.swing.JPanel {
         pc.setTinhTrang(tblPhongChieu.getValueAt(pos, 4).toString());
 
         return pc;
+
+    }
+    
+    void edit() {
+        try {
+            String maPC = (String) tblPhongChieu.getValueAt(this.row, 1);
+            PhongChieu model = dao.selectById(maPC);
+            if (model != null) {
+                setForm(model);
+                updateStatus();
+            }
+        } catch (Exception e) {
+            Notifications.getInstance().show(Notifications.Type.INFO, Notifications.Location.TOP_CENTER, "Lỗi truy vấn dữ liệu!");
+        }
+    }
+    
+    void updateStatus() {
+        boolean edit = this.row >= 0;
+        txtMaPhong.setEnabled(!edit);
+        btnThem.setEnabled(!edit);
+        btnSua.setEnabled(edit);
+        btnXoa.setEnabled(edit);
+
     }
 
 //Vị trí lên form
