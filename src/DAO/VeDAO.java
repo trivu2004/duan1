@@ -8,6 +8,7 @@ import Helper.JDBCHelper;
 import java.sql.ResultSet;
 import java.util.ArrayList;
 import java.util.List;
+import model.BieuDoDoanhThu;
 import model.DanhSachVe;
 import model.TimVe;
 import model.Ve;
@@ -62,6 +63,30 @@ public class VeDAO extends CinemaxDAO<Ve, String> {
             + "on SuatChieu.PhimID = Phim.PhimID\n"
             + "Join PhongChieu\n"
             + "on SuatChieu.PhongID = PhongChieu.PhongID";
+
+    final String SELECT_DOANHTHU = "SELECT\n"
+            + "    Phim.TenPhim,\n"
+            + "    SUM(Ve.GiaVe) AS TongDoanhThu,\n"
+            + "    Count(Ghe) AS SoLuongVe\n"
+            + "FROM\n"
+            + "    Phim\n"
+            + "JOIN\n"
+            + "    SuatChieu ON Phim.PhimID = SuatChieu.PhimID\n"
+            + "JOIN\n"
+            + "    Ve ON SuatChieu.SuatChieuID = Ve.SuatChieuID\n"
+            + "GROUP BY\n"
+            + "    Phim.TenPhim;";
+    final String SELECT_BIEUDODOANHTHU = "SELECT\n"
+            + "    Phim.TenPhim,\n"
+            + "    SUM(Ve.GiaVe) AS TongDoanhThu\n"
+            + "FROM\n"
+            + "    Phim\n"
+            + "JOIN\n"
+            + "    SuatChieu ON Phim.PhimID = SuatChieu.PhimID\n"
+            + "JOIN\n"
+            + "    Ve ON SuatChieu.SuatChieuID = Ve.SuatChieuID\n"
+            + "GROUP BY\n"
+            + "    Phim.TenPhim;";
 
     @Override
     public void insert(Ve entity) {
@@ -207,6 +232,40 @@ public class VeDAO extends CinemaxDAO<Ve, String> {
                 entity.setTenPhong(rs.getString("TenPhong"));
                 entity.setThoiGianBatDau(rs.getString("ThoiGianBatDau"));
                 entity.setVeID(rs.getString("VeID"));
+                list.add(entity);
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return list;
+    }
+
+    public List<String> inDoanhThu() {
+        List<String> list = new ArrayList<>();
+        int STT = 0;
+        try {
+            ResultSet rs = JDBCHelper.query(SELECT_DOANHTHU);
+            while (rs.next()) {
+                STT++;
+                String tenPhim = rs.getString("TenPhim");
+                String soVe = rs.getString("SoLuongVe");
+                String tongDoanhThu = rs.getString("TongDoanhThu");
+                list.add(STT + "," + tenPhim + "," + soVe + "," + tongDoanhThu);
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return list;
+    }
+
+    public List<BieuDoDoanhThu> inBieuDo() {
+        List<BieuDoDoanhThu> list = new ArrayList<>();
+        try {
+            ResultSet rs = JDBCHelper.query(SELECT_BIEUDODOANHTHU);
+            while (rs.next()) {
+                BieuDoDoanhThu entity = new BieuDoDoanhThu();
+                entity.setTenPhim(rs.getString("TenPhim"));
+                entity.setTongDoanhThu(rs.getInt("TongDoanhThu"));
                 list.add(entity);
             }
         } catch (Exception e) {
