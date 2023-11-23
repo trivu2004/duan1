@@ -41,6 +41,8 @@ public class SuatChieuJPanel extends javax.swing.JPanel {
         }).start();
     }
 
+
+
     public void insert1() {
         try {
             String sql = "insert into SuatChieu values(?,?,?,?,?,?)";
@@ -79,11 +81,13 @@ public class SuatChieuJPanel extends javax.swing.JPanel {
 
     public void clear() {
         txtMaSC.setText("");
-        cboPhim.setSelectedItem("");
-        cboPhongChieu.setSelectedItem("");
-        cboQuanLy.setSelectedItem("");
+        cboPhim.setSelectedIndex(-1);
+        cboPhongChieu.setSelectedIndex(-1);
+        cboQuanLy.setSelectedIndex(-1);
         txtTGBatDau.setText("");
         txtTGKetThuc.setText("");
+        lblPhim.setText("");
+        lblPhongChieu.setText("");
     }
 
     public void update() {
@@ -254,6 +258,11 @@ public class SuatChieuJPanel extends javax.swing.JPanel {
         });
 
         btnMoi.setText("Mới");
+        btnMoi.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnMoiActionPerformed(evt);
+            }
+        });
 
         jLabel13.setFont(new java.awt.Font("Segoe UI", 0, 20)); // NOI18N
         jLabel13.setText("Người Quản Lý:");
@@ -263,6 +272,10 @@ public class SuatChieuJPanel extends javax.swing.JPanel {
                 cboPhongChieuItemStateChanged(evt);
             }
         });
+
+        lblPhim.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
+
+        lblPhongChieu.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
@@ -432,6 +445,11 @@ public class SuatChieuJPanel extends javax.swing.JPanel {
         } catch (Exception e) {
         }
     }//GEN-LAST:event_cboPhongChieuItemStateChanged
+
+    private void btnMoiActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnMoiActionPerformed
+        // TODO add your handling code here:
+        clear();
+    }//GEN-LAST:event_btnMoiActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
