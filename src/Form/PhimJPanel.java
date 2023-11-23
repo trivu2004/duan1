@@ -150,53 +150,53 @@ public class PhimJPanel extends javax.swing.JPanel {
         p.setNuocSX(txtNuocSX.getText());
         p.setTenPhim(txtTenPhim.getText());
         p.setThoiLuong(Integer.parseInt(txtThoiLuong.getText()));
-        if (jpnAnh == null || jpnAnh.getToolTipText() == null || jpnAnh.getToolTipText().isEmpty()) {
+        if (lblHinh == null || lblHinh.getToolTipText() == null || lblHinh.getToolTipText().isEmpty()) {
             p.setHinh("No Avatar");
         } else {
-            p.setHinh(jpnAnh.getToolTipText());
+            p.setHinh(lblHinh.getToolTipText());
         }
         String s = "";
         if (chkCaNhac.isSelected()) {
-            s = "Ca Nhạc, " + s;
+            s = "Ca Nhạc," + s;
         }
         if (chkChinhKich.isSelected()) {
-            s = "Chính Kịch, " + s;
+            s = "Chính Kịch," + s;
         }
         if (chkGiaDinh.isSelected()) {
-            s = "Gia Đình, " + s;
+            s = "Gia Đình," + s;
         }
         if (chkHaiHuoc.isSelected()) {
-            s = "Hài Hước, " + s;
+            s = "Hài Hước," + s;
         }
         if (chkHanhDong.isSelected()) {
-            s = "Hành Động, " + s;
+            s = "Hành Động," + s;
         }
         if (chkHoatHinh.isSelected()) {
-            s = "Hoạt Hình, " + s;
+            s = "Hoạt Hình," + s;
         }
         if (chkKHVT.isSelected()) {
-            s = "Khoa Học Viễn Tưởng, " + s;
+            s = "Khoa Học Viễn Tưởng," + s;
         }
         if (chkKinhDi.isSelected()) {
-            s = "Kinh Dị, " + s;
+            s = "Kinh Dị," + s;
         }
         if (chkLichSu.isSelected()) {
-            s = "Lịch Sử, " + s;
+            s = "Lịch Sử," + s;
         }
         if (chkPhieuLuu.isSelected()) {
-            s = "Phiêu lưu, " + s;
+            s = "Phiêu lưu," + s;
         }
         if (chkSuThi.isSelected()) {
-            s = "Sử Thi, " + s;
+            s = "Sử Thi," + s;
         }
         if (chkTaiLieu.isSelected()) {
-            s = "Tài Liệu, " + s;
+            s = "Tài Liệu," + s;
         }
         if (chkTinhCam.isSelected()) {
-            s = "Tình cảm, " + s;
+            s = "Tình cảm," + s;
         }
         if (chkTrinhTham.isSelected()) {
-            s = "Trinh Thám, " + s;
+            s = "Trinh Thám," + s;
         }
         
         if (s.endsWith(",")) {
@@ -323,7 +323,7 @@ public class PhimJPanel extends javax.swing.JPanel {
         if (!ncc.matches()) {//Đảo ngược điều kiện đúng thành sai
             String s = "";
             s = "Sai định dạng ngày công chiếu\n";
-            s = s + "VD: 2023/05/08";
+            s = s + "VD: 2023-05-08";
             Notifications.getInstance().show(Notifications.Type.INFO, Notifications.Location.TOP_CENTER, s);
             return false;
         }
@@ -332,7 +332,7 @@ public class PhimJPanel extends javax.swing.JPanel {
         if (!nkt.matches()) {//Đảo ngược điều kiện đúng thành sai
             String s = "";
             s = "Sai định dạng ngày kết thúc\n";
-            s = s + "VD: 2023/05/08";
+            s = s + "VD: 2023-05-08";
             Notifications.getInstance().show(Notifications.Type.INFO, Notifications.Location.TOP_CENTER, s);
             return false;
         }

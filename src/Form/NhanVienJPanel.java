@@ -142,8 +142,8 @@ public class NhanVienJPanel extends javax.swing.JPanel {
         if (confirm.equals(model.getMatKhau())) {
             try {
                 dao.update(model);
-                this.fillTable();
-                this.clearForm();
+                fillTable();
+                clearForm();
                 Notifications.getInstance().show(Notifications.Type.INFO, Notifications.Location.TOP_CENTER, "Cập nhật Nhân viên thành công!");
             } catch (Exception e) {
                 Notifications.getInstance().show(Notifications.Type.INFO, Notifications.Location.TOP_CENTER, "Cập nhật thất bại!");
@@ -158,8 +158,8 @@ public class NhanVienJPanel extends javax.swing.JPanel {
         String maNV = txtMaNV.getText();
         try {
             dao.delete(maNV);
-            this.fillTable();
-            this.clearForm();
+            fillTable();
+            clearForm();
             Notifications.getInstance().show(Notifications.Type.INFO, Notifications.Location.TOP_CENTER, "Xóa Nhân viên thành công!");
         } catch (Exception e) {
             Notifications.getInstance().show(Notifications.Type.INFO, Notifications.Location.TOP_CENTER, "Xóa thất bại!");
