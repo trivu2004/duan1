@@ -141,13 +141,8 @@ public class NhanVienJPanel extends javax.swing.JPanel {
         if (confirm.equals(model.getMatKhau())) {
             try {
                 dao.update(model);
-<<<<<<< HEAD
                 fillTable();
                 clearForm();
-=======
-                this.clearForm();
-                this.fillTable();
->>>>>>> f8e51966d0eb9d9c369bbb629880f3f931daaf98
                 Notifications.getInstance().show(Notifications.Type.INFO, Notifications.Location.TOP_CENTER, "Cập nhật Nhân viên thành công!");
             } catch (Exception e) {
                 Notifications.getInstance().show(Notifications.Type.INFO, Notifications.Location.TOP_CENTER, "Cập nhật thất bại!");
