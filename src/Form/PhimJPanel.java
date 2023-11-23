@@ -162,46 +162,51 @@ public class PhimJPanel extends javax.swing.JPanel {
         }
         String s = "";
         if (chkCaNhac.isSelected()) {
-            s = "Ca Nhạc, " + s;
+            s = "Ca Nhạc," + s;
         }
         if (chkChinhKich.isSelected()) {
-            s = "Chính Kịch, " + s;
+            s = "Chính Kịch," + s;
         }
         if (chkGiaDinh.isSelected()) {
-            s = "Gia Đình, " + s;
+            s = "Gia Đình," + s;
         }
         if (chkHaiHuoc.isSelected()) {
-            s = "Hài Hước, " + s;
+            s = "Hài Hước," + s;
         }
         if (chkHanhDong.isSelected()) {
-            s = "Hành Động, " + s;
+            s = "Hành Động," + s;
         }
         if (chkHoatHinh.isSelected()) {
-            s = "Hoạt Hình, " + s;
+            s = "Hoạt Hình," + s;
         }
+<<<<<<< HEAD
+        if (chkKHVT.isSelected()) {
+            s = "Khoa Học Viễn Tưởng," + s;
+=======
         if (chkKhoaHocVienTuong.isSelected()) {
             s = "Khoa Học Viễn Tưởng, " + s;
+>>>>>>> f8e51966d0eb9d9c369bbb629880f3f931daaf98
         }
         if (chkKinhDi.isSelected()) {
-            s = "Kinh Dị, " + s;
+            s = "Kinh Dị," + s;
         }
         if (chkLichSu.isSelected()) {
-            s = "Lịch Sử, " + s;
+            s = "Lịch Sử," + s;
         }
         if (chkPhieuLuu.isSelected()) {
-            s = "Phiêu lưu, " + s;
+            s = "Phiêu lưu," + s;
         }
         if (chkSuThi.isSelected()) {
-            s = "Sử Thi, " + s;
+            s = "Sử Thi," + s;
         }
         if (chkTaiLieu.isSelected()) {
-            s = "Tài Liệu, " + s;
+            s = "Tài Liệu," + s;
         }
         if (chkTinhCam.isSelected()) {
-            s = "Tình cảm, " + s;
+            s = "Tình cảm," + s;
         }
         if (chkTrinhTham.isSelected()) {
-            s = "Trinh Thám, " + s;
+            s = "Trinh Thám," + s;
         }
         s = s.trim();
         if (s.endsWith(",")) {
@@ -328,7 +333,7 @@ public class PhimJPanel extends javax.swing.JPanel {
         if (!ncc.matches()) {//Đảo ngược điều kiện đúng thành sai
             String s = "";
             s = "Sai định dạng ngày công chiếu\n";
-            s = s + "VD: 2023/05/08";
+            s = s + "VD: 2023-05-08";
             Notifications.getInstance().show(Notifications.Type.INFO, Notifications.Location.TOP_CENTER, s);
             return false;
         }
@@ -337,7 +342,7 @@ public class PhimJPanel extends javax.swing.JPanel {
         if (!nkt.matches()) {//Đảo ngược điều kiện đúng thành sai
             String s = "";
             s = "Sai định dạng ngày kết thúc\n";
-            s = s + "VD: 2023/05/08";
+            s = s + "VD: 2023-05-08";
             Notifications.getInstance().show(Notifications.Type.INFO, Notifications.Location.TOP_CENTER, s);
             return false;
         }

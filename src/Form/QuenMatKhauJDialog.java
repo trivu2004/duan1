@@ -114,7 +114,7 @@ public class QuenMatKhauJDialog extends javax.swing.JDialog {
         Session s = Session.getInstance(pr, auth);
 
 // người nhận: to;
-        final String to = "quocthuan170304@gmail.com";
+        final String to = mailtamthoi;
 
 // tạo 1 tin nhắn;
         MimeMessage msg = new MimeMessage(s);
@@ -149,7 +149,7 @@ public class QuenMatKhauJDialog extends javax.swing.JDialog {
             if (checkMail()) {
                 if (checktontai()) {
                     mailtamthoi = txtQuenMatKhau.getText().trim();
-                    JOptionPane.showMessageDialog(this, "Vui lòng chúng tôi giây lát, không spam thêm ");
+                    JOptionPane.showMessageDialog(this, "Vui lòng chờ chúng tôi giây lát, không spam thêm ");
                     send(randomotp());
                     btnQuenMatKhau.setText("Gửi lại mật khẩu cho tôi qua mail");
                     lblQuenMatKhau.setText("Mã OTP");
@@ -168,7 +168,7 @@ public class QuenMatKhauJDialog extends javax.swing.JDialog {
         if (btnQuenMatKhau.getText().equals("Gửi lại mật khẩu cho tôi qua mail")) {
             if (checkOTP()) {
                 if (txtQuenMatKhau.getText().trim().equals(sendotp)) {
-                    JOptionPane.showMessageDialog(this, "Vui lòng chúng tôi giây lát, không spam thêm ");
+                    JOptionPane.showMessageDialog(this, "Vui lòng chờ chúng tôi giây lát, không spam thêm ");
                     String mktamthoi = randommk();
                     send(mktamthoi);
                     try {

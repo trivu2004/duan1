@@ -203,7 +203,11 @@ public class SuatChieuJPanel extends javax.swing.JPanel {
                 {null, null, null, null, null, null, null}
             },
             new String [] {
+<<<<<<< HEAD
+                "STT", "Mã Suất Chiếu", "Tên Phim", "Phòng Chiếu", "Thời Gian Bắt Đầu", "Thời Gian Kết Thúc", "Người Quản Lý"
+=======
                 "STT", "Mã Suất Chiếu", "Phòng Chiếu", "Tên Phim", "Thời Gian Bắt Đầu", "Thời Gian Kết Thúc", "Người Quản Lý"
+>>>>>>> f8e51966d0eb9d9c369bbb629880f3f931daaf98
             }
         ));
         tblSuatChieu.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -216,9 +220,17 @@ public class SuatChieuJPanel extends javax.swing.JPanel {
         jLabel1.setFont(new java.awt.Font("Segoe UI", 0, 20)); // NOI18N
         jLabel1.setText("Mã Suất Chiếu:");
 
+        txtTGBatDau.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+
         jLabel2.setFont(new java.awt.Font("Segoe UI", 0, 20)); // NOI18N
         jLabel2.setText("Chọn Phim:");
 
+<<<<<<< HEAD
+        txtMaSC.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+
+        cboPhim.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+        cboPhim.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "P001" }));
+=======
         cboPhim.addItemListener(new java.awt.event.ItemListener() {
             public void itemStateChanged(java.awt.event.ItemEvent evt) {
                 cboPhimItemStateChanged(evt);
@@ -229,13 +241,23 @@ public class SuatChieuJPanel extends javax.swing.JPanel {
                 cboPhimMouseClicked(evt);
             }
         });
+>>>>>>> f8e51966d0eb9d9c369bbb629880f3f931daaf98
 
         jLabel11.setFont(new java.awt.Font("Segoe UI", 0, 20)); // NOI18N
         jLabel11.setText("Chọn Phòng Chiếu:");
 
+<<<<<<< HEAD
+        cboPhongChieu.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+        cboPhongChieu.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "M001" }));
+
+=======
+>>>>>>> f8e51966d0eb9d9c369bbb629880f3f931daaf98
         jLabel12.setFont(new java.awt.Font("Segoe UI", 0, 20)); // NOI18N
         jLabel12.setText("Thời Gian Kết Thúc:");
 
+        txtTGKetThuc.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+
+        btnThem.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
         btnThem.setText("Thêm");
         btnThem.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -243,6 +265,7 @@ public class SuatChieuJPanel extends javax.swing.JPanel {
             }
         });
 
+        btnSua.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
         btnSua.setText("Sửa");
         btnSua.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -250,6 +273,7 @@ public class SuatChieuJPanel extends javax.swing.JPanel {
             }
         });
 
+        btnXoa.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
         btnXoa.setText("Xóa ");
         btnXoa.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -257,6 +281,7 @@ public class SuatChieuJPanel extends javax.swing.JPanel {
             }
         });
 
+        btnMoi.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
         btnMoi.setText("Mới");
         btnMoi.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -283,7 +308,13 @@ public class SuatChieuJPanel extends javax.swing.JPanel {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addGap(20, 20, 20)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+<<<<<<< HEAD
+                    .addComponent(jLabel13)
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                        .addComponent(txtTGKetThuc1, javax.swing.GroupLayout.PREFERRED_SIZE, 455, javax.swing.GroupLayout.PREFERRED_SIZE)
+=======
                     .addGroup(layout.createSequentialGroup()
                         .addContainerGap()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -302,6 +333,7 @@ public class SuatChieuJPanel extends javax.swing.JPanel {
                                         .addComponent(btnMoi, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE))))))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(20, 20, 20)
+>>>>>>> f8e51966d0eb9d9c369bbb629880f3f931daaf98
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addComponent(jLabel4)
                             .addComponent(jLabel1)
@@ -312,6 +344,20 @@ public class SuatChieuJPanel extends javax.swing.JPanel {
                             .addComponent(txtTGBatDau)
                             .addComponent(txtMaSC)
                             .addComponent(cboPhim, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+<<<<<<< HEAD
+                            .addComponent(jLabel11)
+                            .addComponent(cboPhongChieu, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(jLabel12)
+                            .addComponent(txtTGKetThuc, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 455, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(btnThem, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(btnXoa, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(btnSua, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(btnMoi, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)))
+=======
                             .addGroup(layout.createSequentialGroup()
                                 .addComponent(jLabel11)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -319,6 +365,7 @@ public class SuatChieuJPanel extends javax.swing.JPanel {
                             .addComponent(jLabel12)
                             .addComponent(txtTGKetThuc, javax.swing.GroupLayout.PREFERRED_SIZE, 455, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(cboPhongChieu, javax.swing.GroupLayout.Alignment.TRAILING, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
+>>>>>>> f8e51966d0eb9d9c369bbb629880f3f931daaf98
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 18, Short.MAX_VALUE)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 778, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
@@ -331,7 +378,7 @@ public class SuatChieuJPanel extends javax.swing.JPanel {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(jLabel1)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(txtMaSC, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
@@ -347,17 +394,23 @@ public class SuatChieuJPanel extends javax.swing.JPanel {
                         .addComponent(cboPhongChieu, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(12, 12, 12)
                         .addComponent(jLabel4)
-                        .addGap(15, 15, 15)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(txtTGBatDau, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
                         .addComponent(jLabel12)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(txtTGKetThuc, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
                         .addComponent(jLabel13)
+<<<<<<< HEAD
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(txtTGKetThuc1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(42, 42, 42)
+=======
                         .addGap(18, 18, 18)
                         .addComponent(cboQuanLy, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(23, 23, 23)
+>>>>>>> f8e51966d0eb9d9c369bbb629880f3f931daaf98
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(btnThem)
                             .addComponent(btnXoa)

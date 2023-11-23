@@ -18,7 +18,13 @@
       <Group type="103" groupAlignment="0" attributes="0">
           <Component id="jPanel2" alignment="0" max="32767" attributes="0"/>
           <Group type="102" alignment="1" attributes="0">
+              <EmptySpace min="-2" pref="20" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="0" attributes="0">
+<<<<<<< HEAD
+                  <Component id="jLabel13" min="-2" max="-2" attributes="0"/>
+                  <Group type="103" groupAlignment="1" attributes="0">
+                      <Component id="txtTGKetThuc1" min="-2" pref="455" max="-2" attributes="0"/>
+=======
                   <Group type="102" alignment="0" attributes="0">
                       <EmptySpace max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="0" attributes="0">
@@ -42,6 +48,7 @@
                   </Group>
                   <Group type="102" attributes="0">
                       <EmptySpace min="-2" pref="20" max="-2" attributes="0"/>
+>>>>>>> f8e51966d0eb9d9c369bbb629880f3f931daaf98
                       <Group type="103" groupAlignment="0" max="-2" attributes="0">
                           <Component id="jLabel4" alignment="0" min="-2" max="-2" attributes="0"/>
                           <Component id="jLabel1" alignment="0" min="-2" max="-2" attributes="0"/>
@@ -59,9 +66,23 @@
                               <Component id="lblPhongChieu" min="-2" max="-2" attributes="0"/>
                           </Group>
                           <Component id="jLabel12" alignment="0" min="-2" max="-2" attributes="0"/>
+<<<<<<< HEAD
+                          <Component id="txtTGKetThuc" alignment="1" min="-2" pref="455" max="-2" attributes="0"/>
+                      </Group>
+                  </Group>
+                  <Group type="102" attributes="0">
+                      <Component id="btnThem" min="-2" pref="100" max="-2" attributes="0"/>
+                      <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                      <Component id="btnXoa" min="-2" pref="100" max="-2" attributes="0"/>
+                      <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                      <Component id="btnSua" min="-2" pref="100" max="-2" attributes="0"/>
+                      <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                      <Component id="btnMoi" min="-2" pref="100" max="-2" attributes="0"/>
+=======
                           <Component id="txtTGKetThuc" alignment="0" min="-2" pref="455" max="-2" attributes="0"/>
                           <Component id="cboPhongChieu" alignment="1" max="32767" attributes="0"/>
                       </Group>
+>>>>>>> f8e51966d0eb9d9c369bbb629880f3f931daaf98
                   </Group>
               </Group>
               <EmptySpace pref="18" max="32767" attributes="0"/>
@@ -78,13 +99,18 @@
               <Group type="103" groupAlignment="0" attributes="0">
                   <Group type="102" attributes="0">
                       <Component id="jLabel1" min="-2" max="-2" attributes="0"/>
-                      <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                      <EmptySpace max="-2" attributes="0"/>
                       <Component id="txtMaSC" min="-2" max="-2" attributes="0"/>
+<<<<<<< HEAD
+                      <EmptySpace min="-2" pref="18" max="-2" attributes="0"/>
+                      <Component id="jLabel2" min="-2" max="-2" attributes="0"/>
+=======
                       <EmptySpace type="separate" max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="3" attributes="0">
                           <Component id="jLabel2" alignment="3" min="-2" max="-2" attributes="0"/>
                           <Component id="lblPhim" alignment="3" min="-2" max="-2" attributes="0"/>
                       </Group>
+>>>>>>> f8e51966d0eb9d9c369bbb629880f3f931daaf98
                       <EmptySpace max="-2" attributes="0"/>
                       <Component id="cboPhim" min="-2" max="-2" attributes="0"/>
                       <EmptySpace type="separate" max="-2" attributes="0"/>
@@ -96,17 +122,23 @@
                       <Component id="cboPhongChieu" min="-2" max="-2" attributes="0"/>
                       <EmptySpace min="-2" pref="12" max="-2" attributes="0"/>
                       <Component id="jLabel4" min="-2" max="-2" attributes="0"/>
-                      <EmptySpace min="-2" pref="15" max="-2" attributes="0"/>
+                      <EmptySpace max="-2" attributes="0"/>
                       <Component id="txtTGBatDau" min="-2" max="-2" attributes="0"/>
                       <EmptySpace type="separate" max="-2" attributes="0"/>
                       <Component id="jLabel12" min="-2" max="-2" attributes="0"/>
-                      <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                      <EmptySpace max="-2" attributes="0"/>
                       <Component id="txtTGKetThuc" min="-2" max="-2" attributes="0"/>
                       <EmptySpace type="separate" max="-2" attributes="0"/>
                       <Component id="jLabel13" min="-2" max="-2" attributes="0"/>
+<<<<<<< HEAD
+                      <EmptySpace max="-2" attributes="0"/>
+                      <Component id="txtTGKetThuc1" min="-2" max="-2" attributes="0"/>
+                      <EmptySpace min="-2" pref="42" max="-2" attributes="0"/>
+=======
                       <EmptySpace type="separate" max="-2" attributes="0"/>
                       <Component id="cboQuanLy" min="-2" max="-2" attributes="0"/>
                       <EmptySpace min="-2" pref="23" max="-2" attributes="0"/>
+>>>>>>> f8e51966d0eb9d9c369bbb629880f3f931daaf98
                       <Group type="103" groupAlignment="3" attributes="0">
                           <Component id="btnThem" alignment="3" min="-2" max="-2" attributes="0"/>
                           <Component id="btnXoa" alignment="3" min="-2" max="-2" attributes="0"/>
@@ -295,9 +327,17 @@
       </Properties>
     </Component>
     <Component class="javax.swing.JTextField" name="txtTGBatDau">
+<<<<<<< HEAD
+      <Properties>
+        <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+          <Font name="Segoe UI" size="18" style="0"/>
+        </Property>
+      </Properties>
+=======
       <AuxValues>
         <AuxValue name="JavaCodeGenerator_VariableModifier" type="java.lang.Integer" value="1"/>
       </AuxValues>
+>>>>>>> f8e51966d0eb9d9c369bbb629880f3f931daaf98
     </Component>
     <Component class="javax.swing.JLabel" name="jLabel2">
       <Properties>
@@ -308,12 +348,23 @@
       </Properties>
     </Component>
     <Component class="javax.swing.JTextField" name="txtMaSC">
+<<<<<<< HEAD
+      <Properties>
+        <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+          <Font name="Segoe UI" size="18" style="0"/>
+        </Property>
+      </Properties>
+=======
       <AuxValues>
         <AuxValue name="JavaCodeGenerator_VariableModifier" type="java.lang.Integer" value="1"/>
       </AuxValues>
+>>>>>>> f8e51966d0eb9d9c369bbb629880f3f931daaf98
     </Component>
     <Component class="javax.swing.JComboBox" name="cboPhim">
       <Properties>
+        <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+          <Font name="Segoe UI" size="18" style="0"/>
+        </Property>
         <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
           <StringArray count="0"/>
         </Property>
@@ -337,6 +388,9 @@
     </Component>
     <Component class="javax.swing.JComboBox" name="cboQuanLy">
       <Properties>
+        <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+          <Font name="Segoe UI" size="18" style="0"/>
+        </Property>
         <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
           <StringArray count="0"/>
         </Property>
@@ -355,12 +409,23 @@
       </Properties>
     </Component>
     <Component class="javax.swing.JTextField" name="txtTGKetThuc">
+<<<<<<< HEAD
+      <Properties>
+        <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+          <Font name="Segoe UI" size="18" style="0"/>
+        </Property>
+      </Properties>
+=======
       <AuxValues>
         <AuxValue name="JavaCodeGenerator_VariableModifier" type="java.lang.Integer" value="1"/>
       </AuxValues>
+>>>>>>> f8e51966d0eb9d9c369bbb629880f3f931daaf98
     </Component>
     <Component class="javax.swing.JButton" name="btnThem">
       <Properties>
+        <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+          <Font name="Segoe UI" size="18" style="0"/>
+        </Property>
         <Property name="text" type="java.lang.String" value="Th&#xea;m"/>
       </Properties>
       <Events>
@@ -369,6 +434,9 @@
     </Component>
     <Component class="javax.swing.JButton" name="btnSua">
       <Properties>
+        <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+          <Font name="Segoe UI" size="18" style="0"/>
+        </Property>
         <Property name="text" type="java.lang.String" value="S&#x1eed;a"/>
       </Properties>
       <Events>
@@ -377,6 +445,9 @@
     </Component>
     <Component class="javax.swing.JButton" name="btnXoa">
       <Properties>
+        <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+          <Font name="Segoe UI" size="18" style="0"/>
+        </Property>
         <Property name="text" type="java.lang.String" value="X&#xf3;a "/>
       </Properties>
       <Events>
@@ -385,6 +456,9 @@
     </Component>
     <Component class="javax.swing.JButton" name="btnMoi">
       <Properties>
+        <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+          <Font name="Segoe UI" size="18" style="0"/>
+        </Property>
         <Property name="text" type="java.lang.String" value="M&#x1edb;i"/>
       </Properties>
       <Events>
@@ -399,6 +473,14 @@
         <Property name="text" type="java.lang.String" value="Ng&#x1b0;&#x1edd;i Qu&#x1ea3;n L&#xfd;:"/>
       </Properties>
     </Component>
+<<<<<<< HEAD
+    <Component class="javax.swing.JTextField" name="txtTGKetThuc1">
+      <Properties>
+        <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+          <Font name="Segoe UI" size="18" style="0"/>
+        </Property>
+      </Properties>
+=======
     <Component class="javax.swing.JComboBox" name="cboPhongChieu">
       <Properties>
         <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
@@ -421,11 +503,15 @@
       </Properties>
     </Component>
     <Component class="javax.swing.JLabel" name="lblPhongChieu">
+<<<<<<< HEAD
       <Properties>
         <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
           <Font name="Segoe UI" size="24" style="0"/>
         </Property>
       </Properties>
+=======
+>>>>>>> f8e51966d0eb9d9c369bbb629880f3f931daaf98
+>>>>>>> c4c75a88ee3e19ed3ea54b6e3b0b8989cf5fb951
     </Component>
   </SubComponents>
 </Form>
