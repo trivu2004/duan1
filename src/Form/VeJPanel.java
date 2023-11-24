@@ -152,7 +152,7 @@ public class VeJPanel extends javax.swing.JPanel {
         try {
             List<PhongChieu> list = daoPhongChieu.selectAll();
             for (PhongChieu phongChieu : list) {
-                cboPhongChieu.addItem(phongChieu.getTenPC() + "");
+                cboPhongChieu.addItem(phongChieu.getMaPC()+ "");
             }
         } catch (Exception e) {
             e.printStackTrace();

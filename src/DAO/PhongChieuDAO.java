@@ -16,7 +16,7 @@ import model.TimVe;
  * @author 123tu
  */
 public class PhongChieuDAO extends CinemaxDAO<PhongChieu, String>{
-    final String INSERT_SQL = "INSERT INTO PhongChieu (PhongID, TenPhong, SoLuongGhe, TinhTrang) VALUES (?, ?, ?, ?)";
+    final String INSERT_SQL = "INSERT INTO PhongChieu (PhongID, TenPhong, SoLuongGhe, TinhTrang) VALUES (?, ?)";
     final String UPDATE_SQL = "UPDATE PhongChieu SET TenPhong=?, SoLuongGhe=?, TinhTrang=? WHERE PhongID=?";
     final String DELETE_SQL = "DELETE FROM PhongChieu WHERE PhongID=?";
     final String SELECT_ALL_SQL = "SELECT * FROM PhongChieu";
@@ -24,12 +24,12 @@ public class PhongChieuDAO extends CinemaxDAO<PhongChieu, String>{
    
     @Override
     public void insert(PhongChieu entity) {
-        JDBCHelper.update(INSERT_SQL, entity.getMaPC(), entity.getTenPC(), entity.getSoLuongGhe(), entity.getTinhTrang());
+        JDBCHelper.update(INSERT_SQL, entity.getMaPC(), entity.getTinhTrang());
     }
 
     @Override
     public void update(PhongChieu entity) {
-        JDBCHelper.update(UPDATE_SQL, entity.getTenPC(), entity.getSoLuongGhe(), entity.getTinhTrang(), entity.getMaPC());
+        JDBCHelper.update(UPDATE_SQL, entity.getTinhTrang(), entity.getMaPC());
     }
 
     @Override
@@ -59,8 +59,6 @@ public class PhongChieuDAO extends CinemaxDAO<PhongChieu, String>{
             while (rs.next()) {
                 PhongChieu entity = new PhongChieu();
                 entity.setMaPC(rs.getString("PhongID"));
-                entity.setTenPC(rs.getString("TenPhong"));
-                entity.setSoLuongGhe(rs.getInt("SoLuongGhe"));
                 entity.setTinhTrang(rs.getString("TinhTrang"));
                 list.add(entity);
             }
