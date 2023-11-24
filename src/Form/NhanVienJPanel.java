@@ -143,6 +143,8 @@ public class NhanVienJPanel extends javax.swing.JPanel {
                 dao.update(model);
                 fillTable();
                 clearForm();
+                this.clearForm();
+                this.fillTable();
                 Notifications.getInstance().show(Notifications.Type.INFO, Notifications.Location.TOP_CENTER, "Cập nhật Nhân viên thành công!");
             } catch (Exception e) {
                 Notifications.getInstance().show(Notifications.Type.INFO, Notifications.Location.TOP_CENTER, "Cập nhật thất bại!");

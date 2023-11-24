@@ -180,6 +180,8 @@ public class PhimJPanel extends javax.swing.JPanel {
             s = "Hoạt Hình," + s;
         }
         if (chkKhoaHocVienTuong.isSelected()) {
+            s = "Khoa Học Viễn Tưởng," + s;
+        if (chkKhoaHocVienTuong.isSelected()) {
             s = "Khoa Học Viễn Tưởng, " + s;
         }
         if (chkKinhDi.isSelected()) {
@@ -210,7 +212,8 @@ public class PhimJPanel extends javax.swing.JPanel {
         p.setTheLoai(s);
         return p;
     }
-
+        return null;
+    }
     public void cleanForm() {
         setForm(new Phim());
         txtNgayCC.setText("");

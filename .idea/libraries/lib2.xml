@@ -1,0 +1,19 @@
+<component name="libraryTable">
+  <library name="lib2">
+    <CLASSES>
+      <root url="jar://$PROJECT_DIR$/dist/lib/swing-toast-notifications-1.0.1.jar!/" />
+      <root url="jar://$PROJECT_DIR$/dist/lib/java-swing-drawer.jar!/" />
+      <root url="jar://$PROJECT_DIR$/dist/lib/flatlaf-3.2.jar!/" />
+      <root url="jar://$PROJECT_DIR$/dist/lib/flatlaf-extras-3.2.jar!/" />
+      <root url="jar://$PROJECT_DIR$/dist/lib/miglayout-4.0.jar!/" />
+      <root url="jar://$PROJECT_DIR$/dist/lib/TimingFramework-0.55.jar!/" />
+      <root url="jar://$PROJECT_DIR$/dist/lib/flatlaf-fonts-roboto-2.137.jar!/" />
+      <root url="jar://$PROJECT_DIR$/dist/lib/jBCrypt-0.4.1.jar!/" />
+      <root url="jar://$PROJECT_DIR$/dist/lib/jsvg-1.2.0.jar!/" />
+      <root url="jar://$PROJECT_DIR$/dist/lib/log4j.jar!/" />
+      <root url="jar://$PROJECT_DIR$/dist/lib/mysql-connector-j-8.1.0.jar!/" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES />
+  </library>
+</component>

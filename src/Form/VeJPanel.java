@@ -14,6 +14,7 @@ import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
+import javax.swing.SwingWorker;
 import javax.swing.Timer;
 import javax.swing.table.DefaultTableModel;
 import model.Phim;
@@ -58,7 +59,26 @@ public class VeJPanel extends javax.swing.JPanel {
 
     public VeJPanel() {
         initComponents();
+        LoadingJPanel loadingJPanel = new LoadingJPanel();
+        long startTime = System.currentTimeMillis();
 
+        SwingWorker<Void, Void> worker = new SwingWorker<Void, Void>() {
+            @Override
+            protected Void doInBackground() throws Exception {
+                loadingJPanel.setVisible(true);
+                return null;
+            }
+
+            @Override
+            protected void done() {
+                long endTime = System.currentTimeMillis();
+                long elapsedTime = endTime - startTime;
+                // Được gọi khi công việc lâu dài hoàn thành
+                loadingJPanel.setVisible(false);
+                System.out.println("Data loading completed in " + elapsedTime + " milliseconds.\n");
+            }
+        };
+        worker.execute();
         new Timer(1000, new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
