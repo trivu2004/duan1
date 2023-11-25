@@ -191,7 +191,7 @@ public class PhimJPanel extends javax.swing.JPanel {
             s = "Lịch Sử," + s;
         }
         if (chkPhieuLuu.isSelected()) {
-            s = "Phiêu lưu," + s;
+            s = "Phiêu Lưu," + s;
         }
         if (chkSuThi.isSelected()) {
             s = "Sử Thi," + s;
@@ -200,7 +200,7 @@ public class PhimJPanel extends javax.swing.JPanel {
             s = "Tài Liệu," + s;
         }
         if (chkTinhCam.isSelected()) {
-            s = "Tình cảm," + s;
+            s = "Tình Cảm," + s;
         }
         if (chkTrinhTham.isSelected()) {
             s = "Trinh Thám," + s;
@@ -630,7 +630,8 @@ public class PhimJPanel extends javax.swing.JPanel {
         jLabel14.setFont(new java.awt.Font("Segoe UI", 0, 16)); // NOI18N
         jLabel14.setText("Hình:");
 
-        jpnAnh.setBorder(javax.swing.BorderFactory.createEtchedBorder());
+        jpnAnh.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(255, 0, 51)));
+        jpnAnh.setForeground(new java.awt.Color(255, 255, 255));
 
         lblHinh.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mousePressed(java.awt.event.MouseEvent evt) {
@@ -642,7 +643,7 @@ public class PhimJPanel extends javax.swing.JPanel {
         jpnAnh.setLayout(jpnAnhLayout);
         jpnAnhLayout.setHorizontalGroup(
             jpnAnhLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(lblHinh, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 115, Short.MAX_VALUE)
+            .addComponent(lblHinh, javax.swing.GroupLayout.DEFAULT_SIZE, 115, Short.MAX_VALUE)
         );
         jpnAnhLayout.setVerticalGroup(
             jpnAnhLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
