@@ -29,6 +29,10 @@ public class SuatChieuDAO extends CinemaxDAO<SuatChieu, String> {
     final String DELETE_SQL = "DELETE FROM SuatChieu WHERE SuatChieuID=?";
     final String SELECT_ALL_SQL = "SELECT * FROM SuatChieu";
     final String SELECT_BY_ID_SQL = "SELECT * FROM SuatChieu WHERE SuatChieuID=?";
+    final String tutang = "SELECT SuatChieuID\n"
+            + "FROM SuatChieu\n"
+            + "ORDER BY SuatChieuID DESC\n"
+            + "LIMIT 1";
 
     public static String PhimID, PhongID;
 
@@ -46,6 +50,18 @@ public class SuatChieuDAO extends CinemaxDAO<SuatChieu, String> {
 
     public static void setPhongID(String PhongID) {
         SuatChieuDAO.PhongID = PhongID;
+    }
+
+    public String tutang() {
+        String masc = "";
+        try {
+            ResultSet rs = JDBCHelper.query(tutang);
+            while (rs.next()) {
+                masc = rs.getString("SuatChieuID");
+            }
+        } catch (Exception e) {
+        }
+        return masc;
     }
 
     @Override
