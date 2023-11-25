@@ -41,7 +41,7 @@ public class PhimJPanel extends javax.swing.JPanel {
     DefaultTableModel model;
     PhimDAO dao = new PhimDAO();
     int row;
-    SimpleDateFormat date = new SimpleDateFormat("yyyy-MM-dd");
+    SimpleDateFormat date = new SimpleDateFormat("dd/MM/yyyy");
     JFileChooser fileChooser = new JFileChooser("src\\image");
     String ngay = "^(19|20)\\d\\d-(0[1-9]|1[0-2])-(0[1-9]|[12]\\d|3[01])$";
 
@@ -331,7 +331,7 @@ public class PhimJPanel extends javax.swing.JPanel {
         if (!ncc.matches()) {//Đảo ngược điều kiện đúng thành sai
             String s = "";
             s = "Sai định dạng ngày công chiếu\n";
-            s = s + "VD: 2023-05-08";
+            s = s + "VD: 31/12/2023";
             Notifications.getInstance().show(Notifications.Type.INFO, Notifications.Location.TOP_CENTER, s);
             return false;
         }
@@ -340,7 +340,7 @@ public class PhimJPanel extends javax.swing.JPanel {
         if (!nkt.matches()) {//Đảo ngược điều kiện đúng thành sai
             String s = "";
             s = "Sai định dạng ngày kết thúc\n";
-            s = s + "VD: 2023-05-08";
+            s = s + "VD: 31/12/2023";
             Notifications.getInstance().show(Notifications.Type.INFO, Notifications.Location.TOP_CENTER, s);
             return false;
         }
