@@ -5,6 +5,7 @@
 package Form;
 
 import DAO.PhimDAO;
+import Helper.DateHelper;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.File;
@@ -24,6 +25,7 @@ import model.Phim;
 import raven.toast.Notifications;
 import util.XImange;
 import java.text.Normalizer;
+import java.util.Calendar;
 import java.util.regex.Pattern;
 
 /**
@@ -35,9 +37,8 @@ public class PhimJPanel extends javax.swing.JPanel {
     DefaultTableModel model;
     PhimDAO dao = new PhimDAO();
     int row;
-    SimpleDateFormat date = new SimpleDateFormat("dd-MM-yyyy");
+    SimpleDateFormat date = new SimpleDateFormat("dd/MM/yyyy");
     JFileChooser fileChooser = new JFileChooser("src\\image");
-    String ngay = "^(19|20)\\d\\d-(0[1-9]|1[0-2])-(0[1-9]|[12]\\d|3[01])$";
 
     public PhimJPanel() {
         initComponents();
@@ -77,12 +78,12 @@ public class PhimJPanel extends javax.swing.JPanel {
                     p.getMaPhim(),
                     p.getTenPhim(),
                     TheLoai,
-                    p.getThoiLuong(),
+                    p.getThoiLuong() + " phút",
                     p.getDaoDien(),
                     p.getDienVien(),
                     p.getMoTa(),
-                    p.getNgayCongChieu(),
-                    p.getNgayKetThuc(),
+                    DateHelper.toString(p.getNgayCongChieu()),
+                    DateHelper.toString(p.getNgayKetThuc()),
                     p.getNamSX(),
                     p.getNuocSX(),
                     p.getHinh(),
@@ -118,45 +119,29 @@ public class PhimJPanel extends javax.swing.JPanel {
     }
 
     public void setForm(Phim p) {//Vị trí lên form
-        txtDaoDien.setText(p.getDaoDien());
-        txtDienVien.setText(p.getDienVien());
         txtMaPhim.setText(p.getMaPhim());
-        txtMoTa.setText(p.getMoTa());
-        txtNamSX.setText(String.valueOf(p.getNamSX()));
-        txtNgayCC.setDateFormatString(String.valueOf(p.getNgayCongChieu()));
-        txtNgayKT.setDateFormatString(String.valueOf(p.getNgayKetThuc()));
-        txtNuocSX.setText(p.getNuocSX());
         txtTenPhim.setText(p.getTenPhim());
         txtThoiLuong.setText(String.valueOf(p.getThoiLuong()));
-        txtGiaBanQuyen.setText(String.valueOf(p.getGiaBQ()));
-
+        txtDaoDien.setText(p.getDaoDien());
+        txtDienVien.setText(p.getDienVien());
+        txtMoTa.setText(p.getMoTa());
+        txtNgayCC.setDate(p.getNgayCongChieu());
+        txtNgayKT.setDate(p.getNgayKetThuc());
+        txtNamSX.setText(String.valueOf(p.getNamSX()));
+        txtNuocSX.setText(p.getNuocSX());
         String hinh = p.getHinh();
         if (hinh != null && !hinh.equals("")) {
             lblHinh.setIcon(null);
             lblHinh.setIcon(XImange.read(hinh));
             lblHinh.setToolTipText(hinh);
         }
-        chkCaNhac.setSelected(Boolean.parseBoolean(p.getTheLoai()));
+        txtGiaBanQuyen.setText(String.valueOf(p.getGiaBQ()));
     }
 
     public Phim getForm() throws ParseException {//Khi Nhập dữ liệu sẽ nhập lên bảng
         Phim p = new Phim();
-        p.setDaoDien(txtDaoDien.getText());
-        p.setDienVien(txtDienVien.getText());
         p.setMaPhim(txtMaPhim.getText());
-        p.setMoTa(txtMoTa.getText());
-        p.setNamSX(Integer.parseInt(txtNamSX.getText()));
-        p.setNgayCongChieu(date.parse(txtNgayCC.getDateFormatString()));
-        p.setNgayKetThuc(date.parse(txtNgayKT.getDateFormatString()));
-        p.setNuocSX(txtNuocSX.getText());
         p.setTenPhim(txtTenPhim.getText());
-        p.setThoiLuong(Integer.parseInt(txtThoiLuong.getText()));
-        p.setGiaBQ(Integer.parseInt(txtGiaBanQuyen.getText()));
-        if (lblHinh == null || lblHinh.getToolTipText() == null || lblHinh.getToolTipText().isEmpty()) {
-            p.setHinh("No Avatar");
-        } else {
-            p.setHinh(lblHinh.getToolTipText());
-        }
         String s = "";
         if (chkCaNhac.isSelected()) {
             s = "Ca Nhạc," + s;
@@ -164,20 +149,18 @@ public class PhimJPanel extends javax.swing.JPanel {
         if (chkChinhKich.isSelected()) {
             s = "Chính Kịch," + s;
         }
-        if (chkGiaDinh.isSelected()) {
+        if (chkGiaĐinh.isSelected()) {
             s = "Gia Đình," + s;
         }
         if (chkHaiHuoc.isSelected()) {
             s = "Hài Hước," + s;
         }
-        if (chkHanhDong.isSelected()) {
+        if (chkHanhĐong.isSelected()) {
             s = "Hành Động," + s;
         }
         if (chkHoatHinh.isSelected()) {
             s = "Hoạt Hình," + s;
         }
-        if (chkKhoaHocVienTuong.isSelected()) {
-            s = "Khoa Học Viễn Tưởng," + s;
         if (chkKhoaHocVienTuong.isSelected()) {
             s = "Khoa Học Viễn Tưởng, " + s;
         }
@@ -207,14 +190,30 @@ public class PhimJPanel extends javax.swing.JPanel {
             s = s.substring(0, s.length() - 1);
         }
         p.setTheLoai(s);
+        p.setThoiLuong(Integer.parseInt(txtThoiLuong.getText()));
+        p.setDaoDien(txtDaoDien.getText());
+        p.setDienVien(txtDienVien.getText());
+        p.setMoTa(txtMoTa.getText());
+        p.setNgayCongChieu(txtNgayCC.getDate());
+        p.setNgayKetThuc(txtNgayKT.getDate());
+        p.setNamSX(Integer.parseInt(txtNamSX.getText()));
+        p.setNuocSX(txtNuocSX.getText());
+        if (lblHinh == null || lblHinh.getToolTipText() == null || lblHinh.getToolTipText().isEmpty()) {
+            p.setHinh("No Avatar");
+        } else {
+            p.setHinh(lblHinh.getToolTipText());
+        }
+        p.setGiaBQ(Integer.parseInt(txtGiaBanQuyen.getText()));
         return p;
     }
-        return null;
-    }
+
     public void cleanForm() {
         setForm(new Phim());
         txtThoiLuong.setText("");
         txtNamSX.setText("");
+        txtGiaBanQuyen.setText("");
+        txtNgayCC.setDate(null);
+        txtNgayKT.setDate(null);
         row = -1;
         updateStatus();
     }
@@ -261,103 +260,115 @@ public class PhimJPanel extends javax.swing.JPanel {
 
     public boolean checkValidate() {
         if (txtMaPhim.getText().isEmpty()) {
-            Notifications.getInstance().show(Notifications.Type.INFO, Notifications.Location.TOP_CENTER, "Không để trống mã phim");
+            Notifications.getInstance().show(Notifications.Type.INFO, Notifications.Location.TOP_CENTER, "Không để trống Mã phim!");
+            txtMaPhim.requestFocus();
+            return false;
+        }
+        if (txtMaPhim.getText().length() > 10) {
+            Notifications.getInstance().show(Notifications.Type.INFO, Notifications.Location.TOP_CENTER, "Mã phim không thể quá 10 ký tự!");
             txtMaPhim.requestFocus();
             return false;
         }
         if (txtTenPhim.getText().isEmpty()) {
-            Notifications.getInstance().show(Notifications.Type.INFO, Notifications.Location.TOP_CENTER, "Không để trống tên phim");
+            Notifications.getInstance().show(Notifications.Type.INFO, Notifications.Location.TOP_CENTER, "Không để trống Tên phim!");
             txtTenPhim.requestFocus();
             return false;
         }
+        if (!chkCaNhac.isSelected() && !chkChinhKich.isSelected() && !chkGiaĐinh.isSelected() && !chkHaiHuoc.isSelected() && !chkHanhĐong.isSelected() && !chkHoatHinh.isSelected() && !chkKhoaHocVienTuong.isSelected() && !chkKinhDi.isSelected() && !chkLichSu.isSelected() && !chkPhieuLuu.isSelected() && !chkSuThi.isSelected() && !chkTaiLieu.isSelected() && !chkTinhCam.isSelected() && !chkTrinhTham.isSelected()) {
+            Notifications.getInstance().show(Notifications.Type.INFO, Notifications.Location.TOP_CENTER, "Chưa chọn Thể loại phim!");
+            return false;
+        }
         if (txtThoiLuong.getText().isEmpty()) {
-            Notifications.getInstance().show(Notifications.Type.INFO, Notifications.Location.TOP_CENTER, "Không để trống thời lượng phim");
+            Notifications.getInstance().show(Notifications.Type.INFO, Notifications.Location.TOP_CENTER, "Không để trống Thời lượng phim!");
             txtThoiLuong.requestFocus();
-            return false;
-        }
-        if (txtDaoDien.getText().isEmpty()) {
-            Notifications.getInstance().show(Notifications.Type.INFO, Notifications.Location.TOP_CENTER, "Không để trống tên đạo diễn phim");
-            txtDaoDien.requestFocus();
-            return false;
-        }
-        if (txtDienVien.getText().isEmpty()) {
-            Notifications.getInstance().show(Notifications.Type.INFO, Notifications.Location.TOP_CENTER, "Không để trống tên diễn viên phim");
-            txtDienVien.requestFocus();
-            return false;
-        }
-        if (txtMoTa.getText().isEmpty()) {
-            Notifications.getInstance().show(Notifications.Type.INFO, Notifications.Location.TOP_CENTER, "Không để trống mô tả phim");
-            txtMoTa.requestFocus();
-            return false;
-        }
-        if (txtNgayCC.getDateFormatString().isEmpty()) {
-            Notifications.getInstance().show(Notifications.Type.INFO, Notifications.Location.TOP_CENTER, "Không để trống ngày công chiếu phim");
-            txtNgayCC.requestFocus();
-            return false;
-        }
-        if (txtNgayKT.getDateFormatString().isEmpty()) {
-            Notifications.getInstance().show(Notifications.Type.INFO, Notifications.Location.TOP_CENTER, "Không để trống ngày kết thúc phim");
-            txtNgayKT.requestFocus();
-            return false;
-        }
-        if (txtNamSX.getText().isEmpty()) {
-            Notifications.getInstance().show(Notifications.Type.INFO, Notifications.Location.TOP_CENTER, "Không để trống năm sản xuất phim");
-            txtNamSX.requestFocus();
-            return false;
-        }
-        if (txtNuocSX.getText().isEmpty()) {
-            Notifications.getInstance().show(Notifications.Type.INFO, Notifications.Location.TOP_CENTER, "Không để trống nước sản xuất phim");
-            txtNuocSX.requestFocus();
             return false;
         }
         try {
             int thoiluong = Integer.parseInt(txtThoiLuong.getText());
             if (thoiluong < 0) {
-                Notifications.getInstance().show(Notifications.Type.INFO, Notifications.Location.TOP_CENTER, "Thời lượng không nhập số âm");
+                Notifications.getInstance().show(Notifications.Type.INFO, Notifications.Location.TOP_CENTER, "Thời lượng không nhập số âm!");
                 txtThoiLuong.requestFocus();
                 return false;
             }
         } catch (NumberFormatException e) {
-            Notifications.getInstance().show(Notifications.Type.INFO, Notifications.Location.TOP_CENTER, "Thời lượng nhập số");
+            Notifications.getInstance().show(Notifications.Type.INFO, Notifications.Location.TOP_CENTER, "Thời lượng nhập số!");
             return false;
         }
 
-        Matcher ncc = Pattern.compile(ngay).matcher(txtNgayCC.getDateFormatString());//Kiểm tra điều kiện định dạng EMail
-        if (!ncc.matches()) {//Đảo ngược điều kiện đúng thành sai
-            String s = "";
-            s = "Sai định dạng ngày công chiếu\n";
-            s = s + "VD: 31/12/2023";
-            Notifications.getInstance().show(Notifications.Type.INFO, Notifications.Location.TOP_CENTER, s);
+        if (txtDaoDien.getText().isEmpty()) {
+            Notifications.getInstance().show(Notifications.Type.INFO, Notifications.Location.TOP_CENTER, "Không để trống tên Đạo diễn phim!");
+            txtDaoDien.requestFocus();
             return false;
         }
-
-        Matcher nkt = Pattern.compile(ngay).matcher(txtNgayKT.getDateFormatString());//Kiểm tra điều kiện định dạng EMail
-        if (!nkt.matches()) {//Đảo ngược điều kiện đúng thành sai
-            String s = "";
-            s = "Sai định dạng ngày kết thúc\n";
-            s = s + "VD: 31/12/2023";
-            Notifications.getInstance().show(Notifications.Type.INFO, Notifications.Location.TOP_CENTER, s);
+        if (txtDienVien.getText().isEmpty()) {
+            Notifications.getInstance().show(Notifications.Type.INFO, Notifications.Location.TOP_CENTER, "Không để trống tên Diễn viên phim!");
+            txtDienVien.requestFocus();
             return false;
         }
-
+        if (txtMoTa.getText().isEmpty()) {
+            Notifications.getInstance().show(Notifications.Type.INFO, Notifications.Location.TOP_CENTER, "Không để trống Mô tả phim!");
+            txtMoTa.requestFocus();
+            return false;
+        }
+        if (txtNgayCC.getDate() == null) {
+            Notifications.getInstance().show(Notifications.Type.INFO, Notifications.Location.TOP_CENTER, "Không để trống Ngày công chiếu phim!");
+            txtNgayCC.requestFocus();
+            return false;
+        }
+        if (txtNgayKT.getDate() == null) {
+            Notifications.getInstance().show(Notifications.Type.INFO, Notifications.Location.TOP_CENTER, "Không để trống Ngày kết thúc phim!");
+            txtNgayKT.requestFocus();
+            return false;
+        }
+        Date ngayCC = txtNgayCC.getDate();
+        Date ngayKT = txtNgayKT.getDate();
+        Calendar c1 = Calendar.getInstance();
+        Calendar c2 = Calendar.getInstance();
+        c1.setTime(ngayCC);
+        c2.setTime(ngayKT);
+        int songay = (int) ((c2.getTime().getTime() - c1.getTime().getTime()) / (24 * 3600 * 1000));
+        if (songay < 30) {
+            Notifications.getInstance().show(Notifications.Type.INFO, Notifications.Location.TOP_CENTER, "Ngày kết thúc phải sau Ngày công chiếu ít nhất 30 ngày!");
+            return false;
+        }
+        if (txtNamSX.getText().isEmpty()) {
+            Notifications.getInstance().show(Notifications.Type.INFO, Notifications.Location.TOP_CENTER, "Không để trống Năm sản xuất phim!");
+            txtNamSX.requestFocus();
+            return false;
+        }
         try {
             int namsx = Integer.parseInt(txtNamSX.getText());
             if (namsx < 0) {
-                Notifications.getInstance().show(Notifications.Type.INFO, Notifications.Location.TOP_CENTER, "Năm sản xuất không nhập số âm");
-                txtThoiLuong.requestFocus();
+                Notifications.getInstance().show(Notifications.Type.INFO, Notifications.Location.TOP_CENTER, "Năm sản xuất không nhập số âm!");
+                txtNamSX.requestFocus();
                 return false;
             }
         } catch (NumberFormatException e) {
-            Notifications.getInstance().show(Notifications.Type.INFO, Notifications.Location.TOP_CENTER, "Năm sản xuất nhập số");
-            return false;
-        }
-        
-        if (txtGiaBanQuyen.getText().isEmpty()) {
-            Notifications.getInstance().show(Notifications.Type.INFO, Notifications.Location.TOP_CENTER, "Không để trống ngày công chiếu phim");
-            txtGiaBanQuyen.requestFocus();
+            Notifications.getInstance().show(Notifications.Type.INFO, Notifications.Location.TOP_CENTER, "Năm sản xuất nhập số!");
             return false;
         }
 
+        if (txtNuocSX.getText().isEmpty()) {
+            Notifications.getInstance().show(Notifications.Type.INFO, Notifications.Location.TOP_CENTER, "Không để trống Nước sản xuất phim!");
+            txtNuocSX.requestFocus();
+            return false;
+        }
+        if (txtGiaBanQuyen.getText().isEmpty()) {
+            Notifications.getInstance().show(Notifications.Type.INFO, Notifications.Location.TOP_CENTER, "Không để trống Giá bản quyền phim!");
+            txtGiaBanQuyen.requestFocus();
+            return false;
+        }
+        try {
+            int giaBQ = Integer.parseInt(txtGiaBanQuyen.getText());
+            if (giaBQ < 0) {
+                Notifications.getInstance().show(Notifications.Type.INFO, Notifications.Location.TOP_CENTER, "Giá bản quyền không nhập số âm!");
+                txtGiaBanQuyen.requestFocus();
+                return false;
+            }
+        } catch (NumberFormatException e) {
+            Notifications.getInstance().show(Notifications.Type.INFO, Notifications.Location.TOP_CENTER, "Giá bản quyền nhập số!");
+            return false;
+        }
         return true;
     }
 
@@ -419,7 +430,7 @@ public class PhimJPanel extends javax.swing.JPanel {
         lblTrangChu = new javax.swing.JLabel();
         lblDongHo = new javax.swing.JLabel();
         jLabel10 = new javax.swing.JLabel();
-        chkHanhDong = new javax.swing.JCheckBox();
+        chkHanhĐong = new javax.swing.JCheckBox();
         chkKinhDi = new javax.swing.JCheckBox();
         chkHaiHuoc = new javax.swing.JCheckBox();
         chkTinhCam = new javax.swing.JCheckBox();
@@ -432,7 +443,7 @@ public class PhimJPanel extends javax.swing.JPanel {
         chkTrinhTham = new javax.swing.JCheckBox();
         chkKhoaHocVienTuong = new javax.swing.JCheckBox();
         chkCaNhac = new javax.swing.JCheckBox();
-        chkGiaDinh = new javax.swing.JCheckBox();
+        chkGiaĐinh = new javax.swing.JCheckBox();
         txtDaoDien = new javax.swing.JTextField();
         jScrollPane2 = new javax.swing.JScrollPane();
         txtMoTa = new javax.swing.JTextArea();
@@ -579,7 +590,7 @@ public class PhimJPanel extends javax.swing.JPanel {
                 .addContainerGap())
         );
 
-        chkHanhDong.setText("Hành Động");
+        chkHanhĐong.setText("Hành Động");
 
         chkKinhDi.setText("Kinh Dị");
 
@@ -605,7 +616,7 @@ public class PhimJPanel extends javax.swing.JPanel {
 
         chkCaNhac.setText("Ca Nhạc");
 
-        chkGiaDinh.setText("Gia Đình");
+        chkGiaĐinh.setText("Gia Đình");
 
         txtDaoDien.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
 
@@ -649,9 +660,13 @@ public class PhimJPanel extends javax.swing.JPanel {
             .addComponent(lblHinh, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
 
+        txtNgayCC.setForeground(new java.awt.Color(255, 51, 51));
         txtNgayCC.setDateFormatString("dd/MM/yyyy");
+        txtNgayCC.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
 
+        txtNgayKT.setForeground(new java.awt.Color(255, 51, 51));
         txtNgayKT.setDateFormatString("dd/MM/yyyy");
+        txtNgayKT.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
 
         jLabel9.setFont(new java.awt.Font("Segoe UI", 0, 16)); // NOI18N
         jLabel9.setText("Giá Bản Quyền:");
@@ -686,7 +701,7 @@ public class PhimJPanel extends javax.swing.JPanel {
                                     .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
                                         .addComponent(chkHoatHinh, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                         .addComponent(chkHaiHuoc, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 77, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                    .addComponent(chkHanhDong))
+                                    .addComponent(chkHanhĐong))
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                                     .addGroup(jPanel1Layout.createSequentialGroup()
@@ -696,7 +711,7 @@ public class PhimJPanel extends javax.swing.JPanel {
                                     .addGroup(jPanel1Layout.createSequentialGroup()
                                         .addComponent(chkTinhCam, javax.swing.GroupLayout.PREFERRED_SIZE, 85, javax.swing.GroupLayout.PREFERRED_SIZE)
                                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                        .addComponent(chkGiaDinh, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                                        .addComponent(chkGiaĐinh, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                                         .addComponent(chkKinhDi, javax.swing.GroupLayout.PREFERRED_SIZE, 85, javax.swing.GroupLayout.PREFERRED_SIZE)
                                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -776,7 +791,7 @@ public class PhimJPanel extends javax.swing.JPanel {
                                 .addComponent(jLabel3)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                    .addComponent(chkHanhDong)
+                                    .addComponent(chkHanhĐong)
                                     .addComponent(chkKinhDi)
                                     .addComponent(chkChinhKich)
                                     .addComponent(chkLichSu)
@@ -787,7 +802,7 @@ public class PhimJPanel extends javax.swing.JPanel {
                                     .addComponent(chkTinhCam)
                                     .addComponent(chkTaiLieu)
                                     .addComponent(chkSuThi)
-                                    .addComponent(chkGiaDinh))
+                                    .addComponent(chkGiaĐinh))
                                 .addGap(7, 7, 7)
                                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                                     .addComponent(chkHoatHinh)
@@ -923,9 +938,9 @@ public class PhimJPanel extends javax.swing.JPanel {
     private javax.swing.JButton btnXoa;
     private javax.swing.JCheckBox chkCaNhac;
     private javax.swing.JCheckBox chkChinhKich;
-    private javax.swing.JCheckBox chkGiaDinh;
+    private javax.swing.JCheckBox chkGiaĐinh;
     private javax.swing.JCheckBox chkHaiHuoc;
-    private javax.swing.JCheckBox chkHanhDong;
+    private javax.swing.JCheckBox chkHanhĐong;
     private javax.swing.JCheckBox chkHoatHinh;
     private javax.swing.JCheckBox chkKhoaHocVienTuong;
     private javax.swing.JCheckBox chkKinhDi;

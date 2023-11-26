@@ -61,7 +61,7 @@
                                           <Component id="chkHoatHinh" max="32767" attributes="0"/>
                                           <Component id="chkHaiHuoc" alignment="0" min="-2" pref="77" max="-2" attributes="0"/>
                                       </Group>
-                                      <Component id="chkHanhDong" min="-2" max="-2" attributes="0"/>
+                                      <Component id="chkHanhĐong" min="-2" max="-2" attributes="0"/>
                                   </Group>
                                   <EmptySpace max="-2" attributes="0"/>
                                   <Group type="103" groupAlignment="0" max="-2" attributes="0">
@@ -73,7 +73,7 @@
                                       <Group type="102" alignment="0" attributes="0">
                                           <Component id="chkTinhCam" min="-2" pref="85" max="-2" attributes="0"/>
                                           <EmptySpace max="-2" attributes="0"/>
-                                          <Component id="chkGiaDinh" max="32767" attributes="0"/>
+                                          <Component id="chkGiaĐinh" max="32767" attributes="0"/>
                                       </Group>
                                       <Group type="102" alignment="1" attributes="0">
                                           <Component id="chkKinhDi" min="-2" pref="85" max="-2" attributes="0"/>
@@ -179,7 +179,7 @@
                                   <Component id="jLabel3" min="-2" max="-2" attributes="0"/>
                                   <EmptySpace max="-2" attributes="0"/>
                                   <Group type="103" groupAlignment="3" attributes="0">
-                                      <Component id="chkHanhDong" alignment="3" min="-2" max="-2" attributes="0"/>
+                                      <Component id="chkHanhĐong" alignment="3" min="-2" max="-2" attributes="0"/>
                                       <Component id="chkKinhDi" alignment="3" min="-2" max="-2" attributes="0"/>
                                       <Component id="chkChinhKich" alignment="3" min="-2" max="-2" attributes="0"/>
                                       <Component id="chkLichSu" alignment="3" min="-2" max="-2" attributes="0"/>
@@ -191,7 +191,7 @@
                                       <Component id="chkTinhCam" alignment="3" min="-2" max="-2" attributes="0"/>
                                       <Component id="chkTaiLieu" alignment="3" min="-2" max="-2" attributes="0"/>
                                       <Component id="chkSuThi" alignment="3" min="-2" max="-2" attributes="0"/>
-                                      <Component id="chkGiaDinh" alignment="3" min="-2" max="-2" attributes="0"/>
+                                      <Component id="chkGiaĐinh" alignment="3" min="-2" max="-2" attributes="0"/>
                                   </Group>
                                   <EmptySpace min="7" pref="7" max="-2" attributes="0"/>
                                   <Group type="103" groupAlignment="3" attributes="0">
@@ -608,7 +608,7 @@
             </Component>
           </SubComponents>
         </Container>
-        <Component class="javax.swing.JCheckBox" name="chkHanhDong">
+        <Component class="javax.swing.JCheckBox" name="chkHanh&#x110;ong">
           <Properties>
             <Property name="text" type="java.lang.String" value="H&#xe0;nh &#x110;&#x1ed9;ng"/>
           </Properties>
@@ -673,7 +673,7 @@
             <Property name="text" type="java.lang.String" value="Ca Nh&#x1ea1;c"/>
           </Properties>
         </Component>
-        <Component class="javax.swing.JCheckBox" name="chkGiaDinh">
+        <Component class="javax.swing.JCheckBox" name="chkGia&#x110;inh">
           <Properties>
             <Property name="text" type="java.lang.String" value="Gia &#x110;&#xec;nh"/>
           </Properties>
@@ -782,12 +782,24 @@
         </Container>
         <Component class="com.toedter.calendar.JDateChooser" name="txtNgayCC">
           <Properties>
+            <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+              <Color blue="33" green="33" red="ff" type="rgb"/>
+            </Property>
             <Property name="dateFormatString" type="java.lang.String" value="dd/MM/yyyy"/>
+            <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+              <Font name="Segoe UI" size="14" style="0"/>
+            </Property>
           </Properties>
         </Component>
         <Component class="com.toedter.calendar.JDateChooser" name="txtNgayKT">
           <Properties>
+            <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+              <Color blue="33" green="33" red="ff" type="rgb"/>
+            </Property>
             <Property name="dateFormatString" type="java.lang.String" value="dd/MM/yyyy"/>
+            <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+              <Font name="Segoe UI" size="14" style="0"/>
+            </Property>
           </Properties>
         </Component>
         <Component class="javax.swing.JLabel" name="jLabel9">
