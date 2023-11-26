@@ -17,20 +17,20 @@ import model.TimVe;
  */
 public class PhimDAO extends CinemaxDAO<Phim, String> {
 
-    final String INSERT_SQL = "INSERT INTO Phim (PhimID, TenPhim, DaoDien, DienVienChinh, ThoiLuong, TheLoai, NgayCongChieu, NgayKetThuc, Hinh, MoTa, QuocGia, NamSanXuat) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
-    final String UPDATE_SQL = "UPDATE Phim SET TenPhim=?, DaoDien=?, DienVienChinh=?, ThoiLuong=?, TheLoai=?, NgayCongChieu=?, NgayKetThuc=?, Hinh=?, MoTa=?, QuocGia=?, NamSanXuat=? WHERE PhimID=?";
+    final String INSERT_SQL = "INSERT INTO Phim (PhimID, TenPhim, DaoDien, DienVienChinh, ThoiLuong, TheLoai, NgayCongChieu, NgayKetThuc, Hinh, MoTa, QuocGia, GiaPhim, NamSanXuat) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
+    final String UPDATE_SQL = "UPDATE Phim SET TenPhim=?, DaoDien=?, DienVienChinh=?, ThoiLuong=?, TheLoai=?, NgayCongChieu=?, NgayKetThuc=?, Hinh=?, MoTa=?, QuocGia=?, GiaPhim=?, NamSanXuat=? WHERE PhimID=?";
     final String DELETE_SQL = "DELETE FROM Phim WHERE PhimID=?";
     final String SELECT_ALL_SQL = "SELECT * FROM Phim";
     final String SELECT_BY_ID_SQL = "SELECT * FROM Phim WHERE PhimID=?";
 
     @Override
     public void insert(Phim entity) {
-        JDBCHelper.update(INSERT_SQL, entity.getMaPhim(), entity.getTenPhim(), entity.getDaoDien(), entity.getDienVien(), entity.getThoiLuong(), entity.getTheLoai(), entity.getNgayCongChieu(), entity.getNgayKetThuc(), entity.getHinh(), entity.getMoTa(), entity.getNuocSX(), entity.getNamSX());
+        JDBCHelper.update(INSERT_SQL, entity.getMaPhim(), entity.getTenPhim(), entity.getDaoDien(), entity.getDienVien(), entity.getThoiLuong(), entity.getTheLoai(), entity.getNgayCongChieu(), entity.getNgayKetThuc(), entity.getHinh(), entity.getMoTa(), entity.getNuocSX(), entity.getGiaBQ(), entity.getNamSX());
     }
 
     @Override
     public void update(Phim entity) {
-        JDBCHelper.update(UPDATE_SQL, entity.getTenPhim(), entity.getDaoDien(), entity.getDienVien(), entity.getThoiLuong(), entity.getTheLoai(), entity.getNgayCongChieu(), entity.getNgayKetThuc(), entity.getHinh(), entity.getMoTa(), entity.getNuocSX(), entity.getNamSX(), entity.getMaPhim());
+        JDBCHelper.update(UPDATE_SQL, entity.getTenPhim(), entity.getDaoDien(), entity.getDienVien(), entity.getThoiLuong(), entity.getTheLoai(), entity.getNgayCongChieu(), entity.getNgayKetThuc(), entity.getHinh(), entity.getMoTa(), entity.getNuocSX(), entity.getGiaBQ(), entity.getNamSX(), entity.getMaPhim());
     }
 
     @Override
@@ -70,6 +70,7 @@ public class PhimDAO extends CinemaxDAO<Phim, String> {
                 entity.setHinh(rs.getString("Hinh"));
                 entity.setMoTa(rs.getString("MoTa"));
                 entity.setNuocSX(rs.getString("QuocGia"));
+                entity.setGiaBQ(rs.getInt("GiaPhim"));
                 entity.setNamSX(rs.getInt("NamSanXuat"));
                 list.add(entity);
             }
