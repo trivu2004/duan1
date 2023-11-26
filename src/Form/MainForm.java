@@ -26,8 +26,9 @@ import raven.toast.Notifications;
  * @author Raven
  */
 public class MainForm extends JLayeredPane {
-    
+
     NhanVienDAO daoNV = new NhanVienDAO();
+
     public MainForm() {
         init();
     }
@@ -66,7 +67,7 @@ public class MainForm extends JLayeredPane {
         String icon = (getComponentOrientation().isLeftToRight()) ? "menu_left.svg" : "menu_right.svg";
         menuButton.setIcon(new FlatSVGIcon("raven/icon/svg/" + icon, 0.8f));
     }
-    
+
     boolean isManager() {
         return daoNV.isManager(MainJFrame.NhanVienID);
     }
@@ -96,6 +97,8 @@ public class MainForm extends JLayeredPane {
                     return;
                 }
                 MainJFrame.showForm(new ThongKeJPanel());
+            } else if (index == 8) {
+                MainJFrame.showForm(new DoiMatKhauJPanel());
             } else if (index == 9) {
                 MainJFrame.logout();
             } else {

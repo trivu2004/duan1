@@ -31,6 +31,7 @@ public class MainJFrame extends javax.swing.JFrame {
     public static String tenNhanVien;
     public static Image APP_ICON;
     public static String NhanVienID;
+    public static String MatKhau;
     String file = "/image/Logo.png";
 
     public MainJFrame() {
@@ -72,7 +73,7 @@ public class MainJFrame extends javax.swing.JFrame {
                 ResultSet kq = st.executeQuery();
                 while (kq.next()) {
                     NhanVienID = kq.getString("NhanVienID");
-                    String MatKhau = kq.getString("MatKhau");
+                    MatKhau = kq.getString("MatKhau");
                     tenNhanVien = kq.getString("TenNhanVien");
                     // Mã hóa mật khẩu
                     if (BCryptPasswordHashing.verifyPassword(loginForm.txtPass.getText().trim(), MatKhau) & NhanVienID.equals(loginForm.txtUser.getText())) {
