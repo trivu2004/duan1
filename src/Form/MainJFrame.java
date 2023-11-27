@@ -30,6 +30,8 @@ public class MainJFrame extends javax.swing.JFrame {
     private static QuenMatKhauJDialog quenMatKhauJDialog;
     public static String tenNhanVien;
     public static Image APP_ICON;
+    public static String NhanVienID;
+    public static String MatKhau;
     String file = "/image/Logo.png";
     private static TrangChuJPanel k;
 
@@ -72,8 +74,8 @@ public class MainJFrame extends javax.swing.JFrame {
                 PreparedStatement st = JDBCHelper.prepareStatement(sql);
                 ResultSet kq = st.executeQuery();
                 while (kq.next()) {
-                    String NhanVienID = kq.getString("NhanVienID");
-                    String MatKhau = kq.getString("MatKhau");
+                    NhanVienID = kq.getString("NhanVienID");
+                    MatKhau = kq.getString("MatKhau");
                     tenNhanVien = kq.getString("TenNhanVien");
                     // Mã hóa mật khẩu
                     if (BCryptPasswordHashing.verifyPassword(loginForm.txtPass.getText().trim(), MatKhau) & NhanVienID.equals(loginForm.txtUser.getText())) {
@@ -92,9 +94,13 @@ public class MainJFrame extends javax.swing.JFrame {
                         return;
                     }
                 }
+<<<<<<< HEAD
 
                 Notifications.getInstance().show(Notifications.Type.INFO, Notifications.Location.TOP_CENTER, "Sai tài khoản hoặc mật khẩu !");
 
+=======
+                Notifications.getInstance().show(Notifications.Type.INFO, Notifications.Location.TOP_CENTER, "Sai tài khoản hoặc mật khẩu !");
+>>>>>>> 763b61dad899fb54b649f11bb73dc2d1ac06396d
             } catch (Exception e) {
             }
         } else {

@@ -10,18 +10,14 @@ package model;
  */
 public class PhongChieu {
     private String maPC;
-    private String tenPC;
-    private int soLuongGhe;
     private String tinhTrang;
 
     public PhongChieu() {
     }
 
     
-    public PhongChieu(String maPC, String tenPC, int soLuongGhe, String tinhTrang) {
+    public PhongChieu(String maPC, String tinhTrang) {
         this.maPC = maPC;
-        this.tenPC = tenPC;
-        this.soLuongGhe = soLuongGhe;
         this.tinhTrang = tinhTrang;
     }
 
@@ -33,21 +29,6 @@ public class PhongChieu {
         this.maPC = maPC;
     }
 
-    public String getTenPC() {
-        return tenPC;
-    }
-
-    public void setTenPC(String tenPC) {
-        this.tenPC = tenPC;
-    }
-
-    public int getSoLuongGhe() {
-        return soLuongGhe;
-    }
-
-    public void setSoLuongGhe(int soLuongGhe) {
-        this.soLuongGhe = soLuongGhe;
-    }
 
     public String getTinhTrang() {
         return tinhTrang;
@@ -56,6 +37,6 @@ public class PhongChieu {
     public void setTinhTrang(String tinhTrang) {
         this.tinhTrang = tinhTrang;
     }
-    
+ 
     
 }

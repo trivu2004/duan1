@@ -29,7 +29,10 @@ public class SuatChieuDAO extends CinemaxDAO<SuatChieu, String> {
     final String DELETE_SQL = "DELETE FROM SuatChieu WHERE SuatChieuID=?";
     final String SELECT_ALL_SQL = "SELECT * FROM SuatChieu";
     final String SELECT_BY_ID_SQL = "SELECT * FROM SuatChieu WHERE SuatChieuID=?";
-    SuatChieuJPanel sc;
+    final String tutang = "SELECT SuatChieuID\n"
+            + "FROM SuatChieu\n"
+            + "ORDER BY SuatChieuID DESC\n"
+            + "LIMIT 1";
 
     public static String PhimID, PhongID;
 
@@ -47,6 +50,18 @@ public class SuatChieuDAO extends CinemaxDAO<SuatChieu, String> {
 
     public static void setPhongID(String PhongID) {
         SuatChieuDAO.PhongID = PhongID;
+    }
+
+    public String tutang() {
+        String masc = "";
+        try {
+            ResultSet rs = JDBCHelper.query(tutang);
+            while (rs.next()) {
+                masc = rs.getString("SuatChieuID");
+            }
+        } catch (Exception e) {
+        }
+        return masc;
     }
 
     @Override
@@ -98,97 +113,4 @@ public class SuatChieuDAO extends CinemaxDAO<SuatChieu, String> {
         }
         return list;
     }
-
-    public static void fillTable1(JTable tblSuatChieu) {
-        DefaultTableModel model = (DefaultTableModel) tblSuatChieu.getModel();
-        model.setRowCount(0);
-        int stt = 1;
-        try {
-            String sql = "SELECT sc.SuatChieuID,p.TenPhim,pc.TenPhong,sc.ThoiGianBatDau,sc.ThoiGianKetThuc,pc.PhongID,p.PhimID,nv.NhanVienID FROM SuatChieu sc\n"
-                    + "RIGHT JOIN Phim p ON sc.PhimID = p.PhimID\n"
-                    + "join PhongChieu pc on sc.PhongID = pc.PhongID "
-                    + "join NhanVien nv on nv.NhanVienID = sc.NhanVienID";
-            ResultSet kq = JDBCHelper.query(sql);
-            while (kq.next()) {
-                String suatchieuid = kq.getString("SuatChieuID");
-                String phongID = kq.getString("PhongID");
-                String phimID = kq.getString("PhimID");
-                String thoigianbatdau = kq.getString("ThoiGianBatDau");
-                String thoigianketthuc = kq.getString("ThoiGianKetThuc");
-                String nhanvienid = kq.getString("NhanVienID");
-                Object[] data = {stt++, suatchieuid, phongID, phimID, thoigianbatdau, thoigianketthuc, nhanvienid};
-                model.addRow(data);
-            }
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-    }
-
-    public static void fillPhim(JComboBox cboPhim) {
-        DefaultComboBoxModel model = (DefaultComboBoxModel) cboPhim.getModel();
-        try {
-            String sql = "select distinct PhimID from Phim";
-            ResultSet kq = JDBCHelper.query(sql);
-            while (kq.next()) {
-                model.addElement(kq.getString("PhimID"));
-            }
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-    }
-
-    public static void fillPhong(JComboBox cboPhong) {
-        DefaultComboBoxModel model = (DefaultComboBoxModel) cboPhong.getModel();
-        try {
-            String sql = "select distinct PhongID from PhongChieu";
-            ResultSet kq = JDBCHelper.query(sql);
-            while (kq.next()) {
-                model.addElement(kq.getString("PhongID"));
-            }
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-    }
-
-    public static void fillQuanLy(JComboBox cboQuanLy) {
-        DefaultComboBoxModel model = (DefaultComboBoxModel) cboQuanLy.getModel();
-        try {
-            String sql = "select distinct NhanVienID from NhanVien";
-            ResultSet kq = JDBCHelper.query(sql);
-            while (kq.next()) {
-                model.addElement(kq.getString("NhanVienID"));
-            }
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-    }
-
-//    public void insert1() {
-//        try {
-//            String sql = "insert into SuatChieu values(?,?,?,?,?,?)";
-//            PreparedStatement st = JDBCHelper.prepareStatement(sql);
-//            st.setString(1, sc.txtMaSC.getText());
-//            st.setString(2, (String) sc.cboPhim.getSelectedItem());
-//            st.setString(3, (String) sc.cboPhongChieu.getSelectedItem());
-//            st.setString(4, sc.txtTGBatDau.getText());
-//            st.setString(5, sc.txtTGKetThuc.getText());
-//            st.setString(6, sc.txtTGKetThuc1.getText());
-//            st.executeUpdate();
-//            fillTable1(sc.tblSuatChieu);
-//            Notifications.getInstance().show(Notifications.Type.INFO, Notifications.Location.TOP_CENTER, "Thêm thành công !");
-//        } catch (Exception e) {
-//            e.printStackTrace();
-//        }
-//    }
-//    public void delete1() {
-//        try {
-//            String sql = "delete * from SuatChieu where SuatChieuID = ?";
-//            PreparedStatement st = Helper.JDBCHelper.prepareStatement(sql);
-//            st.setString(1, sc.txtMaSC.getText());
-//            st.executeUpdate();
-//            fillTable1();
-//            Notifications.getInstance().show(Notifications.Type.INFO, Notifications.Location.TOP_CENTER, "Xóa thành công !");
-//        } catch (Exception e) {
-//        }
-//    }
 }

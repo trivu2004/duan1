@@ -23,11 +23,12 @@ public class Phim {
     private int namSX;
     private String nuocSX;
     private String hinh;
+    private int GiaBQ;
 
     public Phim() {
     }
 
-    public Phim(String maPhim, String tenPhim, String theLoai, int thoiLuong, String daoDien, String dienVien, String moTa, Date ngayCongChieu, Date ngayKetThuc, int namSX, String nuocSX, String hinh) {
+    public Phim(String maPhim, String tenPhim, String theLoai, int thoiLuong, String daoDien, String dienVien, String moTa, Date ngayCongChieu, Date ngayKetThuc, int namSX, String nuocSX, String hinh, int GiaBQ) {
         this.maPhim = maPhim;
         this.tenPhim = tenPhim;
         this.theLoai = theLoai;
@@ -40,6 +41,7 @@ public class Phim {
         this.namSX = namSX;
         this.nuocSX = nuocSX;
         this.hinh = hinh;
+        this.GiaBQ = GiaBQ;
     }
 
     public String getMaPhim() {
@@ -137,5 +139,14 @@ public class Phim {
     public void setHinh(String hinh) {
         this.hinh = hinh;
     }
+
+    public int getGiaBQ() {
+        return GiaBQ;
+    }
+
+    public void setGiaBQ(int GiaBQ) {
+        this.GiaBQ = GiaBQ;
+    }
+
     
 }

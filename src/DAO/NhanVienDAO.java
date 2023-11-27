@@ -14,18 +14,20 @@ import util.BCryptPasswordHashing;
 import util.BCryptPasswordHashing;
 import model.TimVe;
 
-
 /**
  *
  * @author 123tu
  */
-public class NhanVienDAO extends CinemaxDAO<NhanVien, String>{
+public class NhanVienDAO extends CinemaxDAO<NhanVien, String> {
+
     final String INSERT_SQL = "INSERT INTO NhanVien (NhanVienID, TenNhanVien, GioiTinh, NgaySinh, Email, ChucVu, MatKhau) VALUES (?, ?, ?, ?, ?, ?, ?)";
-    final String UPDATE_SQL = "UPDATE NhanVien SET TenNhanVien=?, GioiTinh=?, NgaySinh=?, Email=?, ChucVu=?, MatKhau=? WHERE NhanVienID=?";
+    final String UPDATE_SQL = "UPDATE NhanVien SET TenNhanVien=?, GioiTinh=?, NgaySinh=?, Email=?, ChucVu=? WHERE NhanVienID=?";
     final String DELETE_SQL = "DELETE FROM NhanVien WHERE NhanVienID=?";
     final String SELECT_ALL_SQL = "SELECT * FROM NhanVien";
-    final String SELECT_BY_ID_SQL = "SELECT * FROM NhanVien WHERE NhanVienID=?";        
-   
+    final String SELECT_BY_ID_SQL = "SELECT * FROM NhanVien WHERE NhanVienID=?";
+    final String SELECT_CHUCVU = "SELECT ChucVu FROM NhanVien WHERE NhanVienID=?";
+    final String UPDATE_MatKhau = "UPDATE NhanVien SET MatKhau=? WHERE NhanVienID=?";
+
     @Override
     public void insert(NhanVien entity) {
         JDBCHelper.update(INSERT_SQL, entity.getMaNV(), entity.getTenNV(), entity.isGioiTinh(), entity.getNgaySinh(), entity.getEmail(), entity.isChucVu(), BCryptPasswordHashing.hashPassword(entity.getMatKhau()));
@@ -33,7 +35,7 @@ public class NhanVienDAO extends CinemaxDAO<NhanVien, String>{
 
     @Override
     public void update(NhanVien entity) {
-        JDBCHelper.update(UPDATE_SQL, entity.getTenNV(), entity.isGioiTinh(), entity.getNgaySinh(), entity.getEmail(), entity.isChucVu(), BCryptPasswordHashing.hashPassword(entity.getMatKhau()), entity.getMaNV());
+        JDBCHelper.update(UPDATE_SQL, entity.getTenNV(), entity.isGioiTinh(), entity.getNgaySinh(), entity.getEmail(), entity.isChucVu(), entity.getMaNV());
     }
 
     @Override
@@ -75,5 +77,22 @@ public class NhanVienDAO extends CinemaxDAO<NhanVien, String>{
             e.printStackTrace();
         }
         return list;
+    }
+
+    public boolean isManager(String nhanVienID) {
+        boolean chucVu = false;
+        try {
+            ResultSet rs = JDBCHelper.query(SELECT_CHUCVU, nhanVienID);
+            while (rs.next()) {
+                chucVu = rs.getBoolean("ChucVu");
+            }
+            return chucVu;
+        } catch (Exception e) {
+        }
+        return chucVu;
+    }
+
+    public void updateMk(NhanVien model) {
+        JDBCHelper.update(UPDATE_MatKhau, BCryptPasswordHashing.hashPassword(model.getMatKhau()), model.getMaNV());
     }
 }
