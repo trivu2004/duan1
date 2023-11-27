@@ -25,7 +25,7 @@ import raven.toast.Notifications;
 public class SuatChieuDAO extends CinemaxDAO<SuatChieu, String> {
 
     final String INSERT_SQL = "INSERT INTO SuatChieu (SuatChieuID, PhongID, PhimID, ThoiGianBatDau, ThoiGianKetThuc, NhanVienID) VALUES (?, ?, ?, ?, ?, ?)";
-    final String UPDATE_SQL = "UPDATE SuatChieu SET PhongID=?, PhimID=?, ThoiGianBatDau=?, ThoiGianKetThuc=?, NhanVienID=? WHERE SuatChieuID=?";
+    final String UPDATE_SQL = "UPDATE SuatChieu SET PhongID=?, PhimID=?, NhanVienID=?, CaChieu = ? , NgayTaoXuat = ? WHERE SuatChieuID=?";
     final String DELETE_SQL = "DELETE FROM SuatChieu WHERE SuatChieuID=?";
     final String SELECT_ALL_SQL = "SELECT * FROM SuatChieu";
     final String SELECT_BY_ID_SQL = "SELECT * FROM SuatChieu WHERE SuatChieuID=?";
@@ -69,12 +69,12 @@ public class SuatChieuDAO extends CinemaxDAO<SuatChieu, String> {
 
     @Override
     public void insert(SuatChieu entity) {
-        JDBCHelper.update(INSERT_SQL, entity.getMaSC(), entity.getTenPC(), entity.getTenPhim(), entity.getThoiGianBD(), entity.getThoiGianKT(), entity.getTenNQL());
+        JDBCHelper.update(INSERT_SQL, entity.getMaSC(), entity.getTenPC(), entity.getTenPhim(), entity.getTenNQL(), entity.getCachieu(), entity.getNgaytao());
     }
 
     @Override
     public void update(SuatChieu entity) {
-        JDBCHelper.update(UPDATE_SQL, entity.getTenPC(), entity.getTenPhim(), entity.getThoiGianBD(), entity.getThoiGianKT(), entity.getTenNQL(), entity.getMaSC());
+        JDBCHelper.update(UPDATE_SQL, entity.getTenPC(), entity.getTenPhim(), entity.getTenNQL(), entity.getCachieu(), entity.getNgaytao(), entity.getMaSC());
     }
 
     @Override
@@ -118,9 +118,9 @@ public class SuatChieuDAO extends CinemaxDAO<SuatChieu, String> {
                 entity.setMaSC(rs.getString("SuatChieuID"));
                 entity.setTenPC(rs.getString("PhongID"));
                 entity.setTenPhim(rs.getString("PhimID"));
-                entity.setThoiGianBD(rs.getDate("ThoiGianBatDau"));
-                entity.setThoiGianKT(rs.getDate("ThoiGianKetThuc"));
                 entity.setTenNQL(rs.getString("NhanVienID"));
+                entity.setCachieu(rs.getString("CaChieu"));
+                entity.setNgaytao(rs.getDate("NgayTaoXuat"));
                 list.add(entity);
             }
         } catch (Exception e) {

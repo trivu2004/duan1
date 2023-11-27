@@ -11,23 +11,24 @@ import java.util.Date;
  * @author 123tu
  */
 public class SuatChieu {
+
     private String maSC;
     private String tenPhim;
     private String tenPC;
-    private Date thoiGianBD;
-    private Date thoiGianKT;
+    private String cachieu;
     private String tenNQL;
+    private Date ngaytao;
 
     public SuatChieu() {
     }
 
-    public SuatChieu(String maSC, String tenPhim, String tenPC, Date thoiGianBD, Date thoiGianKT, String tenNQL) {
+    public SuatChieu(String maSC, String tenPhim, String tenPC, String cachieu, String tenNQL, Date ngaytao) {
         this.maSC = maSC;
         this.tenPhim = tenPhim;
         this.tenPC = tenPC;
-        this.thoiGianBD = thoiGianBD;
-        this.thoiGianKT = thoiGianKT;
+        this.cachieu = cachieu;
         this.tenNQL = tenNQL;
+        this.ngaytao = ngaytao;
     }
 
     public String getMaSC() {
@@ -54,20 +55,12 @@ public class SuatChieu {
         this.tenPC = tenPC;
     }
 
-    public Date getThoiGianBD() {
-        return thoiGianBD;
+    public String getCachieu() {
+        return cachieu;
     }
 
-    public void setThoiGianBD(Date thoiGianBD) {
-        this.thoiGianBD = thoiGianBD;
-    }
-
-    public Date getThoiGianKT() {
-        return thoiGianKT;
-    }
-
-    public void setThoiGianKT(Date thoiGianKT) {
-        this.thoiGianKT = thoiGianKT;
+    public void setCachieu(String cachieu) {
+        this.cachieu = cachieu;
     }
 
     public String getTenNQL() {
@@ -77,6 +70,13 @@ public class SuatChieu {
     public void setTenNQL(String tenNQL) {
         this.tenNQL = tenNQL;
     }
-    
-    
+
+    public Date getNgaytao() {
+        return ngaytao;
+    }
+
+    public void setNgaytao(Date ngaytao) {
+        this.ngaytao = ngaytao;
+    }
+
 }
