@@ -25,8 +25,11 @@ import raven.menu.MenuAction;
  */
 public class MainForm extends JLayeredPane {
 
+    TrangChuJPanel master;
+
     public MainForm() {
         init();
+        master = new TrangChuJPanel();
     }
 
     private void init() {
@@ -68,7 +71,8 @@ public class MainForm extends JLayeredPane {
         menu.addMenuEvent((int index, int subIndex, MenuAction action) -> {
             // MainJFrame.mainForm.showForm(new DefaultForm("Form : " + index + " " + subIndex));
             if (index == 0) {
-                MainJFrame.showForm(new TrangChuJPanel());
+
+                MainJFrame.showForm(master);
             } else if (index == 1) {
                 MainJFrame.showForm(new NhanVienJPanel());
             } else if (index == 2) {

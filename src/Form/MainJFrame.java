@@ -31,6 +31,7 @@ public class MainJFrame extends javax.swing.JFrame {
     public static String tenNhanVien;
     public static Image APP_ICON;
     String file = "/image/Logo.png";
+    private static TrangChuJPanel k;
 
     public MainJFrame() {
         initComponents();
@@ -38,6 +39,7 @@ public class MainJFrame extends javax.swing.JFrame {
         setLocationRelativeTo(null);
         mainForm = new MainForm();
         loginForm = new LoginForm();
+
         quenMatKhauJDialog = new QuenMatKhauJDialog(this, true);
         setContentPane(loginForm);
         Notifications.getInstance().setJFrame(this);
@@ -80,17 +82,19 @@ public class MainJFrame extends javax.swing.JFrame {
                         app.mainForm.applyComponentOrientation(app.getComponentOrientation());
                         setSelectedMenu(0, 0);
                         app.mainForm.hideMenu();
+                        if (kq.getString(6).equals("0")) {
+                            mainForm.master.lblNhanVien.setVisible(false);
+                            mainForm.master.lblThongKe.setVisible(false);
+                        }
                         SwingUtilities.updateComponentTreeUI(app.mainForm);
                         FlatAnimatedLafChange.hideSnapshotWithAnimation();
                         Notifications.getInstance().show(Notifications.Type.INFO, Notifications.Location.TOP_CENTER, "Chào mừng! " + NhanVienID);
                         return;
                     }
                 }
-<<<<<<< HEAD
 
-=======
                 Notifications.getInstance().show(Notifications.Type.INFO, Notifications.Location.TOP_CENTER, "Sai tài khoản hoặc mật khẩu !");
->>>>>>> a878d5e220498b2e21e08d60e7b2777379e86d84
+
             } catch (Exception e) {
             }
         } else {
