@@ -3,8 +3,13 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
+<<<<<<< HEAD
             <file>file:/E:/DuAn1/src/Form/SuatChieuJPanel.java</file>
             <file>file:/E:/DuAn1/src/Form/MainJFrame.java</file>
+=======
+            <file>file:/D:/DuAn_1/duan1/src/Form/MainJFrame.java</file>
+            <file>file:/D:/DuAn_1/duan1/src/Form/PhimJPanel.java</file>
+>>>>>>> fa27ec3ad2e9946111d9c1f873cb59b9c7511c4b
         </group>
     </open-files>
 </project-private>
