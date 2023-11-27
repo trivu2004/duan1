@@ -40,19 +40,19 @@
                           </Group>
                       </Group>
                   </Group>
-                  <Group type="102" attributes="0">
+                  <Group type="102" alignment="0" attributes="0">
                       <EmptySpace min="-2" pref="20" max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                          <Component id="jLabel4" alignment="0" min="-2" max="-2" attributes="0"/>
                           <Component id="jLabel1" alignment="0" min="-2" max="-2" attributes="0"/>
                           <Component id="jLabel2" alignment="0" min="-2" max="-2" attributes="0"/>
-                          <Component id="txtTGBatDau" alignment="0" max="32767" attributes="0"/>
                           <Component id="txtMaSC" alignment="0" max="32767" attributes="0"/>
-                          <Component id="cboPhim" max="32767" attributes="0"/>
+                          <Component id="cboPhim" pref="455" max="32767" attributes="0"/>
                           <Component id="jLabel11" alignment="0" min="-2" max="-2" attributes="0"/>
-                          <Component id="jLabel12" alignment="0" min="-2" max="-2" attributes="0"/>
-                          <Component id="txtTGKetThuc" alignment="0" min="-2" pref="455" max="-2" attributes="0"/>
                           <Component id="cboPhongChieu" alignment="1" max="32767" attributes="0"/>
+                          <Component id="jLabel12" alignment="0" min="-2" max="-2" attributes="0"/>
+                          <Component id="jLabel4" alignment="0" min="-2" max="-2" attributes="0"/>
+                          <Component id="txtTGBatDau" max="32767" attributes="0"/>
+                          <Component id="txtTGKetThuc" alignment="0" min="-2" pref="449" max="-2" attributes="0"/>
                       </Group>
                   </Group>
               </Group>
@@ -86,7 +86,7 @@
                       <Component id="txtTGBatDau" min="-2" max="-2" attributes="0"/>
                       <EmptySpace type="separate" max="-2" attributes="0"/>
                       <Component id="jLabel12" min="-2" max="-2" attributes="0"/>
-                      <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                      <EmptySpace min="-2" pref="12" max="-2" attributes="0"/>
                       <Component id="txtTGKetThuc" min="-2" max="-2" attributes="0"/>
                       <EmptySpace type="separate" max="-2" attributes="0"/>
                       <Component id="jLabel13" min="-2" max="-2" attributes="0"/>
@@ -280,11 +280,6 @@
         <Property name="text" type="java.lang.String" value="M&#xe3; Su&#x1ea5;t Chi&#x1ebf;u:"/>
       </Properties>
     </Component>
-    <Component class="javax.swing.JTextField" name="txtTGBatDau">
-      <AuxValues>
-        <AuxValue name="JavaCodeGenerator_VariableModifier" type="java.lang.Integer" value="1"/>
-      </AuxValues>
-    </Component>
     <Component class="javax.swing.JLabel" name="jLabel2">
       <Properties>
         <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
@@ -343,11 +338,6 @@
         <Property name="text" type="java.lang.String" value="Th&#x1edd;i Gian K&#x1ebf;t Th&#xfa;c:"/>
       </Properties>
     </Component>
-    <Component class="javax.swing.JTextField" name="txtTGKetThuc">
-      <AuxValues>
-        <AuxValue name="JavaCodeGenerator_VariableModifier" type="java.lang.Integer" value="1"/>
-      </AuxValues>
-    </Component>
     <Component class="javax.swing.JButton" name="btnThem">
       <Properties>
         <Property name="text" type="java.lang.String" value="Th&#xea;m"/>
@@ -401,6 +391,10 @@
         <AuxValue name="JavaCodeGenerator_TypeParameters" type="java.lang.String" value="&lt;String&gt;"/>
         <AuxValue name="JavaCodeGenerator_VariableModifier" type="java.lang.Integer" value="1"/>
       </AuxValues>
+    </Component>
+    <Component class="javax.swing.JTextField" name="txtTGBatDau">
+    </Component>
+    <Component class="javax.swing.JTextField" name="txtTGKetThuc">
     </Component>
   </SubComponents>
 </Form>

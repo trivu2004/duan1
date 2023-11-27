@@ -1,5 +1,6 @@
 package Form;
 
+import DAO.NhanVienDAO;
 import com.formdev.flatlaf.FlatClientProperties;
 import com.formdev.flatlaf.extras.FlatSVGIcon;
 import com.formdev.flatlaf.util.UIScale;
@@ -18,13 +19,15 @@ import javax.swing.border.EmptyBorder;
 import Form.MainJFrame;
 import raven.menu.Menu;
 import raven.menu.MenuAction;
+import raven.toast.Notifications;
 
 /**
  *
  * @author Raven
  */
 public class MainForm extends JLayeredPane {
-
+    
+    NhanVienDAO daoNV = new NhanVienDAO();
     public MainForm() {
         init();
     }
@@ -63,6 +66,10 @@ public class MainForm extends JLayeredPane {
         String icon = (getComponentOrientation().isLeftToRight()) ? "menu_left.svg" : "menu_right.svg";
         menuButton.setIcon(new FlatSVGIcon("raven/icon/svg/" + icon, 0.8f));
     }
+    
+    boolean isManager() {
+        return daoNV.isManager(MainJFrame.NhanVienID);
+    }
 
     private void initMenuEvent() {
         menu.addMenuEvent((int index, int subIndex, MenuAction action) -> {
@@ -70,6 +77,10 @@ public class MainForm extends JLayeredPane {
             if (index == 0) {
                 MainJFrame.showForm(new TrangChuJPanel());
             } else if (index == 1) {
+                if (!isManager()) {
+                    Notifications.getInstance().show(Notifications.Type.INFO, Notifications.Location.TOP_CENTER, "Nhân viên không có Quyền truy cập!");
+                    return;
+                }
                 MainJFrame.showForm(new NhanVienJPanel());
             } else if (index == 2) {
                 MainJFrame.showForm(new PhongChieuJPanel());
@@ -80,6 +91,10 @@ public class MainForm extends JLayeredPane {
             } else if (index == 5) {
                 MainJFrame.showForm(new VeJPanel());
             } else if (index == 6) {
+                if (!isManager()) {
+                    Notifications.getInstance().show(Notifications.Type.INFO, Notifications.Location.TOP_CENTER, "Nhân viên không có Quyền truy cập!");
+                    return;
+                }
                 MainJFrame.showForm(new ThongKeJPanel());
             } else if (index == 9) {
                 MainJFrame.logout();

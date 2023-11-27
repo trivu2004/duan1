@@ -30,6 +30,7 @@ public class MainJFrame extends javax.swing.JFrame {
     private static QuenMatKhauJDialog quenMatKhauJDialog;
     public static String tenNhanVien;
     public static Image APP_ICON;
+    public static String NhanVienID;
     String file = "/image/Logo.png";
 
     public MainJFrame() {
@@ -70,7 +71,7 @@ public class MainJFrame extends javax.swing.JFrame {
                 PreparedStatement st = JDBCHelper.prepareStatement(sql);
                 ResultSet kq = st.executeQuery();
                 while (kq.next()) {
-                    String NhanVienID = kq.getString("NhanVienID");
+                    NhanVienID = kq.getString("NhanVienID");
                     String MatKhau = kq.getString("MatKhau");
                     tenNhanVien = kq.getString("TenNhanVien");
                     // Mã hóa mật khẩu
