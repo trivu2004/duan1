@@ -41,6 +41,8 @@ public class VeJPanel extends javax.swing.JPanel {
     public String ThoiGianChieu = "";
     public String MaSuatChieu = "";
 
+    public String ngayHienTai;
+
     public String getTenPhim() {
         return TenPhim;
     }
@@ -59,6 +61,17 @@ public class VeJPanel extends javax.swing.JPanel {
 
     public VeJPanel() {
         initComponents();
+        Date now = new Date();
+        SimpleDateFormat NgayMuaFormat = new SimpleDateFormat("YYYY-MM-dd");
+        ngayHienTai = NgayMuaFormat.format(now);
+        new Timer(1000, new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                SimpleDateFormat sdf = new SimpleDateFormat("hh:mm:ss a");
+                String text = sdf.format(now);
+                lblDongHo.setText(text);
+            }
+        }).start();
         LoadingJPanel loadingJPanel = new LoadingJPanel();
         long startTime = System.currentTimeMillis();
 
@@ -79,15 +92,6 @@ public class VeJPanel extends javax.swing.JPanel {
             }
         };
         worker.execute();
-        new Timer(1000, new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                Date now = new Date();
-                SimpleDateFormat sdf = new SimpleDateFormat("hh:mm:ss a");
-                String text = sdf.format(now);
-                lblDongHo.setText(text);
-            }
-        }).start();
         btnDatVe.setEnabled(false);
         fillCboThoiGian();
         fillCboPhim();
@@ -104,7 +108,7 @@ public class VeJPanel extends javax.swing.JPanel {
         List<TimVe> list = new ArrayList<>();
         try {
             if (cboPhim.getSelectedIndex() == -1) {
-                list = daoVe.inTatCaVe();
+                list = daoVe.inTatCaVe(ngayHienTai);
             } else {
                 list = daoVe.findTicket(String.valueOf(cboThoiGian.getSelectedItem()), String.valueOf(cboPhongChieu.getSelectedItem()), String.valueOf(cboPhim.getSelectedItem()));
             }
@@ -128,9 +132,9 @@ public class VeJPanel extends javax.swing.JPanel {
 
     void fillCboThoiGian() {
         try {
-            List<SuatChieu> list = daoSuatChieu.selectAll();
-            for (SuatChieu suatChieu : list) {
-                cboThoiGian.addItem(suatChieu.getThoiGianBD() + "");
+            List<String> list = daoSuatChieu.fillChkThoiGianBatDau();
+            for (String string : list) {
+                cboThoiGian.addItem(string);
             }
         } catch (Exception e) {
             e.printStackTrace();
@@ -152,7 +156,7 @@ public class VeJPanel extends javax.swing.JPanel {
         try {
             List<PhongChieu> list = daoPhongChieu.selectAll();
             for (PhongChieu phongChieu : list) {
-                cboPhongChieu.addItem(phongChieu.getMaPC()+ "");
+                cboPhongChieu.addItem(phongChieu.getMaPC() + "");
             }
         } catch (Exception e) {
             e.printStackTrace();

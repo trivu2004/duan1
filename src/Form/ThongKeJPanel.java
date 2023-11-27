@@ -30,6 +30,7 @@ public class ThongKeJPanel extends javax.swing.JPanel {
     VeDAO dao = new VeDAO();
     int tongVeDaBan = 0;
     double tongDoanhThu = 0;
+    double tongLoiNhuan = 0;
 
     public ThongKeJPanel() {
         initComponents();
@@ -82,11 +83,12 @@ public class ThongKeJPanel extends javax.swing.JPanel {
         for (int i = 0; i < jTable1.getRowCount(); i++) {
             tongVeDaBan += Integer.valueOf(String.valueOf(jTable1.getValueAt(i, 2)));
             tongDoanhThu += Double.valueOf(String.valueOf(jTable1.getValueAt(i, 3)));
+            tongLoiNhuan += Double.valueOf(String.valueOf(jTable1.getValueAt(i, 5)));
         }
         card1.setData(new Model_Card("Tổng phim đã chiếu", String.valueOf(jTable1.getRowCount())));
         card2.setData(new Model_Card("Tổng vé đã bán", String.valueOf(tongVeDaBan)));
         card3.setData(new Model_Card("Tổng doanh thu", String.valueOf(tongDoanhThu)));
-        card4.setData(new Model_Card("Tổng lợi nhuận", "232323"));
+        card4.setData(new Model_Card("Tổng lợi nhuận", String.valueOf(tongLoiNhuan)));
     }
 
     /**
@@ -161,10 +163,10 @@ public class ThongKeJPanel extends javax.swing.JPanel {
 
         jTable1.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null}
+                {null, null, null, null, null, null}
             },
             new String [] {
-                "STT", "Tên Phim", "Số lượng vé", "Doanh Thu"
+                "STT", "Tên Phim", "Số lượng vé", "Doanh Thu", "Giá Bản Quyền", "Lợi Nhuận"
             }
         ));
         jScrollPane1.setViewportView(jTable1);
@@ -189,12 +191,10 @@ public class ThongKeJPanel extends javax.swing.JPanel {
         );
         card1.setColor2(Color.decode("#00c6ff")
         );
-        card1.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
 
         card2.setColor1(Color.decode("#70e1f5")
         );
         card2.setColor2(Color.decode("#ffd194"));
-        card2.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
 
         card3.setColor1(Color.decode("#9D50BB"));
         card3.setColor2(Color.decode("#9D50BB"));

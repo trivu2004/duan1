@@ -149,13 +149,13 @@ public class PhimJPanel extends javax.swing.JPanel {
         if (chkChinhKich.isSelected()) {
             s = "Chính Kịch," + s;
         }
-        if (chkGiaĐinh.isSelected()) {
+        if (chkGiaDinh.isSelected()) {
             s = "Gia Đình," + s;
         }
         if (chkHaiHuoc.isSelected()) {
             s = "Hài Hước," + s;
         }
-        if (chkHanhĐong.isSelected()) {
+        if (chkHanhDong.isSelected()) {
             s = "Hành Động," + s;
         }
         if (chkHoatHinh.isSelected()) {
@@ -274,7 +274,7 @@ public class PhimJPanel extends javax.swing.JPanel {
             txtTenPhim.requestFocus();
             return false;
         }
-        if (!chkCaNhac.isSelected() && !chkChinhKich.isSelected() && !chkGiaĐinh.isSelected() && !chkHaiHuoc.isSelected() && !chkHanhĐong.isSelected() && !chkHoatHinh.isSelected() && !chkKhoaHocVienTuong.isSelected() && !chkKinhDi.isSelected() && !chkLichSu.isSelected() && !chkPhieuLuu.isSelected() && !chkSuThi.isSelected() && !chkTaiLieu.isSelected() && !chkTinhCam.isSelected() && !chkTrinhTham.isSelected()) {
+        if (!chkCaNhac.isSelected() && !chkChinhKich.isSelected() && !chkGiaDinh.isSelected() && !chkHaiHuoc.isSelected() && !chkHanhDong.isSelected() && !chkHoatHinh.isSelected() && !chkKhoaHocVienTuong.isSelected() && !chkKinhDi.isSelected() && !chkLichSu.isSelected() && !chkPhieuLuu.isSelected() && !chkSuThi.isSelected() && !chkTaiLieu.isSelected() && !chkTinhCam.isSelected() && !chkTrinhTham.isSelected()) {
             Notifications.getInstance().show(Notifications.Type.INFO, Notifications.Location.TOP_CENTER, "Chưa chọn Thể loại phim!");
             return false;
         }
@@ -430,7 +430,7 @@ public class PhimJPanel extends javax.swing.JPanel {
         lblTrangChu = new javax.swing.JLabel();
         lblDongHo = new javax.swing.JLabel();
         jLabel10 = new javax.swing.JLabel();
-        chkHanhĐong = new javax.swing.JCheckBox();
+        chkHanhDong = new javax.swing.JCheckBox();
         chkKinhDi = new javax.swing.JCheckBox();
         chkHaiHuoc = new javax.swing.JCheckBox();
         chkTinhCam = new javax.swing.JCheckBox();
@@ -443,7 +443,7 @@ public class PhimJPanel extends javax.swing.JPanel {
         chkTrinhTham = new javax.swing.JCheckBox();
         chkKhoaHocVienTuong = new javax.swing.JCheckBox();
         chkCaNhac = new javax.swing.JCheckBox();
-        chkGiaĐinh = new javax.swing.JCheckBox();
+        chkGiaDinh = new javax.swing.JCheckBox();
         txtDaoDien = new javax.swing.JTextField();
         jScrollPane2 = new javax.swing.JScrollPane();
         txtMoTa = new javax.swing.JTextArea();
@@ -590,7 +590,7 @@ public class PhimJPanel extends javax.swing.JPanel {
                 .addContainerGap())
         );
 
-        chkHanhĐong.setText("Hành Động");
+        chkHanhDong.setText("Hành Động");
 
         chkKinhDi.setText("Kinh Dị");
 
@@ -616,7 +616,7 @@ public class PhimJPanel extends javax.swing.JPanel {
 
         chkCaNhac.setText("Ca Nhạc");
 
-        chkGiaĐinh.setText("Gia Đình");
+        chkGiaDinh.setText("Gia Đình");
 
         txtDaoDien.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
 
@@ -701,7 +701,7 @@ public class PhimJPanel extends javax.swing.JPanel {
                                     .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
                                         .addComponent(chkHoatHinh, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                         .addComponent(chkHaiHuoc, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 77, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                    .addComponent(chkHanhĐong))
+                                    .addComponent(chkHanhDong))
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                                     .addGroup(jPanel1Layout.createSequentialGroup()
@@ -711,7 +711,7 @@ public class PhimJPanel extends javax.swing.JPanel {
                                     .addGroup(jPanel1Layout.createSequentialGroup()
                                         .addComponent(chkTinhCam, javax.swing.GroupLayout.PREFERRED_SIZE, 85, javax.swing.GroupLayout.PREFERRED_SIZE)
                                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                        .addComponent(chkGiaĐinh, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                                        .addComponent(chkGiaDinh, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                                         .addComponent(chkKinhDi, javax.swing.GroupLayout.PREFERRED_SIZE, 85, javax.swing.GroupLayout.PREFERRED_SIZE)
                                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -791,7 +791,7 @@ public class PhimJPanel extends javax.swing.JPanel {
                                 .addComponent(jLabel3)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                    .addComponent(chkHanhĐong)
+                                    .addComponent(chkHanhDong)
                                     .addComponent(chkKinhDi)
                                     .addComponent(chkChinhKich)
                                     .addComponent(chkLichSu)
@@ -802,7 +802,7 @@ public class PhimJPanel extends javax.swing.JPanel {
                                     .addComponent(chkTinhCam)
                                     .addComponent(chkTaiLieu)
                                     .addComponent(chkSuThi)
-                                    .addComponent(chkGiaĐinh))
+                                    .addComponent(chkGiaDinh))
                                 .addGap(7, 7, 7)
                                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                                     .addComponent(chkHoatHinh)
@@ -938,9 +938,9 @@ public class PhimJPanel extends javax.swing.JPanel {
     private javax.swing.JButton btnXoa;
     private javax.swing.JCheckBox chkCaNhac;
     private javax.swing.JCheckBox chkChinhKich;
-    private javax.swing.JCheckBox chkGiaĐinh;
+    private javax.swing.JCheckBox chkGiaDinh;
     private javax.swing.JCheckBox chkHaiHuoc;
-    private javax.swing.JCheckBox chkHanhĐong;
+    private javax.swing.JCheckBox chkHanhDong;
     private javax.swing.JCheckBox chkHoatHinh;
     private javax.swing.JCheckBox chkKhoaHocVienTuong;
     private javax.swing.JCheckBox chkKinhDi;

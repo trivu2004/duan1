@@ -58,16 +58,19 @@ public class VeDAO extends CinemaxDAO<Ve, String> {
             + "Join PhongChieu\n"
             + "on SuatChieu.PhongID = PhongChieu.PhongID";
 
-    final String SELECT_ALL_VE = "select SuatChieu.SuatChieuID,Phim.TenPhim,PhongChieu.PhongID,ThoiGianBatDau from SuatChieu\n"
-            + "JOIN Phim\n"
-            + "on SuatChieu.PhimID = Phim.PhimID\n"
-            + "Join PhongChieu\n"
-            + "on SuatChieu.PhongID = PhongChieu.PhongID";
+    final String SELECT_ALL_VE = "select SuatChieu.SuatChieuID,Phim.TenPhim,PhongChieu.PhongID,ThoiGianBatDau,ThoiGianKetThuc from SuatChieu\n"
+            + "           JOIN Phim\n"
+            + "           on SuatChieu.PhimID = Phim.PhimID\n"
+            + "           Join PhongChieu\n"
+            + "           on SuatChieu.PhongID = PhongChieu.PhongID\n"
+            + "            where ThoiGianKetThuc >= ?";
 
     final String SELECT_DOANHTHU = "SELECT\n"
             + "    Phim.TenPhim,\n"
             + "    SUM(Ve.GiaVe) AS TongDoanhThu,\n"
-            + "    Count(Ghe) AS SoLuongVe\n"
+            + "    COUNT(Ghe) as SoLuongVe,\n"
+            + "    GiaPhim,\n"
+            + "    SUM(Ve.GiaVe) - GiaPhim as LoiNhuan\n"
             + "FROM\n"
             + "    Phim\n"
             + "JOIN\n"
@@ -200,10 +203,10 @@ public class VeDAO extends CinemaxDAO<Ve, String> {
         return list;
     }
 
-    public List<TimVe> inTatCaVe(Object... args) {
+    public List<TimVe> inTatCaVe(String ngayHienTai) {
         List<TimVe> list = new ArrayList<>();
         try {
-            ResultSet rs = JDBCHelper.query(SELECT_ALL_VE, args);
+            ResultSet rs = JDBCHelper.query(SELECT_ALL_VE, ngayHienTai);
             while (rs.next()) {
                 TimVe entity = new TimVe();
                 entity.setMaSuatChieu(rs.getString("SuatChieuID"));
@@ -250,7 +253,9 @@ public class VeDAO extends CinemaxDAO<Ve, String> {
                 String tenPhim = rs.getString("TenPhim");
                 String soVe = rs.getString("SoLuongVe");
                 String tongDoanhThu = rs.getString("TongDoanhThu");
-                list.add(STT + "," + tenPhim + "," + soVe + "," + tongDoanhThu);
+                String giaPhim = rs.getString("GiaPhim");
+                String loiNhuan = rs.getString("LoiNhuan");
+                list.add(STT + "," + tenPhim + "," + soVe + "," + tongDoanhThu + "," + giaPhim + "," + loiNhuan);
             }
         } catch (Exception e) {
             e.printStackTrace();

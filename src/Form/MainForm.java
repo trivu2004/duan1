@@ -27,11 +27,8 @@ import raven.toast.Notifications;
  */
 public class MainForm extends JLayeredPane {
 
-<<<<<<< HEAD
     TrangChuJPanel master;
-=======
     NhanVienDAO daoNV = new NhanVienDAO();
->>>>>>> 763b61dad899fb54b649f11bb73dc2d1ac06396d
 
     public MainForm() {
         init();

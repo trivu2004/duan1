@@ -33,6 +33,9 @@ public class SuatChieuDAO extends CinemaxDAO<SuatChieu, String> {
             + "FROM SuatChieu\n"
             + "ORDER BY SuatChieuID DESC\n"
             + "LIMIT 1";
+    final String fillchkThoiGianBatDau = "SELECT ThoiGianBatDau FROM SuatChieu\n"
+            + "group by ThoiGianBatDau\n"
+            + "DESC";
 
     public static String PhimID, PhongID;
 
@@ -82,6 +85,18 @@ public class SuatChieuDAO extends CinemaxDAO<SuatChieu, String> {
     @Override
     public List<SuatChieu> selectAll() {
         return selectBySql(SELECT_ALL_SQL);
+    }
+
+    public List<String> fillChkThoiGianBatDau() {
+        List<String> list = new ArrayList<>();
+        try {
+            ResultSet rs = JDBCHelper.query(fillchkThoiGianBatDau);
+            while (rs.next()) {
+                list.add(rs.getString("ThoiGianBatDau"));
+            }
+        } catch (Exception e) {
+        }
+        return list;
     }
 
     @Override

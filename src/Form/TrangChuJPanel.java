@@ -25,10 +25,6 @@ public class TrangChuJPanel extends javax.swing.JPanel {
 
     public TrangChuJPanel() {
         initComponents();
-<<<<<<< HEAD
-=======
-
->>>>>>> 763b61dad899fb54b649f11bb73dc2d1ac06396d
         new Timer(1000, new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {

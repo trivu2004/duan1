@@ -94,13 +94,7 @@ public class MainJFrame extends javax.swing.JFrame {
                         return;
                     }
                 }
-<<<<<<< HEAD
-
                 Notifications.getInstance().show(Notifications.Type.INFO, Notifications.Location.TOP_CENTER, "Sai tài khoản hoặc mật khẩu !");
-
-=======
-                Notifications.getInstance().show(Notifications.Type.INFO, Notifications.Location.TOP_CENTER, "Sai tài khoản hoặc mật khẩu !");
->>>>>>> 763b61dad899fb54b649f11bb73dc2d1ac06396d
             } catch (Exception e) {
             }
         } else {
