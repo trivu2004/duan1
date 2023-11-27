@@ -16,7 +16,10 @@
   <Layout>
     <DimensionLayout dim="0">
       <Group type="103" groupAlignment="0" attributes="0">
-          <Component id="jPanel1" alignment="0" min="-2" max="-2" attributes="0"/>
+          <Group type="102" attributes="0">
+              <Component id="jPanel1" alignment="0" min="-2" max="-2" attributes="0"/>
+              <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
+          </Group>
       </Group>
     </DimensionLayout>
     <DimensionLayout dim="1">
@@ -167,61 +170,6 @@
                               <Component id="txtDaoDien" alignment="3" min="-2" max="-2" attributes="0"/>
                           </Group>
                           <EmptySpace type="separate" max="-2" attributes="0"/>
-<<<<<<< HEAD
-                          <Group type="103" groupAlignment="0" attributes="0">
-                              <Group type="102" attributes="0">
-                                  <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
-                                  <Component id="txtNgayKT" min="-2" max="-2" attributes="0"/>
-                              </Group>
-                              <Group type="102" attributes="0">
-                                  <Component id="jLabel2" min="-2" max="-2" attributes="0"/>
-                                  <EmptySpace max="-2" attributes="0"/>
-                                  <Component id="txtTenPhim" min="-2" max="-2" attributes="0"/>
-                                  <EmptySpace type="separate" max="-2" attributes="0"/>
-                                  <Group type="103" groupAlignment="1" attributes="0">
-                                      <Group type="102" attributes="0">
-                                          <Component id="jLabel3" min="-2" max="-2" attributes="0"/>
-                                          <EmptySpace max="-2" attributes="0"/>
-                                          <Group type="103" groupAlignment="3" attributes="0">
-                                              <Component id="chkHanhDong" alignment="3" min="-2" max="-2" attributes="0"/>
-                                              <Component id="chkKinhDi" alignment="3" min="-2" max="-2" attributes="0"/>
-                                              <Component id="chkChinhKich" alignment="3" min="-2" max="-2" attributes="0"/>
-                                              <Component id="chkLichSu" alignment="3" min="-2" max="-2" attributes="0"/>
-                                              <Component id="chkCaNhac" alignment="3" min="-2" max="-2" attributes="0"/>
-                                          </Group>
-                                          <EmptySpace max="-2" attributes="0"/>
-                                          <Group type="103" groupAlignment="3" attributes="0">
-                                              <Component id="chkHaiHuoc" alignment="3" min="-2" max="-2" attributes="0"/>
-                                              <Component id="chkTinhCam" alignment="3" min="-2" max="-2" attributes="0"/>
-                                              <Component id="chkTaiLieu" alignment="3" min="-2" max="-2" attributes="0"/>
-                                              <Component id="chkSuThi" alignment="3" min="-2" max="-2" attributes="0"/>
-                                              <Component id="chkGiaDinh" alignment="3" min="-2" max="-2" attributes="0"/>
-                                          </Group>
-                                          <EmptySpace min="7" pref="7" max="-2" attributes="0"/>
-                                          <Group type="103" groupAlignment="3" attributes="0">
-                                              <Component id="chkHoatHinh" alignment="3" min="-2" max="-2" attributes="0"/>
-                                              <Component id="chkPhieuLuu" alignment="3" min="-2" max="-2" attributes="0"/>
-                                              <Component id="chkTrinhTham" alignment="3" min="-2" max="-2" attributes="0"/>
-                                              <Component id="chkKhoaHocVienTuong" alignment="3" min="-2" max="-2" attributes="0"/>
-                                          </Group>
-                                      </Group>
-                                      <Group type="102" attributes="0">
-                                          <Component id="jLabel8" min="-2" max="-2" attributes="0"/>
-                                          <EmptySpace max="-2" attributes="0"/>
-                                          <Component id="jScrollPane2" min="-2" pref="73" max="-2" attributes="0"/>
-                                      </Group>
-                                  </Group>
-                                  <EmptySpace type="separate" max="-2" attributes="0"/>
-                                  <Group type="103" groupAlignment="3" attributes="0">
-                                      <Component id="jLabel4" alignment="3" min="-2" max="-2" attributes="0"/>
-                                      <Component id="jLabel11" alignment="3" min="-2" max="-2" attributes="0"/>
-                                      <Component id="jLabel7" alignment="3" min="-2" max="-2" attributes="0"/>
-                                  </Group>
-                                  <EmptySpace max="-2" attributes="0"/>
-                                  <Component id="txtThoiLuong" min="-2" max="-2" attributes="0"/>
-                                  <EmptySpace max="32767" attributes="0"/>
-                                  <Component id="txtNgayCC" min="-2" max="-2" attributes="0"/>
-=======
                           <Component id="jLabel2" min="-2" max="-2" attributes="0"/>
                           <EmptySpace max="-2" attributes="0"/>
                           <Component id="txtTenPhim" min="-2" max="-2" attributes="0"/>
@@ -257,7 +205,6 @@
                                   <Component id="jLabel8" min="-2" max="-2" attributes="0"/>
                                   <EmptySpace max="-2" attributes="0"/>
                                   <Component id="jScrollPane2" min="-2" pref="73" max="-2" attributes="0"/>
->>>>>>> fa27ec3ad2e9946111d9c1f873cb59b9c7511c4b
                               </Group>
                           </Group>
                           <EmptySpace type="separate" max="-2" attributes="0"/>
