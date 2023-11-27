@@ -121,7 +121,7 @@ public class DanhSachVeJPanel extends javax.swing.JPanel {
         try {
             List<SuatChieu> list = daoSuatChieu.selectAll();
             for (SuatChieu suatChieu : list) {
-                cboThoiGianChieu.addItem(suatChieu.getThoiGianBD() + "");
+                cboThoiGianChieu.addItem(suatChieu.getNgaytao() + "");
             }
         } catch (Exception e) {
             e.printStackTrace();

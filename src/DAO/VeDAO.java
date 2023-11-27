@@ -24,11 +24,11 @@ public class VeDAO extends CinemaxDAO<Ve, String> {
     final String DELETE_SQL = "DELETE FROM Ve WHERE VeID=?";
     final String SELECT_ALL_SQL = "SELECT * FROM Ve";
     final String SELECT_BY_ID_SQL = "SELECT * FROM Ve WHERE VeID=?";
-    final String SELECT_TICKET = "SELECT SuatChieu.SuatChieuID, Phim.TenPhim, PhongChieu.PhongID, ThoiGianBatDau "
+    final String SELECT_TICKET = "SELECT SuatChieu.SuatChieuID, Phim.TenPhim, PhongChieu.PhongID, NgayTaoXuat "
             + "FROM SuatChieu "
             + "JOIN Phim ON SuatChieu.PhimID = Phim.PhimID "
             + "JOIN PhongChieu ON SuatChieu.PhongID = PhongChieu.PhongID "
-            + "WHERE Phim.TenPhim = ? AND PhongChieu.PhongID = ? AND ThoiGianBatDau like ?"
+            + "WHERE Phim.TenPhim = ? AND PhongChieu.PhongID = ? AND NgayTaoXuat like ?"
             + "group by SuatChieu.SuatChieuID";
 
     final String SELECT_VEID = "select VeID from Ve\n"
@@ -36,21 +36,21 @@ public class VeDAO extends CinemaxDAO<Ve, String> {
             + "DESC\n"
             + "LIMIT ?";
 
-    final String SELECT_DANHSACHVE = "select VeID,TenPhim,TenPhong,ThoiGianBatDau,Ghe,LoaiVe,GiaVe,NgayMua from SuatChieu\n"
+    final String SELECT_DANHSACHVE = "select VeID,TenPhim,PhongChieu.PhongID,NgayTaoXuat,Ghe,LoaiVe,GiaVe,NgayMua from SuatChieu\n"
             + "Join Ve\n"
             + "on SuatChieu.SuatChieuID = Ve.SuatChieuID\n"
             + "JOIN Phim\n"
             + "on SuatChieu.PhimID = Phim.PhimID\n"
             + "Join PhongChieu\n"
             + "on SuatChieu.PhongID = PhongChieu.PhongID\n"
-            + "where LoaiVe like ? and TenPhim = ? and TenPhong = ? and ThoiGianBatDau like ?";
+            + "where LoaiVe like ? and TenPhim = ? and PhongChieu.PhongID = ? and NgayTaoXuat like ?";
 
     final String SELECT_TIMGHE = "select Ghe from Ve\n"
             + "inner join SuatChieu SC\n"
             + "on Ve.SuatChieuID = SC.SuatChieuID\n"
             + "where SC.SuatChieuID = ?";
 
-    final String SELECT_ALL_DANHSACH = "select VeID,TenPhim,TenPhong,ThoiGianBatDau,Ghe,LoaiVe,GiaVe,NgayMua from SuatChieu\n"
+    final String SELECT_ALL_DANHSACH = "select VeID,TenPhim,PhongChieu.PhongID,NgayTaoXuat,Ghe,LoaiVe,GiaVe,NgayMua from SuatChieu\n"
             + "Join Ve\n"
             + "on SuatChieu.SuatChieuID = Ve.SuatChieuID\n"
             + "JOIN Phim\n"
@@ -58,12 +58,12 @@ public class VeDAO extends CinemaxDAO<Ve, String> {
             + "Join PhongChieu\n"
             + "on SuatChieu.PhongID = PhongChieu.PhongID";
 
-    final String SELECT_ALL_VE = "select SuatChieu.SuatChieuID,Phim.TenPhim,PhongChieu.PhongID,ThoiGianBatDau,ThoiGianKetThuc from SuatChieu\n"
+    final String SELECT_ALL_VE = "select SuatChieu.SuatChieuID,Phim.TenPhim,PhongChieu.PhongID,NgayTaoXuat from SuatChieu\n"
             + "           JOIN Phim\n"
             + "           on SuatChieu.PhimID = Phim.PhimID\n"
             + "           Join PhongChieu\n"
             + "           on SuatChieu.PhongID = PhongChieu.PhongID\n"
-            + "            where ThoiGianKetThuc >= ?";
+            + "            where NgayTaoXuat >= ?";
 
     final String SELECT_DOANHTHU = "SELECT\n"
             + "    Phim.TenPhim,\n"
@@ -150,7 +150,7 @@ public class VeDAO extends CinemaxDAO<Ve, String> {
                 entity.setMaSuatChieu(rs.getString("SuatChieuID"));
                 entity.setTenPhim(rs.getString("TenPhim"));
                 entity.setTenPhong(rs.getString("PhongID"));
-                entity.setThoiGianChieu(rs.getString("ThoiGianBatDau"));
+                entity.setThoiGianChieu(rs.getString("NgayTaoXuat"));
                 list.add(entity);
             }
         } catch (Exception e) {
@@ -181,7 +181,7 @@ public class VeDAO extends CinemaxDAO<Ve, String> {
                 entity.setNgayMua(rs.getString("NgayMua"));
                 entity.setTenPhim(rs.getString("TenPhim"));
                 entity.setTenPhong(rs.getString("PhongID"));
-                entity.setThoiGianBatDau(rs.getString("ThoiGianBatDau"));
+                entity.setThoiGianBatDau(rs.getString("NgayTaoXuat"));
                 entity.setVeID(rs.getString("VeID"));
                 list.add(entity);
             }
@@ -212,7 +212,7 @@ public class VeDAO extends CinemaxDAO<Ve, String> {
                 entity.setMaSuatChieu(rs.getString("SuatChieuID"));
                 entity.setTenPhim(rs.getString("TenPhim"));
                 entity.setTenPhong(rs.getString("PhongID"));
-                entity.setThoiGianChieu(rs.getString("ThoiGianBatDau"));
+                entity.setThoiGianChieu(rs.getString("NgayTaoXuat"));
                 list.add(entity);
             }
         } catch (Exception e) {
@@ -232,8 +232,8 @@ public class VeDAO extends CinemaxDAO<Ve, String> {
                 entity.setLoaiVe(rs.getString("LoaiVe"));
                 entity.setNgayMua(rs.getString("NgayMua"));
                 entity.setTenPhim(rs.getString("TenPhim"));
-                entity.setTenPhong(rs.getString("TenPhong"));
-                entity.setThoiGianBatDau(rs.getString("ThoiGianBatDau"));
+                entity.setTenPhong(rs.getString("PhongID"));
+                entity.setThoiGianBatDau(rs.getString("NgayTaoXuat"));
                 entity.setVeID(rs.getString("VeID"));
                 list.add(entity);
             }
