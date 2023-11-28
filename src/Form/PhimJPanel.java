@@ -6,6 +6,7 @@ package Form;
 
 import DAO.PhimDAO;
 import Helper.DateHelper;
+import Helper.JDBCHelper;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.File;
@@ -94,6 +95,8 @@ public class PhimJPanel extends javax.swing.JPanel {
         } catch (Exception e) {
             Notifications.getInstance().show(Notifications.Type.INFO, Notifications.Location.TOP_CENTER, "Lỗi truy vấn dữ liệu!");
             e.printStackTrace();
+        } finally {
+            JDBCHelper.closeConnection();
         }
     }
 
@@ -107,6 +110,8 @@ public class PhimJPanel extends javax.swing.JPanel {
             }
         } catch (Exception e) {
             Notifications.getInstance().show(Notifications.Type.INFO, Notifications.Location.TOP_CENTER, "Lỗi truy vấn dữ liệu!");
+        } finally {
+            JDBCHelper.closeConnection();
         }
     }
 
@@ -228,6 +233,8 @@ public class PhimJPanel extends javax.swing.JPanel {
         } catch (Exception e) {
             Notifications.getInstance().show(Notifications.Type.INFO, Notifications.Location.TOP_CENTER, "Thêm Thất Bại");
             e.printStackTrace();
+        } finally {
+            JDBCHelper.closeConnection();
         }
     }
 
@@ -239,6 +246,8 @@ public class PhimJPanel extends javax.swing.JPanel {
             cleanForm();
             Notifications.getInstance().show(Notifications.Type.INFO, Notifications.Location.TOP_CENTER, "Cập nhập thành Công");
         } catch (Exception e) {
+        } finally {
+            JDBCHelper.closeConnection();
         }
     }
 
@@ -254,6 +263,8 @@ public class PhimJPanel extends javax.swing.JPanel {
                 Notifications.getInstance().show(Notifications.Type.INFO, Notifications.Location.TOP_CENTER, "Xóa thành Công");
             } catch (Exception e) {
                 e.printStackTrace();
+            } finally {
+                JDBCHelper.closeConnection();
             }
         }
     }
@@ -388,6 +399,8 @@ public class PhimJPanel extends javax.swing.JPanel {
             return (JCheckBox) getClass().getDeclaredField("chk" + string.trim()).get(this);
         } catch (Exception ex) {
             ex.printStackTrace();
+        } finally {
+            JDBCHelper.closeConnection();
         }
         return null;
     }
@@ -903,6 +916,8 @@ public class PhimJPanel extends javax.swing.JPanel {
             }
         } catch (ParseException ex) {
             Logger.getLogger(PhimJPanel.class.getName()).log(Level.SEVERE, null, ex);
+        }finally {
+            JDBCHelper.closeConnection();
         }
     }//GEN-LAST:event_btnSuaActionPerformed
 
@@ -921,6 +936,8 @@ public class PhimJPanel extends javax.swing.JPanel {
             }
         } catch (ParseException ex) {
             Logger.getLogger(PhimJPanel.class.getName()).log(Level.SEVERE, null, ex);
+        }finally {
+            JDBCHelper.closeConnection();
         }
     }//GEN-LAST:event_btnThemActionPerformed
 

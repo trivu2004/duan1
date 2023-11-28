@@ -70,7 +70,7 @@ public class VeDAO extends CinemaxDAO<Ve, String> {
             + "    SUM(Ve.GiaVe) AS TongDoanhThu,\n"
             + "    COUNT(Ghe) as SoLuongVe,\n"
             + "    GiaPhim,\n"
-            + "    SUM(Ve.GiaVe) - GiaPhim as LoiNhuan\n"
+            + "    CAST(SUM(Ve.GiaVe) - GiaPhim AS DECIMAL(20, 2)) as LoiNhuan\n"
             + "FROM\n"
             + "    Phim\n"
             + "JOIN\n"

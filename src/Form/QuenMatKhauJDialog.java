@@ -63,6 +63,8 @@ public class QuenMatKhauJDialog extends javax.swing.JDialog {
                 return true;
             }
         } catch (Exception e) {
+        } finally {
+            JDBCHelper.closeConnection();
         }
         return false;
     }
@@ -141,6 +143,8 @@ public class QuenMatKhauJDialog extends javax.swing.JDialog {
             return;
         } catch (Exception eee) {
             eee.printStackTrace();
+        } finally {
+            JDBCHelper.closeConnection();
         }
     }
 

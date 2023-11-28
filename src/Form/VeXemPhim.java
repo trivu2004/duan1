@@ -1,5 +1,6 @@
 package Form;
 
+import Helper.JDBCHelper;
 import com.itextpdf.barcodes.BarcodeQRCode;
 import com.itextpdf.kernel.geom.PageSize;
 import com.itextpdf.kernel.pdf.CompressionConstants;
@@ -51,6 +52,8 @@ public class VeXemPhim {
             document.close();
         } catch (FileNotFoundException e) {
             e.printStackTrace();
+        } finally {
+            JDBCHelper.closeConnection();
         }
     }
 

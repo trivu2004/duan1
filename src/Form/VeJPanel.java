@@ -138,6 +138,8 @@ public class VeJPanel extends javax.swing.JPanel {
             }
         } catch (Exception e) {
             e.printStackTrace();
+        } finally {
+            JDBCHelper.closeConnection();
         }
     }
 
@@ -149,6 +151,8 @@ public class VeJPanel extends javax.swing.JPanel {
             }
         } catch (Exception e) {
             e.printStackTrace();
+        } finally {
+            JDBCHelper.closeConnection();
         }
     }
 
@@ -160,6 +164,8 @@ public class VeJPanel extends javax.swing.JPanel {
             }
         } catch (Exception e) {
             e.printStackTrace();
+        } finally {
+            JDBCHelper.closeConnection();
         }
     }
 

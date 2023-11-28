@@ -25,6 +25,7 @@ public class TrangChuJPanel extends javax.swing.JPanel {
 
     public TrangChuJPanel() {
         initComponents();
+
         new Timer(1000, new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -451,11 +452,11 @@ public class TrangChuJPanel extends javax.swing.JPanel {
     private javax.swing.JPanel jpnTrong1;
     private javax.swing.JPanel jpnVe;
     private javax.swing.JLabel lblDongHo;
-    public javax.swing.JLabel lblNhanVien;
+    private javax.swing.JLabel lblNhanVien;
     private javax.swing.JLabel lblPhim;
     private javax.swing.JLabel lblPhongChieu;
     private javax.swing.JLabel lblSuatChieu;
-    public javax.swing.JLabel lblThongKe;
+    private javax.swing.JLabel lblThongKe;
     private javax.swing.JLabel lblVe;
     // End of variables declaration//GEN-END:variables
 }

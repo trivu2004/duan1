@@ -64,6 +64,8 @@ public class SuatChieuJPanel extends javax.swing.JPanel {
             }
         } catch (Exception e) {
             e.printStackTrace();
+        } finally {
+            JDBCHelper.closeConnection();
         }
     }
 
@@ -77,6 +79,8 @@ public class SuatChieuJPanel extends javax.swing.JPanel {
             }
         } catch (Exception e) {
             e.printStackTrace();
+        } finally {
+            JDBCHelper.closeConnection();
         }
     }
 
@@ -90,6 +94,8 @@ public class SuatChieuJPanel extends javax.swing.JPanel {
             }
         } catch (Exception e) {
             e.printStackTrace();
+        } finally {
+            JDBCHelper.closeConnection();
         }
     }
 
@@ -114,6 +120,8 @@ public class SuatChieuJPanel extends javax.swing.JPanel {
         } catch (Exception e) {
             Notifications.getInstance().show(Notifications.Type.INFO, Notifications.Location.TOP_CENTER, "Lỗi truy vấn dữ liệu !");
             e.printStackTrace();
+        } finally {
+            JDBCHelper.closeConnection();
         }
     }
 
@@ -170,6 +178,8 @@ public class SuatChieuJPanel extends javax.swing.JPanel {
         } catch (Exception e) {
             Notifications.getInstance().show(Notifications.Type.INFO, Notifications.Location.TOP_CENTER, "Thêm Thất Bại!");
             e.printStackTrace();
+        } finally {
+            JDBCHelper.closeConnection();
         }
 
     }
@@ -487,7 +497,9 @@ public class SuatChieuJPanel extends javax.swing.JPanel {
                 insert();
             } catch (ParseException ex) {
                 Logger.getLogger(SuatChieuJPanel.class.getName()).log(Level.SEVERE, null, ex);
-            }
+            }finally {
+            JDBCHelper.closeConnection();
+        }
         }
 
     }//GEN-LAST:event_btnThemActionPerformed
@@ -501,6 +513,8 @@ public class SuatChieuJPanel extends javax.swing.JPanel {
             delete();
         } catch (ParseException ex) {
             ex.printStackTrace();
+        }finally {
+            JDBCHelper.closeConnection();
         }
     }//GEN-LAST:event_btnXoaActionPerformed
 
@@ -533,6 +547,8 @@ public class SuatChieuJPanel extends javax.swing.JPanel {
             update();
         } catch (ParseException ex) {
             Logger.getLogger(SuatChieuJPanel.class.getName()).log(Level.SEVERE, null, ex);
+        }finally {
+            JDBCHelper.closeConnection();
         }
     }//GEN-LAST:event_btnSuaActionPerformed
 

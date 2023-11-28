@@ -27,12 +27,10 @@ import raven.toast.Notifications;
  */
 public class MainForm extends JLayeredPane {
 
-    TrangChuJPanel master;
     NhanVienDAO daoNV = new NhanVienDAO();
 
     public MainForm() {
         init();
-        master = new TrangChuJPanel();
     }
 
     private void init() {
@@ -78,8 +76,7 @@ public class MainForm extends JLayeredPane {
         menu.addMenuEvent((int index, int subIndex, MenuAction action) -> {
             // MainJFrame.mainForm.showForm(new DefaultForm("Form : " + index + " " + subIndex));
             if (index == 0) {
-
-                MainJFrame.showForm(master);
+                MainJFrame.showForm(new TrangChuJPanel());
             } else if (index == 1) {
                 if (!isManager()) {
                     Notifications.getInstance().show(Notifications.Type.INFO, Notifications.Location.TOP_CENTER, "Nhân viên không có Quyền truy cập!");

@@ -5,9 +5,11 @@
 package Form;
 
 import DAO.VeDAO;
+import Helper.JDBCHelper;
 import java.awt.Color;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.math.BigDecimal;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
@@ -60,6 +62,8 @@ public class ThongKeJPanel extends javax.swing.JPanel {
                 model.addRow(arr);
             }
         } catch (Exception e) {
+        } finally {
+            JDBCHelper.closeConnection();
         }
     }
 
@@ -75,6 +79,8 @@ public class ThongKeJPanel extends javax.swing.JPanel {
                 chart.addData(new ModelChart(bieuDo.getTenPhim(), new double[]{bieuDo.getTongDoanhThu()}));
             }
         } catch (Exception e) {
+        } finally {
+            JDBCHelper.closeConnection();
         }
         chart.start();
     }
@@ -83,8 +89,13 @@ public class ThongKeJPanel extends javax.swing.JPanel {
         for (int i = 0; i < jTable1.getRowCount(); i++) {
             tongVeDaBan += Integer.valueOf(String.valueOf(jTable1.getValueAt(i, 2)));
             tongDoanhThu += Double.valueOf(String.valueOf(jTable1.getValueAt(i, 3)));
-            tongLoiNhuan += Double.valueOf(String.valueOf(jTable1.getValueAt(i, 5)));
+
+            // Sửa giúp biến tongLoiNhuan
+            BigDecimal loiNhuanBigDecimal = new BigDecimal(String.valueOf(jTable1.getValueAt(i, 5)));
+            tongLoiNhuan += loiNhuanBigDecimal.doubleValue();
         }
+        System.out.println(tongLoiNhuan);
+
         card1.setData(new Model_Card("Tổng phim đã chiếu", String.valueOf(jTable1.getRowCount())));
         card2.setData(new Model_Card("Tổng vé đã bán", String.valueOf(tongVeDaBan)));
         card3.setData(new Model_Card("Tổng doanh thu", String.valueOf(tongDoanhThu)));

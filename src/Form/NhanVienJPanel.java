@@ -4,6 +4,7 @@ import DAO.NhanVienDAO;
 import static Form.MainJFrame.tenNhanVien;
 import Helper.Auth;
 import Helper.DateHelper;
+import Helper.JDBCHelper;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.text.SimpleDateFormat;
@@ -68,6 +69,8 @@ public class NhanVienJPanel extends javax.swing.JPanel {
         } catch (Exception e) {
             Notifications.getInstance().show(Notifications.Type.INFO, Notifications.Location.TOP_CENTER, "Lỗi truy vấn dữ liệu!");
             e.printStackTrace();
+        } finally {
+            JDBCHelper.closeConnection();
         }
     }
 
@@ -81,6 +84,8 @@ public class NhanVienJPanel extends javax.swing.JPanel {
             }
         } catch (Exception e) {
             Notifications.getInstance().show(Notifications.Type.INFO, Notifications.Location.TOP_CENTER, "Lỗi truy vấn dữ liệu!");
+        } finally {
+            JDBCHelper.closeConnection();
         }
     }
 
@@ -137,6 +142,8 @@ public class NhanVienJPanel extends javax.swing.JPanel {
                     Notifications.getInstance().show(Notifications.Type.INFO, Notifications.Location.TOP_CENTER, "Thêm mới Nhân viên thành công!");
                 } catch (Exception e) {
                     Notifications.getInstance().show(Notifications.Type.INFO, Notifications.Location.TOP_CENTER, "Thêm mới thất bại!\n Mã Nhân viên đã tồn tại!");
+                } finally {
+                    JDBCHelper.closeConnection();
                 }
             } else {
                 Notifications.getInstance().show(Notifications.Type.INFO, Notifications.Location.TOP_CENTER, "Xác nhận mật khẩu không đúng!");
@@ -159,6 +166,8 @@ public class NhanVienJPanel extends javax.swing.JPanel {
                     Notifications.getInstance().show(Notifications.Type.INFO, Notifications.Location.TOP_CENTER, "Cập nhật Nhân viên thành công!");
                 } catch (Exception e) {
                     Notifications.getInstance().show(Notifications.Type.INFO, Notifications.Location.TOP_CENTER, "Cập nhật thất bại!");
+                } finally {
+                    JDBCHelper.closeConnection();
                 }
             } else {
                 Notifications.getInstance().show(Notifications.Type.INFO, Notifications.Location.TOP_CENTER, "Cập nhật thất bại!");
@@ -177,6 +186,8 @@ public class NhanVienJPanel extends javax.swing.JPanel {
                 Notifications.getInstance().show(Notifications.Type.INFO, Notifications.Location.TOP_CENTER, "Xóa Nhân viên thành công!");
             } catch (Exception e) {
                 Notifications.getInstance().show(Notifications.Type.INFO, Notifications.Location.TOP_CENTER, "Xóa thất bại!");
+            } finally {
+                JDBCHelper.closeConnection();
             }
         }
     }

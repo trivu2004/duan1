@@ -5,6 +5,7 @@
 package Form;
 
 import DAO.VeDAO;
+import Helper.JDBCHelper;
 import java.awt.Color;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -275,6 +276,8 @@ public class DatVeJPanel extends javax.swing.JPanel implements ActionListener {
             }
         } catch (Exception e) {
             e.printStackTrace();
+        } finally {
+            JDBCHelper.closeConnection();
         }
     }
 
@@ -291,6 +294,8 @@ public class DatVeJPanel extends javax.swing.JPanel implements ActionListener {
             fillForm();
         } catch (Exception e) {
             e.printStackTrace();
+        } finally {
+            JDBCHelper.closeConnection();
         }
     }
 
