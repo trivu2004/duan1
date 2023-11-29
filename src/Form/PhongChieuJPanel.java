@@ -721,9 +721,14 @@ public class PhongChieuJPanel extends javax.swing.JPanel {
                         }
                     }
                 }
+<<<<<<< HEAD
 
+=======
+>>>>>>> 5e8d790c608a1db819e524066453ec5269df996e
             }
         } catch (Exception e) {
+        } finally {
+            JDBCHelper.closeConnection();
         }
     }
 
