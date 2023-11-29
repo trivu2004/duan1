@@ -22,6 +22,7 @@ public class PhongChieuJPanel extends javax.swing.JPanel {
         lbltrangthai005.setText("Trống");
         lbltrangthai006.setText("Trống");
         fill();
+        fillghe();
 
         new Timer(1000, new ActionListener() {
             @Override
@@ -51,6 +52,398 @@ public class PhongChieuJPanel extends javax.swing.JPanel {
         }
     }
 
+    void fillghe() {
+        try {
+            String sql = "select sc.PhongID from SuatChieu as sc join Ve as v on sc.SuatChieuID = v.SuatChieuID where v.NgayMua = ?";
+            PreparedStatement st = JDBCHelper.prepareStatement(sql);
+            LocalDate hnay = LocalDate.now();
+            st.setString(1, hnay + "");
+            ResultSet kq = st.executeQuery();
+            while (kq.next()) {
+
+                if (kq.getString("PhongID").equals("P001")) {
+                    PreparedStatement st1 = JDBCHelper.prepareStatement("select sc.CaChieu, v.Ghe from SuatChieu as sc join Ve as v on sc.SuatChieuID = v.SuatChieuID where NgayMua = ? and sc.PhongID = ?");
+                    st1.setString(1, hnay + "");
+                    st1.setString(2, "P001");
+                    ResultSet kq1 = st1.executeQuery();
+                    while (kq1.next()) {
+                        if (kq1.getString(1).equals("Suất 1 (7h-9h)")) {
+                            if (checktrangthai1(7, 9)) {
+                                String dsghesd1 = kq1.getString(2);
+                                String[] myArray1 = dsghesd1.split(",");
+                                lblghetrong001.setText((56 - myArray1.length) + "");
+                            }
+                        }
+
+                        if (kq1.getString(1).equals("Suất 2 (9h-11h)")) {
+                            if (checktrangthai1(9, 11)) {
+                                String dsghesd2 = kq1.getString(2);
+                                String[] myArray2 = dsghesd2.split(",");
+                                lblghetrong001.setText((56 - myArray2.length) + "");
+                            }
+                        }
+
+                        if (kq1.getString(1).equals("Suất 3 (13h-15h)")) {
+                            if (checktrangthai1(13, 15)) {
+                                String dsghesd3 = kq1.getString(2);
+                                String[] myArray3 = dsghesd3.split(",");
+                                lblghetrong001.setText((56 - myArray3.length) + "");
+                            }
+                        }
+                        if (kq1.getString(1).equals("Suất 4 (15h-17h)")) {
+                            if (checktrangthai1(15, 17)) {
+                                String dsghesd4 = kq1.getString(2);
+                                String[] myArray4 = dsghesd4.split(",");
+                                lblghetrong001.setText((56 - myArray4.length) + "");
+                            }
+                        }
+
+                        if (kq1.getString(1).equals("Suất 5 (17h-19h)")) {
+                            if (checktrangthai1(17, 19)) {
+                                String dsghesd5 = kq1.getString(2);
+                                String[] myArray5 = dsghesd5.split(",");
+                                lblghetrong001.setText((56 - myArray5.length) + "");
+                            }
+                        }
+
+                        if (kq1.getString(1).equals("Suất 6 (19h-21h)")) {
+                            if (checktrangthai1(19, 21)) {
+                                String dsghesd6 = kq1.getString(2);
+                                String[] myArray6 = dsghesd6.split(",");
+                                lblghetrong001.setText((56 - myArray6.length) + "");
+                            }
+                        }
+                        if (kq1.getString(1).equals("Suất 7 (21h-23h)")) {
+                            if (checktrangthai1(21, 23)) {
+                                String dsghesd7 = kq1.getString(2);
+                                String[] myArray7 = dsghesd7.split(",");
+                                lblghetrong001.setText((56 - myArray7.length) + "");
+                            }
+                        }
+
+                    }
+                }
+
+                if (kq.getString("PhongID").equals("P002")) {
+                    PreparedStatement st1 = JDBCHelper.prepareStatement("select sc.CaChieu, v.Ghe from SuatChieu as sc join Ve as v on sc.SuatChieuID = v.SuatChieuID where NgayMua = ? and sc.PhongID = ?");
+                    st1.setString(1, hnay + "");
+                    st1.setString(2, "P002");
+                    ResultSet kq1 = st1.executeQuery();
+                    while (kq1.next()) {
+                        if (kq1.getString(1).equals("Suất 1 (7h-9h)")) {
+                            if (checktrangthai1(7, 9)) {
+                                String dsghesd1 = kq1.getString(2);
+                                String[] myArray1 = dsghesd1.split(",");
+                                lblghetrong002.setText((56 - myArray1.length) + "");
+                            }
+                        }
+
+                        if (kq1.getString(1).equals("Suất 2 (9h-11h)")) {
+                            if (checktrangthai1(9, 11)) {
+                                String dsghesd2 = kq1.getString(2);
+                                String[] myArray2 = dsghesd2.split(",");
+                                lblghetrong002.setText((56 - myArray2.length) + "");
+                            }
+                        }
+
+                        if (kq1.getString(1).equals("Suất 3 (13h-15h)")) {
+                            if (checktrangthai1(13, 15)) {
+                                String dsghesd3 = kq1.getString(2);
+                                String[] myArray3 = dsghesd3.split(",");
+                                lblghetrong002.setText((56 - myArray3.length) + "");
+                            }
+                        }
+                        if (kq1.getString(1).equals("Suất 4 (15h-17h)")) {
+                            if (checktrangthai1(15, 17)) {
+                                String dsghesd4 = kq1.getString(2);
+                                String[] myArray4 = dsghesd4.split(",");
+                                lblghetrong002.setText((56 - myArray4.length) + "");
+                            }
+                        }
+
+                        if (kq1.getString(1).equals("Suất 5 (17h-19h)")) {
+                            if (checktrangthai1(17, 19)) {
+                                String dsghesd5 = kq1.getString(2);
+                                String[] myArray5 = dsghesd5.split(",");
+                                lblghetrong002.setText((56 - myArray5.length) + "");
+                            }
+                        }
+
+                        if (kq1.getString(1).equals("Suất 6 (19h-21h)")) {
+                            if (checktrangthai1(19, 21)) {
+                                String dsghesd6 = kq1.getString(2);
+                                String[] myArray6 = dsghesd6.split(",");
+                                lblghetrong002.setText((56 - myArray6.length) + "");
+                            }
+                        }
+                        if (kq1.getString(1).equals("Suất 7 (21h-23h)")) {
+                            if (checktrangthai1(21, 23)) {
+                                String dsghesd7 = kq1.getString(2);
+                                String[] myArray7 = dsghesd7.split(",");
+                                lblghetrong002.setText((56 - myArray7.length) + "");
+                            }
+                        }
+
+                    }
+                }
+
+                if (kq.getString("PhongID").equals("P003")) {
+                    PreparedStatement st1 = JDBCHelper.prepareStatement("select sc.CaChieu, v.Ghe from SuatChieu as sc join Ve as v on sc.SuatChieuID = v.SuatChieuID where NgayMua = ? and sc.PhongID = ?");
+                    st1.setString(1, hnay + "");
+                    st1.setString(2, "P003");
+                    ResultSet kq1 = st1.executeQuery();
+                    while (kq1.next()) {
+                        if (kq1.getString(1).equals("Suất 1 (7h-9h)")) {
+                            if (checktrangthai1(7, 9)) {
+                                String dsghesd1 = kq1.getString(2);
+                                String[] myArray1 = dsghesd1.split(",");
+                                lblghetrong003.setText((56 - myArray1.length) + "");
+                            }
+                        }
+
+                        if (kq1.getString(1).equals("Suất 2 (9h-11h)")) {
+                            if (checktrangthai1(9, 11)) {
+                                String dsghesd2 = kq1.getString(2);
+                                String[] myArray2 = dsghesd2.split(",");
+                                lblghetrong003.setText((56 - myArray2.length) + "");
+                            }
+                        }
+
+                        if (kq1.getString(1).equals("Suất 3 (13h-15h)")) {
+                            if (checktrangthai1(13, 15)) {
+                                String dsghesd3 = kq1.getString(2);
+                                String[] myArray3 = dsghesd3.split(",");
+                                lblghetrong003.setText((56 - myArray3.length) + "");
+                            }
+                        }
+                        if (kq1.getString(1).equals("Suất 4 (15h-17h)")) {
+                            if (checktrangthai1(15, 17)) {
+                                String dsghesd4 = kq1.getString(2);
+                                String[] myArray4 = dsghesd4.split(",");
+                                lblghetrong003.setText((56 - myArray4.length) + "");
+                            }
+                        }
+
+                        if (kq1.getString(1).equals("Suất 5 (17h-19h)")) {
+                            if (checktrangthai1(17, 19)) {
+                                String dsghesd5 = kq1.getString(2);
+                                String[] myArray5 = dsghesd5.split(",");
+                                lblghetrong003.setText((56 - myArray5.length) + "");
+                            }
+                        }
+
+                        if (kq1.getString(1).equals("Suất 6 (19h-21h)")) {
+                            if (checktrangthai1(19, 21)) {
+                                String dsghesd6 = kq1.getString(2);
+                                String[] myArray6 = dsghesd6.split(",");
+                                lblghetrong003.setText((56 - myArray6.length) + "");
+                            }
+                        }
+                        if (kq1.getString(1).equals("Suất 7 (21h-23h)")) {
+                            if (checktrangthai1(21, 23)) {
+                                String dsghesd7 = kq1.getString(2);
+                                String[] myArray7 = dsghesd7.split(",");
+                                lblghetrong003.setText((56 - myArray7.length) + "");
+                            }
+                        }
+
+                    }
+                }
+
+                if (kq.getString("PhongID").equals("P004")) {
+                    PreparedStatement st1 = JDBCHelper.prepareStatement("select sc.CaChieu, v.Ghe from SuatChieu as sc join Ve as v on sc.SuatChieuID = v.SuatChieuID where NgayMua = ? and sc.PhongID = ?");
+                    st1.setString(1, hnay + "");
+                    st1.setString(2, "P004");
+                    ResultSet kq1 = st1.executeQuery();
+                    while (kq1.next()) {
+                        if (kq1.getString(1).equals("Suất 1 (7h-9h)")) {
+                            if (checktrangthai1(7, 9)) {
+                                String dsghesd1 = kq1.getString(2);
+                                String[] myArray1 = dsghesd1.split(",");
+                                lblghetrong004.setText((56 - myArray1.length) + "");
+                            }
+                        }
+
+                        if (kq1.getString(1).equals("Suất 2 (9h-11h)")) {
+                            if (checktrangthai1(9, 11)) {
+                                String dsghesd2 = kq1.getString(2);
+                                String[] myArray2 = dsghesd2.split(",");
+                                lblghetrong004.setText((56 - myArray2.length) + "");
+                            }
+                        }
+
+                        if (kq1.getString(1).equals("Suất 3 (13h-15h)")) {
+                            if (checktrangthai1(13, 15)) {
+                                String dsghesd3 = kq1.getString(2);
+                                String[] myArray3 = dsghesd3.split(",");
+                                lblghetrong004.setText((56 - myArray3.length) + "");
+                            }
+                        }
+                        if (kq1.getString(1).equals("Suất 4 (15h-17h)")) {
+                            if (checktrangthai1(15, 17)) {
+                                String dsghesd4 = kq1.getString(2);
+                                String[] myArray4 = dsghesd4.split(",");
+                                lblghetrong004.setText((56 - myArray4.length) + "");
+                            }
+                        }
+
+                        if (kq1.getString(1).equals("Suất 5 (17h-19h)")) {
+                            if (checktrangthai1(17, 19)) {
+                                String dsghesd5 = kq1.getString(2);
+                                String[] myArray5 = dsghesd5.split(",");
+                                lblghetrong004.setText((56 - myArray5.length) + "");
+                            }
+                        }
+
+                        if (kq1.getString(1).equals("Suất 6 (19h-21h)")) {
+                            if (checktrangthai1(19, 21)) {
+                                String dsghesd6 = kq1.getString(2);
+                                String[] myArray6 = dsghesd6.split(",");
+                                lblghetrong004.setText((56 - myArray6.length) + "");
+                            }
+                        }
+                        if (kq1.getString(1).equals("Suất 7 (21h-23h)")) {
+                            if (checktrangthai1(21, 23)) {
+                                String dsghesd7 = kq1.getString(2);
+                                String[] myArray7 = dsghesd7.split(",");
+                                lblghetrong004.setText((56 - myArray7.length) + "");
+                            }
+                        }
+
+                    }
+                }
+
+                if (kq.getString("PhongID").equals("P005")) {
+                    PreparedStatement st1 = JDBCHelper.prepareStatement("select sc.CaChieu, v.Ghe from SuatChieu as sc join Ve as v on sc.SuatChieuID = v.SuatChieuID where NgayMua = ? and sc.PhongID = ?");
+                    st1.setString(1, hnay + "");
+                    st1.setString(2, "P005");
+                    ResultSet kq1 = st1.executeQuery();
+                    while (kq1.next()) {
+                        if (kq1.getString(1).equals("Suất 1 (7h-9h)")) {
+                            if (checktrangthai1(7, 9)) {
+                                String dsghesd1 = kq1.getString(2);
+                                String[] myArray1 = dsghesd1.split(",");
+                                lblghetrong005.setText((56 - myArray1.length) + "");
+                            }
+                        }
+
+                        if (kq1.getString(1).equals("Suất 2 (9h-11h)")) {
+                            if (checktrangthai1(9, 11)) {
+                                String dsghesd2 = kq1.getString(2);
+                                String[] myArray2 = dsghesd2.split(",");
+                                lblghetrong005.setText((56 - myArray2.length) + "");
+                            }
+                        }
+
+                        if (kq1.getString(1).equals("Suất 3 (13h-15h)")) {
+                            if (checktrangthai1(13, 15)) {
+                                String dsghesd3 = kq1.getString(2);
+                                String[] myArray3 = dsghesd3.split(",");
+                                lblghetrong005.setText((56 - myArray3.length) + "");
+                            }
+                        }
+                        if (kq1.getString(1).equals("Suất 4 (15h-17h)")) {
+                            if (checktrangthai1(15, 17)) {
+                                String dsghesd4 = kq1.getString(2);
+                                String[] myArray4 = dsghesd4.split(",");
+                                lblghetrong005.setText((56 - myArray4.length) + "");
+                            }
+                        }
+
+                        if (kq1.getString(1).equals("Suất 5 (17h-19h)")) {
+                            if (checktrangthai1(17, 19)) {
+                                String dsghesd5 = kq1.getString(2);
+                                String[] myArray5 = dsghesd5.split(",");
+                                lblghetrong005.setText((56 - myArray5.length) + "");
+                            }
+                        }
+
+                        if (kq1.getString(1).equals("Suất 6 (19h-21h)")) {
+                            if (checktrangthai1(19, 21)) {
+                                String dsghesd6 = kq1.getString(2);
+                                String[] myArray6 = dsghesd6.split(",");
+                                lblghetrong005.setText((56 - myArray6.length) + "");
+                            }
+                        }
+                        if (kq1.getString(1).equals("Suất 7 (21h-23h)")) {
+                            if (checktrangthai1(21, 23)) {
+                                String dsghesd7 = kq1.getString(2);
+                                String[] myArray7 = dsghesd7.split(",");
+                                lblghetrong005.setText((56 - myArray7.length) + "");
+                            }
+                        }
+
+                    }
+                }
+
+                if (kq.getString("PhongID").equals("P006")) {
+                    PreparedStatement st1 = JDBCHelper.prepareStatement("select sc.CaChieu, v.Ghe from SuatChieu as sc join Ve as v on sc.SuatChieuID = v.SuatChieuID where NgayMua = ? and sc.PhongID = ?");
+                    st1.setString(1, hnay + "");
+                    st1.setString(2, "P006");
+                    ResultSet kq1 = st1.executeQuery();
+                    while (kq1.next()) {
+                        if (kq1.getString(1).equals("Suất 1 (7h-9h)")) {
+                            if (checktrangthai1(7, 9)) {
+                                String dsghesd1 = kq1.getString(2);
+                                String[] myArray1 = dsghesd1.split(",");
+                                lblghetrong006.setText((56 - myArray1.length) + "");
+                            }
+                        }
+
+                        if (kq1.getString(1).equals("Suất 2 (9h-11h)")) {
+                            if (checktrangthai1(9, 11)) {
+                                String dsghesd2 = kq1.getString(2);
+                                String[] myArray2 = dsghesd2.split(",");
+                                lblghetrong006.setText((56 - myArray2.length) + "");
+                            }
+                        }
+
+                        if (kq1.getString(1).equals("Suất 3 (13h-15h)")) {
+                            if (checktrangthai1(13, 15)) {
+                                String dsghesd3 = kq1.getString(2);
+                                String[] myArray3 = dsghesd3.split(",");
+                                lblghetrong006.setText((56 - myArray3.length) + "");
+                            }
+                        }
+                        if (kq1.getString(1).equals("Suất 4 (15h-17h)")) {
+                            if (checktrangthai1(15, 17)) {
+                                String dsghesd4 = kq1.getString(2);
+                                String[] myArray4 = dsghesd4.split(",");
+                                lblghetrong006.setText((56 - myArray4.length) + "");
+                            }
+                        }
+
+                        if (kq1.getString(1).equals("Suất 5 (17h-19h)")) {
+                            if (checktrangthai1(17, 19)) {
+                                String dsghesd5 = kq1.getString(2);
+                                String[] myArray5 = dsghesd5.split(",");
+                                lblghetrong006.setText((56 - myArray5.length) + "");
+                            }
+                        }
+
+                        if (kq1.getString(1).equals("Suất 6 (19h-21h)")) {
+                            if (checktrangthai1(19, 21)) {
+                                String dsghesd6 = kq1.getString(2);
+                                String[] myArray6 = dsghesd6.split(",");
+                                lblghetrong006.setText((56 - myArray6.length) + "");
+                            }
+                        }
+                        if (kq1.getString(1).equals("Suất 7 (21h-23h)")) {
+                            if (checktrangthai1(21, 23)) {
+                                String dsghesd7 = kq1.getString(2);
+                                String[] myArray7 = dsghesd7.split(",");
+                                lblghetrong006.setText((56 - myArray7.length) + "");
+                            }
+                        }
+
+                    }
+                }
+
+            }
+        } catch (Exception e) {
+        }
+    }
+
     void fill() {
         try {
             String sql = "select PhongID from SuatChieu where NgayTaoXuat = ?";
@@ -75,7 +468,7 @@ public class PhongChieuJPanel extends javax.swing.JPanel {
                                 lbltrangthai001.setText("Đang Chiếu");
                             }
                         }
-                        
+
                         if (kq1.getString("CaChieu").equals("Suất 3 (13h-15h)")) {
                             if (checktrangthai1(13, 15)) {
                                 lbltrangthai001.setText("Đang Chiếu");
@@ -103,8 +496,7 @@ public class PhongChieuJPanel extends javax.swing.JPanel {
                         }
                     }
                 }
-                
-                
+
                 if (kq.getString("PhongID").equals("P002")) {
                     PreparedStatement st1 = JDBCHelper.prepareStatement("select CaChieu from SuatChieu where PhongID = ? and NgayTaoXuat = ?");
                     st1.setString(1, "P002");
@@ -121,7 +513,7 @@ public class PhongChieuJPanel extends javax.swing.JPanel {
                                 lbltrangthai002.setText("Đang Chiếu");
                             }
                         }
-                        
+
                         if (kq1.getString("CaChieu").equals("Suất 3 (13h-15h)")) {
                             if (checktrangthai1(13, 15)) {
                                 lbltrangthai002.setText("Đang Chiếu");
@@ -149,8 +541,7 @@ public class PhongChieuJPanel extends javax.swing.JPanel {
                         }
                     }
                 }
-                
-                
+
                 if (kq.getString("PhongID").equals("P003")) {
                     PreparedStatement st1 = JDBCHelper.prepareStatement("select CaChieu from SuatChieu where PhongID = ? and NgayTaoXuat = ?");
                     st1.setString(1, "P003");
@@ -167,7 +558,7 @@ public class PhongChieuJPanel extends javax.swing.JPanel {
                                 lbltrangthai003.setText("Đang Chiếu");
                             }
                         }
-                        
+
                         if (kq1.getString("CaChieu").equals("Suất 3 (13h-15h)")) {
                             if (checktrangthai1(13, 15)) {
                                 lbltrangthai003.setText("Đang Chiếu");
@@ -195,8 +586,7 @@ public class PhongChieuJPanel extends javax.swing.JPanel {
                         }
                     }
                 }
-                
-                
+
                 if (kq.getString("PhongID").equals("P004")) {
                     PreparedStatement st1 = JDBCHelper.prepareStatement("select CaChieu from SuatChieu where PhongID = ? and NgayTaoXuat = ?");
                     st1.setString(1, "P004");
@@ -213,7 +603,7 @@ public class PhongChieuJPanel extends javax.swing.JPanel {
                                 lbltrangthai004.setText("Đang Chiếu");
                             }
                         }
-                        
+
                         if (kq1.getString("CaChieu").equals("Suất 3 (13h-15h)")) {
                             if (checktrangthai1(13, 15)) {
                                 lbltrangthai004.setText("Đang Chiếu");
@@ -241,8 +631,7 @@ public class PhongChieuJPanel extends javax.swing.JPanel {
                         }
                     }
                 }
-                
-                
+
                 if (kq.getString("PhongID").equals("P005")) {
                     PreparedStatement st1 = JDBCHelper.prepareStatement("select CaChieu from SuatChieu where PhongID = ? and NgayTaoXuat = ?");
                     st1.setString(1, "P005");
@@ -259,7 +648,7 @@ public class PhongChieuJPanel extends javax.swing.JPanel {
                                 lbltrangthai005.setText("Đang Chiếu");
                             }
                         }
-                        
+
                         if (kq1.getString("CaChieu").equals("Suất 3 (13h-15h)")) {
                             if (checktrangthai1(13, 15)) {
                                 lbltrangthai005.setText("Đang Chiếu");
@@ -287,8 +676,7 @@ public class PhongChieuJPanel extends javax.swing.JPanel {
                         }
                     }
                 }
-                
-                
+
                 if (kq.getString("PhongID").equals("P006")) {
                     PreparedStatement st1 = JDBCHelper.prepareStatement("select CaChieu from SuatChieu where PhongID = ? and NgayTaoXuat = ?");
                     st1.setString(1, "P006");
@@ -305,7 +693,7 @@ public class PhongChieuJPanel extends javax.swing.JPanel {
                                 lbltrangthai006.setText("Đang Chiếu");
                             }
                         }
-                        
+
                         if (kq1.getString("CaChieu").equals("Suất 3 (13h-15h)")) {
                             if (checktrangthai1(13, 15)) {
                                 lbltrangthai006.setText("Đang Chiếu");
@@ -333,10 +721,7 @@ public class PhongChieuJPanel extends javax.swing.JPanel {
                         }
                     }
                 }
-                
-                
-                
-                
+
             }
         } catch (Exception e) {
         }
@@ -354,37 +739,37 @@ public class PhongChieuJPanel extends javax.swing.JPanel {
         jPanel1 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
-        jLabel3 = new javax.swing.JLabel();
+        lblghetrong001 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
         lbltrangthai001 = new javax.swing.JLabel();
         jPanel4 = new javax.swing.JPanel();
         jLabel27 = new javax.swing.JLabel();
         jLabel28 = new javax.swing.JLabel();
-        jLabel29 = new javax.swing.JLabel();
+        lblghetrong004 = new javax.swing.JLabel();
         jLabel30 = new javax.swing.JLabel();
         lbltrangthai004 = new javax.swing.JLabel();
         jPanel5 = new javax.swing.JPanel();
         jLabel6 = new javax.swing.JLabel();
         jLabel7 = new javax.swing.JLabel();
-        jLabel8 = new javax.swing.JLabel();
+        lblghetrong002 = new javax.swing.JLabel();
         jLabel9 = new javax.swing.JLabel();
         lbltrangthai002 = new javax.swing.JLabel();
         jPanel11 = new javax.swing.JPanel();
         jLabel22 = new javax.swing.JLabel();
         jLabel23 = new javax.swing.JLabel();
-        jLabel24 = new javax.swing.JLabel();
+        lblghetrong005 = new javax.swing.JLabel();
         jLabel25 = new javax.swing.JLabel();
         lbltrangthai005 = new javax.swing.JLabel();
         jPanel12 = new javax.swing.JPanel();
         jLabel12 = new javax.swing.JLabel();
         jLabel13 = new javax.swing.JLabel();
-        jLabel14 = new javax.swing.JLabel();
+        lblghetrong003 = new javax.swing.JLabel();
         jLabel15 = new javax.swing.JLabel();
         lbltrangthai003 = new javax.swing.JLabel();
         jPanel13 = new javax.swing.JPanel();
         jLabel17 = new javax.swing.JLabel();
         jLabel18 = new javax.swing.JLabel();
-        jLabel19 = new javax.swing.JLabel();
+        lblghetrong006 = new javax.swing.JLabel();
         jLabel20 = new javax.swing.JLabel();
         lbltrangthai006 = new javax.swing.JLabel();
 
@@ -444,13 +829,15 @@ public class PhongChieuJPanel extends javax.swing.JPanel {
         jLabel2.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
         jLabel2.setText("Số lượng ghế còn trống: ");
 
-        jLabel3.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
-        jLabel3.setText("00");
+        lblghetrong001.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
+        lblghetrong001.setForeground(new java.awt.Color(0, 255, 0));
+        lblghetrong001.setText("56");
 
         jLabel4.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
         jLabel4.setText("Trạng thái:");
 
         lbltrangthai001.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
+        lbltrangthai001.setForeground(new java.awt.Color(255, 0, 0));
         lbltrangthai001.setText("Đang chiếu");
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
@@ -468,7 +855,7 @@ public class PhongChieuJPanel extends javax.swing.JPanel {
                         .addGap(32, 32, 32)
                         .addComponent(jLabel2)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jLabel3))
+                        .addComponent(lblghetrong001))
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGap(132, 132, 132)
                         .addComponent(jLabel1)))
@@ -482,7 +869,7 @@ public class PhongChieuJPanel extends javax.swing.JPanel {
                 .addGap(18, 18, 18)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel2)
-                    .addComponent(jLabel3))
+                    .addComponent(lblghetrong001))
                 .addGap(38, 38, 38)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel4)
@@ -498,13 +885,15 @@ public class PhongChieuJPanel extends javax.swing.JPanel {
         jLabel28.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
         jLabel28.setText("Số lượng ghế còn trống: ");
 
-        jLabel29.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
-        jLabel29.setText("00");
+        lblghetrong004.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
+        lblghetrong004.setForeground(new java.awt.Color(0, 255, 0));
+        lblghetrong004.setText("56");
 
         jLabel30.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
         jLabel30.setText("Trạng thái:");
 
         lbltrangthai004.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
+        lbltrangthai004.setForeground(new java.awt.Color(255, 0, 0));
         lbltrangthai004.setText("Đang chiếu");
 
         javax.swing.GroupLayout jPanel4Layout = new javax.swing.GroupLayout(jPanel4);
@@ -522,7 +911,7 @@ public class PhongChieuJPanel extends javax.swing.JPanel {
                         .addGap(32, 32, 32)
                         .addComponent(jLabel28)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jLabel29))
+                        .addComponent(lblghetrong004))
                     .addGroup(jPanel4Layout.createSequentialGroup()
                         .addGap(136, 136, 136)
                         .addComponent(jLabel27)))
@@ -536,7 +925,7 @@ public class PhongChieuJPanel extends javax.swing.JPanel {
                 .addGap(18, 18, 18)
                 .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel28)
-                    .addComponent(jLabel29))
+                    .addComponent(lblghetrong004))
                 .addGap(38, 38, 38)
                 .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel30)
@@ -552,13 +941,15 @@ public class PhongChieuJPanel extends javax.swing.JPanel {
         jLabel7.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
         jLabel7.setText("Số lượng ghế còn trống: ");
 
-        jLabel8.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
-        jLabel8.setText("00");
+        lblghetrong002.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
+        lblghetrong002.setForeground(new java.awt.Color(0, 255, 0));
+        lblghetrong002.setText("56");
 
         jLabel9.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
         jLabel9.setText("Trạng thái:");
 
         lbltrangthai002.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
+        lbltrangthai002.setForeground(new java.awt.Color(255, 0, 0));
         lbltrangthai002.setText("Đang chiếu");
 
         javax.swing.GroupLayout jPanel5Layout = new javax.swing.GroupLayout(jPanel5);
@@ -576,7 +967,7 @@ public class PhongChieuJPanel extends javax.swing.JPanel {
                         .addGap(32, 32, 32)
                         .addComponent(jLabel7)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jLabel8)))
+                        .addComponent(lblghetrong002)))
                 .addContainerGap(34, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel5Layout.createSequentialGroup()
                 .addGap(0, 0, Short.MAX_VALUE)
@@ -591,7 +982,7 @@ public class PhongChieuJPanel extends javax.swing.JPanel {
                 .addGap(18, 18, 18)
                 .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel7)
-                    .addComponent(jLabel8))
+                    .addComponent(lblghetrong002))
                 .addGap(38, 38, 38)
                 .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel9)
@@ -607,13 +998,15 @@ public class PhongChieuJPanel extends javax.swing.JPanel {
         jLabel23.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
         jLabel23.setText("Số lượng ghế còn trống: ");
 
-        jLabel24.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
-        jLabel24.setText("00");
+        lblghetrong005.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
+        lblghetrong005.setForeground(new java.awt.Color(0, 255, 0));
+        lblghetrong005.setText("56");
 
         jLabel25.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
         jLabel25.setText("Trạng thái:");
 
         lbltrangthai005.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
+        lbltrangthai005.setForeground(new java.awt.Color(255, 0, 0));
         lbltrangthai005.setText("Đang chiếu");
 
         javax.swing.GroupLayout jPanel11Layout = new javax.swing.GroupLayout(jPanel11);
@@ -631,7 +1024,7 @@ public class PhongChieuJPanel extends javax.swing.JPanel {
                         .addGap(32, 32, 32)
                         .addComponent(jLabel23)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jLabel24)))
+                        .addComponent(lblghetrong005)))
                 .addContainerGap(34, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel11Layout.createSequentialGroup()
                 .addGap(0, 0, Short.MAX_VALUE)
@@ -646,7 +1039,7 @@ public class PhongChieuJPanel extends javax.swing.JPanel {
                 .addGap(18, 18, 18)
                 .addGroup(jPanel11Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel23)
-                    .addComponent(jLabel24))
+                    .addComponent(lblghetrong005))
                 .addGap(38, 38, 38)
                 .addGroup(jPanel11Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel25)
@@ -662,13 +1055,15 @@ public class PhongChieuJPanel extends javax.swing.JPanel {
         jLabel13.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
         jLabel13.setText("Số lượng ghế còn trống: ");
 
-        jLabel14.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
-        jLabel14.setText("00");
+        lblghetrong003.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
+        lblghetrong003.setForeground(new java.awt.Color(0, 255, 0));
+        lblghetrong003.setText("00");
 
         jLabel15.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
         jLabel15.setText("Trạng thái:");
 
         lbltrangthai003.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
+        lbltrangthai003.setForeground(new java.awt.Color(255, 0, 0));
         lbltrangthai003.setText("Đang chiếu");
 
         javax.swing.GroupLayout jPanel12Layout = new javax.swing.GroupLayout(jPanel12);
@@ -686,7 +1081,7 @@ public class PhongChieuJPanel extends javax.swing.JPanel {
                         .addGap(32, 32, 32)
                         .addComponent(jLabel13)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jLabel14)))
+                        .addComponent(lblghetrong003)))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel12Layout.createSequentialGroup()
                 .addGap(0, 0, Short.MAX_VALUE)
@@ -701,7 +1096,7 @@ public class PhongChieuJPanel extends javax.swing.JPanel {
                 .addGap(18, 18, 18)
                 .addGroup(jPanel12Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel13)
-                    .addComponent(jLabel14))
+                    .addComponent(lblghetrong003))
                 .addGap(38, 38, 38)
                 .addGroup(jPanel12Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel15)
@@ -717,13 +1112,15 @@ public class PhongChieuJPanel extends javax.swing.JPanel {
         jLabel18.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
         jLabel18.setText("Số lượng ghế còn trống: ");
 
-        jLabel19.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
-        jLabel19.setText("00");
+        lblghetrong006.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
+        lblghetrong006.setForeground(new java.awt.Color(0, 255, 0));
+        lblghetrong006.setText("56");
 
         jLabel20.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
         jLabel20.setText("Trạng thái:");
 
         lbltrangthai006.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
+        lbltrangthai006.setForeground(new java.awt.Color(255, 0, 0));
         lbltrangthai006.setText("Đang chiếu");
 
         javax.swing.GroupLayout jPanel13Layout = new javax.swing.GroupLayout(jPanel13);
@@ -741,7 +1138,7 @@ public class PhongChieuJPanel extends javax.swing.JPanel {
                         .addGap(32, 32, 32)
                         .addComponent(jLabel18)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jLabel19)))
+                        .addComponent(lblghetrong006)))
                 .addContainerGap(34, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel13Layout.createSequentialGroup()
                 .addGap(0, 0, Short.MAX_VALUE)
@@ -756,7 +1153,7 @@ public class PhongChieuJPanel extends javax.swing.JPanel {
                 .addGap(18, 18, 18)
                 .addGroup(jPanel13Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel18)
-                    .addComponent(jLabel19))
+                    .addComponent(lblghetrong006))
                 .addGap(38, 38, 38)
                 .addGroup(jPanel13Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel20)
@@ -830,26 +1227,20 @@ public class PhongChieuJPanel extends javax.swing.JPanel {
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel12;
     private javax.swing.JLabel jLabel13;
-    private javax.swing.JLabel jLabel14;
     private javax.swing.JLabel jLabel15;
     private javax.swing.JLabel jLabel17;
     private javax.swing.JLabel jLabel18;
-    private javax.swing.JLabel jLabel19;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel20;
     private javax.swing.JLabel jLabel22;
     private javax.swing.JLabel jLabel23;
-    private javax.swing.JLabel jLabel24;
     private javax.swing.JLabel jLabel25;
     private javax.swing.JLabel jLabel27;
     private javax.swing.JLabel jLabel28;
-    private javax.swing.JLabel jLabel29;
-    private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel30;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
-    private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabel9;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel11;
@@ -860,6 +1251,12 @@ public class PhongChieuJPanel extends javax.swing.JPanel {
     private javax.swing.JPanel jPanel5;
     private javax.swing.JLabel lblDongHo;
     private javax.swing.JLabel lblTrangChu;
+    private javax.swing.JLabel lblghetrong001;
+    private javax.swing.JLabel lblghetrong002;
+    private javax.swing.JLabel lblghetrong003;
+    private javax.swing.JLabel lblghetrong004;
+    private javax.swing.JLabel lblghetrong005;
+    private javax.swing.JLabel lblghetrong006;
     private javax.swing.JLabel lbltrangthai001;
     private javax.swing.JLabel lbltrangthai002;
     private javax.swing.JLabel lbltrangthai003;
