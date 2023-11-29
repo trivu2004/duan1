@@ -4,7 +4,9 @@
  */
 package Form;
 
+import DAO.PhimDAO;
 import DAO.SuatChieuDAO;
+import Helper.DateHelper;
 import Helper.JDBCHelper;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -19,7 +21,6 @@ import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.DefaultComboBoxModel;
-import javax.swing.JOptionPane;
 import javax.swing.Timer;
 import javax.swing.table.DefaultTableModel;
 import model.Phim;
@@ -29,19 +30,21 @@ import raven.toast.Notifications;
 public class SuatChieuJPanel extends javax.swing.JPanel {
 
     SuatChieuDAO dao = new SuatChieuDAO();
-    SimpleDateFormat date = new SimpleDateFormat("dd-MM-yyyy");
+    SimpleDateFormat date = new SimpleDateFormat("dd/MM/yyyy");
     int row;
 
     public SuatChieuJPanel(SuatChieuDAO dao) {
         initComponents();
-        txtngaytao.setVisible(false);
-        lblngaytao.setVisible(false);
-        btnThem.setEnabled(false);
         fillTable();
+        updateStatus();
+        
         fillPhim();
         fillPhong();
         fillQuanLy();
-        cleanForm();
+        cbosuatchieu.setSelectedIndex(-1);
+        cboPhongChieu.setSelectedIndex(-1);
+        cboPhim.setSelectedIndex(-1);
+        cboQuanLy.setSelectedIndex(-1);
         new Timer(1000, new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -87,7 +90,7 @@ public class SuatChieuJPanel extends javax.swing.JPanel {
     public void fillQuanLy() {
         DefaultComboBoxModel model = (DefaultComboBoxModel) cboQuanLy.getModel();
         try {
-            String sql = "select distinct NhanVienID from NhanVien where ChucVu = 0";
+            String sql = "select distinct NhanVienID from NhanVien";
             ResultSet kq = JDBCHelper.query(sql);
             while (kq.next()) {
                 model.addElement(kq.getString("NhanVienID"));
@@ -106,16 +109,16 @@ public class SuatChieuJPanel extends javax.swing.JPanel {
         try {
             List<SuatChieu> list = dao.selectAll();
             for (SuatChieu sc : list) {
-                Object[] row = {stt,
+                Object[] row = {
+                    tblSuatChieu.getRowCount() + 1,
                     sc.getMaSC(),
-                    sc.getTenPC(),
                     sc.getTenPhim(),
-                    sc.getTenNQL(),
+                    sc.getTenPC(),
                     sc.getCachieu(),
-                    sc.getNgaytao()
+                    DateHelper.toString(sc.getNgaytao()),
+                    sc.getTenNQL()
                 };
                 model.addRow(row);
-                stt++;
             }
         } catch (Exception e) {
             Notifications.getInstance().show(Notifications.Type.INFO, Notifications.Location.TOP_CENTER, "Lỗi truy vấn dữ liệu !");
@@ -129,7 +132,8 @@ public class SuatChieuJPanel extends javax.swing.JPanel {
         txtMaSC.setText(sc.getMaSC());
         cboPhongChieu.setSelectedItem(sc.getTenPC());
         cboPhim.setSelectedItem(sc.getTenPhim());
-        cbxsuatchieu.setSelectedItem(sc.getCachieu());
+        cbosuatchieu.setSelectedItem(sc.getCachieu());
+        txtngaytao.setDate(sc.getNgaytao());
         cboQuanLy.setSelectedItem(sc.getTenNQL());
     }
 
@@ -139,23 +143,39 @@ public class SuatChieuJPanel extends javax.swing.JPanel {
         result++;// Lấy substring từ vị trí 1 (bỏ qua ký tự đầu tiên)
         txtMaSC.setText("SC" + result);
     }
+    
+    void edit() {
+        try {
+            String maSC = (String) tblSuatChieu.getValueAt(this.row, 1);
+            SuatChieu model = dao.selectById(maSC);
+            if (model != null) {
+                setForm(model);
+                updateStatus();
+            }
+        } catch (Exception e) {
+            Notifications.getInstance().show(Notifications.Type.INFO, Notifications.Location.TOP_CENTER, "Lỗi truy vấn dữ liệu!");
+        } finally {
+            JDBCHelper.closeConnection();
+        }
+    }
 
-//    void updateStatus() {
-//        boolean edit = this.row >= 0;
-//        txtMaSC.setEnabled(!edit);
-//        btnThem.setEnabled(!edit);
-//        btnSua.setEnabled(edit);
-//        btnXoa.setEnabled(edit);
-//    }
+    void updateStatus() {
+        boolean edit = this.row >= 0;
+        txtMaSC.setEnabled(!edit);
+        btnThem.setEnabled(!edit);
+        btnSua.setEnabled(edit);
+        btnXoa.setEnabled(edit);
+    }
+    
     public void cleanForm() {
         setForm(new SuatChieu());
-        cbxsuatchieu.setSelectedIndex(-1);
+        cbosuatchieu.setSelectedIndex(-1);
         cboPhongChieu.setSelectedIndex(-1);
         cboPhim.setSelectedIndex(-1);
         cboQuanLy.setSelectedIndex(-1);
         row = -1;
         setMaSC();
-//        updateStatus();
+        updateStatus();
     }
 
     public SuatChieu getForm() throws ParseException {
@@ -163,9 +183,9 @@ public class SuatChieuJPanel extends javax.swing.JPanel {
         sc.setMaSC(txtMaSC.getText());
         sc.setTenPC((String) cboPhongChieu.getSelectedItem());
         sc.setTenPhim((String) cboPhim.getSelectedItem());
-        sc.setCachieu((String) cbxsuatchieu.getSelectedItem());
+        sc.setCachieu((String) cbosuatchieu.getSelectedItem());
         sc.setTenNQL((String) cboQuanLy.getSelectedItem());
-        sc.setNgaytao((String) txtngaytao.getText());
+        sc.setNgaytao(txtngaytao.getDate());
         return sc;
     }
 
@@ -175,9 +195,9 @@ public class SuatChieuJPanel extends javax.swing.JPanel {
             dao.insert(sc);
             fillTable();
             cleanForm();
-            Notifications.getInstance().show(Notifications.Type.INFO, Notifications.Location.TOP_CENTER, "Thêm Thành Công!");
+            Notifications.getInstance().show(Notifications.Type.INFO, Notifications.Location.TOP_CENTER, "Thêm Suất chiếu thành công!");
         } catch (Exception e) {
-            Notifications.getInstance().show(Notifications.Type.INFO, Notifications.Location.TOP_CENTER, "Thêm Thất Bại!");
+            Notifications.getInstance().show(Notifications.Type.INFO, Notifications.Location.TOP_CENTER, "Thêm Suất chiếu thất bại!");
             e.printStackTrace();
         } finally {
             JDBCHelper.closeConnection();
@@ -190,11 +210,11 @@ public class SuatChieuJPanel extends javax.swing.JPanel {
             String sql = "select * from SuatChieu where PhongID = ? and CaChieu= ? and NgayTaoXuat= ?";
             PreparedStatement st = JDBCHelper.prepareStatement(sql);
             st.setString(1, cboPhongChieu.getSelectedItem() + "");
-            st.setString(2, cbxsuatchieu.getSelectedItem() + "");
-            st.setString(3, txtngaytao.getText());
+            st.setString(2, cbosuatchieu.getSelectedItem() + "");
+            st.setString(3, DateHelper.toString(txtngaytao.getDate()));
             ResultSet kq = st.executeQuery();
             if (kq.next()) {
-                JOptionPane.showMessageDialog(this, "Ca chiếu trong phòng này đã có suất chiếu khác!");
+                Notifications.getInstance().show(Notifications.Type.INFO, Notifications.Location.TOP_CENTER, "Ca chiếu trong phòng này đã có suất chiếu khác!");
                 return false;
             }
         } catch (Exception e) {
@@ -206,25 +226,49 @@ public class SuatChieuJPanel extends javax.swing.JPanel {
     public boolean Check() {
 
         if (txtMaSC.getText().isEmpty()) {
-            JOptionPane.showMessageDialog(this, "Mời nhập mã suất chiếu!");
+            Notifications.getInstance().show(Notifications.Type.INFO, Notifications.Location.TOP_CENTER, "Mời nhập Mã suất chiếu!");
             txtMaSC.requestFocus();
             return false;
         }
 
         if (cboPhim.getSelectedItem() == null || cboPhim.getSelectedItem().toString().isEmpty()) {
-            JOptionPane.showMessageDialog(this, "Mời chọn phim!");
+            Notifications.getInstance().show(Notifications.Type.INFO, Notifications.Location.TOP_CENTER, "Chưa chọn Phim!");
             cboPhim.requestFocus();
             return false;
         }
 
         if (cboPhongChieu.getSelectedItem() == null || cboPhongChieu.getSelectedItem().toString().isEmpty()) {
-            JOptionPane.showMessageDialog(this, "Mời chọn phòng chiếu!");
+            Notifications.getInstance().show(Notifications.Type.INFO, Notifications.Location.TOP_CENTER, "Chưa chọn Phòng chiếu!");
             cboPhongChieu.requestFocus();
+            return false;
+        }
+        
+         if (cbosuatchieu.getSelectedItem() == null || cbosuatchieu.getSelectedItem().toString().isEmpty()) {
+            Notifications.getInstance().show(Notifications.Type.INFO, Notifications.Location.TOP_CENTER, "Chưa chọn Suất chiếu!");
+            cbosuatchieu.requestFocus();
+            return false;
+        }
+         
+         if (txtngaytao.getDate() == null) {
+            Notifications.getInstance().show(Notifications.Type.INFO, Notifications.Location.TOP_CENTER, "Không để trống Ngày chiếu!");
+            txtngaytao.requestFocus();
+            return false;
+        }
+         
+        Date ngayChieu = txtngaytao.getDate();
+        Date hienTai = DateHelper.now();
+        Calendar c1 = Calendar.getInstance();
+        Calendar c2 = Calendar.getInstance();
+        c1.setTime(ngayChieu);
+        c2.setTime(hienTai);
+        int songay = (int) ((c2.getTime().getTime() - c1.getTime().getTime()) / (24 * 3600 * 1000));
+        if (songay > -29) {
+            Notifications.getInstance().show(Notifications.Type.INFO, Notifications.Location.TOP_CENTER, "Ngày chiếu phải tạo sau ngày hôm nay ít nhất 30 ngày!");
             return false;
         }
 
         if (cboQuanLy.getSelectedItem() == null || cboQuanLy.getSelectedItem().toString().isEmpty()) {
-            JOptionPane.showMessageDialog(this, "Mời chọn người quản lý!");
+            Notifications.getInstance().show(Notifications.Type.INFO, Notifications.Location.TOP_CENTER, "Chưa chọn Người quản lý!");
             cboQuanLy.requestFocus();
             return false;
         }
@@ -238,9 +282,9 @@ public class SuatChieuJPanel extends javax.swing.JPanel {
             dao.update(sc);
             fillTable();
             cleanForm();
-            Notifications.getInstance().show(Notifications.Type.INFO, Notifications.Location.TOP_CENTER, "Sửa Thành Công!");
+            Notifications.getInstance().show(Notifications.Type.INFO, Notifications.Location.TOP_CENTER, "Sửa Suất chiếu thành công!");
         } catch (Exception e) {
-            Notifications.getInstance().show(Notifications.Type.INFO, Notifications.Location.TOP_CENTER, "Sửa Thất Bại!");
+            Notifications.getInstance().show(Notifications.Type.INFO, Notifications.Location.TOP_CENTER, "Sửa Suất chiếu thất bại!");
             e.printStackTrace();
         }
     }
@@ -250,9 +294,9 @@ public class SuatChieuJPanel extends javax.swing.JPanel {
             dao.delete(txtMaSC.getText());
             fillTable();
             cleanForm();
-            Notifications.getInstance().show(Notifications.Type.INFO, Notifications.Location.TOP_CENTER, "Xóa Thành Công!");
+            Notifications.getInstance().show(Notifications.Type.INFO, Notifications.Location.TOP_CENTER, "Xóa Suất chiếu thành công!");
         } catch (Exception e) {
-            Notifications.getInstance().show(Notifications.Type.INFO, Notifications.Location.TOP_CENTER, "Xóa Thất Bại!");
+            Notifications.getInstance().show(Notifications.Type.INFO, Notifications.Location.TOP_CENTER, "Xóa Suất chiếu thất bại!");
             e.printStackTrace();
         }
     }
@@ -285,9 +329,9 @@ public class SuatChieuJPanel extends javax.swing.JPanel {
         btnMoi = new javax.swing.JButton();
         jLabel13 = new javax.swing.JLabel();
         cboPhongChieu = new javax.swing.JComboBox<>();
-        cbxsuatchieu = new javax.swing.JComboBox<>();
+        cbosuatchieu = new javax.swing.JComboBox<>();
         lblngaytao = new javax.swing.JLabel();
-        txtngaytao = new javax.swing.JTextField();
+        txtngaytao = new com.toedter.calendar.JDateChooser();
 
         jPanel2.setBackground(new java.awt.Color(0, 0, 0));
         jPanel2.setForeground(new java.awt.Color(255, 51, 51));
@@ -338,17 +382,14 @@ public class SuatChieuJPanel extends javax.swing.JPanel {
         );
 
         jLabel4.setFont(new java.awt.Font("Segoe UI", 0, 20)); // NOI18N
-        jLabel4.setText("Chọn suất chiếu:");
+        jLabel4.setText("Chọn Ca Chiếu:");
 
         tblSuatChieu.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null}
+
             },
             new String [] {
-                "STT", "Mã Suất Chiếu", "Phòng Chiếu", "Tên Phim", "Người Quản Lý", "Ca Chiếu", "NgayTao"
+                "STT", "Mã Suất Chiếu", "Tên Phim", "Phòng Chiếu", "Ca Chiếu", "Ngày Chiếu", "Người Quản Lý"
             }
         ));
         tblSuatChieu.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -364,8 +405,10 @@ public class SuatChieuJPanel extends javax.swing.JPanel {
         jLabel2.setFont(new java.awt.Font("Segoe UI", 0, 20)); // NOI18N
         jLabel2.setText("Chọn Phim:");
 
+        txtMaSC.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
         txtMaSC.setEnabled(false);
 
+        cboPhim.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
         cboPhim.addItemListener(new java.awt.event.ItemListener() {
             public void itemStateChanged(java.awt.event.ItemEvent evt) {
                 cboPhimItemStateChanged(evt);
@@ -380,6 +423,9 @@ public class SuatChieuJPanel extends javax.swing.JPanel {
         jLabel11.setFont(new java.awt.Font("Segoe UI", 0, 20)); // NOI18N
         jLabel11.setText("Chọn Phòng Chiếu:");
 
+        cboQuanLy.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+
+        btnThem.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
         btnThem.setText("Thêm");
         btnThem.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -387,6 +433,7 @@ public class SuatChieuJPanel extends javax.swing.JPanel {
             }
         });
 
+        btnSua.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
         btnSua.setText("Sửa");
         btnSua.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -394,6 +441,7 @@ public class SuatChieuJPanel extends javax.swing.JPanel {
             }
         });
 
+        btnXoa.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
         btnXoa.setText("Xóa ");
         btnXoa.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -401,6 +449,7 @@ public class SuatChieuJPanel extends javax.swing.JPanel {
             }
         });
 
+        btnMoi.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
         btnMoi.setText("Mới");
         btnMoi.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -411,28 +460,31 @@ public class SuatChieuJPanel extends javax.swing.JPanel {
         jLabel13.setFont(new java.awt.Font("Segoe UI", 0, 20)); // NOI18N
         jLabel13.setText("Người Quản Lý:");
 
+        cboPhongChieu.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
         cboPhongChieu.addItemListener(new java.awt.event.ItemListener() {
             public void itemStateChanged(java.awt.event.ItemEvent evt) {
                 cboPhongChieuItemStateChanged(evt);
             }
         });
 
-        cbxsuatchieu.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Suất 1 (7h-9h)", "Suất 2 (9h-11h)", "Suất 3 (13h-15h)", "Suất 4 (15h-17h)", "Suất 5 (17h-19h)", "Suất 6 (19h-21h)", "Suất 7 (21h-23h)" }));
-        cbxsuatchieu.addItemListener(new java.awt.event.ItemListener() {
+        cbosuatchieu.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+        cbosuatchieu.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Suất 1 (7h-9h)", "Suất 2 (9h-11h)", "Suất 3 (13h-15h)", "Suất 4 (15h-17h)", "Suất 5 (17h-19h)", "Suất 6 (19h-21h)", "Suất 7 (21h-23h)" }));
+        cbosuatchieu.addItemListener(new java.awt.event.ItemListener() {
             public void itemStateChanged(java.awt.event.ItemEvent evt) {
-                cbxsuatchieuItemStateChanged(evt);
+                cbosuatchieuItemStateChanged(evt);
             }
         });
-        cbxsuatchieu.addMouseListener(new java.awt.event.MouseAdapter() {
+        cbosuatchieu.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                cbxsuatchieuMouseClicked(evt);
+                cbosuatchieuMouseClicked(evt);
             }
         });
 
         lblngaytao.setFont(new java.awt.Font("Segoe UI", 0, 20)); // NOI18N
-        lblngaytao.setText("Ngày tạo:");
+        lblngaytao.setText("Ngày Chiếu:");
 
-        txtngaytao.setEnabled(false);
+        txtngaytao.setDateFormatString("dd/MM/yyyy");
+        txtngaytao.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
@@ -441,23 +493,17 @@ public class SuatChieuJPanel extends javax.swing.JPanel {
             .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addGap(20, 20, 20)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel13)
-                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                        .addComponent(cboQuanLy, javax.swing.GroupLayout.PREFERRED_SIZE, 455, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(jLabel1)
-                            .addComponent(jLabel2)
-                            .addComponent(txtMaSC)
-                            .addComponent(cboPhim, 0, 455, Short.MAX_VALUE)
-                            .addComponent(jLabel11)
-                            .addComponent(cboPhongChieu, javax.swing.GroupLayout.Alignment.TRAILING, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(jLabel4)
-                            .addComponent(cbxsuatchieu, javax.swing.GroupLayout.Alignment.TRAILING, 0, 455, Short.MAX_VALUE)))
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(lblngaytao)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(txtngaytao, javax.swing.GroupLayout.PREFERRED_SIZE, 161, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(cboQuanLy, 0, 455, Short.MAX_VALUE)
+                    .addComponent(jLabel1)
+                    .addComponent(jLabel2)
+                    .addComponent(txtMaSC)
+                    .addComponent(cboPhim, 0, 455, Short.MAX_VALUE)
+                    .addComponent(jLabel11)
+                    .addComponent(cboPhongChieu, javax.swing.GroupLayout.Alignment.TRAILING, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jLabel4)
+                    .addComponent(cbosuatchieu, javax.swing.GroupLayout.Alignment.TRAILING, 0, 455, Short.MAX_VALUE)
+                    .addComponent(lblngaytao)
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(btnThem, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
@@ -465,7 +511,9 @@ public class SuatChieuJPanel extends javax.swing.JPanel {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(btnSua, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(btnMoi, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addComponent(btnMoi, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jLabel13)
+                    .addComponent(txtngaytao, javax.swing.GroupLayout.PREFERRED_SIZE, 235, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 18, Short.MAX_VALUE)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 778, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
@@ -476,6 +524,7 @@ public class SuatChieuJPanel extends javax.swing.JPanel {
                 .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(26, 26, 26)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 585, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(jLabel1)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
@@ -488,26 +537,25 @@ public class SuatChieuJPanel extends javax.swing.JPanel {
                         .addComponent(jLabel11)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(cboPhongChieu, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(12, 12, 12)
+                        .addGap(18, 18, 18)
                         .addComponent(jLabel4)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(cbxsuatchieu, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(21, 21, 21)
+                        .addComponent(cbosuatchieu, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
+                        .addComponent(lblngaytao)
+                        .addGap(12, 12, 12)
+                        .addComponent(txtngaytao, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jLabel13)
-                        .addGap(18, 18, 18)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(cboQuanLy, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(18, 18, 18)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(lblngaytao)
-                            .addComponent(txtngaytao, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(18, 18, 18)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(btnThem)
                             .addComponent(btnXoa)
                             .addComponent(btnSua)
-                            .addComponent(btnMoi)))
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 585, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(28, Short.MAX_VALUE))
+                            .addComponent(btnMoi))))
+                .addContainerGap(37, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
 
@@ -543,21 +591,9 @@ public class SuatChieuJPanel extends javax.swing.JPanel {
     }//GEN-LAST:event_cboPhimMouseClicked
 
     private void tblSuatChieuMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tblSuatChieuMouseClicked
-        int index = tblSuatChieu.rowAtPoint(evt.getPoint());
         if (evt.getClickCount() == 1) {
-            btnThem.setEnabled(false);
-            String masc = (String) tblSuatChieu.getValueAt(index, 1);
-            String Tenpc = (String) tblSuatChieu.getValueAt(index, 2);
-            String Tenphim = (String) tblSuatChieu.getValueAt(index, 3);
-            String nguoiquanly = (String) tblSuatChieu.getValueAt(index, 4);
-            String cachieu = (String) tblSuatChieu.getValueAt(index, 5);
-
-            txtMaSC.setText(masc);
-            cboPhim.setSelectedItem(Tenphim);
-            cboPhongChieu.setSelectedItem(Tenpc);
-            cbxsuatchieu.setSelectedItem(cachieu);
-            cboQuanLy.setSelectedItem(nguoiquanly);
-
+            this.row = tblSuatChieu.rowAtPoint(evt.getPoint());
+            edit();
         }
     }//GEN-LAST:event_tblSuatChieuMouseClicked
 
@@ -607,20 +643,15 @@ public class SuatChieuJPanel extends javax.swing.JPanel {
     private void btnMoiActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnMoiActionPerformed
         // TODO add your handling code here:
         cleanForm();
-        txtngaytao.setVisible(true);
-        LocalDate tg = LocalDate.now();
-        txtngaytao.setText(tg + "");
-        lblngaytao.setVisible(true);
-        btnThem.setEnabled(true);
     }//GEN-LAST:event_btnMoiActionPerformed
 
-    private void cbxsuatchieuItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_cbxsuatchieuItemStateChanged
+    private void cbosuatchieuItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_cbosuatchieuItemStateChanged
         // TODO add your handling code here:
-    }//GEN-LAST:event_cbxsuatchieuItemStateChanged
+    }//GEN-LAST:event_cbosuatchieuItemStateChanged
 
-    private void cbxsuatchieuMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_cbxsuatchieuMouseClicked
+    private void cbosuatchieuMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_cbosuatchieuMouseClicked
         // TODO add your handling code here:
-    }//GEN-LAST:event_cbxsuatchieuMouseClicked
+    }//GEN-LAST:event_cbosuatchieuMouseClicked
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -631,7 +662,7 @@ public class SuatChieuJPanel extends javax.swing.JPanel {
     public javax.swing.JComboBox<String> cboPhim;
     public javax.swing.JComboBox<String> cboPhongChieu;
     public javax.swing.JComboBox<String> cboQuanLy;
-    public javax.swing.JComboBox<String> cbxsuatchieu;
+    public javax.swing.JComboBox<String> cbosuatchieu;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel11;
     private javax.swing.JLabel jLabel13;
@@ -645,6 +676,6 @@ public class SuatChieuJPanel extends javax.swing.JPanel {
     private javax.swing.JLabel lblngaytao;
     public javax.swing.JTable tblSuatChieu;
     public javax.swing.JTextField txtMaSC;
-    public javax.swing.JTextField txtngaytao;
+    private com.toedter.calendar.JDateChooser txtngaytao;
     // End of variables declaration//GEN-END:variables
 }

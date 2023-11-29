@@ -17,12 +17,12 @@ public class SuatChieu {
     private String tenPC;
     private String cachieu;
     private String tenNQL;
-    private String ngaytao;
+    private Date ngaytao;
 
     public SuatChieu() {
     }
 
-    public SuatChieu(String maSC, String tenPhim, String tenPC, String cachieu, String tenNQL, String ngaytao) {
+    public SuatChieu(String maSC, String tenPhim, String tenPC, String cachieu, String tenNQL, Date ngaytao) {
         this.maSC = maSC;
         this.tenPhim = tenPhim;
         this.tenPC = tenPC;
@@ -71,12 +71,13 @@ public class SuatChieu {
         this.tenNQL = tenNQL;
     }
 
-    public String getNgaytao() {
+    public Date getNgaytao() {
         return ngaytao;
     }
 
-    public void setNgaytao(String ngaytao) {
+    public void setNgaytao(Date ngaytao) {
         this.ngaytao = ngaytao;
     }
 
+    
 }

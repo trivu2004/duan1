@@ -105,7 +105,7 @@ public class SuatChieuDAO extends CinemaxDAO<SuatChieu, String> {
                 entity.setTenPhim(rs.getString("PhimID"));
                 entity.setTenNQL(rs.getString("NhanVienID"));
                 entity.setCachieu(rs.getString("CaChieu"));
-                entity.setNgaytao(rs.getString("NgayTaoXuat"));
+                entity.setNgaytao(rs.getDate("NgayTaoXuat"));
                 list.add(entity);
             }
         } catch (Exception e) {
