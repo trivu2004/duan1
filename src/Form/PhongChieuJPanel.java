@@ -333,12 +333,10 @@ public class PhongChieuJPanel extends javax.swing.JPanel {
                         }
                     }
                 }
-                
-                
-                
-                
             }
         } catch (Exception e) {
+        } finally {
+            JDBCHelper.closeConnection();
         }
     }
 
