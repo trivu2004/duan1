@@ -383,12 +383,12 @@
         <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
           <StringArray count="7">
             <StringItem index="0" value="Su&#x1ea5;t 1 (7h-9h)"/>
-            <StringItem index="1" value="Su&#x1ea5;t 2 (9h-9h)"/>
-            <StringItem index="2" value="Su&#x1ea5;t 3 (1h-3h)"/>
-            <StringItem index="3" value="Su&#x1ea5;t 4 (3h-5h)"/>
-            <StringItem index="4" value="Su&#x1ea5;t 5 (5h-7h)"/>
-            <StringItem index="5" value="Su&#x1ea5;t 6 (7h-9h)"/>
-            <StringItem index="6" value="Su&#x1ea5;t 7 (9h-11h)"/>
+            <StringItem index="1" value="Su&#x1ea5;t 2 (9h-11h)"/>
+            <StringItem index="2" value="Su&#x1ea5;t 3 (13h-15h)"/>
+            <StringItem index="3" value="Su&#x1ea5;t 4 (15h-17h)"/>
+            <StringItem index="4" value="Su&#x1ea5;t 5 (17h-19h)"/>
+            <StringItem index="5" value="Su&#x1ea5;t 6 (19h-21h)"/>
+            <StringItem index="6" value="Su&#x1ea5;t 7 (21h-23h)"/>
           </StringArray>
         </Property>
       </Properties>

@@ -165,6 +165,7 @@ public class SuatChieuJPanel extends javax.swing.JPanel {
         sc.setTenPhim((String) cboPhim.getSelectedItem());
         sc.setCachieu((String) cbxsuatchieu.getSelectedItem());
         sc.setTenNQL((String) cboQuanLy.getSelectedItem());
+        sc.setNgaytao((String) txtngaytao.getText());
         return sc;
     }
 
@@ -184,7 +185,26 @@ public class SuatChieuJPanel extends javax.swing.JPanel {
 
     }
 
+    public boolean checkca() {
+        try {
+            String sql = "select * from SuatChieu where PhongID = ? and CaChieu= ? and NgayTaoXuat= ?";
+            PreparedStatement st = JDBCHelper.prepareStatement(sql);
+            st.setString(1, cboPhongChieu.getSelectedItem() + "");
+            st.setString(2, cbxsuatchieu.getSelectedItem() + "");
+            st.setString(3, txtngaytao.getText());
+            ResultSet kq = st.executeQuery();
+            if (kq.next()) {
+                JOptionPane.showMessageDialog(this, "Ca chiếu trong phòng này đã có suất chiếu khác!");
+                return false;
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return true;
+    }
+
     public boolean Check() {
+
         if (txtMaSC.getText().isEmpty()) {
             JOptionPane.showMessageDialog(this, "Mời nhập mã suất chiếu!");
             txtMaSC.requestFocus();
@@ -397,7 +417,7 @@ public class SuatChieuJPanel extends javax.swing.JPanel {
             }
         });
 
-        cbxsuatchieu.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Suất 1 (7h-9h)", "Suất 2 (9h-9h)", "Suất 3 (1h-3h)", "Suất 4 (3h-5h)", "Suất 5 (5h-7h)", "Suất 6 (7h-9h)", "Suất 7 (9h-11h)" }));
+        cbxsuatchieu.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Suất 1 (7h-9h)", "Suất 2 (9h-11h)", "Suất 3 (13h-15h)", "Suất 4 (15h-17h)", "Suất 5 (17h-19h)", "Suất 6 (19h-21h)", "Suất 7 (21h-23h)" }));
         cbxsuatchieu.addItemListener(new java.awt.event.ItemListener() {
             public void itemStateChanged(java.awt.event.ItemEvent evt) {
                 cbxsuatchieuItemStateChanged(evt);
@@ -492,14 +512,14 @@ public class SuatChieuJPanel extends javax.swing.JPanel {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnThemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnThemActionPerformed
-        if (Check()) {
+        if (Check() && checkca()) {
             try {
                 insert();
             } catch (ParseException ex) {
                 Logger.getLogger(SuatChieuJPanel.class.getName()).log(Level.SEVERE, null, ex);
-            }finally {
-            JDBCHelper.closeConnection();
-        }
+            } finally {
+                JDBCHelper.closeConnection();
+            }
         }
 
     }//GEN-LAST:event_btnThemActionPerformed
@@ -513,7 +533,7 @@ public class SuatChieuJPanel extends javax.swing.JPanel {
             delete();
         } catch (ParseException ex) {
             ex.printStackTrace();
-        }finally {
+        } finally {
             JDBCHelper.closeConnection();
         }
     }//GEN-LAST:event_btnXoaActionPerformed
@@ -537,18 +557,20 @@ public class SuatChieuJPanel extends javax.swing.JPanel {
             cboPhongChieu.setSelectedItem(Tenpc);
             cbxsuatchieu.setSelectedItem(cachieu);
             cboQuanLy.setSelectedItem(nguoiquanly);
-            
+
         }
     }//GEN-LAST:event_tblSuatChieuMouseClicked
 
     private void btnSuaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSuaActionPerformed
-        try {
-            // TODO add your handling code here:
-            update();
-        } catch (ParseException ex) {
-            Logger.getLogger(SuatChieuJPanel.class.getName()).log(Level.SEVERE, null, ex);
-        }finally {
-            JDBCHelper.closeConnection();
+        if (checkca()) {
+            try {
+                // TODO add your handling code here:
+                update();
+            } catch (ParseException ex) {
+                Logger.getLogger(SuatChieuJPanel.class.getName()).log(Level.SEVERE, null, ex);
+            } finally {
+                JDBCHelper.closeConnection();
+            }
         }
     }//GEN-LAST:event_btnSuaActionPerformed
 

@@ -24,7 +24,7 @@ import raven.toast.Notifications;
  */
 public class SuatChieuDAO extends CinemaxDAO<SuatChieu, String> {
 
-    final String INSERT_SQL = "INSERT INTO SuatChieu (SuatChieuID, PhongID, PhimID, ThoiGianBatDau, ThoiGianKetThuc, NhanVienID) VALUES (?, ?, ?, ?, ?, ?)";
+    final String INSERT_SQL = "INSERT INTO SuatChieu (SuatChieuID, PhongID, PhimID, NhanVienID , CaChieu ,NgayTaoXuat) VALUES (?, ?, ?, ?, ?, ?)";
     final String UPDATE_SQL = "UPDATE SuatChieu SET PhongID=?, PhimID=?, NhanVienID=?, CaChieu = ? , NgayTaoXuat = ? WHERE SuatChieuID=?";
     final String DELETE_SQL = "DELETE FROM SuatChieu WHERE SuatChieuID=?";
     final String SELECT_ALL_SQL = "SELECT * FROM SuatChieu";
@@ -33,10 +33,6 @@ public class SuatChieuDAO extends CinemaxDAO<SuatChieu, String> {
             + "FROM SuatChieu\n"
             + "ORDER BY SuatChieuID DESC\n"
             + "LIMIT 1";
-    final String fillchkThoiGianBatDau = "SELECT ThoiGianBatDau FROM SuatChieu\n"
-            + "group by ThoiGianBatDau\n"
-            + "DESC";
-
     public static String PhimID, PhongID;
 
     public static String getPhimID() {
@@ -87,17 +83,6 @@ public class SuatChieuDAO extends CinemaxDAO<SuatChieu, String> {
         return selectBySql(SELECT_ALL_SQL);
     }
 
-    public List<String> fillChkThoiGianBatDau() {
-        List<String> list = new ArrayList<>();
-        try {
-            ResultSet rs = JDBCHelper.query(fillchkThoiGianBatDau);
-            while (rs.next()) {
-                list.add(rs.getString("ThoiGianBatDau"));
-            }
-        } catch (Exception e) {
-        }
-        return list;
-    }
 
     @Override
     public SuatChieu selectById(String id) {
@@ -120,7 +105,7 @@ public class SuatChieuDAO extends CinemaxDAO<SuatChieu, String> {
                 entity.setTenPhim(rs.getString("PhimID"));
                 entity.setTenNQL(rs.getString("NhanVienID"));
                 entity.setCachieu(rs.getString("CaChieu"));
-                entity.setNgaytao(rs.getDate("NgayTaoXuat"));
+                entity.setNgaytao(rs.getString("NgayTaoXuat"));
                 list.add(entity);
             }
         } catch (Exception e) {

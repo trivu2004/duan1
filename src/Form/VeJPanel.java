@@ -93,7 +93,6 @@ public class VeJPanel extends javax.swing.JPanel {
         };
         worker.execute();
         btnDatVe.setEnabled(false);
-        fillCboThoiGian();
         fillCboPhim();
         fillCboPhongChieu();
         cboPhim.setSelectedIndex(-1);
@@ -130,18 +129,7 @@ public class VeJPanel extends javax.swing.JPanel {
         }
     }
 
-    void fillCboThoiGian() {
-        try {
-            List<String> list = daoSuatChieu.fillChkThoiGianBatDau();
-            for (String string : list) {
-                cboThoiGian.addItem(string);
-            }
-        } catch (Exception e) {
-            e.printStackTrace();
-        } finally {
-            JDBCHelper.closeConnection();
-        }
-    }
+
 
     void fillCboPhim() {
         try {
