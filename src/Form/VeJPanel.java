@@ -95,6 +95,7 @@ public class VeJPanel extends javax.swing.JPanel {
         btnDatVe.setEnabled(false);
         fillCboPhim();
         fillCboPhongChieu();
+        flllCboThoiGian();
         cboPhim.setSelectedIndex(-1);
         cboPhongChieu.setSelectedIndex(-1);
         cboThoiGian.setSelectedIndex(-1);
@@ -129,8 +130,6 @@ public class VeJPanel extends javax.swing.JPanel {
         }
     }
 
-
-
     void fillCboPhim() {
         try {
             List<Phim> list = daoPhim.selectAll();
@@ -149,6 +148,19 @@ public class VeJPanel extends javax.swing.JPanel {
             List<PhongChieu> list = daoPhongChieu.selectAll();
             for (PhongChieu phongChieu : list) {
                 cboPhongChieu.addItem(phongChieu.getMaPC() + "");
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally {
+            JDBCHelper.closeConnection();
+        }
+    }
+
+    void flllCboThoiGian() {
+        try {
+            List<SuatChieu> list = daoSuatChieu.inThoiGian(ngayHienTai);
+            for (SuatChieu suatChieu : list) {
+                cboThoiGian.addItem(suatChieu.getNgaytao() + "");
             }
         } catch (Exception e) {
             e.printStackTrace();

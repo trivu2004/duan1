@@ -4,19 +4,11 @@
  */
 package DAO;
 
-import Form.SuatChieuJPanel;
 import Helper.JDBCHelper;
-import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.util.ArrayList;
 import java.util.List;
-import javax.swing.DefaultComboBoxModel;
-import javax.swing.JComboBox;
-import javax.swing.JTable;
-import javax.swing.table.DefaultTableModel;
 import model.SuatChieu;
-import model.TimVe;
-import raven.toast.Notifications;
 
 /**
  *
@@ -33,6 +25,11 @@ public class SuatChieuDAO extends CinemaxDAO<SuatChieu, String> {
             + "FROM SuatChieu\n"
             + "ORDER BY SuatChieuID DESC\n"
             + "LIMIT 1";
+
+    final String SELECT_THOIGIAN = "select * from SuatChieu\n"
+            + "where NgayTaoXuat >= ?\n"
+            + "GROUP BY NgayTaoXuat\n"
+            + "ASC";
     public static String PhimID, PhongID;
 
     public static String getPhimID() {
@@ -83,7 +80,6 @@ public class SuatChieuDAO extends CinemaxDAO<SuatChieu, String> {
         return selectBySql(SELECT_ALL_SQL);
     }
 
-
     @Override
     public SuatChieu selectById(String id) {
         List<SuatChieu> list = selectBySql(SELECT_BY_ID_SQL, id);
@@ -110,6 +106,25 @@ public class SuatChieuDAO extends CinemaxDAO<SuatChieu, String> {
             }
         } catch (Exception e) {
             throw new RuntimeException(e);
+        }
+        return list;
+    }
+
+    public List<SuatChieu> inThoiGian(String date) {
+        List<SuatChieu> list = new ArrayList<>();
+        try {
+            ResultSet rs = JDBCHelper.query(SELECT_THOIGIAN, date);
+            while (rs.next()) {
+                SuatChieu entity = new SuatChieu();
+                entity.setMaSC(rs.getString("SuatChieuID"));
+                entity.setTenPC(rs.getString("PhongID"));
+                entity.setTenPhim(rs.getString("PhimID"));
+                entity.setTenNQL(rs.getString("NhanVienID"));
+                entity.setCachieu(rs.getString("CaChieu"));
+                entity.setNgaytao(rs.getDate("NgayTaoXuat"));
+                list.add(entity);
+            }
+        } catch (Exception e) {
         }
         return list;
     }

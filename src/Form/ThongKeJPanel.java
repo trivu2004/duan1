@@ -89,13 +89,8 @@ public class ThongKeJPanel extends javax.swing.JPanel {
         for (int i = 0; i < jTable1.getRowCount(); i++) {
             tongVeDaBan += Integer.valueOf(String.valueOf(jTable1.getValueAt(i, 2)));
             tongDoanhThu += Double.valueOf(String.valueOf(jTable1.getValueAt(i, 3)));
-
-            // Sửa giúp biến tongLoiNhuan
-            BigDecimal loiNhuanBigDecimal = new BigDecimal(String.valueOf(jTable1.getValueAt(i, 5)));
-            tongLoiNhuan += loiNhuanBigDecimal.doubleValue();
+            tongLoiNhuan += Math.round(Double.valueOf(String.valueOf(jTable1.getValueAt(i, 5))));
         }
-        System.out.println(tongLoiNhuan);
-
         card1.setData(new Model_Card("Tổng phim đã chiếu", String.valueOf(jTable1.getRowCount())));
         card2.setData(new Model_Card("Tổng vé đã bán", String.valueOf(tongVeDaBan)));
         card3.setData(new Model_Card("Tổng doanh thu", String.valueOf(tongDoanhThu)));

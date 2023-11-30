@@ -51,12 +51,14 @@ public class VeDAO extends CinemaxDAO<Ve, String> {
             + "where SC.SuatChieuID = ?";
 
     final String SELECT_ALL_DANHSACH = "select VeID,TenPhim,PhongChieu.PhongID,NgayTaoXuat,Ghe,LoaiVe,GiaVe,NgayMua from SuatChieu\n"
-            + "Join Ve\n"
-            + "on SuatChieu.SuatChieuID = Ve.SuatChieuID\n"
-            + "JOIN Phim\n"
-            + "on SuatChieu.PhimID = Phim.PhimID\n"
-            + "Join PhongChieu\n"
-            + "on SuatChieu.PhongID = PhongChieu.PhongID";
+            + "            Join Ve\n"
+            + "            on SuatChieu.SuatChieuID = Ve.SuatChieuID\n"
+            + "            JOIN Phim\n"
+            + "            on SuatChieu.PhimID = Phim.PhimID\n"
+            + "           Join PhongChieu\n"
+            + "            on SuatChieu.PhongID = PhongChieu.PhongID\n"
+            + "           ORDER BY VeID\n"
+            + "ASC";
 
     final String SELECT_ALL_VE = "select SuatChieu.SuatChieuID,Phim.TenPhim,PhongChieu.PhongID,NgayTaoXuat from SuatChieu\n"
             + "           JOIN Phim\n"
