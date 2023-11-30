@@ -211,7 +211,7 @@ public class SuatChieuJPanel extends javax.swing.JPanel {
             PreparedStatement st = JDBCHelper.prepareStatement(sql);
             st.setString(1, cboPhongChieu.getSelectedItem() + "");
             st.setString(2, cbosuatchieu.getSelectedItem() + "");
-            st.setString(3, DateHelper.toString(txtngaytao.getDate()));
+            st.setString(3, DateHelper.toString2(txtngaytao.getDate()));
             ResultSet kq = st.executeQuery();
             if (kq.next()) {
                 Notifications.getInstance().show(Notifications.Type.INFO, Notifications.Location.TOP_CENTER, "Ca chiếu trong phòng này đã có suất chiếu khác!");
@@ -262,8 +262,8 @@ public class SuatChieuJPanel extends javax.swing.JPanel {
         c1.setTime(ngayChieu);
         c2.setTime(hienTai);
         int songay = (int) ((c2.getTime().getTime() - c1.getTime().getTime()) / (24 * 3600 * 1000));
-        if (songay > -29) {
-            Notifications.getInstance().show(Notifications.Type.INFO, Notifications.Location.TOP_CENTER, "Ngày chiếu phải tạo sau ngày hôm nay ít nhất 30 ngày!");
+        if (songay > 0) {
+            Notifications.getInstance().show(Notifications.Type.INFO, Notifications.Location.TOP_CENTER, "Ngày chiếu phải tạo sau ngày hôm nay!");
             return false;
         }
 

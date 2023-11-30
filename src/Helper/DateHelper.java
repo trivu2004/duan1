@@ -15,6 +15,7 @@ import java.util.Date;
 public class DateHelper {
 
     static final SimpleDateFormat DATE_FORMATER = new SimpleDateFormat("dd/MM/yyyy");
+    static final SimpleDateFormat DATE_FORMATER2 = new SimpleDateFormat("yyyy-MM-dd");
 
     public static Date toDate(String date, String... pattern) {
         try {
@@ -38,6 +39,16 @@ public class DateHelper {
             date = DateHelper.now();
         }
         return DATE_FORMATER.format(date);
+    }
+    
+    public static String toString2(Date date, String... pattern) {
+        if (pattern.length > 0) {
+            DATE_FORMATER2.applyPattern(pattern[0]);
+        }
+        if (date == null) {
+            date = DateHelper.now();
+        }
+        return DATE_FORMATER2.format(date);
     }
 
     public static Date now() {

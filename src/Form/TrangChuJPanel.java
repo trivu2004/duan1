@@ -35,6 +35,7 @@ public class TrangChuJPanel extends javax.swing.JPanel {
                 lblDongHo.setText(text);
             }
         }).start();
+        
         if (!isManager()) {
             jpnNhanVien.setVisible(false);
             lblNhanVien.setVisible(false);
