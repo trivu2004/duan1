@@ -21,7 +21,11 @@ import model.Phim;
 import model.PhongChieu;
 import model.SuatChieu;
 import model.TimVe;
+import org.apache.log4j.Logger;
+import org.apache.log4j.PropertyConfigurator;
 import raven.toast.Notifications;
+import util.BCryptPasswordHashing;
+import static util.BCryptPasswordHashing.logger;
 
 /**
  *
@@ -40,6 +44,7 @@ public class VeJPanel extends javax.swing.JPanel {
     public String TenPhong = "";
     public String ThoiGianChieu = "";
     public String MaSuatChieu = "";
+    public static final Logger logger = Logger.getLogger(VeJPanel.class);
 
     public String ngayHienTai;
 
@@ -61,6 +66,8 @@ public class VeJPanel extends javax.swing.JPanel {
 
     public VeJPanel() {
         initComponents();
+        PropertyConfigurator.configure("src\\Log\\log4j.properties");
+        logger.info("Người dùng đã mở form vé");
         Date now = new Date();
         SimpleDateFormat NgayMuaFormat = new SimpleDateFormat("YYYY-MM-dd");
         ngayHienTai = NgayMuaFormat.format(now);
@@ -124,7 +131,7 @@ public class VeJPanel extends javax.swing.JPanel {
 
         } catch (Exception e) {
             Notifications.getInstance().show(Notifications.Type.INFO, Notifications.Location.TOP_CENTER, "Lỗi truy vấn dữ liệu!");
-            e.printStackTrace();
+            logger.error(e.getMessage());
         } finally {
             JDBCHelper.closeConnection();
         }
@@ -137,7 +144,7 @@ public class VeJPanel extends javax.swing.JPanel {
                 cboPhim.addItem(phim.getTenPhim() + "");
             }
         } catch (Exception e) {
-            e.printStackTrace();
+            logger.error(e.getMessage());
         } finally {
             JDBCHelper.closeConnection();
         }
@@ -150,7 +157,7 @@ public class VeJPanel extends javax.swing.JPanel {
                 cboPhongChieu.addItem(phongChieu.getMaPC() + "");
             }
         } catch (Exception e) {
-            e.printStackTrace();
+            logger.error(e.getMessage());
         } finally {
             JDBCHelper.closeConnection();
         }
@@ -163,7 +170,7 @@ public class VeJPanel extends javax.swing.JPanel {
                 cboThoiGian.addItem(suatChieu.getNgaytao() + "");
             }
         } catch (Exception e) {
-            e.printStackTrace();
+            logger.error(e.getMessage());
         } finally {
             JDBCHelper.closeConnection();
         }

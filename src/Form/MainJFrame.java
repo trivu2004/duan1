@@ -16,7 +16,10 @@ import java.awt.Image;
 import java.awt.event.KeyEvent;
 import java.sql.ResultSet;
 import javax.swing.ImageIcon;
+import org.apache.log4j.Logger;
+import org.apache.log4j.PropertyConfigurator;
 import util.BCryptPasswordHashing;
+import static util.BCryptPasswordHashing.logger;
 
 /**
  *
@@ -32,10 +35,14 @@ public class MainJFrame extends javax.swing.JFrame {
     public static Image APP_ICON;
     public static String NhanVienID;
     public static String MatKhau;
+    static int wrongCount = 0;
     String file = "/image/Logo.png";
+    public static final Logger logger = Logger.getLogger(MainJFrame.class);
 
     public MainJFrame() {
         initComponents();
+        PropertyConfigurator.configure("src\\Log\\log4j.properties");
+
         setSize(new Dimension(1366, 768));
         setLocationRelativeTo(null);
         mainForm = new MainForm();
@@ -89,7 +96,13 @@ public class MainJFrame extends javax.swing.JFrame {
                     }
                 }
                 Notifications.getInstance().show(Notifications.Type.INFO, Notifications.Location.TOP_CENTER, "Sai tài khoản hoặc mật khẩu !");
+                wrongCount++;
+                logger.warn("Người dùng đã nhập sai mất khẩu: " + wrongCount + " lần");
+                if (wrongCount == 3) {
+                    System.exit(0);
+                }
             } catch (Exception e) {
+                logger.error(e.getMessage());
             } finally {
                 JDBCHelper.closeConnection();
             }

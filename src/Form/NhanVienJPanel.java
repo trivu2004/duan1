@@ -15,7 +15,11 @@ import java.util.regex.Pattern;
 import javax.swing.Timer;
 import javax.swing.table.DefaultTableModel;
 import model.NhanVien;
+import org.apache.log4j.Logger;
+import org.apache.log4j.PropertyConfigurator;
 import raven.toast.Notifications;
+import util.BCryptPasswordHashing;
+import static util.BCryptPasswordHashing.logger;
 
 /**
  *
@@ -30,9 +34,13 @@ public class NhanVienJPanel extends javax.swing.JPanel {
     private static final String P_PassWord = "^.*(?=.{6,})(?=..*[0-9])(?=.*[a-z])(?=.*[A-Z])(?=.*[@#$%^&+=]).*$";
     private static final String P_EMAIL = "^([a-z0-9_\\.-]+)@([\\da-z\\.-]+)\\.([a-z\\.]{2,6})$";
     Matcher matcher;
+    public static final Logger logger = Logger.getLogger(NhanVienJPanel.class);
     
     public NhanVienJPanel() {
         initComponents();
+        PropertyConfigurator.configure("src\\Log\\log4j.properties");
+        logger.info("Người dùng đã mở form nhân viên");
+
         fillTable();
         updateStatus();
 
@@ -68,7 +76,7 @@ public class NhanVienJPanel extends javax.swing.JPanel {
             }
         } catch (Exception e) {
             Notifications.getInstance().show(Notifications.Type.INFO, Notifications.Location.TOP_CENTER, "Lỗi truy vấn dữ liệu!");
-            e.printStackTrace();
+            logger.error(e.getMessage());
         } finally {
             JDBCHelper.closeConnection();
         }
@@ -84,6 +92,7 @@ public class NhanVienJPanel extends javax.swing.JPanel {
             }
         } catch (Exception e) {
             Notifications.getInstance().show(Notifications.Type.INFO, Notifications.Location.TOP_CENTER, "Lỗi truy vấn dữ liệu!");
+            logger.error(e.getMessage());
         } finally {
             JDBCHelper.closeConnection();
         }
@@ -142,6 +151,7 @@ public class NhanVienJPanel extends javax.swing.JPanel {
                     Notifications.getInstance().show(Notifications.Type.INFO, Notifications.Location.TOP_CENTER, "Thêm mới Nhân viên thành công!");
                 } catch (Exception e) {
                     Notifications.getInstance().show(Notifications.Type.INFO, Notifications.Location.TOP_CENTER, "Thêm mới thất bại!\n Mã Nhân viên đã tồn tại!");
+                    logger.error(e.getMessage());
                 } finally {
                     JDBCHelper.closeConnection();
                 }
@@ -163,6 +173,7 @@ public class NhanVienJPanel extends javax.swing.JPanel {
                     clearForm();
                     Notifications.getInstance().show(Notifications.Type.INFO, Notifications.Location.TOP_CENTER, "Cập nhật Nhân viên thành công!");
                 } catch (Exception e) {
+                    logger.error(e.getMessage());
                     Notifications.getInstance().show(Notifications.Type.INFO, Notifications.Location.TOP_CENTER, "Cập nhật thất bại!");
                 } finally {
                     JDBCHelper.closeConnection();
@@ -183,6 +194,7 @@ public class NhanVienJPanel extends javax.swing.JPanel {
                 clearForm();
                 Notifications.getInstance().show(Notifications.Type.INFO, Notifications.Location.TOP_CENTER, "Xóa Nhân viên thành công!");
             } catch (Exception e) {
+                logger.error(e.getMessage());
                 Notifications.getInstance().show(Notifications.Type.INFO, Notifications.Location.TOP_CENTER, "Xóa thất bại!");
             } finally {
                 JDBCHelper.closeConnection();

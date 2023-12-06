@@ -5,6 +5,7 @@
 package Form;
 
 import DAO.NhanVienDAO;
+import Helper.JDBCHelper;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.text.SimpleDateFormat;
@@ -13,8 +14,9 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 import javax.swing.Timer;
 import model.NhanVien;
+import org.apache.log4j.Logger;
+import org.apache.log4j.PropertyConfigurator;
 import raven.toast.Notifications;
-import util.BCryptPasswordHashing;
 
 /**
  *
@@ -25,12 +27,15 @@ public class DoiMatKhauJPanel extends javax.swing.JPanel {
     NhanVienDAO daoNV = new NhanVienDAO();
     private static final String P_PassWord = "^.*(?=.{6,})(?=..*[0-9])(?=.*[a-z])(?=.*[A-Z])(?=.*[@#$%^&+=]).*$";
     Matcher matcher;
+    public static final Logger logger = Logger.getLogger(DoiMatKhauJPanel.class);
 
     /**
      * Creates new form DoiMatKhauJPanel
      */
     public DoiMatKhauJPanel() {
         initComponents();
+        PropertyConfigurator.configure("src\\Log\\log4j.properties");
+        logger.info("Người dùng đã mở form đổi mật khẩu");
 
         new Timer(1000, new ActionListener() {
             @Override
@@ -55,12 +60,18 @@ public class DoiMatKhauJPanel extends javax.swing.JPanel {
                 Notifications.getInstance().show(Notifications.Type.INFO, Notifications.Location.TOP_CENTER, "Xác nhận mật khẩu chưa đúng!");
                 txtXacNhanMK.requestFocus();
             } else {
-                NhanVien nv = new NhanVien();
-                nv.setMaNV(taiKhoan);
-                nv.setMatKhau(matKhauMoi);
-                daoNV.updateMk(nv);
-                Notifications.getInstance().show(Notifications.Type.INFO, Notifications.Location.TOP_CENTER, "Đổi Mật khẩu thành công!");
-                clearForm();
+                try {
+                    NhanVien nv = new NhanVien();
+                    nv.setMaNV(taiKhoan);
+                    nv.setMatKhau(matKhauMoi);
+                    daoNV.updateMk(nv);
+                    Notifications.getInstance().show(Notifications.Type.INFO, Notifications.Location.TOP_CENTER, "Đổi Mật khẩu thành công!");
+                    clearForm();
+                } catch (Exception e) {
+                    logger.error(e.getMessage());
+                } finally {
+                    JDBCHelper.closeConnection();
+                }
             }
         }
     }

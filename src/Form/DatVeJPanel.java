@@ -17,7 +17,11 @@ import java.util.Set;
 import javax.swing.JButton;
 import javax.swing.Timer;
 import model.Ve;
+import org.apache.log4j.Logger;
+import org.apache.log4j.PropertyConfigurator;
 import raven.toast.Notifications;
+import util.BCryptPasswordHashing;
+import static util.BCryptPasswordHashing.logger;
 
 /**
  *
@@ -55,9 +59,12 @@ public class DatVeJPanel extends javax.swing.JPanel implements ActionListener {
     int GiaVe = 0;
     private Set<String> uniqueSeatTypes = new HashSet<>();
     HashSet<String> ArrayGhe = new HashSet<>();
+    public static final Logger logger = Logger.getLogger(DatVeJPanel.class);
 
     public DatVeJPanel(VeJPanel veJPanel) {
         initComponents();
+        PropertyConfigurator.configure("src\\Log\\log4j.properties");
+        logger.info("Người dùng đã mởi form đặt vé");
         this.veJPanel = veJPanel;
 
         new Timer(1000, new ActionListener() {
@@ -130,7 +137,7 @@ public class DatVeJPanel extends javax.swing.JPanel implements ActionListener {
         try {
             return (JButton) getClass().getDeclaredField("btn" + buttonName).get(this);
         } catch (Exception e) {
-            e.printStackTrace();
+            logger.error(e.getMessage());
             return null;
         }
     }
@@ -139,7 +146,7 @@ public class DatVeJPanel extends javax.swing.JPanel implements ActionListener {
         try {
             return (JButton) getClass().getDeclaredField("btnGhe" + buttonName).get(this);
         } catch (Exception e) {
-            e.printStackTrace();
+            logger.error(e.getMessage());
             return null;
         }
     }
@@ -275,7 +282,7 @@ public class DatVeJPanel extends javax.swing.JPanel implements ActionListener {
                 }
             }
         } catch (Exception e) {
-            e.printStackTrace();
+            logger.error(e.getMessage());
         } finally {
             JDBCHelper.closeConnection();
         }
@@ -293,7 +300,7 @@ public class DatVeJPanel extends javax.swing.JPanel implements ActionListener {
             Notifications.getInstance().show(Notifications.Type.INFO, Notifications.Location.TOP_CENTER, "Đặt vé thành công!");
             fillForm();
         } catch (Exception e) {
-            e.printStackTrace();
+            logger.error(e.getMessage());
         } finally {
             JDBCHelper.closeConnection();
         }

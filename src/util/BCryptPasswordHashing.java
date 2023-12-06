@@ -23,7 +23,7 @@ public class BCryptPasswordHashing {
         String hashedPassword = BCrypt.hashpw(password, salt);
 
         // Ghi log thông báo đã mã hóa mật khẩu thành công
-//        logger.info("Đã mã hóa mật khẩu thành công");
+        logger.info("Đã mã hóa mật khẩu thành công");
 
         // Trả về mật khẩu đã mã hóa
         return hashedPassword;
@@ -40,11 +40,4 @@ public class BCryptPasswordHashing {
 //        }
 //    }
 
-
-    public static void main(String[] args) {
-            System.out.println(hashPassword("$2a$14$AV5U7iyeHUcomICq8oOoMu3TceORD5pAGKCane0cJq7oMQdUTgNB6"));;
-    }
-
-
 }
-

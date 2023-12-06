@@ -17,8 +17,12 @@ import java.util.List;
 import javax.swing.Timer;
 import javax.swing.table.DefaultTableModel;
 import model.BieuDoDoanhThu;
+import org.apache.log4j.Logger;
+import org.apache.log4j.PropertyConfigurator;
 import raven.chart.ModelChart;
 import raven.component.Model_Card;
+import util.BCryptPasswordHashing;
+import static util.BCryptPasswordHashing.logger;
 
 /**
  *
@@ -33,9 +37,12 @@ public class ThongKeJPanel extends javax.swing.JPanel {
     int tongVeDaBan = 0;
     double tongDoanhThu = 0;
     double tongLoiNhuan = 0;
+    public static final Logger logger = Logger.getLogger(ThongKeJPanel.class);
 
     public ThongKeJPanel() {
         initComponents();
+        PropertyConfigurator.configure("src\\Log\\log4j.properties");
+        logger.info("Người dùng đã mở form thống kê");
         chart.addLegend("Tổng Doanh Thu", Color.decode("#e53935"), Color.decode("#e35d5b"));
         new Timer(1000, new ActionListener() {
             @Override
@@ -62,6 +69,7 @@ public class ThongKeJPanel extends javax.swing.JPanel {
                 model.addRow(arr);
             }
         } catch (Exception e) {
+            logger.error(e.getMessage());
         } finally {
             JDBCHelper.closeConnection();
         }
@@ -79,6 +87,7 @@ public class ThongKeJPanel extends javax.swing.JPanel {
                 chart.addData(new ModelChart(bieuDo.getTenPhim(), new double[]{bieuDo.getTongDoanhThu()}));
             }
         } catch (Exception e) {
+            logger.error(e.getMessage());
         } finally {
             JDBCHelper.closeConnection();
         }

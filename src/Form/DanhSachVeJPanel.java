@@ -21,7 +21,8 @@ import model.DanhSachVe;
 import model.Phim;
 import model.PhongChieu;
 import model.SuatChieu;
-import model.TimVe;
+import org.apache.log4j.Logger;
+import org.apache.log4j.PropertyConfigurator;
 import raven.toast.Notifications;
 
 /**
@@ -37,9 +38,12 @@ public class DanhSachVeJPanel extends javax.swing.JPanel {
     public SuatChieuDAO daoSuatChieu = new SuatChieuDAO();
     public PhimDAO daoPhim = new PhimDAO();
     public PhongChieuDAO daoPhongChieu = new PhongChieuDAO();
+    public static final Logger logger = Logger.getLogger(DanhSachVeJPanel.class);
 
     public DanhSachVeJPanel() {
         initComponents();
+        PropertyConfigurator.configure("src\\Log\\log4j.properties");
+        logger.info("Người dùng đã mở form danh sách vé");
 
         new Timer(1000, new ActionListener() {
             @Override
@@ -85,7 +89,7 @@ public class DanhSachVeJPanel extends javax.swing.JPanel {
             }
         } catch (Exception e) {
             Notifications.getInstance().show(Notifications.Type.INFO, Notifications.Location.TOP_CENTER, "Lỗi truy vấn dữ liệu!");
-            e.printStackTrace();
+            logger.error(e.getMessage());
         } finally {
             JDBCHelper.closeConnection();
         }
@@ -98,7 +102,7 @@ public class DanhSachVeJPanel extends javax.swing.JPanel {
                 cboPhim.addItem(phim.getTenPhim() + "");
             }
         } catch (Exception e) {
-            e.printStackTrace();
+            logger.error(e.getMessage());
         } finally {
             JDBCHelper.closeConnection();
         }
@@ -111,7 +115,7 @@ public class DanhSachVeJPanel extends javax.swing.JPanel {
                 cboPhongChieu.addItem(phongChieu.getMaPC() + "");
             }
         } catch (Exception e) {
-            e.printStackTrace();
+            logger.error(e.getMessage());
         } finally {
             JDBCHelper.closeConnection();
         }
@@ -124,7 +128,7 @@ public class DanhSachVeJPanel extends javax.swing.JPanel {
                 cboThoiGianChieu.addItem(suatChieu.getNgaytao() + "");
             }
         } catch (Exception e) {
-            e.printStackTrace();
+            logger.error(e.getMessage());
         } finally {
             JDBCHelper.closeConnection();
         }
@@ -152,7 +156,7 @@ public class DanhSachVeJPanel extends javax.swing.JPanel {
                 fillToTable();
             }
         } catch (Exception e) {
-            e.printStackTrace();
+            logger.error(e.getMessage());
         } finally {
             JDBCHelper.closeConnection();
         }

@@ -28,6 +28,9 @@ import util.XImange;
 import java.text.Normalizer;
 import java.util.Calendar;
 import java.util.regex.Pattern;
+import org.apache.log4j.PropertyConfigurator;
+import util.BCryptPasswordHashing;
+import static util.BCryptPasswordHashing.logger;
 
 /**
  *
@@ -40,9 +43,12 @@ public class PhimJPanel extends javax.swing.JPanel {
     int row;
     SimpleDateFormat date = new SimpleDateFormat("dd/MM/yyyy");
     JFileChooser fileChooser = new JFileChooser("src\\image");
+    public static final org.apache.log4j.Logger logger = org.apache.log4j.Logger.getLogger(PhimJPanel.class);
 
     public PhimJPanel() {
         initComponents();
+        PropertyConfigurator.configure("src\\Log\\log4j.properties");
+        logger.info("Người dùng đã mở form phim");
         fillTable();
         updateStatus();
 
@@ -94,7 +100,7 @@ public class PhimJPanel extends javax.swing.JPanel {
             }
         } catch (Exception e) {
             Notifications.getInstance().show(Notifications.Type.INFO, Notifications.Location.TOP_CENTER, "Lỗi truy vấn dữ liệu!");
-            e.printStackTrace();
+            logger.error(e.getMessage());
         } finally {
             JDBCHelper.closeConnection();
         }
@@ -110,6 +116,7 @@ public class PhimJPanel extends javax.swing.JPanel {
             }
         } catch (Exception e) {
             Notifications.getInstance().show(Notifications.Type.INFO, Notifications.Location.TOP_CENTER, "Lỗi truy vấn dữ liệu!");
+            logger.error(e.getMessage());
         } finally {
             JDBCHelper.closeConnection();
         }
@@ -232,7 +239,7 @@ public class PhimJPanel extends javax.swing.JPanel {
             Notifications.getInstance().show(Notifications.Type.INFO, Notifications.Location.TOP_CENTER, "Thêm Thành Công");
         } catch (Exception e) {
             Notifications.getInstance().show(Notifications.Type.INFO, Notifications.Location.TOP_CENTER, "Thêm Thất Bại");
-            e.printStackTrace();
+            logger.error(e.getMessage());
         } finally {
             JDBCHelper.closeConnection();
         }
@@ -246,6 +253,7 @@ public class PhimJPanel extends javax.swing.JPanel {
             cleanForm();
             Notifications.getInstance().show(Notifications.Type.INFO, Notifications.Location.TOP_CENTER, "Cập nhập thành Công");
         } catch (Exception e) {
+            logger.error(e.getMessage());
         } finally {
             JDBCHelper.closeConnection();
         }
@@ -262,7 +270,7 @@ public class PhimJPanel extends javax.swing.JPanel {
                 cleanForm();
                 Notifications.getInstance().show(Notifications.Type.INFO, Notifications.Location.TOP_CENTER, "Xóa thành Công");
             } catch (Exception e) {
-                e.printStackTrace();
+                logger.error(e.getMessage());
             } finally {
                 JDBCHelper.closeConnection();
             }
@@ -398,7 +406,7 @@ public class PhimJPanel extends javax.swing.JPanel {
             string = string.replaceAll("\\s+", "");
             return (JCheckBox) getClass().getDeclaredField("chk" + string.trim()).get(this);
         } catch (Exception ex) {
-            ex.printStackTrace();
+            logger.error(ex.getMessage());
         } finally {
             JDBCHelper.closeConnection();
         }
@@ -915,7 +923,7 @@ public class PhimJPanel extends javax.swing.JPanel {
                 update();
             }
         } catch (ParseException ex) {
-            Logger.getLogger(PhimJPanel.class.getName()).log(Level.SEVERE, null, ex);
+            logger.error(ex.getMessage());
         }finally {
             JDBCHelper.closeConnection();
         }
@@ -935,7 +943,7 @@ public class PhimJPanel extends javax.swing.JPanel {
                 insert();
             }
         } catch (ParseException ex) {
-            Logger.getLogger(PhimJPanel.class.getName()).log(Level.SEVERE, null, ex);
+            logger.error(ex.getMessage());
         }finally {
             JDBCHelper.closeConnection();
         }

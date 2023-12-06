@@ -21,20 +21,13 @@ public class SuatChieuDAO extends CinemaxDAO<SuatChieu, String> {
     final String DELETE_SQL = "DELETE FROM SuatChieu WHERE SuatChieuID=?";
     final String SELECT_ALL_SQL = "SELECT * FROM SuatChieu";
     final String SELECT_BY_ID_SQL = "SELECT * FROM SuatChieu WHERE SuatChieuID=?";
-<<<<<<< HEAD
-    final String tutang = "SELECT SuatChieuID\n"
-            + "FROM SuatChieu\n"
-            + "ORDER BY SuatChieuID DESC\n"
-            + "LIMIT 1";
 
     final String SELECT_THOIGIAN = "select * from SuatChieu\n"
             + "where NgayTaoXuat >= ?\n"
             + "GROUP BY NgayTaoXuat\n"
             + "ASC";
-=======
     final String tutang = "SELECT * FROM SuatChieu\n"
             + "ORDER BY CAST(SUBSTRING(SuatChieuID FROM 3) AS SIGNED) DESC limit 1";
->>>>>>> 8c5869063449ffb6cfb5ad865d66dc1ba76fb0f5
     public static String PhimID, PhongID;
 
     public static String getPhimID() {

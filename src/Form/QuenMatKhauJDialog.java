@@ -17,7 +17,10 @@ import javax.mail.internet.MimeBodyPart;
 import javax.mail.internet.MimeMessage;
 import javax.mail.internet.MimeMultipart;
 import javax.swing.JOptionPane;
+import org.apache.log4j.Logger;
+import org.apache.log4j.PropertyConfigurator;
 import util.BCryptPasswordHashing;
+import static util.BCryptPasswordHashing.logger;
 
 /**
  *
@@ -27,6 +30,7 @@ public class QuenMatKhauJDialog extends javax.swing.JDialog {
 
     private String sendotp = "";
     private String mailtamthoi = "";
+    public static final Logger logger = Logger.getLogger(QuenMatKhauJDialog.class);
 
     /**
      * Creates new form NewJDialog
@@ -34,6 +38,8 @@ public class QuenMatKhauJDialog extends javax.swing.JDialog {
     public QuenMatKhauJDialog(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
         initComponents();
+        PropertyConfigurator.configure("src\\Log\\log4j.properties");
+        logger.info("Người dùng đã mở form đổi mật khẩu");
         setLocationRelativeTo(null);
         setResizable(false);
         txtQuenMatKhau.setText("");
@@ -63,6 +69,7 @@ public class QuenMatKhauJDialog extends javax.swing.JDialog {
                 return true;
             }
         } catch (Exception e) {
+            logger.error(e.getMessage());
         } finally {
             JDBCHelper.closeConnection();
         }
@@ -142,7 +149,7 @@ public class QuenMatKhauJDialog extends javax.swing.JDialog {
             Transport.send(msg);
             return;
         } catch (Exception eee) {
-            eee.printStackTrace();
+            logger.error(eee.getMessage());
         } finally {
             JDBCHelper.closeConnection();
         }
@@ -191,6 +198,7 @@ public class QuenMatKhauJDialog extends javax.swing.JDialog {
                         return;
 
                     } catch (Exception e) {
+                        logger.error(e.getMessage());
                     }
                 } else {
                     JOptionPane.showMessageDialog(this, "OTP không hợp lệ !");

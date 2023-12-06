@@ -152,3 +152,12 @@
 2023-11-26 16:10:17 INFO  BCryptPasswordHashing:26 - Đã mã hóa mật khẩu thành công
 2023-11-26 16:11:42 INFO  BCryptPasswordHashing:26 - Đã mã hóa mật khẩu thành công
 >>>>>>> 763b61dad899fb54b649f11bb73dc2d1ac06396d
+2023-12-06 10:58:47 INFO  QuenMatKhauJDialog:42 - Người dùng đã mở form đổi mật khẩu
+2023-12-06 10:59:02 INFO  VeJPanel:70 - Người dùng đã mở form vé
+2023-12-06 10:59:09 INFO  ThongKeJPanel:45 - Người dùng đã mở form thống kê
+2023-12-06 10:59:10 ERROR ThongKeJPanel:90 - Index -1 out of bounds for length 4
+2023-12-06 10:59:20 INFO  PhongChieuJPanel:23 - Người dùng đã mở form phòng chiếu
+2023-12-06 11:02:32 INFO  QuenMatKhauJDialog:42 - Người dùng đã mở form đổi mật khẩu
+2023-12-06 11:02:43 WARN  MainJFrame:100 - Người dùng đã nhập sai mất khẩu: 1 lần
+2023-12-06 11:02:59 WARN  MainJFrame:100 - Người dùng đã nhập sai mất khẩu: 2 lần
+2023-12-06 11:03:08 WARN  MainJFrame:100 - Người dùng đã nhập sai mất khẩu: 3 lần
