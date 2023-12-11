@@ -41,14 +41,24 @@ public class TimVe {
         this.thoiGianChieu = thoiGianChieu;
     }
 
+    public String getCaChieu() {
+        return caChieu;
+    }
+
+    public void setCaChieu(String caChieu) {
+        this.caChieu = caChieu;
+    }
+
     public TimVe() {
     }
     private String thoiGianChieu;
+    private String caChieu;
 
-    public TimVe(String maSuatChieu, String tenPhim, String tenPhong, String thoiGianChieu) {
+    public TimVe(String maSuatChieu, String tenPhim, String tenPhong, String thoiGianChieu, String caChieu) {
         this.maSuatChieu = maSuatChieu;
         this.tenPhim = tenPhim;
         this.tenPhong = tenPhong;
         this.thoiGianChieu = thoiGianChieu;
+        this.caChieu = caChieu;
     }
 }

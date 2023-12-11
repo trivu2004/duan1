@@ -24,7 +24,7 @@ public class VeDAO extends CinemaxDAO<Ve, String> {
     final String DELETE_SQL = "DELETE FROM Ve WHERE VeID=?";
     final String SELECT_ALL_SQL = "SELECT * FROM Ve";
     final String SELECT_BY_ID_SQL = "SELECT * FROM Ve WHERE VeID=?";
-    final String SELECT_TICKET = "SELECT SuatChieu.SuatChieuID, Phim.TenPhim, PhongChieu.PhongID, NgayTaoXuat "
+    final String SELECT_TICKET = "SELECT SuatChieu.SuatChieuID, CaChieu,Phim.TenPhim, PhongChieu.PhongID, NgayTaoXuat "
             + "FROM SuatChieu "
             + "JOIN Phim ON SuatChieu.PhimID = Phim.PhimID "
             + "JOIN PhongChieu ON SuatChieu.PhongID = PhongChieu.PhongID "
@@ -60,7 +60,7 @@ public class VeDAO extends CinemaxDAO<Ve, String> {
             + "           ORDER BY VeID\n"
             + "ASC";
 
-    final String SELECT_ALL_VE = "select SuatChieu.SuatChieuID,Phim.TenPhim,PhongChieu.PhongID,NgayTaoXuat from SuatChieu\n"
+    final String SELECT_ALL_VE = "select SuatChieu.SuatChieuID, CaChieu,Phim.TenPhim,PhongChieu.PhongID,NgayTaoXuat from SuatChieu\n"
             + "           JOIN Phim\n"
             + "           on SuatChieu.PhimID = Phim.PhimID\n"
             + "           Join PhongChieu\n"
@@ -146,6 +146,7 @@ public class VeDAO extends CinemaxDAO<Ve, String> {
             ResultSet rs = JDBCHelper.query(SELECT_TICKET, Phim, PhongChieu, ThoiGian + "%");
             while (rs.next()) {
                 TimVe entity = new TimVe();
+                entity.setCaChieu(rs.getString("CaChieu"));
                 entity.setMaSuatChieu(rs.getString("SuatChieuID"));
                 entity.setTenPhim(rs.getString("TenPhim"));
                 entity.setTenPhong(rs.getString("PhongID"));
@@ -210,6 +211,7 @@ public class VeDAO extends CinemaxDAO<Ve, String> {
             ResultSet rs = JDBCHelper.query(SELECT_ALL_VE, ngayHienTai);
             while (rs.next()) {
                 TimVe entity = new TimVe();
+                entity.setCaChieu(rs.getString("CaChieu"));
                 entity.setMaSuatChieu(rs.getString("SuatChieuID"));
                 entity.setTenPhim(rs.getString("TenPhim"));
                 entity.setTenPhong(rs.getString("PhongID"));

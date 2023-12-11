@@ -233,3 +233,9 @@
 2023-12-11 18:33:15 ERROR ThongKeJPanel:89 - Index -1 out of bounds for length 5
 2023-12-11 18:33:18 INFO  VeJPanel:70 - Người dùng đã mở form vé
 2023-12-11 18:33:22 INFO  DanhSachVeJPanel:46 - Người dùng đã mở form danh sách vé
+2023-12-11 18:34:47 INFO  QuenMatKhauJDialog:42 - Người dùng đã mở form đổi mật khẩu
+2023-12-11 18:34:53 INFO  VeJPanel:70 - Người dùng đã mở form vé
+2023-12-11 21:01:58 INFO  QuenMatKhauJDialog:42 - Người dùng đã mở form đổi mật khẩu
+2023-12-11 21:02:04 INFO  VeJPanel:70 - Người dùng đã mở form vé
+2023-12-11 21:02:31 INFO  ThongKeJPanel:44 - Người dùng đã mở form thống kê
+2023-12-11 21:02:32 ERROR ThongKeJPanel:89 - Index -1 out of bounds for length 5

@@ -123,6 +123,7 @@ public class VeJPanel extends javax.swing.JPanel {
                 Object[] row = {
                     tblSuatChieu.getRowCount() + 1,
                     timVe.getMaSuatChieu(),
+                    timVe.getCaChieu(),
                     timVe.getTenPhim(),
                     timVe.getTenPhong(),
                     timVe.getThoiGianChieu(),};
@@ -251,13 +252,13 @@ public class VeJPanel extends javax.swing.JPanel {
         tblSuatChieu.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         tblSuatChieu.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null}
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null}
             },
             new String [] {
-                "STT", "Mã Suất Chiếu", "Tên Phim", "Tên Phòng", "Thời Gian Chiếu"
+                "STT", "Mã Suất Chiếu", "Ca Chiếu","Tên Phim", "Tên Phòng", "Thời Gian Chiếu"
             }
         )
         {
