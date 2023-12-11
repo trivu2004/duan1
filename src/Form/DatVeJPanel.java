@@ -20,8 +20,6 @@ import model.Ve;
 import org.apache.log4j.Logger;
 import org.apache.log4j.PropertyConfigurator;
 import raven.toast.Notifications;
-import util.BCryptPasswordHashing;
-import static util.BCryptPasswordHashing.logger;
 
 /**
  *

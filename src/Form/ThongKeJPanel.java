@@ -9,7 +9,7 @@ import Helper.JDBCHelper;
 import java.awt.Color;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.math.BigDecimal;
+import java.text.DecimalFormat;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
@@ -21,8 +21,6 @@ import org.apache.log4j.Logger;
 import org.apache.log4j.PropertyConfigurator;
 import raven.chart.ModelChart;
 import raven.component.Model_Card;
-import util.BCryptPasswordHashing;
-import static util.BCryptPasswordHashing.logger;
 
 /**
  *
@@ -38,6 +36,7 @@ public class ThongKeJPanel extends javax.swing.JPanel {
     double tongDoanhThu = 0;
     double tongLoiNhuan = 0;
     public static final Logger logger = Logger.getLogger(ThongKeJPanel.class);
+    DecimalFormat decimalFormat = new DecimalFormat("#,###.##");
 
     public ThongKeJPanel() {
         initComponents();
@@ -98,12 +97,14 @@ public class ThongKeJPanel extends javax.swing.JPanel {
         for (int i = 0; i < jTable1.getRowCount(); i++) {
             tongVeDaBan += Integer.valueOf(String.valueOf(jTable1.getValueAt(i, 2)));
             tongDoanhThu += Double.valueOf(String.valueOf(jTable1.getValueAt(i, 3)));
-            tongLoiNhuan += Math.round(Double.valueOf(String.valueOf(jTable1.getValueAt(i, 5))));
+            tongLoiNhuan += Double.valueOf(String.valueOf(jTable1.getValueAt(i, 5)));
         }
+        String formattedLoiNhuan = decimalFormat.format(tongLoiNhuan);
+        String formatteddoanhThu = decimalFormat.format(tongDoanhThu);
         card1.setData(new Model_Card("Tổng phim đã chiếu", String.valueOf(jTable1.getRowCount())));
         card2.setData(new Model_Card("Tổng vé đã bán", String.valueOf(tongVeDaBan)));
-        card3.setData(new Model_Card("Tổng doanh thu", String.valueOf(tongDoanhThu)));
-        card4.setData(new Model_Card("Tổng lợi nhuận", String.valueOf(tongLoiNhuan)));
+        card3.setData(new Model_Card("Tổng doanh thu", formatteddoanhThu + "₫"));
+        card4.setData(new Model_Card("Tổng lợi nhuận", formattedLoiNhuan + "₫"));
     }
 
     /**

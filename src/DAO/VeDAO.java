@@ -36,7 +36,7 @@ public class VeDAO extends CinemaxDAO<Ve, String> {
             + "DESC\n"
             + "LIMIT ?";
 
-    final String SELECT_DANHSACHVE = "select VeID,TenPhim,PhongChieu.PhongID,NgayTaoXuat,Ghe,LoaiVe,GiaVe,NgayMua from SuatChieu\n"
+    final String SELECT_DANHSACHVE = "select VeID,TenPhim,Ve.SuatChieuID,PhongChieu.PhongID,NgayTaoXuat,Ghe,LoaiVe,GiaVe,NgayMua from SuatChieu\n"
             + "Join Ve\n"
             + "on SuatChieu.SuatChieuID = Ve.SuatChieuID\n"
             + "JOIN Phim\n"
@@ -50,7 +50,7 @@ public class VeDAO extends CinemaxDAO<Ve, String> {
             + "on Ve.SuatChieuID = SC.SuatChieuID\n"
             + "where SC.SuatChieuID = ?";
 
-    final String SELECT_ALL_DANHSACH = "select VeID,TenPhim,PhongChieu.PhongID,NgayTaoXuat,Ghe,LoaiVe,GiaVe,NgayMua from SuatChieu\n"
+    final String SELECT_ALL_DANHSACH = "select VeID,TenPhim,Ve.SuatChieuID,PhongChieu.PhongID,NgayTaoXuat,Ghe,LoaiVe,GiaVe,NgayMua from SuatChieu\n"
             + "            Join Ve\n"
             + "            on SuatChieu.SuatChieuID = Ve.SuatChieuID\n"
             + "            JOIN Phim\n"
@@ -67,20 +67,17 @@ public class VeDAO extends CinemaxDAO<Ve, String> {
             + "           on SuatChieu.PhongID = PhongChieu.PhongID\n"
             + "            where NgayTaoXuat >= ?";
 
-    final String SELECT_DOANHTHU = "SELECT\n"
-            + "    Phim.TenPhim,\n"
-            + "    SUM(Ve.GiaVe) AS TongDoanhThu,\n"
-            + "    COUNT(Ghe) as SoLuongVe,\n"
-            + "    GiaPhim,\n"
-            + "    CAST(SUM(Ve.GiaVe) - GiaPhim AS DECIMAL(20, 2)) as LoiNhuan\n"
-            + "FROM\n"
-            + "    Phim\n"
-            + "JOIN\n"
-            + "    SuatChieu ON Phim.PhimID = SuatChieu.PhimID\n"
-            + "JOIN\n"
-            + "    Ve ON SuatChieu.SuatChieuID = Ve.SuatChieuID\n"
-            + "GROUP BY\n"
-            + "    Phim.TenPhim;";
+    final String SELECT_DOANHTHU = "SELECT Phim.TenPhim,\n"
+            + "       SUM(Ve.GiaVe)                                   AS TongDoanhThu,\n"
+            + "       COUNT(Ghe)                                      as SoLuongVe,\n"
+            + "       GiaPhim,\n"
+            + "       CAST(SUM(Ve.GiaVe) - GiaPhim AS DECIMAL(20, 0)) as LoiNhuan\n"
+            + "FROM Phim\n"
+            + "         JOIN\n"
+            + "     SuatChieu ON Phim.PhimID = SuatChieu.PhimID\n"
+            + "         JOIN\n"
+            + "     Ve ON SuatChieu.SuatChieuID = Ve.SuatChieuID\n"
+            + "GROUP BY Phim.TenPhim;";
     final String SELECT_BIEUDODOANHTHU = "SELECT\n"
             + "    Phim.TenPhim,\n"
             + "    SUM(Ve.GiaVe) AS TongDoanhThu\n"
@@ -177,6 +174,7 @@ public class VeDAO extends CinemaxDAO<Ve, String> {
             ResultSet rs = JDBCHelper.query(SELECT_DANHSACHVE, "%" + loaiVe + "%", tenPhim, tenPhong, thoiGianBatDau + "%");
             while (rs.next()) {
                 DanhSachVe entity = new DanhSachVe();
+                entity.setSuatChieuID(rs.getString("SuatChieuID"));
                 entity.setGhe(rs.getString("Ghe"));
                 entity.setGiaVe(rs.getString("GiaVe"));
                 entity.setLoaiVe(rs.getString("LoaiVe"));
@@ -229,6 +227,7 @@ public class VeDAO extends CinemaxDAO<Ve, String> {
             ResultSet rs = JDBCHelper.query(SELECT_ALL_DANHSACH);
             while (rs.next()) {
                 DanhSachVe entity = new DanhSachVe();
+                entity.setSuatChieuID(rs.getString("SuatChieuID"));
                 entity.setGhe(rs.getString("Ghe"));
                 entity.setGiaVe(rs.getString("GiaVe"));
                 entity.setLoaiVe(rs.getString("LoaiVe"));

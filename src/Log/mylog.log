@@ -161,3 +161,70 @@
 2023-12-06 11:02:43 WARN  MainJFrame:100 - Người dùng đã nhập sai mất khẩu: 1 lần
 2023-12-06 11:02:59 WARN  MainJFrame:100 - Người dùng đã nhập sai mất khẩu: 2 lần
 2023-12-06 11:03:08 WARN  MainJFrame:100 - Người dùng đã nhập sai mất khẩu: 3 lần
+2023-12-11 17:21:18 INFO  QuenMatKhauJDialog:42 - Người dùng đã mở form đổi mật khẩu
+2023-12-11 17:21:37 INFO  VeJPanel:70 - Người dùng đã mở form vé
+2023-12-11 17:21:43 INFO  DanhSachVeJPanel:46 - Người dùng đã mở form danh sách vé
+2023-12-11 17:26:30 INFO  QuenMatKhauJDialog:42 - Người dùng đã mở form đổi mật khẩu
+2023-12-11 17:26:38 INFO  VeJPanel:70 - Người dùng đã mở form vé
+2023-12-11 17:26:42 INFO  DanhSachVeJPanel:46 - Người dùng đã mở form danh sách vé
+2023-12-11 17:28:07 INFO  QuenMatKhauJDialog:42 - Người dùng đã mở form đổi mật khẩu
+2023-12-11 17:28:18 INFO  VeJPanel:70 - Người dùng đã mở form vé
+2023-12-11 17:28:23 INFO  DanhSachVeJPanel:46 - Người dùng đã mở form danh sách vé
+2023-12-11 17:31:59 INFO  QuenMatKhauJDialog:42 - Người dùng đã mở form đổi mật khẩu
+2023-12-11 17:32:16 INFO  VeJPanel:70 - Người dùng đã mở form vé
+2023-12-11 17:32:20 INFO  DanhSachVeJPanel:46 - Người dùng đã mở form danh sách vé
+2023-12-11 17:32:54 INFO  QuenMatKhauJDialog:42 - Người dùng đã mở form đổi mật khẩu
+2023-12-11 17:33:02 INFO  VeJPanel:70 - Người dùng đã mở form vé
+2023-12-11 17:33:06 INFO  DanhSachVeJPanel:46 - Người dùng đã mở form danh sách vé
+2023-12-11 17:34:21 INFO  QuenMatKhauJDialog:42 - Người dùng đã mở form đổi mật khẩu
+2023-12-11 17:34:29 INFO  VeJPanel:70 - Người dùng đã mở form vé
+2023-12-11 17:34:33 INFO  DanhSachVeJPanel:46 - Người dùng đã mở form danh sách vé
+2023-12-11 17:39:03 INFO  QuenMatKhauJDialog:42 - Người dùng đã mở form đổi mật khẩu
+2023-12-11 17:39:09 INFO  VeJPanel:70 - Người dùng đã mở form vé
+2023-12-11 17:39:16 INFO  ThongKeJPanel:42 - Người dùng đã mở form thống kê
+2023-12-11 17:39:17 ERROR ThongKeJPanel:87 - Index -1 out of bounds for length 5
+2023-12-11 17:42:00 INFO  QuenMatKhauJDialog:42 - Người dùng đã mở form đổi mật khẩu
+2023-12-11 17:42:07 INFO  ThongKeJPanel:44 - Người dùng đã mở form thống kê
+2023-12-11 17:42:08 ERROR ThongKeJPanel:89 - Index -1 out of bounds for length 5
+2023-12-11 17:43:56 INFO  QuenMatKhauJDialog:42 - Người dùng đã mở form đổi mật khẩu
+2023-12-11 17:44:02 INFO  ThongKeJPanel:44 - Người dùng đã mở form thống kê
+2023-12-11 17:44:03 ERROR ThongKeJPanel:89 - Index -1 out of bounds for length 5
+2023-12-11 17:48:05 INFO  QuenMatKhauJDialog:42 - Người dùng đã mở form đổi mật khẩu
+2023-12-11 17:48:15 INFO  ThongKeJPanel:44 - Người dùng đã mở form thống kê
+2023-12-11 17:48:16 ERROR ThongKeJPanel:89 - Index -1 out of bounds for length 5
+2023-12-11 17:53:09 INFO  QuenMatKhauJDialog:42 - Người dùng đã mở form đổi mật khẩu
+2023-12-11 17:53:17 INFO  ThongKeJPanel:44 - Người dùng đã mở form thống kê
+2023-12-11 17:53:18 ERROR ThongKeJPanel:89 - Index -1 out of bounds for length 5
+2023-12-11 17:56:19 INFO  QuenMatKhauJDialog:42 - Người dùng đã mở form đổi mật khẩu
+2023-12-11 17:56:25 INFO  ThongKeJPanel:44 - Người dùng đã mở form thống kê
+2023-12-11 17:56:26 ERROR ThongKeJPanel:89 - Index -1 out of bounds for length 5
+2023-12-11 18:02:08 INFO  QuenMatKhauJDialog:42 - Người dùng đã mở form đổi mật khẩu
+2023-12-11 18:02:14 INFO  ThongKeJPanel:44 - Người dùng đã mở form thống kê
+2023-12-11 18:02:56 INFO  QuenMatKhauJDialog:42 - Người dùng đã mở form đổi mật khẩu
+2023-12-11 18:03:02 INFO  ThongKeJPanel:44 - Người dùng đã mở form thống kê
+2023-12-11 18:03:03 ERROR ThongKeJPanel:89 - Index -1 out of bounds for length 5
+2023-12-11 18:07:59 INFO  QuenMatKhauJDialog:42 - Người dùng đã mở form đổi mật khẩu
+2023-12-11 18:08:05 INFO  ThongKeJPanel:47 - Người dùng đã mở form thống kê
+2023-12-11 18:08:59 INFO  QuenMatKhauJDialog:42 - Người dùng đã mở form đổi mật khẩu
+2023-12-11 18:09:06 INFO  ThongKeJPanel:47 - Người dùng đã mở form thống kê
+2023-12-11 18:09:07 ERROR ThongKeJPanel:96 - Index -1 out of bounds for length 5
+2023-12-11 18:10:26 INFO  QuenMatKhauJDialog:42 - Người dùng đã mở form đổi mật khẩu
+2023-12-11 18:10:34 INFO  ThongKeJPanel:47 - Người dùng đã mở form thống kê
+2023-12-11 18:10:34 ERROR ThongKeJPanel:99 - Index -1 out of bounds for length 5
+2023-12-11 18:14:17 INFO  QuenMatKhauJDialog:42 - Người dùng đã mở form đổi mật khẩu
+2023-12-11 18:14:24 INFO  ThongKeJPanel:44 - Người dùng đã mở form thống kê
+2023-12-11 18:14:24 ERROR ThongKeJPanel:89 - Index -1 out of bounds for length 5
+2023-12-11 18:16:10 INFO  QuenMatKhauJDialog:42 - Người dùng đã mở form đổi mật khẩu
+2023-12-11 18:16:17 INFO  ThongKeJPanel:44 - Người dùng đã mở form thống kê
+2023-12-11 18:16:18 ERROR ThongKeJPanel:89 - Index -1 out of bounds for length 5
+2023-12-11 18:17:47 INFO  QuenMatKhauJDialog:42 - Người dùng đã mở form đổi mật khẩu
+2023-12-11 18:17:54 INFO  ThongKeJPanel:44 - Người dùng đã mở form thống kê
+2023-12-11 18:17:55 ERROR ThongKeJPanel:89 - Index -1 out of bounds for length 5
+2023-12-11 18:19:15 INFO  QuenMatKhauJDialog:42 - Người dùng đã mở form đổi mật khẩu
+2023-12-11 18:19:21 INFO  ThongKeJPanel:44 - Người dùng đã mở form thống kê
+2023-12-11 18:19:22 ERROR ThongKeJPanel:89 - Index -1 out of bounds for length 5
+2023-12-11 18:20:28 INFO  QuenMatKhauJDialog:42 - Người dùng đã mở form đổi mật khẩu
+2023-12-11 18:20:39 INFO  VeJPanel:70 - Người dùng đã mở form vé
+2023-12-11 18:20:50 INFO  DanhSachVeJPanel:46 - Người dùng đã mở form danh sách vé
+2023-12-11 18:21:11 INFO  ThongKeJPanel:44 - Người dùng đã mở form thống kê
+2023-12-11 18:21:11 ERROR ThongKeJPanel:89 - Index -1 out of bounds for length 5

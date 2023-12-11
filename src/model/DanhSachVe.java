@@ -6,18 +6,7 @@ package model;
  */
 public class DanhSachVe {
 
-    String veID, tenPhim, tenPhong, thoiGianBatDau, ghe, loaiVe, giaVe, ngayMua;
-
-    public DanhSachVe(String veID, String tenPhim, String tenPhong, String thoiGianBatDau, String ghe, String loaiVe, String giaVe, String ngayMua) {
-        this.veID = veID;
-        this.tenPhim = tenPhim;
-        this.tenPhong = tenPhong;
-        this.thoiGianBatDau = thoiGianBatDau;
-        this.ghe = ghe;
-        this.loaiVe = loaiVe;
-        this.giaVe = giaVe;
-        this.ngayMua = ngayMua;
-    }
+    String veID, tenPhim, suatChieuID, tenPhong, thoiGianBatDau, ghe, loaiVe, giaVe, ngayMua;
 
     public String getVeID() {
         return veID;
@@ -33,6 +22,14 @@ public class DanhSachVe {
 
     public void setTenPhim(String tenPhim) {
         this.tenPhim = tenPhim;
+    }
+
+    public String getSuatChieuID() {
+        return suatChieuID;
+    }
+
+    public void setSuatChieuID(String suatChieuID) {
+        this.suatChieuID = suatChieuID;
     }
 
     public String getTenPhong() {
@@ -85,4 +82,17 @@ public class DanhSachVe {
 
     public DanhSachVe() {
     }
+
+    public DanhSachVe(String veID, String tenPhim, String suatChieuID, String tenPhong, String thoiGianBatDau, String ghe, String loaiVe, String giaVe, String ngayMua) {
+        this.veID = veID;
+        this.tenPhim = tenPhim;
+        this.suatChieuID = suatChieuID;
+        this.tenPhong = tenPhong;
+        this.thoiGianBatDau = thoiGianBatDau;
+        this.ghe = ghe;
+        this.loaiVe = loaiVe;
+        this.giaVe = giaVe;
+        this.ngayMua = ngayMua;
+    }
+
 }

@@ -79,6 +79,7 @@ public class DanhSachVeJPanel extends javax.swing.JPanel {
                     jTable1.getRowCount() + 1,
                     danhSach.getVeID(),
                     danhSach.getTenPhim(),
+                    danhSach.getSuatChieuID(),
                     danhSach.getTenPhong(),
                     danhSach.getThoiGianBatDau(),
                     danhSach.getGhe(),
@@ -140,10 +141,10 @@ public class DanhSachVeJPanel extends javax.swing.JPanel {
         String tenFile = (String) jTable1.getValueAt(selcetedRow, 1);
         String tenNhanVien = MainJFrame.tenNhanVien;
         String tenPhim = (String) jTable1.getValueAt(selcetedRow, 2);
-        String phongChieu = (String) jTable1.getValueAt(selcetedRow, 3);
-        String suatChieu = DatVeJPanel.maSuatChieu;
-        String viTriGhe = (String) jTable1.getValueAt(selcetedRow, 5);
-        double tongTien = Double.valueOf(String.valueOf(jTable1.getValueAt(selcetedRow, 7)));
+        String suatChieu = (String) jTable1.getValueAt(selcetedRow, 3);
+        String phongChieu = (String) jTable1.getValueAt(selcetedRow, 4);
+        String viTriGhe = (String) jTable1.getValueAt(selcetedRow, 6);
+        double tongTien = Double.valueOf(String.valueOf(jTable1.getValueAt(selcetedRow, 8)));
         veXemPhim.inVeXemPhimPDF(tenFile, tenNhanVien, tenPhim, suatChieu, phongChieu, viTriGhe, tongTien);
         Notifications.getInstance().show(Notifications.Type.INFO, Notifications.Location.TOP_CENTER, "In Vé Thành Công!");
     }
@@ -239,14 +240,14 @@ public class DanhSachVeJPanel extends javax.swing.JPanel {
 
         jTable1.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null, null, null, null, null, null, null}
+                {null, null, null, null, null, null, null, null, null, null, null}
             },
             new String [] {
-                "STT", "Mã Vé", "Tên Phim", "Tên Phòng", "Thời Gian Chiếu", "Ghế", "Loại Vé", "Giá Vé", "Ngày (Mua/Đặt)", "Xóa"
+                "STT", "Mã Vé", "Tên Phim", "Mã Suất Chiếu", "Tên Phòng", "Thời Gian Chiếu", "Ghế", "Loại Vé", "Giá Vé", "Ngày (Mua/Đặt)", "Xóa"
             }
         ) {
             Class[] types = new Class [] {
-                java.lang.Object.class, java.lang.Object.class, java.lang.Object.class, java.lang.Object.class, java.lang.Object.class, java.lang.Object.class, java.lang.Object.class, java.lang.Object.class, java.lang.Object.class, java.lang.Boolean.class
+                java.lang.Object.class, java.lang.Object.class, java.lang.Object.class, java.lang.Object.class, java.lang.Object.class, java.lang.Object.class, java.lang.Object.class, java.lang.Object.class, java.lang.Object.class, java.lang.Object.class, java.lang.Boolean.class
             };
 
             public Class getColumnClass(int columnIndex) {
@@ -258,7 +259,6 @@ public class DanhSachVeJPanel extends javax.swing.JPanel {
         jLabel4.setFont(new java.awt.Font("Segoe UI", 0, 20)); // NOI18N
         jLabel4.setText("Tìm Theo Loại Vé:");
 
-        cboLoaiVe.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
         cboLoaiVe.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Thường", "VIP", "Couple" }));
         cboLoaiVe.addItemListener(new java.awt.event.ItemListener() {
             public void itemStateChanged(java.awt.event.ItemEvent evt) {
@@ -269,7 +269,6 @@ public class DanhSachVeJPanel extends javax.swing.JPanel {
         jLabel5.setFont(new java.awt.Font("Segoe UI", 0, 20)); // NOI18N
         jLabel5.setText("Tìm Theo Phim:");
 
-        cboPhim.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
         cboPhim.addItemListener(new java.awt.event.ItemListener() {
             public void itemStateChanged(java.awt.event.ItemEvent evt) {
                 cboPhimItemStateChanged(evt);
@@ -279,19 +278,15 @@ public class DanhSachVeJPanel extends javax.swing.JPanel {
         jLabel6.setFont(new java.awt.Font("Segoe UI", 0, 20)); // NOI18N
         jLabel6.setText("Tìm Theo phòng Chiếu:");
 
-        cboPhongChieu.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
-
         jLabel7.setFont(new java.awt.Font("Segoe UI", 0, 20)); // NOI18N
         jLabel7.setText("Tìm Theo Thời Gian Chiếu:");
 
-        cboThoiGianChieu.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
         cboThoiGianChieu.addItemListener(new java.awt.event.ItemListener() {
             public void itemStateChanged(java.awt.event.ItemEvent evt) {
                 cboThoiGianChieuItemStateChanged(evt);
             }
         });
 
-        btnSuatChieu.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
         btnSuatChieu.setText("Cập Nhật");
         btnSuatChieu.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -299,7 +294,6 @@ public class DanhSachVeJPanel extends javax.swing.JPanel {
             }
         });
 
-        btnThemVe.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
         btnThemVe.setText("Thêm Vé");
         btnThemVe.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -307,7 +301,6 @@ public class DanhSachVeJPanel extends javax.swing.JPanel {
             }
         });
 
-        jButton1.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
         jButton1.setText("In Vé");
         jButton1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
