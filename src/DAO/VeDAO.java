@@ -36,7 +36,7 @@ public class VeDAO extends CinemaxDAO<Ve, String> {
             + "DESC\n"
             + "LIMIT ?";
 
-    final String SELECT_DANHSACHVE = "select VeID,TenPhim,Ve.SuatChieuID,PhongChieu.PhongID,NgayTaoXuat,Ghe,LoaiVe,GiaVe,NgayMua from SuatChieu\n"
+    final String SELECT_DANHSACHVE = "select VeID,TenPhim,Ve.SuatChieuID,SuatChieu.CaChieu,PhongChieu.PhongID,NgayTaoXuat,Ghe,LoaiVe,GiaVe,NgayMua from SuatChieu\n"
             + "Join Ve\n"
             + "on SuatChieu.SuatChieuID = Ve.SuatChieuID\n"
             + "JOIN Phim\n"
@@ -50,7 +50,7 @@ public class VeDAO extends CinemaxDAO<Ve, String> {
             + "on Ve.SuatChieuID = SC.SuatChieuID\n"
             + "where SC.SuatChieuID = ?";
 
-    final String SELECT_ALL_DANHSACH = "select VeID,TenPhim,Ve.SuatChieuID,PhongChieu.PhongID,NgayTaoXuat,Ghe,LoaiVe,GiaVe,NgayMua from SuatChieu\n"
+    final String SELECT_ALL_DANHSACH = "select VeID,TenPhim,Ve.SuatChieuID,SuatChieu.CaChieu,PhongChieu.PhongID,NgayTaoXuat,Ghe,LoaiVe,GiaVe,NgayMua from SuatChieu\n"
             + "            Join Ve\n"
             + "            on SuatChieu.SuatChieuID = Ve.SuatChieuID\n"
             + "            JOIN Phim\n"
@@ -174,6 +174,7 @@ public class VeDAO extends CinemaxDAO<Ve, String> {
             ResultSet rs = JDBCHelper.query(SELECT_DANHSACHVE, "%" + loaiVe + "%", tenPhim, tenPhong, thoiGianBatDau + "%");
             while (rs.next()) {
                 DanhSachVe entity = new DanhSachVe();
+                entity.setCaChieu(rs.getString("CaChieu"));
                 entity.setSuatChieuID(rs.getString("SuatChieuID"));
                 entity.setGhe(rs.getString("Ghe"));
                 entity.setGiaVe(rs.getString("GiaVe"));
@@ -227,6 +228,7 @@ public class VeDAO extends CinemaxDAO<Ve, String> {
             ResultSet rs = JDBCHelper.query(SELECT_ALL_DANHSACH);
             while (rs.next()) {
                 DanhSachVe entity = new DanhSachVe();
+                entity.setCaChieu(rs.getString("CaChieu"));
                 entity.setSuatChieuID(rs.getString("SuatChieuID"));
                 entity.setGhe(rs.getString("Ghe"));
                 entity.setGiaVe(rs.getString("GiaVe"));
