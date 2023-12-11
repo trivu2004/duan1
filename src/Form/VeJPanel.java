@@ -69,7 +69,7 @@ public class VeJPanel extends javax.swing.JPanel {
         PropertyConfigurator.configure("src\\Log\\log4j.properties");
         logger.info("Người dùng đã mở form vé");
         Date now = new Date();
-        SimpleDateFormat NgayMuaFormat = new SimpleDateFormat("YYYY-MM-dd");
+        SimpleDateFormat NgayMuaFormat = new SimpleDateFormat("YYYY-MM-dd HH:mm");
         ngayHienTai = NgayMuaFormat.format(now);
         new Timer(1000, new ActionListener() {
             @Override
@@ -407,9 +407,9 @@ public class VeJPanel extends javax.swing.JPanel {
         if (evt.getClickCount() == 1) {
             btnDatVe.setEnabled(true);
             MaSuatChieu = (String) tblSuatChieu.getValueAt(index, 1);
-            TenPhim = (String) tblSuatChieu.getValueAt(index, 2);
-            TenPhong = (String) tblSuatChieu.getValueAt(index, 3);
-            ThoiGianChieu = (String) tblSuatChieu.getValueAt(index, 4);
+            TenPhim = (String) tblSuatChieu.getValueAt(index, 3);
+            TenPhong = (String) tblSuatChieu.getValueAt(index, 4);
+            ThoiGianChieu = (String) tblSuatChieu.getValueAt(index, 5);
         }
         if (evt.getClickCount() == 2) {
             if (index >= 0) {

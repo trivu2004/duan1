@@ -239,3 +239,86 @@
 2023-12-11 21:02:04 INFO  VeJPanel:70 - Người dùng đã mở form vé
 2023-12-11 21:02:31 INFO  ThongKeJPanel:44 - Người dùng đã mở form thống kê
 2023-12-11 21:02:32 ERROR ThongKeJPanel:89 - Index -1 out of bounds for length 5
+2023-12-11 21:05:05 INFO  QuenMatKhauJDialog:42 - Người dùng đã mở form đổi mật khẩu
+2023-12-11 21:05:12 INFO  VeJPanel:70 - Người dùng đã mở form vé
+2023-12-11 21:05:57 INFO  DatVeJPanel:65 - Người dùng đã mởi form đặt vé
+2023-12-11 21:06:03 INFO  DanhSachVeJPanel:46 - Người dùng đã mở form danh sách vé
+2023-12-11 21:06:17 INFO  VeJPanel:70 - Người dùng đã mở form vé
+2023-12-11 21:06:22 INFO  DatVeJPanel:65 - Người dùng đã mởi form đặt vé
+2023-12-11 21:07:05 INFO  QuenMatKhauJDialog:42 - Người dùng đã mở form đổi mật khẩu
+2023-12-11 21:07:11 INFO  VeJPanel:70 - Người dùng đã mở form vé
+2023-12-11 21:07:16 INFO  DatVeJPanel:65 - Người dùng đã mởi form đặt vé
+2023-12-11 21:08:28 INFO  VeJPanel:70 - Người dùng đã mở form vé
+2023-12-11 21:08:33 INFO  DatVeJPanel:65 - Người dùng đã mởi form đặt vé
+2023-12-11 21:11:59 INFO  QuenMatKhauJDialog:42 - Người dùng đã mở form đổi mật khẩu
+2023-12-11 21:12:09 INFO  VeJPanel:70 - Người dùng đã mở form vé
+2023-12-11 21:12:13 INFO  DatVeJPanel:65 - Người dùng đã mởi form đặt vé
+2023-12-11 21:12:39 INFO  DanhSachVeJPanel:46 - Người dùng đã mở form danh sách vé
+2023-12-11 21:15:22 INFO  QuenMatKhauJDialog:42 - Người dùng đã mở form đổi mật khẩu
+2023-12-11 21:15:29 INFO  VeJPanel:70 - Người dùng đã mở form vé
+2023-12-11 21:15:35 INFO  DatVeJPanel:66 - Người dùng đã mởi form đặt vé
+2023-12-11 21:15:51 INFO  DanhSachVeJPanel:46 - Người dùng đã mở form danh sách vé
+2023-12-11 21:16:12 INFO  VeJPanel:70 - Người dùng đã mở form vé
+2023-12-11 21:18:02 INFO  QuenMatKhauJDialog:42 - Người dùng đã mở form đổi mật khẩu
+2023-12-11 21:18:08 INFO  VeJPanel:70 - Người dùng đã mở form vé
+2023-12-11 21:18:13 INFO  DatVeJPanel:66 - Người dùng đã mởi form đặt vé
+2023-12-11 21:18:57 INFO  QuenMatKhauJDialog:42 - Người dùng đã mở form đổi mật khẩu
+2023-12-11 21:19:03 INFO  VeJPanel:70 - Người dùng đã mở form vé
+2023-12-11 21:19:07 INFO  DatVeJPanel:65 - Người dùng đã mởi form đặt vé
+2023-12-11 21:19:53 INFO  VeJPanel:70 - Người dùng đã mở form vé
+2023-12-11 21:19:57 INFO  DatVeJPanel:65 - Người dùng đã mởi form đặt vé
+2023-12-11 21:20:49 INFO  QuenMatKhauJDialog:42 - Người dùng đã mở form đổi mật khẩu
+2023-12-11 21:20:56 INFO  VeJPanel:70 - Người dùng đã mở form vé
+2023-12-11 21:21:04 INFO  DatVeJPanel:65 - Người dùng đã mởi form đặt vé
+2023-12-11 21:22:34 INFO  QuenMatKhauJDialog:42 - Người dùng đã mở form đổi mật khẩu
+2023-12-11 21:22:40 INFO  VeJPanel:70 - Người dùng đã mở form vé
+2023-12-11 21:22:44 INFO  DatVeJPanel:65 - Người dùng đã mởi form đặt vé
+2023-12-11 21:23:49 INFO  QuenMatKhauJDialog:42 - Người dùng đã mở form đổi mật khẩu
+2023-12-11 21:23:54 INFO  VeJPanel:70 - Người dùng đã mở form vé
+2023-12-11 21:23:58 INFO  DatVeJPanel:65 - Người dùng đã mởi form đặt vé
+2023-12-11 21:25:28 INFO  QuenMatKhauJDialog:42 - Người dùng đã mở form đổi mật khẩu
+2023-12-11 21:25:38 INFO  VeJPanel:70 - Người dùng đã mở form vé
+2023-12-11 21:25:43 INFO  DatVeJPanel:65 - Người dùng đã mởi form đặt vé
+2023-12-11 21:28:29 INFO  QuenMatKhauJDialog:42 - Người dùng đã mở form đổi mật khẩu
+2023-12-11 21:28:36 INFO  VeJPanel:70 - Người dùng đã mở form vé
+2023-12-11 21:28:41 INFO  DatVeJPanel:65 - Người dùng đã mởi form đặt vé
+2023-12-11 21:34:50 INFO  QuenMatKhauJDialog:42 - Người dùng đã mở form đổi mật khẩu
+2023-12-11 21:35:01 INFO  SuatChieuJPanel:44 - Người dùng đã mở form suất chiếu
+2023-12-11 21:35:36 INFO  VeJPanel:70 - Người dùng đã mở form vé
+2023-12-11 21:35:44 INFO  DatVeJPanel:65 - Người dùng đã mởi form đặt vé
+2023-12-11 21:37:34 INFO  QuenMatKhauJDialog:42 - Người dùng đã mở form đổi mật khẩu
+2023-12-11 21:37:43 INFO  VeJPanel:70 - Người dùng đã mở form vé
+2023-12-11 21:37:47 INFO  DatVeJPanel:66 - Người dùng đã mởi form đặt vé
+2023-12-11 21:39:10 INFO  QuenMatKhauJDialog:42 - Người dùng đã mở form đổi mật khẩu
+2023-12-11 21:39:16 INFO  VeJPanel:70 - Người dùng đã mở form vé
+2023-12-11 21:39:20 INFO  DatVeJPanel:66 - Người dùng đã mởi form đặt vé
+2023-12-11 21:40:14 INFO  QuenMatKhauJDialog:42 - Người dùng đã mở form đổi mật khẩu
+2023-12-11 21:40:23 INFO  VeJPanel:70 - Người dùng đã mở form vé
+2023-12-11 21:40:28 INFO  DatVeJPanel:66 - Người dùng đã mởi form đặt vé
+2023-12-11 21:41:01 INFO  QuenMatKhauJDialog:42 - Người dùng đã mở form đổi mật khẩu
+2023-12-11 21:41:07 INFO  VeJPanel:70 - Người dùng đã mở form vé
+2023-12-11 21:41:11 INFO  DatVeJPanel:66 - Người dùng đã mởi form đặt vé
+2023-12-11 21:41:22 ERROR DatVeJPanel:305 - java.sql.SQLIntegrityConstraintViolationException: Cannot add or update a child row: a foreign key constraint fails (`sql12658501`.`Ve`, CONSTRAINT `Ve_ibfk_1` FOREIGN KEY (`SuatChieuID`) REFERENCES `SuatChieu` (`SuatChieuID`))
+2023-12-11 21:41:44 INFO  VeJPanel:70 - Người dùng đã mở form vé
+2023-12-11 21:41:48 INFO  DatVeJPanel:66 - Người dùng đã mởi form đặt vé
+2023-12-11 21:42:01 INFO  VeJPanel:70 - Người dùng đã mở form vé
+2023-12-11 21:42:05 INFO  DatVeJPanel:66 - Người dùng đã mởi form đặt vé
+2023-12-11 21:42:11 INFO  VeJPanel:70 - Người dùng đã mở form vé
+2023-12-11 21:43:07 INFO  QuenMatKhauJDialog:42 - Người dùng đã mở form đổi mật khẩu
+2023-12-11 21:43:31 INFO  PhongChieuJPanel:23 - Người dùng đã mở form phòng chiếu
+2023-12-11 21:52:05 INFO  QuenMatKhauJDialog:42 - Người dùng đã mở form đổi mật khẩu
+2023-12-11 21:52:17 INFO  VeJPanel:70 - Người dùng đã mở form vé
+2023-12-11 21:53:05 INFO  SuatChieuJPanel:44 - Người dùng đã mở form suất chiếu
+2023-12-11 21:53:33 INFO  VeJPanel:70 - Người dùng đã mở form vé
+2023-12-11 21:54:05 INFO  VeJPanel:70 - Người dùng đã mở form vé
+2023-12-11 22:00:57 INFO  SuatChieuJPanel:44 - Người dùng đã mở form suất chiếu
+2023-12-11 22:28:47 INFO  QuenMatKhauJDialog:42 - Người dùng đã mở form đổi mật khẩu
+2023-12-11 22:28:53 INFO  VeJPanel:70 - Người dùng đã mở form vé
+2023-12-11 22:42:39 INFO  QuenMatKhauJDialog:42 - Người dùng đã mở form đổi mật khẩu
+2023-12-11 22:42:46 INFO  SuatChieuJPanel:44 - Người dùng đã mở form suất chiếu
+2023-12-11 22:51:32 INFO  QuenMatKhauJDialog:42 - Người dùng đã mở form đổi mật khẩu
+2023-12-11 22:51:42 INFO  VeJPanel:70 - Người dùng đã mở form vé
+2023-12-11 22:55:29 INFO  QuenMatKhauJDialog:42 - Người dùng đã mở form đổi mật khẩu
+2023-12-11 22:55:37 INFO  VeJPanel:70 - Người dùng đã mở form vé
+2023-12-11 22:55:48 INFO  SuatChieuJPanel:44 - Người dùng đã mở form suất chiếu
+2023-12-11 22:56:24 INFO  VeJPanel:70 - Người dùng đã mở form vé

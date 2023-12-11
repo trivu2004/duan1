@@ -9,6 +9,7 @@ import Helper.JDBCHelper;
 import java.awt.Color;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.text.DecimalFormat;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.HashSet;
@@ -39,8 +40,8 @@ public class DatVeJPanel extends javax.swing.JPanel implements ActionListener {
     Color mauMacDinh = new Color(89, 86, 86);
     Color mauDangChon = new Color(255, 255, 0);
     Color mauDaChon = new Color(255, 51, 51);
-    Color mauChuMacDinh = new Color(187, 187, 187);
-    Color mauChuDangChon = new Color(0, 0, 0);
+    Color mauNenMacDinh = new Color(240, 240, 240);
+    Color mauNenDangChon = new Color(0, 0, 0);
     String LoaiVe;
     String ngayMua;
     int VeCount = 0;
@@ -98,14 +99,14 @@ public class DatVeJPanel extends javax.swing.JPanel implements ActionListener {
     void doiMauGhe(JButton button) {
         if (button.getBackground().equals(mauDangChon)) {
             button.setBackground(mauMacDinh);
-            button.setForeground(mauChuMacDinh);
+            button.setForeground(mauNenMacDinh);
             VeCount--;
             lblVeDaChon.setText("Đã chọn:" + VeCount + " ghế");
             return;
         }
         if (button.getBackground().equals(mauMacDinh)) {
             button.setBackground(mauDangChon);
-            button.setForeground(mauChuDangChon);
+            button.setForeground(mauNenDangChon);
             VeCount++;
             lblVeDaChon.setText("Đã chọn:" + VeCount + " ghế");
             return;
@@ -227,8 +228,9 @@ public class DatVeJPanel extends javax.swing.JPanel implements ActionListener {
     }
 
     void updateTxtLoaiVe() {
+        DecimalFormat decimalFormat = new DecimalFormat("#,###.##");
         GiaVe = GiaVeThuong + GiaVeVIP + GiaVeCouple;
-        txtGiaVe1.setText(GiaVe + "");
+        txtGiaVe1.setText(decimalFormat.format(GiaVe));
         LoaiVe = String.join(", ", uniqueSeatTypes);
         txtLoaiVe.setText(LoaiVe);
     }
@@ -296,6 +298,8 @@ public class DatVeJPanel extends javax.swing.JPanel implements ActionListener {
         try {
             daoVE.insert(entity);
             Notifications.getInstance().show(Notifications.Type.INFO, Notifications.Location.TOP_CENTER, "Đặt vé thành công!");
+            VeCount = 0;
+            uniqueSeatTypes.clear();
             fillForm();
         } catch (Exception e) {
             logger.error(e.getMessage());
@@ -306,6 +310,9 @@ public class DatVeJPanel extends javax.swing.JPanel implements ActionListener {
 
     void fillForm() {
         fillData();
+        GheThuongCount = 24;
+        GheVipCount = 24;
+        GheCoupleCount = 8;
         txtLoaiVe.setText("");
         txtGiaVe1.setText("0");
         lblVeDaChon.setText("");
@@ -314,6 +321,7 @@ public class DatVeJPanel extends javax.swing.JPanel implements ActionListener {
 
     void doiMauGheDaChon(JButton button) {
         button.setBackground(mauDaChon);
+        button.setForeground(mauMacDinh);
         button.addActionListener(null);
     }
 
